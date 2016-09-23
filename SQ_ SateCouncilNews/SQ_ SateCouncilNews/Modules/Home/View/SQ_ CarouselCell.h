@@ -1,5 +1,5 @@
 //
-//  SQ_CarouselView.h
+//  SQ_ CarouselCell.h
 //  SQ_ SateCouncilNews
 //
 //  Created by FuShouqiang on 16/9/23.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SQ_CarouselView : UIView
-
-@property (nonatomic, strong) NSDictionary *dataDic;
+@interface SQ__CarouselCell : UITableViewCell
 
 @end

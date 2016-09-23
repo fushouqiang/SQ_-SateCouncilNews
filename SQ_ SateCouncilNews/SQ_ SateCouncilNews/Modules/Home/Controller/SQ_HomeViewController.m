@@ -26,6 +26,7 @@ UIScrollViewDelegate
 @property (nonatomic, retain)UIScrollView *headScrollView;
 @property (nonatomic, retain)UIScrollView *contentScrollView;
 @property (nonatomic, retain)UIButton *lastSelectButton;
+@property (nonatomic, strong) NSMutableArray *titleButtons;
 
 
 
@@ -41,7 +42,9 @@ UIScrollViewDelegate
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.lastSelectButton = [[UIButton alloc] init];
     self.navigationItem.title = @"国务院";
+    self.titleButtons = [NSMutableArray array];
     [self setupHeadScrollView];
     [self setupContentScrollView];
     [self setupAllChildViewController];
@@ -95,29 +98,34 @@ UIScrollViewDelegate
 //创建子controller
 - (void)setupAllChildViewController {
     
-    NewsViewController *vc1 = [[NewsViewController alloc] init];
-    vc1.title = @"要闻";
-    vc1.view.backgroundColor = [UIColor redColor];
-    [self addChildViewController:vc1];
-    PremierViewController *vc2 = [[PremierViewController alloc] init];
-    vc2.title = @"总理";
-    vc2.view.backgroundColor = [UIColor blueColor];
-    [self addChildViewController:vc2];
-    PolicyViewController *vc3 = [[PolicyViewController alloc] init];
-    vc3.title = @"政策";
-    [self addChildViewController:vc3];
-    DepartmentViewController *vc4 = [[DepartmentViewController alloc] init];
-    vc4.title = @"部门";
-    [self addChildViewController:vc4];
-    LocalityViewController *vc5 = [[LocalityViewController alloc] init];
-    vc5.title = @"地方";
-    [self addChildViewController:vc5];
-    ServiceViewController *vc6 = [[ServiceViewController alloc] init];
-    vc6.title = @"服务";
-    [self addChildViewController:vc6];
-    DataViewController *vc7 = [[DataViewController alloc] init];
-    vc7.title = @"数据";
-    [self addChildViewController:vc7];
+    NewsViewController *newsVC = [[NewsViewController alloc] init];
+    newsVC.title = @"要闻";
+    newsVC.view.backgroundColor = [UIColor redColor];
+    [self addChildViewController:newsVC];
+    PremierViewController *premierVC = [[PremierViewController alloc] init];
+    premierVC.title = @"总理";
+//    vc2.view.backgroundColor = [UIColor blueColor];
+    [self addChildViewController:premierVC];
+    PolicyViewController *policyVC = [[PolicyViewController alloc] init];
+    policyVC.title = @"政策";
+    policyVC.view.backgroundColor = [UIColor yellowColor];
+    [self addChildViewController:policyVC];
+    DepartmentViewController *departmentVC = [[DepartmentViewController alloc] init];
+    departmentVC.title = @"部门";
+    departmentVC.view.backgroundColor = [UIColor blackColor];
+    [self addChildViewController:departmentVC];
+    LocalityViewController *localityVC = [[LocalityViewController alloc] init];
+    localityVC.title = @"地方";
+    localityVC.view.backgroundColor = [UIColor orangeColor];
+    [self addChildViewController:localityVC];
+    ServiceViewController *serviceVC = [[ServiceViewController alloc] init];
+    serviceVC.title = @"服务";
+    serviceVC.view.backgroundColor = [UIColor colorWithRed:0.367 green:0.935 blue:1.000 alpha:1.000];
+    [self addChildViewController:serviceVC];
+    DataViewController *dataVC = [[DataViewController alloc] init];
+    dataVC.title = @"数据";
+    dataVC.view.backgroundColor = [UIColor colorWithRed:1.000 green:0.232 blue:0.649 alpha:1.000];
+    [self addChildViewController:dataVC];
     
     
     
@@ -137,12 +145,12 @@ UIScrollViewDelegate
         [titleButton setTitle:vc.title forState:UIControlStateNormal];
         [titleButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.headScrollView addSubview:titleButton];
-        
+        [self.titleButtons addObject:titleButton];
     }
     
     self.headScrollView.contentSize = CGSizeMake(count * 80, 0);
     self.contentScrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width * count, 0);
-    
+   
 }
 
 //标题按钮的点击事件
@@ -152,17 +160,19 @@ UIScrollViewDelegate
     [self selectedButton:button];
     [self setupOneViewController:i];
     CGFloat x = i * [UIScreen mainScreen].bounds.size.width;
-//    self.contentScrollView.contentOffset = CGPointMake(x, 0);
     [self.contentScrollView setContentOffset:CGPointMake(x, 0) animated:YES];
     
 }
+
 
 - (void)selectedButton:(UIButton *)button {
     
     [self.lastSelectButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    
     self.lastSelectButton = button;
+    
+    
+    
 }
 
 
@@ -173,7 +183,6 @@ UIScrollViewDelegate
     if (VC.view.superview) {
         return;
     }
-    
     CGFloat x = [UIScreen mainScreen].bounds.size.width * i;
     VC.view.frame = CGRectMake(x, 0, [UIScreen mainScreen].bounds.size.width, self.contentScrollView.superview.frame.size.height);
     [self.contentScrollView addSubview:VC.view];
@@ -181,18 +190,21 @@ UIScrollViewDelegate
 }
 
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     
-    if ([scrollView isEqual:self.contentScrollView]) {
-   
-//        NSLog(@"%f",scrollView.contentOffset.x);
-        
-//        if (scrollView.contentOffset.x < 0) {
-//             [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
-//        }
-        
-        
-    }
+    NSInteger i = scrollView.contentOffset.x / [UIScreen mainScreen].bounds.size.width;
+    // 获取标题按钮
+    UIButton *titleButton = self.titleButtons[i];
+    
+    // 1.选中标题
+    [self selectedButton:titleButton];
+    
+    // 2.把对应子控制器的view添加上去
+    [self setupOneViewController:i];
+    long index = titleButton.tag - 1000;
+    
+    self.headScrollView.contentOffset = CGPointMake(80 * index, 0);
     
 }
 

@@ -1,5 +1,5 @@
 //
-//  SQ_CarouselView.h
+//  SQ_headCell.h
 //  SQ_ SateCouncilNews
 //
 //  Created by FuShouqiang on 16/9/23.
@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SQ_CarouselView : UIView
+@interface SQ_headCell : UITableViewCell
 
-@property (nonatomic, strong) NSDictionary *dataDic;
+@property (nonatomic, retain) NSDictionary *article;
 
 @end

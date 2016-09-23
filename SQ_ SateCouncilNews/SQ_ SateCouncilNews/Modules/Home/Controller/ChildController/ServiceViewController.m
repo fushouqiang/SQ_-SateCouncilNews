@@ -7,8 +7,23 @@
 //
 
 #import "ServiceViewController.h"
+#import "HttpClient.h"
+#import "SQ_normalCell.h"
+#import "SQ_headCell.h"
+#import "MJRefresh.h"
+#import "SQ_DetailViewController.h"
 
 @interface ServiceViewController ()
+<
+UITableViewDelegate,
+UITableViewDataSource
+>
+typedef void (^JsonSuccess)(id json);
+
+@property (nonatomic, retain) UITableView *tableView;
+@property (nonatomic, retain) NSMutableArray *dataSourceArray;
+@property (nonatomic, strong) id result;
+@property (nonatomic, assign) NSInteger dataNumber;
 
 @end
 
@@ -16,13 +31,146 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    
+    self.dataSourceArray = [NSMutableArray array];
+    
+    [self createTableView];
+    [self handleData];
+    self.dataNumber = 0;
+    
+    
+    
     // Do any additional setup after loading the view.
+}
+
+- (void)createTableView {
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 172) style:UITableViewStylePlain];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    [self.view addSubview:_tableView ];
+    _tableView.backgroundColor = [UIColor whiteColor];
+    _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    [_tableView.mj_header endRefreshing];
+    
+    
+}
+
+- (void)loadData {
+    if (_dataNumber == 3) {
+        [self.tableView.mj_footer endRefreshing];
+        [self footEndRefresh];
+        return;
+    }
+    _dataNumber ++;
+    [self handleData];
+    [self.tableView.mj_footer endRefreshing];
+    
+    
+    
+}
+
+- (void)footEndRefresh {
+    [_tableView.mj_footer endRefreshingWithNoMoreData];
+}
+
+- (void)handleData {
+    
+    
+    
+    [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/columns/column_476_%ld.json",_dataNumber] json:^(id json) {
+        
+        if (json != NULL) {
+            
+            self.result = json;
+            
+            NSDictionary *articlesDic = [json valueForKey:@"articles"];
+            
+            NSArray *keyArray = [articlesDic allKeys];
+            
+            for (int i = 0; i < keyArray.count; i++) {
+                
+                [_dataSourceArray addObject:articlesDic[keyArray[i]]];
+                
+            }
+            
+            [_tableView reloadData];
+            
+        }
+        
+    }];
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 0) {
+        return 250;
+    }
+    else
+    {
+        return 100;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    SQ_DetailViewController *detailVC = [[SQ_DetailViewController alloc] init];
+    detailVC.dataDic = _dataSourceArray[indexPath.row];
+    [self.navigationController pushViewController:detailVC animated:YES];
+    
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return _dataSourceArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.row == 0) {
+        static NSString *cellIdentifier1 = @"Cell1";
+        SQ_headCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        if (nil == cell) {
+            cell = [[SQ_headCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier1] ;
+        }
+        cell.article = _dataSourceArray[indexPath.row];
+        return cell;
+    }
+    
+    else {
+        static NSString *cellIdentifier = @"Cell";
+        SQ_normalCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (nil == cell) {
+            cell = [[SQ_normalCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier] ;
+        }
+        cell.article = _dataSourceArray[indexPath.row];
+        return cell;}
+    
+}
+
+//获取json
+- (void)getJsonWithUrlString:(NSString *)urlString json:(JsonSuccess)json{
+    
+    
+    
+    
+    [HttpClient getWithUrlString:urlString success:^(id data) {
+        NSLog(@"%@",[NSThread currentThread]);
+        NSString *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        json(dic);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 /*
 #pragma mark - Navigation

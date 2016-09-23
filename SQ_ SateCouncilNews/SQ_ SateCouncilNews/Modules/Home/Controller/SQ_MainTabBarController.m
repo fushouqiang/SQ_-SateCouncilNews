@@ -46,7 +46,7 @@
     
     self.viewControllers = @[SQ_homeNavigationController,SQ_scNavigationController,SQ_affairsNavigationController];
     
-    
+    self.tabBar.backgroundColor = [UIColor colorWithWhite:0.627 alpha:1.000];
     
     
     

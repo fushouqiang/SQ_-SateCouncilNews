@@ -12,6 +12,8 @@
 #import "SQ_headCell.h"
 #import "MJRefresh.h"
 #import "SQ_DetailViewController.h"
+#import "SQ_Article.h"
+#import "NSObject+YYModel.h"
 
 @interface ServiceViewController ()
 <
@@ -21,7 +23,7 @@ UITableViewDataSource
 typedef void (^JsonSuccess)(id json);
 
 @property (nonatomic, retain) UITableView *tableView;
-@property (nonatomic, retain) NSMutableArray *dataSourceArray;
+@property (nonatomic, retain) NSMutableArray *articleArray;
 @property (nonatomic, strong) id result;
 @property (nonatomic, assign) NSInteger dataNumber;
 
@@ -34,7 +36,7 @@ typedef void (^JsonSuccess)(id json);
     
     
     
-    self.dataSourceArray = [NSMutableArray array];
+    self.articleArray = [NSMutableArray array];
     
     [self createTableView];
     [self handleData];
@@ -91,8 +93,8 @@ typedef void (^JsonSuccess)(id json);
             NSArray *keyArray = [articlesDic allKeys];
             
             for (int i = 0; i < keyArray.count; i++) {
-                
-                [_dataSourceArray addObject:articlesDic[keyArray[i]]];
+                SQ_Article *article = [SQ_Article yy_modelWithDictionary:articlesDic[keyArray[i]]];
+                [_articleArray addObject:article];
                 
             }
             
@@ -117,13 +119,14 @@ typedef void (^JsonSuccess)(id json);
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     SQ_DetailViewController *detailVC = [[SQ_DetailViewController alloc] init];
-    detailVC.dataDic = _dataSourceArray[indexPath.row];
+    detailVC.article = _articleArray[indexPath.row];
+    
     [self.navigationController pushViewController:detailVC animated:YES];
     
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _dataSourceArray.count;
+    return _articleArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -134,7 +137,7 @@ typedef void (^JsonSuccess)(id json);
         if (nil == cell) {
             cell = [[SQ_headCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier1] ;
         }
-        cell.article = _dataSourceArray[indexPath.row];
+        cell.article = _articleArray[indexPath.row];
         return cell;
     }
     
@@ -144,7 +147,7 @@ typedef void (^JsonSuccess)(id json);
         if (nil == cell) {
             cell = [[SQ_normalCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier] ;
         }
-        cell.article = _dataSourceArray[indexPath.row];
+        cell.article = _articleArray[indexPath.row];
         return cell;}
     
 }

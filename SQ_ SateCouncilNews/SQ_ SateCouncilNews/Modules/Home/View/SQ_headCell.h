@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SQ_Article.h"
 
 @interface SQ_headCell : UITableViewCell
 
-@property (nonatomic, retain) NSDictionary *article;
+@property (nonatomic, retain) SQ_Article *article;
 
 @end

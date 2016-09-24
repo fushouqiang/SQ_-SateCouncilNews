@@ -11,6 +11,14 @@
 #import "SQ_LeftViewController.h"
 #import "MMDrawerController.h"
 
+#define MAS_SHORTHAND_GLOBALS
+#define MAS_SHORTHAND
+
+#define WIDTH [UIScreen mainScreen].bounds.size.width
+#define HEIGHT [UIScreen mainScreen].bounds.size.height
+
+#import "Masonry.h"
+
 @interface AppDelegate ()
 @property (nonatomic, retain)MMDrawerController *drawerController;
 
@@ -30,7 +38,7 @@
     self.drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeAll;
     self.drawerController.closeDrawerGestureModeMask =MMCloseDrawerGestureModeAll;
     //5、设置左右两边抽屉显示的多少
-    self.drawerController.maximumLeftDrawerWidth = 300.0;
+    self.drawerController.maximumLeftDrawerWidth = WIDTH / 2;
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [_window makeKeyAndVisible];

@@ -42,7 +42,7 @@ UIWebViewDelegate
         make.height.equalTo(HEIGHT - 128);
     }];
     
-    NSString *urlString = [self.dataDic valueForKey:@"shareUrl"];
+    NSString *urlString = self.article.shareUrl;
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];

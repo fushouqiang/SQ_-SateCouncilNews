@@ -99,18 +99,18 @@
 
 
 
-- (void)setArticle:(NSDictionary *)article {
+- (void)setArticle:(SQ_Article *)article {
     
     if (_article != article) {
         _article = article;
         
-        SQ_Article *articleM = [SQ_Article yy_modelWithDictionary:_article];
-        NSString *urlSource = [[articleM.thumbnails valueForKey:@"1"] valueForKey:@"file"];
+       
+        NSString *urlSource = [[article.thumbnails valueForKey:@"1"] valueForKey:@"file"];
         NSString *urlString = [NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/%@",urlSource];
         NSURL *imageUrl = [NSURL URLWithString:urlString];
         [self.newsImageView sd_setImageWithURL:imageUrl];
-        self.contentLabel.text = articleM.title;
-        NSString *str = [articleM.path substringToIndex:9];
+        self.contentLabel.text = article.title;
+        NSString *str = [article.path substringToIndex:9];
         self.timeLabel.text = str;
     }
     

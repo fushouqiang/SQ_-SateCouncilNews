@@ -14,5 +14,5 @@
 @interface SQ_normalCell : UITableViewCell
 
 
-@property (nonatomic, strong)NSDictionary *article;
+@property (nonatomic, strong)SQ_Article *article;
 @end

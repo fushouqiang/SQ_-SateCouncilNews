@@ -7,8 +7,9 @@
 //
 
 #import "SQ_BaseViewController.h"
+#import "SQ_Article.h"
 
 @interface SQ_DetailViewController : SQ_BaseViewController
 
-@property (nonatomic, strong)NSDictionary *dataDic;
+@property (nonatomic, strong)SQ_Article *article;
 @end

@@ -7,8 +7,26 @@
 //
 
 #import "SQ_LeftViewController.h"
+#define MAS_SHORTHAND_GLOBALS
+#define MAS_SHORTHAND
+
+#define WIDTH [UIScreen mainScreen].bounds.size.width
+#define HEIGHT [UIScreen mainScreen].bounds.size.height
+
+#import "Masonry.h"
+#import "SQ_LeftCell.h"
+
+static NSString *const cellIdentifier = @"cell";
 
 @interface SQ_LeftViewController ()
+<
+UITableViewDelegate,
+UITableViewDataSource
+>
+
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSArray *imageNameArray;
+@property (nonatomic, strong) NSArray *textArray;
 
 @end
 
@@ -16,8 +34,118 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self createData];
+    [self createLogo];
+    [self createBottonUi];
+    [self createTableView];
     // Do any additional setup after loading the view.
 }
+
+
+- (void) createLogo {
+    
+    
+    
+    UIImageView *imageView = [[UIImageView alloc] init];
+    [self.view addSubview:imageView];
+    [imageView makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view.top).offset(80);
+        make.left.equalTo(self.view.left).offset(30);
+        make.width.equalTo(60);
+        make.height.equalTo(30);
+    }];
+    imageView.image = [UIImage imageNamed:@"sideMenuLeftLogo"];
+    self.view.backgroundColor = [UIColor colorWithRed:0.056 green:0.708 blue:1.000 alpha:1.000];
+    
+}
+
+
+- (void)createBottonUi {
+ 
+    UILabel *bottonLabel = [[UILabel alloc] init];
+    [self.view addSubview:bottonLabel];
+    [bottonLabel makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.view.bottom);
+        make.left.equalTo(self.view.left);
+        make.width.equalTo(self.view.width);
+        make.height.equalTo(40);
+    }];
+//    bottonLabel.backgroundColor = [UIColor colorWithRed:0.005 green:0.019 blue:0.022 alpha:1.000];
+//    
+ 
+    UIButton *cnButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [bottonLabel addSubview:cnButton];
+    [cnButton makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(bottonLabel.left).offset(10);
+        make.bottom.equalTo(bottonLabel.bottom).offset(-10);
+        make.width.equalTo(60);
+        make.height.equalTo(20);
+    }];
+    [cnButton setImage:[UIImage imageNamed:@"sideMenuLeftIconCn"] forState:UIControlStateNormal];
+    cnButton.backgroundColor = [UIColor colorWithWhite:0.972 alpha:1.000];
+    
+    
+    UIButton *enButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [bottonLabel addSubview:enButton];
+    [enButton makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(bottonLabel.right).offset(-10);
+        make.bottom.equalTo(bottonLabel.bottom).offset(-10);
+        make.width.equalTo(60);
+        make.height.equalTo(20);
+    }];
+    [enButton setImage:[UIImage imageNamed:@"sideMenuLeftIconEn"] forState:UIControlStateNormal];
+    enButton.backgroundColor = [UIColor colorWithWhite:0.972 alpha:1.000];
+
+}
+
+
+
+- (void)createTableView {
+    
+    if (_tableView == nil) {
+        _tableView = [[UITableView alloc] init];
+        _tableView.delegate = self;
+        _tableView.scrollEnabled = NO;
+        _tableView.backgroundColor = [UIColor colorWithRed:0.056 green:0.708 blue:1.000 alpha:1.000];
+        _tableView.dataSource  = self;
+        [self.view addSubview:_tableView];
+        [_tableView makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.view).offset(HEIGHT / 3);
+            make.left.equalTo(self.view).offset(20);
+            make.height.equalTo(HEIGHT / 2);
+            make.width.equalTo(WIDTH / 3);
+            
+            
+        }];
+        [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        [_tableView registerClass:[SQ_LeftCell class] forCellReuseIdentifier:cellIdentifier];
+        
+    }
+    
+}
+
+- (void)createData {
+    
+    self.imageNameArray = @[@"sideMenuLeftSaved",@"sideMenuLeftShare",@"sideMenuLeftCache",@"sideMenuLeftSetting",@"sideMenuLeftAboutus"];
+    self.textArray = @[@"我的收藏",@"推荐给朋友",@"离线阅读",@"设置",@"关于我们"];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 5;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    SQ_LeftCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    cell.backgroundColor = [UIColor colorWithRed:0.056 green:0.708 blue:1.000 alpha:1.000];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.imageName = _imageNameArray[indexPath.row];
+    cell.labelText = _textArray[indexPath.row];
+    return cell;
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

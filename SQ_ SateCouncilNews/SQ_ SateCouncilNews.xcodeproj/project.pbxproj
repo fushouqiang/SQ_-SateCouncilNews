@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		796462DF1D9615420045B35F /* SQ_LeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 796462DE1D9615420045B35F /* SQ_LeftCell.m */; };
+		796462E21D96995B0045B35F /* SQ_ScrollNewsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 796462E11D96995B0045B35F /* SQ_ScrollNewsView.m */; };
+		796462E51D969CD40045B35F /* SQ_ScrollNewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 796462E41D969CD40045B35F /* SQ_ScrollNewCell.m */; };
 		797405411D93DD0400B8B376 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7974052B1D93DD0400B8B376 /* 1.png */; };
 		797405421D93DD0400B8B376 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7974052C1D93DD0400B8B376 /* 2.png */; };
 		797405431D93DD0400B8B376 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7974052D1D93DD0400B8B376 /* 3.png */; };
@@ -113,6 +116,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		796462DD1D9615420045B35F /* SQ_LeftCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQ_LeftCell.h; path = "SQ_ SateCouncilNews/Modules/Home/View/SQ_LeftCell.h"; sourceTree = SOURCE_ROOT; };
+		796462DE1D9615420045B35F /* SQ_LeftCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SQ_LeftCell.m; path = "SQ_ SateCouncilNews/Modules/Home/View/SQ_LeftCell.m"; sourceTree = SOURCE_ROOT; };
+		796462E01D96995B0045B35F /* SQ_ScrollNewsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_ScrollNewsView.h; sourceTree = "<group>"; };
+		796462E11D96995B0045B35F /* SQ_ScrollNewsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_ScrollNewsView.m; sourceTree = "<group>"; };
+		796462E31D969CD40045B35F /* SQ_ScrollNewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_ScrollNewCell.h; sourceTree = "<group>"; };
+		796462E41D969CD40045B35F /* SQ_ScrollNewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_ScrollNewCell.m; sourceTree = "<group>"; };
 		7974052B1D93DD0400B8B376 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		7974052C1D93DD0400B8B376 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		7974052D1D93DD0400B8B376 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
@@ -572,6 +581,10 @@
 				79A83EB81D94C4E800D226B7 /* SQ_headCell.m */,
 				79A83F101D9525C300D226B7 /* SQ_CarouselView.h */,
 				79A83F111D9525C300D226B7 /* SQ_CarouselView.m */,
+				796462E01D96995B0045B35F /* SQ_ScrollNewsView.h */,
+				796462E11D96995B0045B35F /* SQ_ScrollNewsView.m */,
+				796462E31D969CD40045B35F /* SQ_ScrollNewCell.h */,
+				796462E41D969CD40045B35F /* SQ_ScrollNewCell.m */,
 				79A83F0D1D95238600D226B7 /* SQ_ CarouselCell.h */,
 				79A83F0E1D95238600D226B7 /* SQ_ CarouselCell.m */,
 			);
@@ -750,6 +763,8 @@
 		79BFE0301D927C04009F84D0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				796462DD1D9615420045B35F /* SQ_LeftCell.h */,
+				796462DE1D9615420045B35F /* SQ_LeftCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1069,6 +1084,7 @@
 				798142391D915AFF005BEA08 /* XLImagePageView.m in Sources */,
 				798142381D915AFF005BEA08 /* XLImagePageDetailCell.m in Sources */,
 				798141F51D9154A4005BEA08 /* NSArray+Categories.m in Sources */,
+				796462E21D96995B0045B35F /* SQ_ScrollNewsView.m in Sources */,
 				7974055E1D9424B700B8B376 /* SQ_TopView.m in Sources */,
 				7981421C1D9158F3005BEA08 /* SQ_SateCouncilModel.m in Sources */,
 				79A83F121D9525C300D226B7 /* SQ_CarouselView.m in Sources */,
@@ -1087,6 +1103,7 @@
 				798141FD1D9154A4005BEA08 /* UIButton+Block.m in Sources */,
 				798141DC1D915480005BEA08 /* DataBaseManager.m in Sources */,
 				798141F91D9154A4005BEA08 /* NSNumber+Extend.m in Sources */,
+				796462E51D969CD40045B35F /* SQ_ScrollNewCell.m in Sources */,
 				79BFE01D1D927A0B009F84D0 /* PolicyViewController.m in Sources */,
 				798141C31D91520B005BEA08 /* SQ_BaseView.m in Sources */,
 				7981422B1D9159C2005BEA08 /* SQ_GovAffHallViewController.m in Sources */,
@@ -1104,6 +1121,7 @@
 				798141F81D9154A4005BEA08 /* NSDictionary+Categories.m in Sources */,
 				798142371D915AFF005BEA08 /* UIImageView+XLWebCache.m in Sources */,
 				798142161D915873005BEA08 /* SQ_HomeView.m in Sources */,
+				796462DF1D9615420045B35F /* SQ_LeftCell.m in Sources */,
 				798141D51D915460005BEA08 /* NSUserDefaultsUtils.m in Sources */,
 				79BFE01C1D927A0B009F84D0 /* PremierViewController.m in Sources */,
 				798141F61D9154A4005BEA08 /* NSDate+Categories.m in Sources */,
@@ -1171,6 +1189,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1215,6 +1234,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";

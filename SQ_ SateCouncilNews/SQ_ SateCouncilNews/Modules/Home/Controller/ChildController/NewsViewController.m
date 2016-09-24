@@ -18,6 +18,10 @@
 #import "NSObject+YYModel.h"
 #import "SQ_normalCell.h"
 #import "SQ_CarouselView.h"
+#import "SQ_DetailViewController.h"
+#import "SQ_ScrollNewCell.h"
+#import "SQ_Article.h"
+#import "SQ_ScrollNewsView.h"
 
 
 //static NSString *const cellIndentifier = @"cell";
@@ -29,7 +33,8 @@ typedef void (^JsonSuccess)(id json);
 @interface NewsViewController ()
 <
 UITableViewDelegate,
-UITableViewDataSource
+UITableViewDataSource,
+touchIndexDelegate
 >
 
 @property (nonatomic, retain)UITableView *tableView;
@@ -60,6 +65,8 @@ UITableViewDataSource
 
 @property (nonatomic, strong) SQ_CarouselView *car;
 
+@property (nonatomic, strong) NSDictionary *carouseTouchDic;
+
 
 
 
@@ -79,14 +86,10 @@ UITableViewDataSource
 
    
     
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
-    [self.view addSubview:_tableView ];
-    _tableView.backgroundColor = [UIColor whiteColor];
+
 
   
-    
+
     
     self.dataSourceArray = [NSMutableArray array];
 
@@ -98,11 +101,20 @@ UITableViewDataSource
                 self.result = json;
                 [self initDicWithResult:_result];
                 self.car = [[SQ_CarouselView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 200)];
+                _car.delegate = self;
+                self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+                _tableView.delegate = self;
+                _tableView.dataSource = self;
+                [self.view addSubview:_tableView ];
+                _tableView.backgroundColor = [UIColor whiteColor];
                 _tableView.tableHeaderView = _car;
                 _car.dataDic = _carouseDic;
                 [_tableView reloadData];
                 
-//                NSLog(@"%@",self.topDic);
+                [[[SQ_ScrollNewsView alloc] init] getBlockArticle:^(SQ_Article *article) {
+                    
+                    NSLog(@"%@",article);
+                }];
                 
                 
                 
@@ -117,6 +129,12 @@ UITableViewDataSource
  
     
  
+}
+
+- (void)touchIndexWithdata:(SQ_Article *)data {
+    SQ_DetailViewController *detailVC = [[SQ_DetailViewController alloc] init];
+    detailVC.article = data;
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 
@@ -139,6 +157,10 @@ UITableViewDataSource
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.row == 0) {
+        return 20;
+    }
     return 100;
 }
 
@@ -147,15 +169,30 @@ UITableViewDataSource
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  
+    static NSString *cellIdentifier1 = @"scrollNews";
+    if (indexPath.row == 0) {
+       
+        SQ_ScrollNewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier1];
+        if (nil == cell) {
+            
+            cell = [[SQ_ScrollNewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier1];
+            cell.dataDic = _marqueeDic;
+
+            
+        }
+        return cell;
+    }
+    
+    else {
     static NSString *cellIdentifier = @"Cell";
     
     SQ_normalCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (nil == cell) {
             cell = [[SQ_normalCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier] ;
-        }   
+        
+        }
     return cell;
-    
+    }
 }
 
 //获取json

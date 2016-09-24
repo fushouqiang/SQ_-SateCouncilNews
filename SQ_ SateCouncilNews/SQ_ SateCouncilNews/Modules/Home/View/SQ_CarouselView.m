@@ -20,20 +20,19 @@
 #import "NSObject+YYModel.h"
 #import "SDWebImageManager.h"
 #import "SQ_News.h"
+#import "SQ_DetailViewController.h"
+#import "SQ_ScrollNewsView.h"
 
 @interface SQ_CarouselView ()
 <
 UIScrollViewDelegate
-
 >
 
 @property (nonatomic, strong) NSMutableArray *dataSourceArray;
 @property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic, strong) NSMutableArray *imageArray;
-@property (nonatomic, strong) NSMutableArray *currentArray;
 @property (nonatomic, strong) UIPageControl *pageControl;
-@property (nonatomic, strong) UIImageView *changeImageView;
-@property (nonatomic, strong) UIImageView *changeImageView2;
+@property (nonatomic, strong) SQ_ScrollNewsView *scrollNewsView;
+
 
 @end
 
@@ -52,45 +51,47 @@ UIScrollViewDelegate
     if (self) {
         
            self.dataSourceArray = [NSMutableArray array];
-        self.imageArray = [NSMutableArray array];
 
     }
     return self;
 }
 
 - (void)createUI {
+    //创建scrollView
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     [self addSubview:_scrollView];
     _scrollView.contentSize = CGSizeMake(WIDTH * 7, self.frame.size.height);
     _scrollView.pagingEnabled = YES;
     _scrollView.delegate = self;
+    [_scrollView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)]];
 
-    
-//    for (int i = 0; i < self.dataSourceArray.count + 1; i++) {
-//        
-//        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH * i, 0, WIDTH, _scrollView.frame.size.height)];
-//        [self.imageArray addObject:imageView];
-//        [_scrollView addSubview:imageView];
-//        
-//     
-//        imageView.backgroundColor = [UIColor redColor];
-//        if (i == self.dataSourceArray.count) {
-//            imageView.backgroundColor = [UIColor grayColor];
-//            
-//        }
-// 
-//    }
-    
-    self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(self.frame.size.width / 2 + 40, self.frame.size.height / 2 + 50, 80, 30)];
+    //创建pageControl
+    self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(self.frame.size.width / 2 + 60, self.frame.size.height / 2 + 75, 50, 30)];
     _pageControl.numberOfPages = 5;
-    _pageControl.pageIndicatorTintColor = [UIColor whiteColor];
-    _pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
+    _pageControl.pageIndicatorTintColor = [UIColor colorWithWhite:0.551 alpha:1.000];
+    _pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
     [_pageControl addTarget:self action:@selector(pageControlValueChanged:) forControlEvents:UIControlEventValueChanged];
     [self addSubview:_pageControl];
     
     
 }
 
+
+- (void)tap:(UITapGestureRecognizer *)tap {
+    
+    UIScrollView *scrollView = (UIScrollView *)tap.view;
+    
+    NSInteger i = scrollView.contentOffset.x / WIDTH;
+    //代理传值
+    if (self.delegate && [self.delegate respondsToSelector:@selector(touchIndexWithdata:)]) {
+        [self.delegate touchIndexWithdata:_dataSourceArray[i - 1]];
+    }
+
+    
+}
+
+
+//当pageControl变化时
 - (void)pageControlValueChanged:(UIPageControl *)pageControl {
     
     
@@ -127,42 +128,44 @@ UIScrollViewDelegate
         _dataDic = dataDic;
          [self createUI];
         NSArray *array = [dataDic allKeys];
+        
+        UIImageView *lastImageView = [[UIImageView alloc] init];
+        UIImageView *firstImageView = [[UIImageView alloc] init];
+        
         for (int i = 0; i < array.count; i++) {
             
             NSDictionary *dic = [dataDic valueForKey:array[i]];
             SQ_News *news = [SQ_News yy_modelWithDictionary:dic];
-            [self.dataSourceArray addObject:news];
-            SQ_Article *article = [[SQ_Article alloc] init];
-            article = news.article;
+            SQ_Article *article = news.article;
+            [self.dataSourceArray addObject:article];
+
             NSString *urlString = [NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/%@",[[article.thumbnails valueForKey:@"2"] valueForKey:@"file"]];
-            NSLog(@"%@",urlString);
-            
+       //伪跳转imageView last
             if (i == 0) {
-                self.changeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH * 6, 0, WIDTH, _scrollView.frame.size.height)];;
-                 [_changeImageView sd_setImageWithURL:[NSURL URLWithString:urlString]];
+              lastImageView.frame = CGRectMake(WIDTH * 6, 0, WIDTH, _scrollView.frame.size.height);
+                 [lastImageView sd_setImageWithURL:[NSURL URLWithString:urlString]];
             }
-            
+            //伪跳转imageView first
             if (i == (array.count - 1)) {
-                self.changeImageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, _scrollView.frame.size.height)];;
-                [_changeImageView2 sd_setImageWithURL:[NSURL URLWithString:urlString]];
+                firstImageView.frame = CGRectMake(0, 0, WIDTH, _scrollView.frame.size.height);
+                [firstImageView sd_setImageWithURL:[NSURL URLWithString:urlString]];
             }
-        
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH * (i+1), 0, WIDTH, _scrollView.frame.size.height)];
             [imageView sd_setImageWithURL:[NSURL URLWithString:urlString]];
-            [self.imageArray addObject:imageView];
+            UILabel *introduceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _scrollView.frame.size.height - 50, WIDTH, 50)];
+            introduceLabel.text = news.title;
+            introduceLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
+            introduceLabel.textColor = [UIColor whiteColor];
+            introduceLabel.numberOfLines = 2;
+            introduceLabel.textAlignment = NSTextAlignmentLeft;
+            introduceLabel.backgroundColor = [UIColor colorWithWhite:0.394 alpha:0.571];
+            [imageView addSubview:introduceLabel];
              [_scrollView addSubview:imageView];
-            [_scrollView reloadInputViews];
-            
-         
-            
-
         }
-        [self.scrollView addSubview:_changeImageView];
-        [self.scrollView addSubview:_changeImageView2];
+        [self.scrollView addSubview:lastImageView];
+        [self.scrollView addSubview:firstImageView];
         NSLog(@"%@",_scrollView);
         _scrollView.contentOffset = CGPointMake(WIDTH, 0);
-  
-//        NSLog(@"%@",_dataSourceArray);
     }
 
 

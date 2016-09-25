@@ -21,7 +21,7 @@
 #import "SDWebImageManager.h"
 #import "SQ_News.h"
 #import "SQ_DetailViewController.h"
-#import "SQ_ScrollNewsView.h"
+
 
 @interface SQ_CarouselView ()
 <
@@ -31,7 +31,7 @@ UIScrollViewDelegate
 @property (nonatomic, strong) NSMutableArray *dataSourceArray;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIPageControl *pageControl;
-@property (nonatomic, strong) SQ_ScrollNewsView *scrollNewsView;
+
 
 
 @end
@@ -144,11 +144,28 @@ UIScrollViewDelegate
             if (i == 0) {
               lastImageView.frame = CGRectMake(WIDTH * 6, 0, WIDTH, _scrollView.frame.size.height);
                  [lastImageView sd_setImageWithURL:[NSURL URLWithString:urlString]];
+                UILabel *introduceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _scrollView.frame.size.height - 50, WIDTH, 50)];
+                introduceLabel.text = news.title;
+                introduceLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
+                introduceLabel.textColor = [UIColor whiteColor];
+                introduceLabel.numberOfLines = 2;
+                introduceLabel.textAlignment = NSTextAlignmentLeft;
+                introduceLabel.backgroundColor = [UIColor colorWithWhite:0.394 alpha:0.571];
+                [lastImageView addSubview:introduceLabel];
             }
             //伪跳转imageView first
             if (i == (array.count - 1)) {
                 firstImageView.frame = CGRectMake(0, 0, WIDTH, _scrollView.frame.size.height);
                 [firstImageView sd_setImageWithURL:[NSURL URLWithString:urlString]];
+                UILabel *introduceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _scrollView.frame.size.height - 50, WIDTH, 50)];
+                introduceLabel.text = news.title;
+                introduceLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
+                introduceLabel.textColor = [UIColor whiteColor];
+                introduceLabel.numberOfLines = 2;
+                introduceLabel.textAlignment = NSTextAlignmentLeft;
+                introduceLabel.backgroundColor = [UIColor colorWithWhite:0.394 alpha:0.571];
+                [firstImageView addSubview:introduceLabel];
+
             }
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(WIDTH * (i+1), 0, WIDTH, _scrollView.frame.size.height)];
             [imageView sd_setImageWithURL:[NSURL URLWithString:urlString]];

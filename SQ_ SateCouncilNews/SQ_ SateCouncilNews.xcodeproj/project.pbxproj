@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7923F7AE1D993572008F45B9 /* SQ_MenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7923F7AD1D993572008F45B9 /* SQ_MenuCell.m */; };
+		7923F7B11D994095008F45B9 /* SQ_MenuButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7923F7B01D994095008F45B9 /* SQ_MenuButtonView.m */; };
 		796462DF1D9615420045B35F /* SQ_LeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 796462DE1D9615420045B35F /* SQ_LeftCell.m */; };
 		796462E51D969CD40045B35F /* SQ_ScrollNewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 796462E41D969CD40045B35F /* SQ_ScrollNewCell.m */; };
 		7974055B1D93FAF500B8B376 /* SQ_normalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7974055A1D93FAF500B8B376 /* SQ_normalCell.m */; };
@@ -105,6 +107,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7923F7AC1D993572008F45B9 /* SQ_MenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_MenuCell.h; sourceTree = "<group>"; };
+		7923F7AD1D993572008F45B9 /* SQ_MenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_MenuCell.m; sourceTree = "<group>"; };
+		7923F7AF1D994095008F45B9 /* SQ_MenuButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_MenuButtonView.h; sourceTree = "<group>"; };
+		7923F7B01D994095008F45B9 /* SQ_MenuButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_MenuButtonView.m; sourceTree = "<group>"; };
 		796462DD1D9615420045B35F /* SQ_LeftCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_LeftCell.h; sourceTree = "<group>"; };
 		796462DE1D9615420045B35F /* SQ_LeftCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_LeftCell.m; sourceTree = "<group>"; };
 		796462E31D969CD40045B35F /* SQ_ScrollNewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_ScrollNewCell.h; sourceTree = "<group>"; };
@@ -602,6 +608,10 @@
 		7981420B1D9156E7005BEA08 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7923F7AF1D994095008F45B9 /* SQ_MenuButtonView.h */,
+				7923F7B01D994095008F45B9 /* SQ_MenuButtonView.m */,
+				7923F7AC1D993572008F45B9 /* SQ_MenuCell.h */,
+				7923F7AD1D993572008F45B9 /* SQ_MenuCell.m */,
 				7981421D1D91590F005BEA08 /* SQ_SateCouncilView.h */,
 				7981421E1D91590F005BEA08 /* SQ_SateCouncilView.m */,
 			);
@@ -1209,6 +1219,7 @@
 				7974055E1D9424B700B8B376 /* SQ_TopView.m in Sources */,
 				79A360BC1D98D4E90090F80F /* SQ_EasyNewsCell.m in Sources */,
 				7981421C1D9158F3005BEA08 /* SQ_SateCouncilModel.m in Sources */,
+				7923F7B11D994095008F45B9 /* SQ_MenuButtonView.m in Sources */,
 				79A83F121D9525C300D226B7 /* SQ_CarouselView.m in Sources */,
 				798141FC1D9154A4005BEA08 /* NSUserDefaults+Categories.m in Sources */,
 				798141C01D915180005BEA08 /* SQ_BaseModel.m in Sources */,
@@ -1236,6 +1247,7 @@
 				79C5387E1D978C8800A10164 /* SQ_AvdioCell.m in Sources */,
 				79C538781D97782C00A10164 /* SQ_HalfNewsView.m in Sources */,
 				79BFE02D1D927B93009F84D0 /* SQ_AffairsHallViewController.m in Sources */,
+				7923F7AE1D993572008F45B9 /* SQ_MenuCell.m in Sources */,
 				79A83EBD1D94DB3900D226B7 /* SQ_DetailViewController.m in Sources */,
 				79A83EB31D94BDDB00D226B7 /* SQ_Article.m in Sources */,
 				7981421F1D91590F005BEA08 /* SQ_SateCouncilView.m in Sources */,

@@ -17,6 +17,7 @@
 #import "SQ_normalCell.h"
 #import "SQ_SignNormalCell.h"
 #import "SQ_EasyNewsCell.h"
+#import "SQ_MenuCell.h"
 typedef void (^JsonSuccess)(id json);
 
 @interface SQ_SCViewController ()
@@ -48,7 +49,7 @@ UITableViewDataSource
        
         if (json != NULL) {
             [self initData:json];
-            self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+            self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
             _tableView.delegate = self;
             _tableView.dataSource = self;
             [self.view addSubview:_tableView];
@@ -111,7 +112,7 @@ UITableViewDataSource
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         
-        return 220;
+        return 240;
     }
     if (indexPath.row == 3) {
         
@@ -120,6 +121,14 @@ UITableViewDataSource
     if (indexPath.row == 4) {
         
         return 130;
+    }
+    if (indexPath.row == 7) {
+        
+        return 80;
+    }
+    if (indexPath.row == 12) {
+        
+        return 80;
     }
     
     
@@ -142,7 +151,7 @@ UITableViewDataSource
         }
         return cell;
     }
-    if (indexPath.row == 1) {
+   else if (indexPath.row == 1) {
         static NSString *cellID2 = @"cell2";
         SQ_normalCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID2];
         if (nil == cell) {
@@ -155,7 +164,7 @@ UITableViewDataSource
         }
         return cell;
     }
-    if (indexPath.row == 2) {
+   else if (indexPath.row == 2) {
         static NSString *cellID3 = @"cell3";
         SQ_normalCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID3];
         if (nil == cell) {
@@ -168,7 +177,20 @@ UITableViewDataSource
         }
         return cell;
     }
-    if (indexPath.row == 4) {
+   else if (indexPath.row == 3) {
+       static NSString *cellID4 = @"cell3";
+       SQ_MenuCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID4];
+       if (nil == cell) {
+           
+           cell = [[SQ_MenuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID4];
+//           SQ_News *news = _premierArray[2];
+//           cell.article = news.article;
+           
+           
+       }
+       return cell;
+   }
+   else if (indexPath.row == 4) {
         static NSString *cellID5 = @"cell5";
         SQ_SignNormalCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID5];
         if (nil == cell) {
@@ -182,7 +204,7 @@ UITableViewDataSource
         }
         return cell;
     }
-    if (indexPath.row == 5) {
+   else if (indexPath.row == 5) {
         static NSString *cellID6 = @"cell6";
         SQ_normalCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID6];
         if (nil == cell) {
@@ -195,7 +217,7 @@ UITableViewDataSource
         }
         return cell;
     }
-    if (indexPath.row == 6) {
+  else  if (indexPath.row == 6) {
         static NSString *cellID7 = @"cell7";
         SQ_normalCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID7];
         if (nil == cell) {
@@ -210,7 +232,7 @@ UITableViewDataSource
         return cell;
     }
     
-    if (indexPath.row == 7) {
+   else if (indexPath.row == 7) {
         static NSString *cellID8 = @"cell8";
         SQ_EasyNewsCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID8];
         if (nil == cell) {
@@ -224,6 +246,77 @@ UITableViewDataSource
         
         return cell;
     }
+    
+   else if (indexPath.row == 8) {
+       static NSString *cellID9 = @"cell9";
+       SQ_SignNormalCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID9];
+       if (nil == cell) {
+           
+           cell = [[SQ_SignNormalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID9];
+           SQ_News *news = _councillorArray[0];
+           cell.article = news.article;
+           cell.signName = @"国务委员";
+           
+           
+       }
+       return cell;
+   }
+   else if (indexPath.row == 9) {
+       static NSString *cellID10 = @"cell10";
+       SQ_normalCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID10];
+       if (nil == cell) {
+           
+           cell = [[SQ_normalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID10];
+           SQ_News *news = _councillorArray[1];
+           cell.article = news.article;
+           
+           
+       }
+       return cell;
+   }
+   else if (indexPath.row == 10) {
+       static NSString *cellID11 = @"cell11";
+       SQ_normalCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID11];
+       if (nil == cell) {
+           
+           cell = [[SQ_normalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID11];
+           SQ_News *news = _councillorArray[2];
+           cell.article = news.article;
+           
+           
+       }
+       return cell;
+   }
+   else if (indexPath.row == 11) {
+       static NSString *cellID12 = @"cell12";
+       SQ_normalCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID12];
+       if (nil == cell) {
+           
+           cell = [[SQ_normalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID12];
+           SQ_News *news = _councillorArray[3];
+           cell.article = news.article;
+           
+           
+       }
+       return cell;
+   }
+   else if (indexPath.row == 12) {
+       static NSString *cellID13 = @"cell13";
+       SQ_EasyNewsCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID13];
+       if (nil == cell) {
+           
+           cell = [[SQ_EasyNewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID13];
+           SQ_News *news = _councillorArray[4];
+           cell.article = news.article;
+           
+           
+       }
+       
+       return cell;
+   }
+    
+    
+    
 
     else {
         

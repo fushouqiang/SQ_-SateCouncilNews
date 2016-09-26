@@ -204,7 +204,12 @@ UIScrollViewDelegate
     [self setupOneViewController:i];
     long index = titleButton.tag - 1000;
     
-    self.headScrollView.contentOffset = CGPointMake(80 * index, 0);
+    [self.headScrollView setContentOffset:CGPointMake(80 * index, 0) animated:YES];
+
+    
+
+    
+    
     
 }
 

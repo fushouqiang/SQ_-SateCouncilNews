@@ -7,7 +7,6 @@
 //
 
 #import "DepartmentViewController.h"
-
 #import "HttpClient.h"
 #import "SQ_normalCell.h"
 #import "SQ_headCell.h"
@@ -38,8 +37,6 @@ typedef void (^JsonSuccess)(id json);
     
     
     self.articleArray = [NSMutableArray array];
-    
-    [self createTableView];
     [self handleData];
     self.dataNumber = 0;
     
@@ -56,8 +53,17 @@ typedef void (^JsonSuccess)(id json);
     [self.view addSubview:_tableView ];
     _tableView.backgroundColor = [UIColor whiteColor];
     _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
-    [_tableView.mj_header endRefreshing];
+    _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self refreshData];
+    }];
     
+    
+    
+}
+
+- (void)refreshData {
+    
+    [self reloadData];
     
 }
 
@@ -98,8 +104,41 @@ typedef void (^JsonSuccess)(id json);
                 [_articleArray addObject:article];
                 
             }
+            if (_tableView == NULL) {
+                [self createTableView];
+            }
+            
             
             [_tableView reloadData];
+            
+        }
+        
+    }];
+    
+}
+
+- (void)reloadData {
+    self.dataNumber = 0;
+    [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/columns/column_474_%ld.json",_dataNumber] json:^(id json) {
+        
+        if (json != NULL) {
+            
+            self.result = json;
+            [_articleArray  removeAllObjects];
+            NSDictionary *articlesDic = [json valueForKey:@"articles"];
+            
+            NSArray *keyArray = [articlesDic allKeys];
+            
+            for (int i = 0; i < keyArray.count; i++) {
+                SQ_Article *article = [SQ_Article yy_modelWithDictionary:articlesDic[keyArray[i]]];
+                [_articleArray addObject:article];
+                
+            }
+            if (_tableView == NULL) {
+                [self createTableView];
+            }
+            [_tableView reloadData];
+            [_tableView.mj_header endRefreshing];
             
         }
         
@@ -121,10 +160,12 @@ typedef void (^JsonSuccess)(id json);
     
     SQ_DetailViewController *detailVC = [[SQ_DetailViewController alloc] init];
     detailVC.article = _articleArray[indexPath.row];
-     detailVC.hidesBottomBarWhenPushed = YES;
+    detailVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detailVC animated:YES];
     
 }
+
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _articleArray.count;
@@ -160,7 +201,6 @@ typedef void (^JsonSuccess)(id json);
     
     
     [HttpClient getWithUrlString:urlString success:^(id data) {
-        NSLog(@"%@",[NSThread currentThread]);
         NSString *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         json(dic);
     } failure:^(NSError *error) {
@@ -175,15 +215,14 @@ typedef void (^JsonSuccess)(id json);
     // Dispose of any resources that can be recreated.
 }
 
-
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

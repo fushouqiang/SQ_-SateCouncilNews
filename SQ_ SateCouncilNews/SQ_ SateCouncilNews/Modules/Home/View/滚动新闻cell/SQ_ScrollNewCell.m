@@ -82,6 +82,8 @@
     
     
     self.newsScrollView = [[UIScrollView alloc] init];
+    _newsScrollView.showsHorizontalScrollIndicator = NO;
+    _newsScrollView.scrollEnabled = NO;
     [self addSubview:_newsScrollView];
     [_newsScrollView makeConstraints:^(MASConstraintMaker *make) {
         

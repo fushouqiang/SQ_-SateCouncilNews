@@ -120,10 +120,12 @@ typedef void (^JsonSuccess)(id json);
     
     SQ_DetailViewController *detailVC = [[SQ_DetailViewController alloc] init];
     detailVC.article = _articleArray[indexPath.row];
-    
+     detailVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detailVC animated:YES];
     
 }
+
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _articleArray.count;

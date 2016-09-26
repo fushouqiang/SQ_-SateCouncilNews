@@ -43,14 +43,14 @@ UIScrollViewDelegate
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.lastSelectButton = [[UIButton alloc] init];
-    self.navigationItem.title = @"国务院";
+//    self.navigationItem.title = @"国务院";
     self.titleButtons = [NSMutableArray array];
     [self setupHeadScrollView];
     [self setupContentScrollView];
     [self setupAllChildViewController];
     [self setupHeadScrollViewTitle];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"menu"] style:UIBarButtonItemStylePlain target:self action:@selector(leftBtn)];
-    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"navigationbar_friendattention"] style:UIBarButtonItemStylePlain target:self action:@selector(leftBtn)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationSearchButton"] style:UIBarButtonItemStylePlain target:nil action:nil];
     self.view.backgroundColor = [UIColor whiteColor];
     //默认点击的title
     UIButton *button = [self.view viewWithTag:1000];

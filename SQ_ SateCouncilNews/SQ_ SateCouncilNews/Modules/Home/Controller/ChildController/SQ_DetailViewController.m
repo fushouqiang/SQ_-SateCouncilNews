@@ -29,7 +29,8 @@ UIWebViewDelegate
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 //    self.view.backgroundColor = [UIColor orangeColor];
-    self.tabBarController.tabBar.hidden = YES;
+//    self.tabBarController.tabBar.hidden = YES;
+    [self hidesBottomBarWhenPushed];
     self.webView = [[UIWebView alloc] init];
 
     [self.view addSubview:_webView];
@@ -39,7 +40,7 @@ UIWebViewDelegate
         make.top.equalTo(self.view.top).offset(64);
         make.left.equalTo(self.view);
         make.width.equalTo(WIDTH);
-        make.height.equalTo(HEIGHT - 128);
+        make.height.equalTo(HEIGHT);
     }];
     
     NSString *urlString = self.article.shareUrl;
@@ -49,6 +50,8 @@ UIWebViewDelegate
     self.webView.delegate = self;
     
 }
+
+
 
 //屏蔽JS广告
 - (void)webViewDidFinishLoad:(UIWebView *)webView{

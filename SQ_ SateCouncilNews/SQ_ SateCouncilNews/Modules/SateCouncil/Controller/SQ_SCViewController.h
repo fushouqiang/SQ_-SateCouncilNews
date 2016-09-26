@@ -10,4 +10,5 @@
 
 @interface SQ_SCViewController : UIViewController
 
+
 @end

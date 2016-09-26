@@ -28,7 +28,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     SQ_MainTabBarController *mainTabBarController = [[SQ_MainTabBarController alloc] init];
-    
+    mainTabBarController.tabBar.translucent = NO;
     
     SQ_LeftViewController *leftViewController = [[SQ_LeftViewController alloc] init];
     UINavigationController *leftNavigationController = [[UINavigationController alloc] initWithRootViewController:leftViewController];

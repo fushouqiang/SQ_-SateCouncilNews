@@ -124,86 +124,70 @@ interviewNewsDelegate
  
 }
 
-//滚动新闻触摸代理方法
-- (void)scrollNewsTouchData:(SQ_Article *)article{
+- (void)pushWithData:(SQ_Article *)article {
     
     SQ_DetailViewController *detailVC = [[SQ_DetailViewController alloc] init];
     detailVC.article = article;
+    detailVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detailVC animated:YES];
-    
 }
+
+//滚动新闻触摸代理方法
+- (void)scrollNewsTouchData:(SQ_Article *)article{
+    
+    [self pushWithData:article];
+}
+
+
+
 
 //轮播图触摸代理方法
 - (void)touchIndexWithdata:(SQ_Article *)data {
-    SQ_DetailViewController *detailVC = [[SQ_DetailViewController alloc] init];
-    detailVC.article = data;
-    [self.navigationController pushViewController:detailVC animated:YES];
+     [self pushWithData:data];
 }
 
 //头条新闻触摸代理方法
 - (void)topNewsTouchData:(SQ_Article *)article {
     
-    SQ_DetailViewController *detailVC = [[SQ_DetailViewController alloc] init];
-    detailVC.article = article;
-    [self.navigationController pushViewController:detailVC animated:YES];
-    
+    [self pushWithData:article];
 }
 //音视频新闻触摸代理方法
 - (void)audioNewsWithData:(SQ_Article *)article {
     
-    SQ_DetailViewController *detailVC = [[SQ_DetailViewController alloc] init];
-    detailVC.article = article;
-    [self.navigationController pushViewController:detailVC animated:YES];
+    [self pushWithData:article];
 }
 
 //政策新闻触摸代理方法
 - (void)policyNewsWithData:(SQ_Article *)article {
     
-    SQ_DetailViewController *detailVC = [[SQ_DetailViewController alloc] init];
-    detailVC.article = article;
-    [self.navigationController pushViewController:detailVC animated:YES];
+    [self pushWithData:article];
 }
 
 //部门新闻触摸代理方法
 - (void)departmentNewsWithData:(SQ_Article *)article {
     
     
-    SQ_DetailViewController *detailVC = [[SQ_DetailViewController alloc] init];
-    detailVC.article = article;
-    [self.navigationController pushViewController:detailVC animated:YES];
-
+    [self pushWithData:article];
 }
 
 //地方新闻触摸代理方法
 - (void)localityNewsWithData:(SQ_Article *)article {
     
-    SQ_DetailViewController *detailVC = [[SQ_DetailViewController alloc] init];
-    detailVC.article = article;
-    [self.navigationController pushViewController:detailVC animated:YES];
-
+    [self pushWithData:article];
 }
 //服务新闻触摸代理方法
 - (void)serviceNewsWithData:(SQ_Article *)article {
     
-    SQ_DetailViewController *detailVC = [[SQ_DetailViewController alloc] init];
-    detailVC.article = article;
-    [self.navigationController pushViewController:detailVC animated:YES];
-
+    [self pushWithData:article];
 }
 //数据新闻触摸代理方法
 - (void)dataNewsWithData:(SQ_Article *)article {
-    
-    SQ_DetailViewController *detailVC = [[SQ_DetailViewController alloc] init];
-    detailVC.article = article;
-    [self.navigationController pushViewController:detailVC animated:YES];
-
+    [self pushWithData:article];
 }
 //访谈新闻触摸代理方法
 - (void)interviewNewsWithData:(SQ_Article *)article {
     
-    SQ_DetailViewController *detailVC = [[SQ_DetailViewController alloc] init];
-    detailVC.article = article;
-    [self.navigationController pushViewController:detailVC animated:YES];
+    [self pushWithData:article];
 }
 
 

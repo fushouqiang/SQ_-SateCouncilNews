@@ -27,7 +27,7 @@
 @property (nonatomic, strong) UIImageView *newsImageView;
 @property (nonatomic, strong) UILabel *contentLabel;
 @property (nonatomic, retain) UILabel *timeLabel;
-@property (nonatomic, strong) UIImageView *signImageView;
+@property (nonatomic, strong) UILabel *signLabel;
 
 @end
 
@@ -39,6 +39,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         
+//        self.backgroundColor = [UIColor colorWithWhite:0.850 alpha:1.000];
         self.newsImageView = [[UIImageView alloc] init];
         [self addSubview:_newsImageView];
         [_newsImageView makeConstraints:^(MASConstraintMaker *make) {
@@ -48,14 +49,14 @@
             make.top.equalTo(self.top).offset(10);
             make.bottom.equalTo(self.bottom);
         }];
-        _newsImageView.backgroundColor = [UIColor redColor];
+
         
         self.contentLabel = [[UILabel alloc] init];
         [self addSubview:_contentLabel];
         [_contentLabel makeConstraints:^(MASConstraintMaker *make) {
             
             make.left.equalTo(_newsImageView.right).offset(10);
-            make.width.equalTo(WIDTH / 2 + 20);
+            make.right.equalTo(self.right).offset(-10);
             make.top.equalTo(self.top).offset(10);
             make.bottom.equalTo(self.bottom).offset(-30);
         }];
@@ -74,16 +75,24 @@
         _timeLabel.font = [UIFont fontWithName:@"Helvetica" size:14];
         _timeLabel.textColor = [UIColor grayColor];
         
-        self.signImageView = [[UIImageView alloc] init];
-        [self addSubview:_signImageView];
-        [_signImageView makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(_contentLabel.bottom).offset(3);
+        
+        self.signLabel = [[UILabel alloc] init];
+        [self addSubview:_signLabel];
+        [_signLabel makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.top.equalTo(_contentLabel.bottom).offset(8);
             make.left.equalTo(_timeLabel.right).offset(20);
-            make.width.equalTo(40);
-            make.bottom.equalTo(self.bottom);
+            make.width.equalTo(WIDTH / 12);
+            make.height.equalTo(14);
+            
             
         }];
-        _signImageView.backgroundColor = [UIColor orangeColor];
+        _signLabel.textColor = [UIColor colorWithRed:0.316 green:0.524 blue:0.968 alpha:1.000];
+       
+       
+        _signLabel.font = [UIFont systemFontOfSize:10];
+        _signLabel.textAlignment = NSTextAlignmentCenter;
+
         
         
     }
@@ -103,6 +112,13 @@
         self.contentLabel.text = article.title;
         NSString *str = [article.path substringToIndex:9];
         self.timeLabel.text = str;
+        
+        if (article.feature) {
+        _signLabel.layer.borderColor = [UIColor colorWithRed:0.329 green:0.544 blue:1.000 alpha:1.000].CGColor;
+        _signLabel.layer.borderWidth = 1;
+        self.signLabel.text = article.feature;
+        }
+       
     }
     
 }

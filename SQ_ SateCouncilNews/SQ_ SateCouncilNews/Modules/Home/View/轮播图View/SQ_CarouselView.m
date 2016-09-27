@@ -84,7 +84,9 @@ UIScrollViewDelegate
     NSInteger i = scrollView.contentOffset.x / WIDTH;
     //代理传值
     if (self.delegate && [self.delegate respondsToSelector:@selector(touchIndexWithdata:)]) {
-        [self.delegate touchIndexWithdata:_dataSourceArray[i - 1]];
+        SQ_News *news = _dataSourceArray[i - 1];
+        SQ_Article *article = news.article;
+        [self.delegate touchIndexWithdata:article];
     }
 
     
@@ -127,17 +129,36 @@ UIScrollViewDelegate
     if (_dataDic != dataDic) {
         _dataDic = dataDic;
          [self createUI];
-        NSArray *array = [dataDic allKeys];
-        
+        self.dataSourceArray = [NSMutableArray array];
         UIImageView *lastImageView = [[UIImageView alloc] init];
         UIImageView *firstImageView = [[UIImageView alloc] init];
+
+        NSArray *keyArray = [dataDic allKeys];
+        NSMutableArray *newsArray = [NSMutableArray array];
+        for (int i = 0; i < keyArray.count; i++) {
+            SQ_News *news = [SQ_News yy_modelWithDictionary:[dataDic valueForKey:keyArray[i]]];
+            [newsArray addObject:news];
+        }
+        //将新闻的position排序并加入数组中
+        for (int i = 0; i < keyArray.count; i++) {
+            for (SQ_News *news in newsArray) {
+                if ([news.position intValue] == i) {
+                    
+                    [self.dataSourceArray addObject:news];
+                }
+                
+            }
+        }
         
-        for (int i = 0; i < array.count; i++) {
+        
+        
+        for (int i = 0; i < _dataSourceArray.count; i++) {
             
-            NSDictionary *dic = [dataDic valueForKey:array[i]];
-            SQ_News *news = [SQ_News yy_modelWithDictionary:dic];
+            SQ_News *news = _dataSourceArray[i];
+            
             SQ_Article *article = news.article;
-            [self.dataSourceArray addObject:article];
+            
+            
 
             NSString *urlString = [NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/%@",[[article.thumbnails valueForKey:@"2"] valueForKey:@"file"]];
        //伪跳转imageView last
@@ -154,7 +175,7 @@ UIScrollViewDelegate
                 [lastImageView addSubview:introduceLabel];
             }
             //伪跳转imageView first
-            if (i == (array.count - 1)) {
+            if (i == (_dataSourceArray.count - 1)) {
                 firstImageView.frame = CGRectMake(0, 0, WIDTH, _scrollView.frame.size.height);
                 [firstImageView sd_setImageWithURL:[NSURL URLWithString:urlString]];
                 UILabel *introduceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _scrollView.frame.size.height - 50, WIDTH, 50)];
@@ -181,7 +202,6 @@ UIScrollViewDelegate
         }
         [self.scrollView addSubview:lastImageView];
         [self.scrollView addSubview:firstImageView];
-        NSLog(@"%@",_scrollView);
         _scrollView.contentOffset = CGPointMake(WIDTH, 0);
     }
 

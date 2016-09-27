@@ -22,7 +22,7 @@
 
 @property (nonatomic, strong) UILabel *contentLabel;
 @property (nonatomic, retain) UILabel *timeLabel;
-@property (nonatomic, strong) UIImageView *signImageView;
+@property (nonatomic, strong) UILabel *signLabel;
 @end
 @implementation SQ_EasyNewsCell
 

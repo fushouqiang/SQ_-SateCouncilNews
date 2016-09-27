@@ -49,8 +49,11 @@ UIScrollViewDelegate
     [self setupContentScrollView];
     [self setupAllChildViewController];
     [self setupHeadScrollViewTitle];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"navigationbar_friendattention"] style:UIBarButtonItemStylePlain target:self action:@selector(leftBtn)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"navigationSettingButton"] style:UIBarButtonItemStylePlain target:self action:@selector(leftBtn)];
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor colorWithWhite:0.534 alpha:1.000];
+  
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationSearchButton"] style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithWhite:0.534 alpha:1.000];
     self.view.backgroundColor = [UIColor whiteColor];
     //默认点击的title
     UIButton *button = [self.view viewWithTag:1000];
@@ -143,12 +146,14 @@ UIScrollViewDelegate
         [titleButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         UIViewController *vc = self.childViewControllers[i];
         [titleButton setTitle:vc.title forState:UIControlStateNormal];
+        titleButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
         [titleButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.headScrollView addSubview:titleButton];
         [self.titleButtons addObject:titleButton];
     }
     
     self.headScrollView.contentSize = CGSizeMake(count * 80, 0);
+    _headScrollView.backgroundColor = [UIColor colorWithWhite:0.952 alpha:1.000];
     self.contentScrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width * count, 0);
    
 }

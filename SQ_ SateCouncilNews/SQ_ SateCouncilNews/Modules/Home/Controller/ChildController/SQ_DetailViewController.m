@@ -8,17 +8,23 @@
 
 #import "SQ_DetailViewController.h"
 
+
 #define MAS_SHORTHAND_GLOBALS
 #define MAS_SHORTHAND
 #define WIDTH [UIScreen mainScreen].bounds.size.width
 #define HEIGHT [UIScreen mainScreen].bounds.size.height
 #import "Masonry.h"
+#import "HttpClient.h"
+#import "SQ_Article.h"
+#import "NSObject+YYModel.h"
+#import "SQ_Detail.h"
 
 
 @interface SQ_DetailViewController ()
 <
 UIWebViewDelegate
 >
+typedef void (^JsonSuccess)(id json);
 @property (nonatomic, retain) UIWebView *webView;
 
 @end
@@ -47,6 +53,8 @@ UIWebViewDelegate
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
+//    [self handleData];
+
     self.webView.delegate = self;
     
 }
@@ -58,6 +66,42 @@ UIWebViewDelegate
     [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByClassName('bottomicon')[0].style.display = 'NONE'"];
     
 }
+
+- (void)handleData {
+
+    [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/201609/27/390149/article.json"] json:^(id json) {
+        
+        if (json != NULL) {
+            
+            SQ_Detail *detail = [SQ_Detail yy_modelWithJSON:json];
+            NSLog(@"%@",detail);
+//            [_webView loadHTMLString:detail.content baseURL:nil];
+            
+        }
+
+        
+    }];
+    
+}
+
+
+
+- (void)getJsonWithUrlString:(NSString *)urlString json:(JsonSuccess)json{
+    
+    
+    
+    
+    [HttpClient getWithUrlString:urlString success:^(id data) {
+        NSString *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        json(dic);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    
+    
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

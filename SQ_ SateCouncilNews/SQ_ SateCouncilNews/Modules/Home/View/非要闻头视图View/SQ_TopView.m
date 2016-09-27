@@ -53,7 +53,7 @@
             make.top.equalTo(_textLabel.bottom).offset(3);
             
         }];
-        _timeLabel.backgroundColor = [UIColor redColor];
+    
         
     }
     return self;

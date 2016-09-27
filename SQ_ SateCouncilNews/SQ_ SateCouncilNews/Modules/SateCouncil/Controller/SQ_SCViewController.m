@@ -18,6 +18,9 @@
 #import "SQ_SignNormalCell.h"
 #import "SQ_EasyNewsCell.h"
 #import "SQ_MenuCell.h"
+#import "SQ_MemberCell.h"
+#import "SQ_Member.h"
+#import "SQ_StructureCell.h"
 typedef void (^JsonSuccess)(id json);
 
 @interface SQ_SCViewController ()
@@ -30,7 +33,9 @@ UITableViewDataSource
 @property (nonatomic, strong) NSMutableArray *premierArray;
 @property (nonatomic, strong) NSMutableArray *vicePremierArray;
 @property (nonatomic, strong) NSMutableArray *councillorArray;
-@property (nonatomic, strong) NSMutableArray *memberArray;
+@property (nonatomic, strong) SQ_Member *member;
+@property (nonatomic, assign) CGFloat rowHeight;
+@property (nonatomic, assign) BOOL flag1;
 
 @end
 
@@ -39,7 +44,7 @@ UITableViewDataSource
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blueColor];
-    
+    _rowHeight = 140;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationbar_friendattention"] style:UIBarButtonItemStylePlain target:self action:@selector(leftBtn)];
     
     self.navigationController.navigationBar.translucent = NO;
@@ -65,6 +70,8 @@ UITableViewDataSource
 }
 
 
+
+
 - (void)initData:(id)data {
     
     
@@ -77,6 +84,13 @@ UITableViewDataSource
     self.councillorArray = [NSMutableArray array];
     NSDictionary *councillorDic = [data valueForKey:@"15"];
     [self initArrayWithDic:councillorDic andArray:_councillorArray];
+    
+    self.member = [[SQ_Member alloc] init];
+    _member.leadText = [[data valueForKey:@"16"] valueForKey:@"1"];
+    _member.memberArray = [[data valueForKey:@"16"] valueForKey:@"2"];
+    _member.urlString = [[data valueForKey:@"16"] valueForKey:@"3"];
+    _member.isShowText = NO;
+    
 
     
 }
@@ -105,7 +119,7 @@ UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return  20;
+    return  15;
     
 }
 
@@ -130,6 +144,22 @@ UITableViewDataSource
         
         return 80;
     }
+    if (indexPath.row == 13) {
+        
+        if (_member.isShowText) {
+            return 570;
+        }
+        
+        else {
+            return 160;
+        }
+        
+    }
+    if (indexPath.row == 14) {
+
+        return 40;
+ 
+    }
     
     
     return 100;
@@ -144,11 +174,13 @@ UITableViewDataSource
         if (nil == cell) {
             
             cell = [[SQ_headCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID1];
+            
             SQ_News *news = _premierArray[0];
             cell.article = news.article;
             
             
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
    else if (indexPath.row == 1) {
@@ -162,6 +194,7 @@ UITableViewDataSource
             
             
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
    else if (indexPath.row == 2) {
@@ -175,6 +208,7 @@ UITableViewDataSource
             
             
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
    else if (indexPath.row == 3) {
@@ -183,11 +217,9 @@ UITableViewDataSource
        if (nil == cell) {
            
            cell = [[SQ_MenuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID4];
-//           SQ_News *news = _premierArray[2];
-//           cell.article = news.article;
-           
            
        }
+       cell.selectionStyle = UITableViewCellSelectionStyleNone;
        return cell;
    }
    else if (indexPath.row == 4) {
@@ -202,6 +234,7 @@ UITableViewDataSource
             
             
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
    else if (indexPath.row == 5) {
@@ -215,6 +248,7 @@ UITableViewDataSource
             
             
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
   else  if (indexPath.row == 6) {
@@ -228,7 +262,7 @@ UITableViewDataSource
             
             
         }
-        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     
@@ -243,7 +277,7 @@ UITableViewDataSource
             
             
         }
-        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     
@@ -259,6 +293,7 @@ UITableViewDataSource
            
            
        }
+       cell.selectionStyle = UITableViewCellSelectionStyleNone;
        return cell;
    }
    else if (indexPath.row == 9) {
@@ -272,6 +307,7 @@ UITableViewDataSource
            
            
        }
+       cell.selectionStyle = UITableViewCellSelectionStyleNone;
        return cell;
    }
    else if (indexPath.row == 10) {
@@ -285,6 +321,7 @@ UITableViewDataSource
            
            
        }
+       cell.selectionStyle = UITableViewCellSelectionStyleNone;
        return cell;
    }
    else if (indexPath.row == 11) {
@@ -298,6 +335,7 @@ UITableViewDataSource
            
            
        }
+       cell.selectionStyle = UITableViewCellSelectionStyleNone;
        return cell;
    }
    else if (indexPath.row == 12) {
@@ -311,12 +349,43 @@ UITableViewDataSource
            
            
        }
+    
+       cell.selectionStyle = UITableViewCellSelectionStyleNone;
+       return cell;
+   }
+   else if (indexPath.row == 13) {
+       static NSString *cellID14 = @"cell14";
+       SQ_MemberCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID14];
+       if (nil == cell) {
+           
+           cell = [[SQ_MemberCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID14];
+           cell.member = _member;
+//           NSLog(@"%@",cell.dataDic);
+           cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+
+       }
        
+       cell.showMoreTextBlock = ^(SQ_MemberCell *currentCell) {
+           NSIndexPath *indexRow = [_tableView indexPathForCell:currentCell];
+           [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexRow, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+           
+       };
+       
+       cell.selectionStyle = UITableViewCellSelectionStyleNone;
        return cell;
    }
     
-    
-    
+   else if (indexPath.row == 14) {
+       static NSString *cellID15 = @"cell15";
+       SQ_StructureCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID15];
+       if (nil == cell) {
+           
+           cell = [[SQ_StructureCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID15];
+        
+       }
+       cell.selectionStyle = UITableViewCellSelectionStyleNone;
+       return cell;
+   }
 
     else {
         
@@ -324,9 +393,12 @@ UITableViewDataSource
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID2];
         if (nil == cell) {
             
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID2];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID2];
+        
             
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
         return cell;
     }
     

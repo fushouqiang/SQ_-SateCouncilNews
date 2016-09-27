@@ -40,7 +40,7 @@
             make.bottom.equalTo(self.bottom).offset(-80);
             
         }];
-        _newsImageView.backgroundColor = [UIColor redColor];
+
         
         self.contentLabel = [[UILabel alloc] init];
         [self addSubview:_contentLabel];

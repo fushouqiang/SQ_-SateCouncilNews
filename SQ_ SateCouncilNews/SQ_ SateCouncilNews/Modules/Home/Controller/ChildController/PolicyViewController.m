@@ -47,7 +47,7 @@ typedef void (^JsonSuccess)(id json);
 
 - (void)createTableView {
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 172) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 150) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [self.view addSubview:_tableView ];
@@ -179,6 +179,7 @@ typedef void (^JsonSuccess)(id json);
         if (nil == cell) {
             cell = [[SQ_headCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier1] ;
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.article = _articleArray[indexPath.row];
         return cell;
     }
@@ -189,6 +190,7 @@ typedef void (^JsonSuccess)(id json);
         if (nil == cell) {
             cell = [[SQ_normalCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier] ;
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.article = _articleArray[indexPath.row];
         return cell;}
     

@@ -16,6 +16,8 @@
 #import "DataViewController.h"
 #import "MMDrawerBarButtonItem.h"
 #import "UIViewController+MMDrawerController.h"
+#import "PictureViewController.h"
+#import "VideoViewController.h"
 
 
 @interface SQ_HomeViewController ()
@@ -51,6 +53,10 @@ UIScrollViewDelegate
     [self setupHeadScrollViewTitle];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"navigationSettingButton"] style:UIBarButtonItemStylePlain target:self action:@selector(leftBtn)];
     self.navigationItem.leftBarButtonItem.tintColor = [UIColor colorWithWhite:0.534 alpha:1.000];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 25)];
+    imageView.image = [UIImage imageNamed:@"navigationLogo"];
+    self.navigationItem.titleView = imageView;
   
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationSearchButton"] style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithWhite:0.534 alpha:1.000];
@@ -71,7 +77,7 @@ UIScrollViewDelegate
 - (void)setupHeadScrollView {
     
     CGFloat y = self.navigationController ? 64 : 0;
-    CGRect rect = CGRectMake(0, y, [UIScreen mainScreen].bounds.size.width, 60);
+    CGRect rect = CGRectMake(0, y, [UIScreen mainScreen].bounds.size.width, 40);
     
     UIScrollView *titleScrollView = [[UIScrollView alloc] initWithFrame:rect];
     titleScrollView.backgroundColor = [UIColor whiteColor];
@@ -87,7 +93,6 @@ UIScrollViewDelegate
     
     CGFloat y = CGRectGetMaxY(self.headScrollView.frame);
     UIScrollView *contentScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, y, self.view.bounds.size.width, self.view.bounds.size.height - y)];
-//    contentScrollView.backgroundColor = [UIColor colorWithRed:0.702 green:1.000 blue:0.545 alpha:1.000];
     [self.view addSubview:contentScrollView];
     self.contentScrollView = contentScrollView;
     self.contentScrollView.pagingEnabled = YES;
@@ -130,6 +135,18 @@ UIScrollViewDelegate
     dataVC.view.backgroundColor = [UIColor colorWithRed:1.000 green:0.232 blue:0.649 alpha:1.000];
     [self addChildViewController:dataVC];
     
+    PictureViewController *picVC = [[PictureViewController alloc] init];
+    picVC.view.backgroundColor = [UIColor whiteColor];
+    picVC.title = @"图片";
+    [self addChildViewController:picVC];
+    
+    VideoViewController *videoVC = [[VideoViewController alloc] init];
+    videoVC.view.backgroundColor = [UIColor whiteColor];
+    videoVC.title = @"视频";
+    [self addChildViewController:videoVC];
+    
+    
+    
     
     
 }
@@ -137,13 +154,13 @@ UIScrollViewDelegate
 //给 标题视图添加按钮
 - (void)setupHeadScrollViewTitle {
     
-    NSInteger count = 7;
+    NSInteger count = self.childViewControllers.count;
     
     for (int i = 0; i < count; i++) {
         UIButton *titleButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        titleButton.frame = CGRectMake(i * 80, 0, 80, 60);
+        titleButton.frame = CGRectMake(i * 80, 0, 80, 40);
         titleButton.tag = 1000 + i;
-        [titleButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [titleButton setTitleColor:[UIColor colorWithWhite:0.705 alpha:1.000] forState:UIControlStateNormal];
         UIViewController *vc = self.childViewControllers[i];
         [titleButton setTitle:vc.title forState:UIControlStateNormal];
         titleButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
@@ -153,7 +170,8 @@ UIScrollViewDelegate
     }
     
     self.headScrollView.contentSize = CGSizeMake(count * 80, 0);
-    _headScrollView.backgroundColor = [UIColor colorWithWhite:0.952 alpha:1.000];
+    self.headScrollView.backgroundColor = [UIColor colorWithRed:0.034 green:0.495 blue:0.703 alpha:1.000];
+//    _headScrollView.backgroundColor = [UIColor colorWithWhite:0.952 alpha:1.000];
     self.contentScrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width * count, 0);
    
 }
@@ -172,8 +190,8 @@ UIScrollViewDelegate
 
 - (void)selectedButton:(UIButton *)button {
     
-    [self.lastSelectButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [self.lastSelectButton setTitleColor:[UIColor colorWithWhite:0.705 alpha:1.000] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.lastSelectButton = button;
     
     

@@ -106,7 +106,13 @@
         
         
         NSString *urlSource = [[article.thumbnails valueForKey:@"1"] valueForKey:@"file"];
+        
+
+        
         NSString *urlString = [NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/%@",urlSource];
+        
+        
+        
         NSURL *imageUrl = [NSURL URLWithString:urlString];
         [self.newsImageView sd_setImageWithURL:imageUrl];
         self.contentLabel.text = article.title;
@@ -117,6 +123,24 @@
         _signLabel.layer.borderColor = [UIColor colorWithRed:0.329 green:0.544 blue:1.000 alpha:1.000].CGColor;
         _signLabel.layer.borderWidth = 1;
         self.signLabel.text = article.feature;
+            
+            if (urlSource == NULL) {
+                
+                [_newsImageView removeFromSuperview];
+                [_contentLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    
+                    make.left.equalTo(self.left).offset(10);
+                     make.right.equalTo(self.right).offset(-10);
+                }];
+                [_timeLabel remakeConstraints:^(MASConstraintMaker *make) {
+                    make.top.equalTo(_contentLabel.bottom).offset(3);
+                    make.left.equalTo(self.left).offset(10);
+                    make.width.equalTo(WIDTH / 4);
+                    make.bottom.equalTo(self.bottom);
+                }];
+
+                
+            }
         }
        
     }

@@ -179,6 +179,7 @@ typedef void (^JsonSuccess)(id json);
         if (nil == cell) {
             cell = [[SQ_headCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier1] ;
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.article = _articleArray[indexPath.row];
         return cell;
     }
@@ -189,6 +190,7 @@ typedef void (^JsonSuccess)(id json);
         if (nil == cell) {
             cell = [[SQ_normalCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier] ;
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.article = _articleArray[indexPath.row];
         return cell;}
     

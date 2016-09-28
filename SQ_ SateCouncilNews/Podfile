@@ -14,6 +14,8 @@ pod 'MMDrawerController', '~> 0.6.0'
 
 pod 'YYModel', '~> 1.0.4'
 
+pod 'JT3DScrollView', '~> 1.0.4'
+
 target 'SQ_ SateCouncilNews' do
   # Uncomment this line if you're using Swift or would like to use dynamic frameworks
   # use_frameworks!

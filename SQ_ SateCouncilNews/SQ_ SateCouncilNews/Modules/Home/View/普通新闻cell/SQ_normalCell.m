@@ -120,6 +120,30 @@
             _signLabel.layer.borderWidth = 1;
             self.signLabel.text = article.feature;
         }
+        if (urlSource == NULL) {
+            
+            [_newsImageView removeFromSuperview];
+            [_contentLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                
+                make.left.equalTo(self.contentView.left).offset(10);
+                make.right.equalTo(self.contentView.right).offset(-10);
+                make.top.equalTo(self.contentView.top).offset(50);
+    
+            }];
+
+            [_timeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                
+                make.left.equalTo(self.contentView.left).offset(10);
+                make.top.equalTo(_contentLabel.bottom).offset(3);
+                
+                make.width.equalTo(WIDTH / 4);
+                make.bottom.equalTo(self.contentView.bottom).offset(-3);
+               
+            }];
+            
+        }
+
+        
     }
     
 }

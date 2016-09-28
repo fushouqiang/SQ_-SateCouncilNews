@@ -108,7 +108,7 @@ interviewNewsDelegate
                 [self initDicWithResult:_result];
                 self.car = [[SQ_CarouselView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 200)];
                 _car.delegate = self;
-                self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 170) style:UITableViewStylePlain];
+                self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 150) style:UITableViewStylePlain];
                 _tableView.delegate = self;
                 _tableView.dataSource = self;
                 [self.view addSubview:_tableView ];

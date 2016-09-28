@@ -64,7 +64,7 @@
         [self addSubview:_signLabel];
         [_signLabel makeConstraints:^(MASConstraintMaker *make) {
             
-            make.top.equalTo(_contentLabel.bottom).offset(11);
+            make.top.equalTo(_contentLabel.bottom).offset(5);
             make.left.equalTo(_timeLabel.right).offset(20);
             make.width.equalTo(WIDTH / 12);
             make.height.equalTo(14);

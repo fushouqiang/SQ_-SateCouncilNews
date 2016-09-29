@@ -26,6 +26,8 @@ UIWebViewDelegate
 >
 typedef void (^JsonSuccess)(id json);
 @property (nonatomic, retain) UIWebView *webView;
+@property (nonatomic, strong) UIButton *saveButton;
+
 
 @end
 
@@ -33,30 +35,36 @@ typedef void (^JsonSuccess)(id json);
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-//    self.view.backgroundColor = [UIColor orangeColor];
-//    self.tabBarController.tabBar.hidden = YES;
-    [self hidesBottomBarWhenPushed];
     self.webView = [[UIWebView alloc] init];
-
     [self.view addSubview:_webView];
-    
     [_webView makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.top.equalTo(self.view.top).offset(64);
+        make.top.equalTo(self.view.top).offset(0);
         make.left.equalTo(self.view);
         make.width.equalTo(WIDTH);
         make.height.equalTo(HEIGHT);
     }];
-    
     NSString *urlString = self.article.shareUrl;
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
-    [self handleData];
 
     
     self.webView.delegate = self;
+    _webView.scrollView.bounces = NO;
+    UIView *bottomView = [[UIView alloc] init];
+    [self.view insertSubview:bottomView aboveSubview:_webView];
+    [bottomView makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.left);
+        make.width.equalTo(WIDTH);
+        make.height.equalTo(64);
+        make.bottom.equalTo(self.view.bottom);
+        
+    }];
+    bottomView.backgroundColor = [UIColor colorWithWhite:0.638 alpha:1.000];
+    
+    self.saveButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    
     
 }
 
@@ -65,40 +73,6 @@ typedef void (^JsonSuccess)(id json);
 //屏蔽JS广告
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByClassName('bottomicon')[0].style.display = 'NONE'"];
-    
-}
-
-- (void)handleData {
-
-    [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/201609/27/390149/article.json"] json:^(id json) {
-        
-        if (json != NULL) {
-            
-            SQ_Detail *detail = [SQ_Detail yy_modelWithJSON:json];
-            NSLog(@"%@",detail);
-//            [_webView loadHTMLString:detail.content baseURL:nil];
-            
-        }
-
-        
-    }];
-    
-}
-
-
-
-- (void)getJsonWithUrlString:(NSString *)urlString json:(JsonSuccess)json{
-    
-    
-    
-    
-    [HttpClient getWithUrlString:urlString success:^(id data) {
-        NSString *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-        json(dic);
-    } failure:^(NSError *error) {
-        NSLog(@"%@",error);
-    }];
-    
     
 }
 

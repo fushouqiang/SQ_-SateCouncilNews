@@ -12,6 +12,7 @@
 		7923F7B41D995F82008F45B9 /* SQ_MemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7923F7B31D995F82008F45B9 /* SQ_MemberCell.m */; };
 		796462DF1D9615420045B35F /* SQ_LeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 796462DE1D9615420045B35F /* SQ_LeftCell.m */; };
 		796462E51D969CD40045B35F /* SQ_ScrollNewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 796462E41D969CD40045B35F /* SQ_ScrollNewCell.m */; };
+		7969DAFC1D9CC73700F2A477 /* SQ_BottonManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7969DAFB1D9CC73700F2A477 /* SQ_BottonManger.m */; };
 		7974055B1D93FAF500B8B376 /* SQ_normalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7974055A1D93FAF500B8B376 /* SQ_normalCell.m */; };
 		7974055E1D9424B700B8B376 /* SQ_TopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7974055D1D9424B700B8B376 /* SQ_TopView.m */; };
 		79790DB11D9AA40C005F0128 /* SQ_Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 79790DB01D9AA40C005F0128 /* SQ_Picture.m */; };
@@ -125,6 +126,8 @@
 		796462DE1D9615420045B35F /* SQ_LeftCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_LeftCell.m; sourceTree = "<group>"; };
 		796462E31D969CD40045B35F /* SQ_ScrollNewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_ScrollNewCell.h; sourceTree = "<group>"; };
 		796462E41D969CD40045B35F /* SQ_ScrollNewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_ScrollNewCell.m; sourceTree = "<group>"; };
+		7969DAFA1D9CC73700F2A477 /* SQ_BottonManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_BottonManger.h; sourceTree = "<group>"; };
+		7969DAFB1D9CC73700F2A477 /* SQ_BottonManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_BottonManger.m; sourceTree = "<group>"; };
 		797405591D93FAF500B8B376 /* SQ_normalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_normalCell.h; sourceTree = "<group>"; };
 		7974055A1D93FAF500B8B376 /* SQ_normalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_normalCell.m; sourceTree = "<group>"; };
 		7974055C1D9424B700B8B376 /* SQ_TopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_TopView.h; sourceTree = "<group>"; };
@@ -748,6 +751,8 @@
 		79AF83AB1D9B4B980073C17A /* 新闻详情页面 */ = {
 			isa = PBXGroup;
 			children = (
+				7969DAFA1D9CC73700F2A477 /* SQ_BottonManger.h */,
+				7969DAFB1D9CC73700F2A477 /* SQ_BottonManger.m */,
 				79A83EBA1D94DB3900D226B7 /* SQ_DetailViewController.h */,
 				79A83EBB1D94DB3900D226B7 /* SQ_DetailViewController.m */,
 				79A83EBC1D94DB3900D226B7 /* SQ_DetailViewController.xib */,
@@ -1325,6 +1330,7 @@
 				79BFE01B1D927A0B009F84D0 /* NewsViewController.m in Sources */,
 				798141FB1D9154A4005BEA08 /* NSString+Regex.m in Sources */,
 				7981418C1D915011005BEA08 /* AppDelegate.m in Sources */,
+				7969DAFC1D9CC73700F2A477 /* SQ_BottonManger.m in Sources */,
 				798142281D9159A8005BEA08 /* SQ_GovAffHallView.m in Sources */,
 				798141FD1D9154A4005BEA08 /* UIButton+Block.m in Sources */,
 				798141DC1D915480005BEA08 /* DataBaseManager.m in Sources */,

@@ -14,7 +14,8 @@
 #import "SQ_Article.h"
 #import "NSObject+YYModel.h"
 #import "SQ_VideoCell.h"
-
+#import <AVKit/AVKit.h>
+#import <AVFoundation/AVFoundation.h>
 @interface VideoViewController ()
 <
 UITableViewDelegate,
@@ -26,8 +27,13 @@ typedef void (^JsonSuccess)(id json);
 @property (nonatomic, retain) NSMutableArray *articleArray;
 @property (nonatomic, strong) id result;
 @property (nonatomic, assign) NSInteger dataNumber;
+@property (nonatomic, strong) UIView *videoView;
+@property (nonatomic, strong) AVPlayer *player;
+@property (nonatomic, strong) AVPlayerViewController *playerController;
 
 @end
+
+
 
 @implementation VideoViewController
 
@@ -39,7 +45,8 @@ typedef void (^JsonSuccess)(id json);
     self.articleArray = [NSMutableArray array];
     [self handleData];
     self.dataNumber = 0;
-    
+  
+       
     
     
     // Do any additional setup after loading the view.
@@ -184,9 +191,43 @@ typedef void (^JsonSuccess)(id json);
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-
+    SQ_Article *article = _articleArray[indexPath.row];
+    NSArray *keyArray = [article.medias allKeys];
+    
+    NSDictionary *dic = [article.medias valueForKey:[keyArray firstObject]];
+    NSString *str = [dic valueForKey:@"file"];
+    NSString *urlString = [NSString stringWithFormat:@"http://appvideo.www.gov.cn/gov/%@",str];
+    
+    
+    //视频播放的url
+    NSURL *videoUrl = [NSURL URLWithString:urlString];
+    //初始化playerController
+    self.playerController = [[AVPlayerViewController alloc] init];
+    //AVPlayerItem 视频的一些信息 创建AVPlayer使用
+    AVPlayerItem *item = [[AVPlayerItem alloc] initWithURL:videoUrl];
+    self.player = [[AVPlayer alloc] initWithPlayerItem:item];
+    //创建播放图层
+    AVPlayerLayer *layer = [AVPlayerLayer playerLayerWithPlayer:_player];
+    layer.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 250);
+    layer.backgroundColor = [UIColor colorWithWhite:0.680 alpha:1.000].CGColor;
+    //设置AVPlayer的填充模式
+    layer.videoGravity = AVLayerVideoGravityResize;
+    [self.view.layer addSublayer:layer];
+    
+    //设置avplayerController的avplayer为创建的player
+    self.playerController.player = self.player;
+    
+    //关闭AVPlayerViewController内部的约束
+    self.playerController.view.translatesAutoresizingMaskIntoConstraints = YES;
+    
+    [_player play];
+    [self presentViewController:_playerController animated:YES completion:nil];
+    layer.hidden = YES;
+    
+    
     
 }
+
 
 
 

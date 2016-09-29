@@ -37,7 +37,7 @@ typedef void (^JsonSuccess)(id json);
     
     
     self.articleArray = [NSMutableArray array];
-//    [self handleData];
+    [self handleData];
     
     self.dataNumber = 0;
     

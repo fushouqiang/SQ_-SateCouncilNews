@@ -39,9 +39,9 @@
         [self.contentView addSubview:_contentLabel];
         [_contentLabel makeConstraints:^(MASConstraintMaker *make) {
             
-            make.left.equalTo(self.contentView.left).offset(10);
-            make.width.equalTo(self.contentView.width).offset(-20);
-            make.top.equalTo(self.contentView.top).offset(10);
+            make.left.equalTo(self.contentView.left).offset(20);
+            make.width.equalTo(self.contentView.width).offset(-40);
+            make.top.equalTo(self.contentView.top).offset(20);
             make.height.equalTo(40);
         }];
         _contentLabel.numberOfLines = 2;
@@ -52,7 +52,7 @@
         [self.contentView addSubview:_timeLabel];
         [_timeLabel makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(_contentLabel.bottom).offset(3);
-            make.left.equalTo(self.contentView.left).offset(10);
+            make.left.equalTo(self.contentView.left).offset(20);
             make.width.equalTo(WIDTH / 4);
             make.bottom.equalTo(self.contentView.bottom);
         }];

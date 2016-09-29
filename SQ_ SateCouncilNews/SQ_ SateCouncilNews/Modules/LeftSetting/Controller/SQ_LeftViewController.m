@@ -15,6 +15,8 @@
 
 #import "Masonry.h"
 #import "SQ_LeftCell.h"
+#import "DataBaseManager.h"
+#import "SQ_SavedViewController.h"
 
 static NSString *const cellIdentifier = @"cell";
 
@@ -27,10 +29,24 @@ UITableViewDataSource
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *imageNameArray;
 @property (nonatomic, strong) NSArray *textArray;
+@property (nonatomic, strong) DataBaseManager *manager;
 
 @end
 
 @implementation SQ_LeftViewController
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+     self.manager = [DataBaseManager shareManager];
+    [_manager openSQLite];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+     [_manager closeSQLite];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -143,6 +159,23 @@ UITableViewDataSource
     cell.imageName = _imageNameArray[indexPath.row];
     cell.labelText = _textArray[indexPath.row];
     return cell;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.row == 0) {
+        
+       
+        
+        SQ_SavedViewController *saveVC = [[SQ_SavedViewController alloc] init];
+        NSArray *array = [_manager selectAllArticle];
+        saveVC.articleAarray = [NSArray arrayWithArray:array];
+        [self presentViewController:saveVC animated:YES completion:nil];
+//        [self.navigationController pushViewController:saveVC animated:YES];
+        
+    }
+    
 }
 
 

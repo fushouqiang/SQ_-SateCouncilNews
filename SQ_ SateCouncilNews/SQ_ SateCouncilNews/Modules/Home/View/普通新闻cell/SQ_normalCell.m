@@ -113,6 +113,7 @@
         NSURL *imageUrl = [NSURL URLWithString:urlString];
         [self.newsImageView sd_setImageWithURL:imageUrl];
         self.contentLabel.text = article.title;
+        NSLog(@"%@",article.title);
         NSString *str = [article.path substringToIndex:9];
         self.timeLabel.text = str;
         if (article.feature) {

@@ -18,9 +18,11 @@
 #define HEIGHT [UIScreen mainScreen].bounds.size.height
 
 #import "Masonry.h"
+#import "DataBaseManager.h"
 
 @interface AppDelegate ()
 @property (nonatomic, retain)MMDrawerController *drawerController;
+@property (nonatomic, strong)DataBaseManager *manager;
 
 @end
 
@@ -43,7 +45,10 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [_window makeKeyAndVisible];
     self.window.rootViewController = self.drawerController;
-    
+    self.manager = [DataBaseManager shareManager];
+    [_manager openSQLite];
+    [_manager createSQLite];
+    [_manager closeSQLite];
     
     
     // Override point for customization after application launch.

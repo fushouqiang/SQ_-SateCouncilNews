@@ -13,6 +13,8 @@
 		796462DF1D9615420045B35F /* SQ_LeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 796462DE1D9615420045B35F /* SQ_LeftCell.m */; };
 		796462E51D969CD40045B35F /* SQ_ScrollNewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 796462E41D969CD40045B35F /* SQ_ScrollNewCell.m */; };
 		7969DAFC1D9CC73700F2A477 /* SQ_BottonManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7969DAFB1D9CC73700F2A477 /* SQ_BottonManger.m */; };
+		7969DB451D9CFCAE00F2A477 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7969DB441D9CFCAE00F2A477 /* libsqlite3.0.tbd */; };
+		7969DB881D9D536D00F2A477 /* SQ_SavedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7969DB871D9D536D00F2A477 /* SQ_SavedViewController.m */; };
 		7974055B1D93FAF500B8B376 /* SQ_normalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7974055A1D93FAF500B8B376 /* SQ_normalCell.m */; };
 		7974055E1D9424B700B8B376 /* SQ_TopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7974055D1D9424B700B8B376 /* SQ_TopView.m */; };
 		79790DB11D9AA40C005F0128 /* SQ_Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = 79790DB01D9AA40C005F0128 /* SQ_Picture.m */; };
@@ -128,6 +130,9 @@
 		796462E41D969CD40045B35F /* SQ_ScrollNewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_ScrollNewCell.m; sourceTree = "<group>"; };
 		7969DAFA1D9CC73700F2A477 /* SQ_BottonManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_BottonManger.h; sourceTree = "<group>"; };
 		7969DAFB1D9CC73700F2A477 /* SQ_BottonManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_BottonManger.m; sourceTree = "<group>"; };
+		7969DB441D9CFCAE00F2A477 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		7969DB861D9D536D00F2A477 /* SQ_SavedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_SavedViewController.h; sourceTree = "<group>"; };
+		7969DB871D9D536D00F2A477 /* SQ_SavedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_SavedViewController.m; sourceTree = "<group>"; };
 		797405591D93FAF500B8B376 /* SQ_normalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_normalCell.h; sourceTree = "<group>"; };
 		7974055A1D93FAF500B8B376 /* SQ_normalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_normalCell.m; sourceTree = "<group>"; };
 		7974055C1D9424B700B8B376 /* SQ_TopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_TopView.h; sourceTree = "<group>"; };
@@ -305,6 +310,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7969DB451D9CFCAE00F2A477 /* libsqlite3.0.tbd in Frameworks */,
 				9B933590D740752ED0230993 /* libPods-SQ_ SateCouncilNews.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,11 +350,21 @@
 		77323F28236BC43178E2FE6C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7969DB441D9CFCAE00F2A477 /* libsqlite3.0.tbd */,
 				9C21ADC7B31C300518BBC300 /* libPods-SQ_ SateCouncilNews.a */,
 				94738D8B696A187335C38996 /* libPods-SQ_ SateCouncilNewsTests.a */,
 				858F1D1E2DE84DD0B2BBA123 /* libPods-SQ_ SateCouncilNewsUITests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7969DB851D9D535300F2A477 /* 收藏 */ = {
+			isa = PBXGroup;
+			children = (
+				7969DB861D9D536D00F2A477 /* SQ_SavedViewController.h */,
+				7969DB871D9D536D00F2A477 /* SQ_SavedViewController.m */,
+			);
+			path = "收藏";
 			sourceTree = "<group>";
 		};
 		7981417B1D915011005BEA08 = {
@@ -843,6 +859,7 @@
 		79BFE02F1D927BF8009F84D0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				7969DB851D9D535300F2A477 /* 收藏 */,
 				79BFE0321D927C1F009F84D0 /* SQ_LeftViewController.h */,
 				79BFE0331D927C1F009F84D0 /* SQ_LeftViewController.m */,
 			);
@@ -1376,6 +1393,7 @@
 				79BFE01E1D927A0B009F84D0 /* DepartmentViewController.m in Sources */,
 				798141FF1D9154A4005BEA08 /* UIImage+Categories.m in Sources */,
 				798141C61D915230005BEA08 /* SQ_BaseViewController.m in Sources */,
+				7969DB881D9D536D00F2A477 /* SQ_SavedViewController.m in Sources */,
 				798141FE1D9154A4005BEA08 /* UIColor+Categories.m in Sources */,
 				79C538B01D97CBAB00A10164 /* SQ_ServiceCell.m in Sources */,
 				7986FF6D1D9C00D4007361C6 /* SQ_VideoCell.m in Sources */,

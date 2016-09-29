@@ -39,8 +39,8 @@
         [self addSubview:_contentLabel];
         [_contentLabel makeConstraints:^(MASConstraintMaker *make) {
             
-            make.left.equalTo(self.left).offset(10);
-            make.width.equalTo(self.width).offset(-20);
+            make.left.equalTo(self.left).offset(20);
+            make.width.equalTo(self.width).offset(-40);
             make.top.equalTo(self.top).offset(10);
             make.height.equalTo(40);
         }];
@@ -52,7 +52,7 @@
         [self addSubview:_timeLabel];
         [_timeLabel makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(_contentLabel.bottom).offset(3);
-            make.left.equalTo(self.left).offset(10);
+            make.left.equalTo(self.left).offset(20);
             make.width.equalTo(WIDTH / 4);
             make.bottom.equalTo(self.bottom);
         }];

@@ -26,6 +26,7 @@ typedef void (^JsonSuccess)(id json);
 @property (nonatomic, retain) NSMutableArray *articleArray;
 @property (nonatomic, strong) id result;
 @property (nonatomic, assign) NSInteger dataNumber;
+@property (nonatomic, assign) unsigned long flagNumber;
 
 @end
 
@@ -35,9 +36,9 @@ typedef void (^JsonSuccess)(id json);
     [super viewDidLoad];
     
     
-    
+    [self createTableView];
     self.articleArray = [NSMutableArray array];
-    [self handleData];
+    
     self.dataNumber = 0;
     
     
@@ -45,18 +46,33 @@ typedef void (^JsonSuccess)(id json);
     // Do any additional setup after loading the view.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    //    self.articleArray = [NSMutableArray array];
+    //    [self handleData];
+    //    self.dataNumber = 0;
+    
+}
+
 - (void)createTableView {
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 100) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 150) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [self.view addSubview:_tableView ];
     _tableView.backgroundColor = [UIColor whiteColor];
-    _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
-    _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self refreshData];
+    _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{   
+        
+        _flagNumber = _articleArray.count;
+        _dataNumber++;
+        [self handleData];
+        
     }];
     
+    _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self reloadData];
+        
+    }];
+    [_tableView.mj_header beginRefreshing];
     
     
 }
@@ -67,29 +83,26 @@ typedef void (^JsonSuccess)(id json);
     
 }
 
-- (void)loadData {
-    if (_dataNumber == 3) {
-        [self.tableView.mj_footer endRefreshing];
-        [self footEndRefresh];
-        return;
-    }
-    _dataNumber ++;
-    [self handleData];
-    [self.tableView.mj_footer endRefreshing];
-    
-    
-    
-}
+//- (void)loadData {
+//    if (_dataNumber == 3) {
+//        [self footEndRefresh];
+//        return;
+//    }
+//    _dataNumber ++;
+//    [self handleData];
+//    [self.tableView.mj_footer endRefreshing];
+//
+//
+//
+//}
 
-- (void)footEndRefresh {
-    [_tableView.mj_footer endRefreshingWithNoMoreData];
-}
+
 
 - (void)handleData {
     
     
     
-    [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/columns/column_472_%ld.json",(long)_dataNumber] json:^(id json) {
+    [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/columns/column_472_%zd.json",_dataNumber] json:^(id json) {
         
         if (json != NULL) {
             
@@ -99,17 +112,28 @@ typedef void (^JsonSuccess)(id json);
             
             NSArray *keyArray = [articlesDic allKeys];
             
-            for (int i = 0; i < keyArray.count; i++) {
-                SQ_Article *article = [SQ_Article yy_modelWithDictionary:articlesDic[keyArray[i]]];
-                [_articleArray addObject:article];
+            if (keyArray > 0) {
+                for (int i = 0; i < keyArray.count; i++) {
+                    SQ_Article *article = [SQ_Article yy_modelWithDictionary:articlesDic[keyArray[i]]];
+                    [_articleArray addObject:article];
+                    [_tableView reloadData];
+                    [_tableView.mj_footer endRefreshing];
+                }
                 
             }
-            if (_tableView == NULL) {
-                [self createTableView];
-            }
             
             
-            [_tableView reloadData];
+            
+            
+            
+            
+            
+            
+            
+            
+        }
+        else {
+            
             
         }
         
@@ -118,7 +142,6 @@ typedef void (^JsonSuccess)(id json);
 }
 
 - (void)reloadData {
-    self.dataNumber = 0;
     [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/columns/column_472_%zd.json",_dataNumber] json:^(id json) {
         
         if (json != NULL) {
@@ -134,9 +157,7 @@ typedef void (^JsonSuccess)(id json);
                 [_articleArray addObject:article];
                 
             }
-            if (_tableView == NULL) {
-                [self createTableView];
-            }
+            
             [_tableView reloadData];
             [_tableView.mj_header endRefreshing];
             
@@ -206,6 +227,8 @@ typedef void (^JsonSuccess)(id json);
         NSString *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         json(dic);
     } failure:^(NSError *error) {
+        [_tableView reloadData];
+        [_tableView.mj_footer endRefreshingWithNoMoreData];
         NSLog(@"%@",error);
     }];
     

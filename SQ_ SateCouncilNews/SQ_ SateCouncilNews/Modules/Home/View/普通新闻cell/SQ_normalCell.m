@@ -83,7 +83,7 @@
         [self.contentView addSubview:_signLabel];
         [_signLabel makeConstraints:^(MASConstraintMaker *make) {
             
-            make.top.equalTo(_contentLabel.bottom).offset(8);
+            make.top.equalTo(_contentLabel.bottom).offset(5);
             make.left.equalTo(_timeLabel.right).offset(20);
             make.width.equalTo(WIDTH / 12);
             make.height.equalTo(14);
@@ -113,7 +113,6 @@
         NSURL *imageUrl = [NSURL URLWithString:urlString];
         [self.newsImageView sd_setImageWithURL:imageUrl];
         self.contentLabel.text = article.title;
-        NSLog(@"%@",article.title);
         NSString *str = [article.path substringToIndex:9];
         self.timeLabel.text = str;
         if (article.feature) {
@@ -128,8 +127,8 @@
                 
                 make.left.equalTo(self.contentView.left).offset(10);
                 make.right.equalTo(self.contentView.right).offset(-10);
-                make.top.equalTo(self.contentView.top).offset(50);
-    
+                make.top.equalTo(self.contentView.top).offset(20);
+//                make.bottom.equalTo(self.contentView.bottom).offset(-50);
             }];
 
             [_timeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {

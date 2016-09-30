@@ -14,8 +14,12 @@
 #define HEIGHT [UIScreen mainScreen].bounds.size.height
 
 #import "Masonry.h"
+#import "SQ_SearchDetailController.h"
 
 @interface SQ_SearchViewController ()
+<
+UITextFieldDelegate
+>
 
 @property (nonatomic, strong) UITextField *searchTextField;
 @property (nonatomic, strong) UIButton *cancelButton;
@@ -26,9 +30,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self createUI];
     
     
     
+    
+     self.view.backgroundColor = [UIColor whiteColor];
+    // Do any additional setup after loading the view.
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+- (void)createUI {
     self.searchTextField = [[UITextField alloc] initWithFrame:CGRectMake(80, 7, 180, 30)];
     
     UIImageView *search = [[UIImageView alloc] initWithFrame:CGRectMake(5, 0, 25, 25)];
@@ -43,13 +60,14 @@
     _searchTextField.layer.cornerRadius = 5.0f;
     _searchTextField.returnKeyType = UIReturnKeySearch;
     [_searchTextField clipsToBounds];
+    _searchTextField.delegate = self;
     
     self.cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.navigationController.navigationBar addSubview:_cancelButton];
     _cancelButton.frame = CGRectMake(WIDTH - 40, 13, 40, 20);
     [_cancelButton setTitle:@"取消" forState:UIControlStateNormal];
     [_cancelButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-   
+    
     
     UILabel *lineLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 64, WIDTH, 2)];
     [self.view addSubview:lineLabel];
@@ -65,15 +83,20 @@
     introduceLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:introduceLabel];
     introduceLabel.font = [UIFont systemFontOfSize:14];
-    
-    
-     self.view.backgroundColor = [UIColor whiteColor];
-    // Do any additional setup after loading the view.
+
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    
+    NSLog(@"%@",_searchTextField.text);
+    
+    [_searchTextField endEditing:YES];
+    SQ_SearchDetailController *sdtVC = [[SQ_SearchDetailController alloc] init];
+    sdtVC.serachKey = _searchTextField.text;
+    [self.navigationController pushViewController:sdtVC animated:YES];
+    
+    return YES;
 }
 
 
@@ -82,6 +105,14 @@
     
     _searchTextField.hidden = YES;
     _cancelButton.hidden = YES;
+}
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    _searchTextField.hidden = NO;
+    _cancelButton.hidden = NO;
+
 }
 
 /*

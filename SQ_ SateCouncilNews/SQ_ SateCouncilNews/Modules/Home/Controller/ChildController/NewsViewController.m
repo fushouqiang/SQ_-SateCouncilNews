@@ -124,6 +124,11 @@ interviewNewsDelegate
  
 }
 
+
+- (void)handleData {
+    
+}
+
 - (void)pushWithData:(SQ_Article *)article {
     
     SQ_DetailViewController *detailVC = [[SQ_DetailViewController alloc] init];

@@ -40,7 +40,14 @@ UIScrollViewDelegate
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     //设置打开抽屉模式
-    [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+ 
+        [self.mm_drawerController closeDrawerAnimated:YES completion:^(BOOL finished) {
+            [self.mm_drawerController setRightDrawerViewController:nil];
+        }];
+        self.mm_drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeAll;
+        self.mm_drawerController.closeDrawerGestureModeMask = MMCloseDrawerGestureModeAll;
+        
+    
 }
 
 - (void)viewDidLoad {
@@ -79,6 +86,8 @@ UIScrollViewDelegate
     SQ_SearchViewController *searchVC = [[SQ_SearchViewController alloc] init];
     searchVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:searchVC animated:YES];
+    
+//    [self presentViewController:searchVC animated:YES completion:nil];
     
 }
 

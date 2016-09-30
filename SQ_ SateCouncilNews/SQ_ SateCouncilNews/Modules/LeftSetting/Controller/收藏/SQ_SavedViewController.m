@@ -17,6 +17,7 @@
 #import "SQ_EasyNewsCell.h"
 #import "SQ_DetailViewController.h"
 #import "SQ_SdetailViewController.h"
+#import "DataBaseManager.h"
 
 @interface SQ_SavedViewController ()
 <
@@ -25,7 +26,8 @@ UITableViewDataSource
 >
 
 @property (nonatomic, strong)UITableView *tableView;
-
+@property (nonatomic, strong) NSArray *articleAarray;
+@property (nonatomic, strong) DataBaseManager *manager;
 
 @end
 
@@ -59,7 +61,12 @@ UITableViewDataSource
     [selectButton setImage:[UIImage imageNamed:@"backButton"] forState:UIControlStateNormal];
     [selectButton addTarget:self action:@selector(selectButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    
+    //操作数据库赋值
+    self.manager = [DataBaseManager shareManager];
+    [_manager openSQLite];
+    self.articleAarray =[NSArray arrayWithArray:[_manager selectAllArticle] ];
+    [_manager closeSQLite];
+    [self createTableView];
     
     
     // Do any additional setup after loading the view.
@@ -133,17 +140,17 @@ UITableViewDataSource
     [self presentViewController:detailVC animated:YES completion:nil];
     
 }
-
-- (void)setArticleAarray:(NSArray *)articleAarray {
-    
-    if (_articleAarray != articleAarray) {
-        _articleAarray = articleAarray;
-        
-    }
-   
-    [self createTableView];
-    
-}
+//
+//- (void)setArticleAarray:(NSArray *)articleAarray {
+//    
+//    if (_articleAarray != articleAarray) {
+//        _articleAarray = articleAarray;
+//        
+//    }
+//   
+//    [self createTableView];
+//    
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

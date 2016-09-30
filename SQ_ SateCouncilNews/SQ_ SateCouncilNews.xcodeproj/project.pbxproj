@@ -58,6 +58,7 @@
 		798E74FD1D9AA1D20050F9B3 /* SQ_Detail.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E74FC1D9AA1D20050F9B3 /* SQ_Detail.m */; };
 		799EA8901D9DED77003BAFF2 /* SQ_SdetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 799EA88F1D9DED77003BAFF2 /* SQ_SdetailViewController.m */; };
 		799EA8941D9E4ACF003BAFF2 /* SQ_SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 799EA8931D9E4ACF003BAFF2 /* SQ_SearchViewController.m */; };
+		799EA8971D9E5C63003BAFF2 /* SQ_SearchDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 799EA8961D9E5C63003BAFF2 /* SQ_SearchDetailController.m */; };
 		79A360B81D98D2310090F80F /* SQ_SignNormalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A360B71D98D2310090F80F /* SQ_SignNormalCell.m */; };
 		79A360BC1D98D4E90090F80F /* SQ_EasyNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A360BB1D98D4E90090F80F /* SQ_EasyNewsCell.m */; };
 		79A83EB31D94BDDB00D226B7 /* SQ_Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A83EB21D94BDDB00D226B7 /* SQ_Article.m */; };
@@ -223,6 +224,8 @@
 		799EA88F1D9DED77003BAFF2 /* SQ_SdetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_SdetailViewController.m; sourceTree = "<group>"; };
 		799EA8921D9E4ACF003BAFF2 /* SQ_SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_SearchViewController.h; sourceTree = "<group>"; };
 		799EA8931D9E4ACF003BAFF2 /* SQ_SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_SearchViewController.m; sourceTree = "<group>"; };
+		799EA8951D9E5C63003BAFF2 /* SQ_SearchDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_SearchDetailController.h; sourceTree = "<group>"; };
+		799EA8961D9E5C63003BAFF2 /* SQ_SearchDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_SearchDetailController.m; sourceTree = "<group>"; };
 		79A360B61D98D2310090F80F /* SQ_SignNormalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_SignNormalCell.h; sourceTree = "<group>"; };
 		79A360B71D98D2310090F80F /* SQ_SignNormalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_SignNormalCell.m; sourceTree = "<group>"; };
 		79A360BA1D98D4E90090F80F /* SQ_EasyNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_EasyNewsCell.h; sourceTree = "<group>"; };
@@ -760,6 +763,8 @@
 			children = (
 				799EA8921D9E4ACF003BAFF2 /* SQ_SearchViewController.h */,
 				799EA8931D9E4ACF003BAFF2 /* SQ_SearchViewController.m */,
+				799EA8951D9E5C63003BAFF2 /* SQ_SearchDetailController.h */,
+				799EA8961D9E5C63003BAFF2 /* SQ_SearchDetailController.m */,
 			);
 			path = "搜索界面";
 			sourceTree = "<group>";
@@ -1345,6 +1350,7 @@
 				798E74B61D9A23A70050F9B3 /* SQ_Member.m in Sources */,
 				798142001D9154A4005BEA08 /* UIView+Frame.m in Sources */,
 				798141F71D9154A4005BEA08 /* NSDate+EasyExtend.m in Sources */,
+				799EA8971D9E5C63003BAFF2 /* SQ_SearchDetailController.m in Sources */,
 				79AF83BC1D9B52520073C17A /* SQ_pictureScrollView.m in Sources */,
 				798E74B91D9A44F90050F9B3 /* SQ_StructureCell.m in Sources */,
 				798141F51D9154A4005BEA08 /* NSArray+Categories.m in Sources */,

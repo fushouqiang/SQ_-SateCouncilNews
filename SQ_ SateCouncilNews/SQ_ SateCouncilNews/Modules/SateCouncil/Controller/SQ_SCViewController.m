@@ -42,6 +42,18 @@ UITableViewDataSource
 
 @implementation SQ_SCViewController
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.mm_drawerController closeDrawerAnimated:YES completion:^(BOOL finished) {
+        [self.mm_drawerController setRightDrawerViewController:nil];
+    }];
+    self.mm_drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeAll;
+    self.mm_drawerController.closeDrawerGestureModeMask = MMCloseDrawerGestureModeAll;
+    
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blueColor];

@@ -40,7 +40,7 @@
     self.drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeAll;
     self.drawerController.closeDrawerGestureModeMask =MMCloseDrawerGestureModeAll;
     //5、设置左右两边抽屉显示的多少
-    self.drawerController.maximumLeftDrawerWidth = WIDTH / 2;
+    self.drawerController.maximumLeftDrawerWidth = WIDTH * 0.6;
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [_window makeKeyAndVisible];

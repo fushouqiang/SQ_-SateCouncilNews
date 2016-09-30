@@ -96,7 +96,7 @@ typedef void (^JsonSuccess)(id json);
     
     
     
-    [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/columns/column_481_%ld.json",_dataNumber] json:^(id json) {
+    [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/columns/column_481_%ld.json",(long)_dataNumber] json:^(id json) {
         
         if (json != NULL) {
             
@@ -143,7 +143,7 @@ typedef void (^JsonSuccess)(id json);
 
 - (void)reloadData {
     self.dataNumber = 0;
-    [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/columns/column_480_%ld.json",_dataNumber] json:^(id json) {
+    [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/columns/column_480_%ld.json",(long)_dataNumber] json:^(id json) {
         
         if (json != NULL) {
             

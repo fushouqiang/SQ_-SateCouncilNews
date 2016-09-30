@@ -36,17 +36,17 @@ UITableViewDataSource
 @implementation SQ_LeftViewController
 
 
-- (void)viewWillAppear:(BOOL)animated {
-    
-    [super viewWillAppear:animated];
-     self.manager = [DataBaseManager shareManager];
-    [_manager openSQLite];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-     [_manager closeSQLite];
-}
+//- (void)viewWillAppear:(BOOL)animated {
+//    
+//    [super viewWillAppear:animated];
+//     self.manager = [DataBaseManager shareManager];
+//    [_manager openSQLite];
+//}
+//
+//- (void)viewWillDisappear:(BOOL)animated {
+//    [super viewWillDisappear:animated];
+//     [_manager closeSQLite];
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -169,8 +169,8 @@ UITableViewDataSource
        
         
         SQ_SavedViewController *saveVC = [[SQ_SavedViewController alloc] init];
-        NSArray *array = [_manager selectAllArticle];
-        saveVC.articleAarray = [NSArray arrayWithArray:array];
+       
+     
         [self presentViewController:saveVC animated:YES completion:nil];
 //        [self.navigationController pushViewController:saveVC animated:YES];
         

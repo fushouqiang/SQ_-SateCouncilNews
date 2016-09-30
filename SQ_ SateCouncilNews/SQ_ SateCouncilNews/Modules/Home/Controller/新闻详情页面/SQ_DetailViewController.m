@@ -19,6 +19,9 @@
 #import "NSObject+YYModel.h"
 #import "SQ_Detail.h"
 #import "DataBaseManager.h"
+#import "AppDelegate.h"
+#import "MMDrawerController.h"
+#import "UIViewController+MMDrawerController.h"
 
 
 
@@ -45,9 +48,17 @@ typedef void (^JsonSuccess)(id json);
     
     
     [super viewWillAppear:animated];
-   
+    
+    //禁止侧滑
+    self.mm_drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeNone;
+    self.mm_drawerController.closeDrawerGestureModeMask = MMCloseDrawerGestureModeNone;
+
+
     
 }
+
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -126,7 +137,7 @@ typedef void (^JsonSuccess)(id json);
     }];
     [_shareButton setImage:[UIImage imageNamed:@"newsShareButton"] forState:UIControlStateNormal];
     [_shareButton setImage:[UIImage imageNamed:@"newsShareSelectedButton"] forState:UIControlStateSelected];
-    NSLog(@"%@",_article);
+
     
 }
 
@@ -146,7 +157,7 @@ typedef void (^JsonSuccess)(id json);
     self.manager = [DataBaseManager shareManager];
     [_manager openSQLite];
     _isSaved =  [_manager selectArticle:article];
-    NSLog(@"%d",_isSaved);
+ 
     [self createUI];
     [self handleData];
     
@@ -189,8 +200,9 @@ typedef void (^JsonSuccess)(id json);
         self.result = json;
             NSString *stri = [json valueForKey:@"content"];
             NSString *str = [stri stringByReplacingOccurrencesOfString:@"'\'" withString:@""];
-            NSLog(@"%@",str);
-      [self.webView loadHTMLString:str baseURL:nil];
+
+            
+       [self.webView loadHTMLString:str baseURL:nil];
         
         }
     }];

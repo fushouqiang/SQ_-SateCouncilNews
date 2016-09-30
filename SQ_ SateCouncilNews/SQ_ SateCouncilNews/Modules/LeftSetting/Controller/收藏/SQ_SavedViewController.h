@@ -11,5 +11,5 @@
 @interface SQ_SavedViewController : UIViewController
 
 
-@property (nonatomic, strong) NSArray *articleAarray;
+
 @end

@@ -16,6 +16,7 @@
 #import "SQ_normalCell.h"
 #import "SQ_EasyNewsCell.h"
 #import "SQ_DetailViewController.h"
+#import "SQ_SdetailViewController.h"
 
 @interface SQ_SavedViewController ()
 <
@@ -101,7 +102,7 @@ UITableViewDataSource
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    SQ_DetailViewController *detailVC = [[SQ_DetailViewController alloc] init];
+    SQ_SdetailViewController *detailVC = [[SQ_SdetailViewController alloc] init];
     detailVC.article = _articleAarray[indexPath.row];
     detailVC.hidesBottomBarWhenPushed = YES;
     [self presentViewController:detailVC animated:YES completion:nil];

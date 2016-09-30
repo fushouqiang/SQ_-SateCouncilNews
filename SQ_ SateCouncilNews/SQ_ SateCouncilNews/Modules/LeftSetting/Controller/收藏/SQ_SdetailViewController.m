@@ -1,12 +1,12 @@
 //
-//  SQ_DetailViewController.m
+//  SQ_SdetailViewController.m
 //  SQ_ SateCouncilNews
 //
-//  Created by FuShouqiang on 16/9/23.
+//  Created by FuShouqiang on 16/9/30.
 //  Copyright © 2016年 fu. All rights reserved.
 //
 
-#import "SQ_DetailViewController.h"
+#import "SQ_SdetailViewController.h"
 
 
 #define MAS_SHORTHAND_GLOBALS
@@ -21,7 +21,7 @@
 #import "DataBaseManager.h"
 
 
-@interface SQ_DetailViewController ()
+@interface SQ_SdetailViewController ()
 <
 UIWebViewDelegate
 >
@@ -31,11 +31,12 @@ typedef void (^JsonSuccess)(id json);
 @property (nonatomic, strong) UIButton *shareButton;
 @property (nonatomic, strong) DataBaseManager *manager;
 @property (nonatomic, assign) BOOL isSaved;
+@property (nonatomic, strong) UIButton *backButton;
 
 
 @end
 
-@implementation SQ_DetailViewController
+@implementation SQ_SdetailViewController
 
 
 
@@ -43,33 +44,45 @@ typedef void (^JsonSuccess)(id json);
     
     
     [super viewWillAppear:animated];
-   
+    
     
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+    
     
     self.webView = [[UIWebView alloc] init];
     [self.view addSubview:_webView];
     self.view.backgroundColor = [UIColor whiteColor];
     [_webView makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view.top).offset(40);
+        make.top.equalTo(self.view.top).offset(70);
         make.left.equalTo(self.view);
         make.width.equalTo(WIDTH);
-        make.height.equalTo(HEIGHT);
+        make.height.equalTo(HEIGHT - 50);
     }];
     NSString *urlString = self.article.shareUrl;
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
-
+    
     
     self.webView.delegate = self;
     _webView.scrollView.bounces = NO;
-   
     
+    self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+     [self.view addSubview:_backButton];
+    [_backButton makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.view.left).offset(10);
+        make.top.equalTo(self.view.top).offset(35);
+        make.height.equalTo(35);
+        make.width.equalTo(45);
+    }];
+    [_backButton addTarget:self action:@selector(backButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_backButton setImage:[UIImage imageNamed:@"backButton"] forState:UIControlStateNormal];
+   
 }
 
 - (void)backButtonClick:(UIButton *)button {
@@ -144,13 +157,11 @@ typedef void (^JsonSuccess)(id json);
     self.manager = [DataBaseManager shareManager];
     [_manager openSQLite];
     _isSaved =  [_manager selectArticle:article];
-    NSLog(@"%d",_isSaved);
     [self createUI];
     
     
     
 }
-
 
 - (void)saveButtonAction:(UIButton *)button {
     
@@ -158,18 +169,18 @@ typedef void (^JsonSuccess)(id json);
     if (_isSaved == true) {
         
         
-         [_manager deleteWithArticle:_article];
+        [_manager deleteWithArticle:_article];
         [button setImage:[UIImage imageNamed:@"newsSaveButton"] forState:UIControlStateNormal];
     }
     
     else  {
         
         
-            [_manager insertIntoWithArticle:_article];
+        [_manager insertIntoWithArticle:_article];
         
         [button setImage:[UIImage imageNamed:@"newsSavedButton"] forState:UIControlStateNormal];
         
-    
+        
     }
     _isSaved = !_isSaved;
     
@@ -194,13 +205,13 @@ typedef void (^JsonSuccess)(id json);
 
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

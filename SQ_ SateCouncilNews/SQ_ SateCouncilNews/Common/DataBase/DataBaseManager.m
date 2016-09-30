@@ -151,20 +151,40 @@
     
     int result = sqlite3_prepare(dbPoint,[selectSQL UTF8String],-1,&stmt,NULL);
     
-
+    NSMutableArray *resultArray = [NSMutableArray array];
     
     if (result == SQLITE_OK) {
         
-        return 1;
-        
-          }
+        while (sqlite3_step(stmt) == SQLITE_ROW) {
+            
+            const unsigned char *name = sqlite3_column_text(stmt, 1);
+            const unsigned char *date = sqlite3_column_text(stmt, 2);
+            const unsigned char *feature = sqlite3_column_text(stmt, 3);
+            const unsigned char *shareUrl = sqlite3_column_text(stmt, 4);
+            SQ_Article *article = [[SQ_Article alloc] init];
+            article.title = [NSString stringWithUTF8String:(const char *)name];
+            article.path = [NSString stringWithUTF8String:(const char *)date];
+            article.feature = [NSString stringWithUTF8String:(const char *)feature];
+            article.shareUrl = [NSString stringWithUTF8String:(const char *)shareUrl];
+            
+            
+            [resultArray addObject:article];
+        }
+    }
     sqlite3_finalize(stmt);
     
-  
-    return  0;
+
+    if (resultArray.count > 0) {
+        
+        return 1;
+    }
     
-    
+    return 0;
 }
+
+//int Result(void* pContext, int nCol, char** azValue, char** azName) {
+//    
+//}
 
 
 - (void)logErrorMessage:(char *)error {

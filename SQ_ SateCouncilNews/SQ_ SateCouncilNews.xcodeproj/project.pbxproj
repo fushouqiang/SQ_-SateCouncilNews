@@ -56,6 +56,7 @@
 		798E74B61D9A23A70050F9B3 /* SQ_Member.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E74B51D9A23A70050F9B3 /* SQ_Member.m */; };
 		798E74B91D9A44F90050F9B3 /* SQ_StructureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E74B81D9A44F90050F9B3 /* SQ_StructureCell.m */; };
 		798E74FD1D9AA1D20050F9B3 /* SQ_Detail.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E74FC1D9AA1D20050F9B3 /* SQ_Detail.m */; };
+		799EA8901D9DED77003BAFF2 /* SQ_SdetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 799EA88F1D9DED77003BAFF2 /* SQ_SdetailViewController.m */; };
 		79A360B81D98D2310090F80F /* SQ_SignNormalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A360B71D98D2310090F80F /* SQ_SignNormalCell.m */; };
 		79A360BC1D98D4E90090F80F /* SQ_EasyNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A360BB1D98D4E90090F80F /* SQ_EasyNewsCell.m */; };
 		79A83EB31D94BDDB00D226B7 /* SQ_Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A83EB21D94BDDB00D226B7 /* SQ_Article.m */; };
@@ -217,6 +218,8 @@
 		798E74B81D9A44F90050F9B3 /* SQ_StructureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_StructureCell.m; sourceTree = "<group>"; };
 		798E74FB1D9AA1D20050F9B3 /* SQ_Detail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_Detail.h; sourceTree = "<group>"; };
 		798E74FC1D9AA1D20050F9B3 /* SQ_Detail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_Detail.m; sourceTree = "<group>"; };
+		799EA88E1D9DED77003BAFF2 /* SQ_SdetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_SdetailViewController.h; sourceTree = "<group>"; };
+		799EA88F1D9DED77003BAFF2 /* SQ_SdetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_SdetailViewController.m; sourceTree = "<group>"; };
 		79A360B61D98D2310090F80F /* SQ_SignNormalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_SignNormalCell.h; sourceTree = "<group>"; };
 		79A360B71D98D2310090F80F /* SQ_SignNormalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_SignNormalCell.m; sourceTree = "<group>"; };
 		79A360BA1D98D4E90090F80F /* SQ_EasyNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_EasyNewsCell.h; sourceTree = "<group>"; };
@@ -363,6 +366,8 @@
 			children = (
 				7969DB861D9D536D00F2A477 /* SQ_SavedViewController.h */,
 				7969DB871D9D536D00F2A477 /* SQ_SavedViewController.m */,
+				799EA88E1D9DED77003BAFF2 /* SQ_SdetailViewController.h */,
+				799EA88F1D9DED77003BAFF2 /* SQ_SdetailViewController.m */,
 			);
 			path = "收藏";
 			sourceTree = "<group>";
@@ -1385,6 +1390,7 @@
 				79AF83B01D9B4DA50073C17A /* SQ_PictureNewsCell.m in Sources */,
 				79C538C41D97D8B900A10164 /* SQ_interviewCell.m in Sources */,
 				798141D51D915460005BEA08 /* NSUserDefaultsUtils.m in Sources */,
+				799EA8901D9DED77003BAFF2 /* SQ_SdetailViewController.m in Sources */,
 				7986FF661D9BAD9E007361C6 /* UILabel+SizeToFit_W_H.m in Sources */,
 				7986FF701D9C02DD007361C6 /* VideoViewController.m in Sources */,
 				79C5387B1D977D9000A10164 /* SQ_EasyNewsView.m in Sources */,

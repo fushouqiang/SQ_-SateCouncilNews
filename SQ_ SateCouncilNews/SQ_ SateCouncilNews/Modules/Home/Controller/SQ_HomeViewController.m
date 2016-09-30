@@ -18,6 +18,7 @@
 #import "UIViewController+MMDrawerController.h"
 #import "PictureViewController.h"
 #import "VideoViewController.h"
+#import "SQ_SearchViewController.h"
 
 
 @interface SQ_HomeViewController ()
@@ -45,20 +46,19 @@ UIScrollViewDelegate
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.lastSelectButton = [[UIButton alloc] init];
-//    self.navigationItem.title = @"国务院";
     self.titleButtons = [NSMutableArray array];
     [self setupHeadScrollView];
     [self setupContentScrollView];
     [self setupAllChildViewController];
     [self setupHeadScrollViewTitle];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"navigationSettingButton"] style:UIBarButtonItemStylePlain target:self action:@selector(leftBtn)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"navigationSettingButton"] style:UIBarButtonItemStylePlain target:self action:@selector(settingAction)];
     self.navigationItem.leftBarButtonItem.tintColor = [UIColor colorWithWhite:0.534 alpha:1.000];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 25)];
     imageView.image = [UIImage imageNamed:@"navigationLogo"];
     self.navigationItem.titleView = imageView;
   
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationSearchButton"] style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationSearchButton"] style:UIBarButtonItemStylePlain target:self action:@selector(searchAction)];
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithWhite:0.534 alpha:1.000];
     self.view.backgroundColor = [UIColor whiteColor];
     //默认点击的title
@@ -68,9 +68,18 @@ UIScrollViewDelegate
     // Do any additional setup after loading the view from its nib.
 }
 
--(void)leftBtn{
+-(void)settingAction {
     //这里的话是通过遍历循环拿到之前在AppDelegate中声明的那个MMDrawerController属性，然后判断是否为打开状态，如果是就关闭，否就是打开(初略解释，里面还有一些条件)
     [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+}
+
+
+- (void)searchAction {
+    
+    SQ_SearchViewController *searchVC = [[SQ_SearchViewController alloc] init];
+    searchVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:searchVC animated:YES];
+    
 }
 
 //创建title的scrollView

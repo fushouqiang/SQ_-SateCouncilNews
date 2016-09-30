@@ -47,7 +47,7 @@ typedef void (^JsonSuccess)(id json);
 
 - (void)createTableView {
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 172) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 150) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [self.view addSubview:_tableView ];
@@ -89,7 +89,7 @@ typedef void (^JsonSuccess)(id json);
     
     
     
-    [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/columns/column_475_%ld.json",_dataNumber] json:^(id json) {
+    [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/columns/column_475_%zd.json",_dataNumber] json:^(id json) {
         
         if (json != NULL) {
             
@@ -119,7 +119,7 @@ typedef void (^JsonSuccess)(id json);
 
 - (void)reloadData {
     self.dataNumber = 0;
-    [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/columns/column_475_%ld.json",_dataNumber] json:^(id json) {
+    [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/columns/column_475_%zd.json",_dataNumber] json:^(id json) {
         
         if (json != NULL) {
             

@@ -92,7 +92,7 @@
     if (_article != article) {
         _article = article;
 
-        NSString *urlSource = [[article.thumbnails valueForKey:@"1"] valueForKey:@"file"];
+        NSString *urlSource = [[article.thumbnails valueForKey:@"2"] valueForKey:@"file"];
         NSString *urlString = [NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/%@",urlSource];
         NSURL *imageUrl = [NSURL URLWithString:urlString];
         [_newsImageView sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@""]];

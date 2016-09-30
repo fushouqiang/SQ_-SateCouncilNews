@@ -21,6 +21,7 @@
 #import "DataBaseManager.h"
 
 
+
 @interface SQ_DetailViewController ()
 <
 UIWebViewDelegate
@@ -31,6 +32,7 @@ typedef void (^JsonSuccess)(id json);
 @property (nonatomic, strong) UIButton *shareButton;
 @property (nonatomic, strong) DataBaseManager *manager;
 @property (nonatomic, assign) BOOL isSaved;
+@property (nonatomic, strong) id result;
 
 
 @end
@@ -55,10 +57,10 @@ typedef void (^JsonSuccess)(id json);
     [self.view addSubview:_webView];
     self.view.backgroundColor = [UIColor whiteColor];
     [_webView makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view.top).offset(40);
+        make.top.equalTo(self.view.top);
         make.left.equalTo(self.view);
         make.width.equalTo(WIDTH);
-        make.height.equalTo(HEIGHT);
+        make.height.equalTo(HEIGHT - 60);
     }];
     NSString *urlString = self.article.shareUrl;
     NSURL *url = [NSURL URLWithString:urlString];
@@ -146,6 +148,7 @@ typedef void (^JsonSuccess)(id json);
     _isSaved =  [_manager selectArticle:article];
     NSLog(@"%d",_isSaved);
     [self createUI];
+    [self handleData];
     
     
     
@@ -176,11 +179,48 @@ typedef void (^JsonSuccess)(id json);
     
 }
 
+- (void)handleData {
+    
+    
+    
+    [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/%@",_article.path] json:^(id json) {
+       
+        if(json) {
+        self.result = json;
+            NSString *stri = [json valueForKey:@"content"];
+            NSString *str = [stri stringByReplacingOccurrencesOfString:@"'\'" withString:@""];
+            NSLog(@"%@",str);
+      [self.webView loadHTMLString:str baseURL:nil];
+        
+        }
+    }];
+    
+}
+
+
+//获取json
+- (void)getJsonWithUrlString:(NSString *)urlString json:(JsonSuccess)json{
+    
+    
+    
+    
+    [HttpClient getWithUrlString:urlString success:^(id data) {
+        NSString *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        json(dic);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    
+    
+}
+
+
 
 
 //屏蔽JS广告
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByClassName('bottomicon')[0].style.display = 'NONE'"];
+
     
 }
 

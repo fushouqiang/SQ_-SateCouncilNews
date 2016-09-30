@@ -21,6 +21,7 @@
 #import "SQ_MemberCell.h"
 #import "SQ_Member.h"
 #import "SQ_StructureCell.h"
+#import "SQ_SearchViewController.h"
 typedef void (^JsonSuccess)(id json);
 
 @interface SQ_SCViewController ()
@@ -45,7 +46,14 @@ UITableViewDataSource
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blueColor];
     _rowHeight = 140;
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationbar_friendattention"] style:UIBarButtonItemStylePlain target:self action:@selector(leftBtn)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 25)];
+    imageView.image = [UIImage imageNamed:@"navigationLogo"];
+    self.navigationItem.titleView = imageView;
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationSettingButton"] style:UIBarButtonItemStylePlain target:self action:@selector(leftBtn)];
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor colorWithWhite:0.534 alpha:1.000];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationSearchButton"] style:UIBarButtonItemStylePlain target:self action:@selector(searchAction)];
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithWhite:0.534 alpha:1.000];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     self.navigationController.navigationBar.translucent = NO;
     
@@ -67,6 +75,14 @@ UITableViewDataSource
     
     
     // Do any additional setup after loading the view.
+}
+
+- (void)searchAction {
+    
+    SQ_SearchViewController *searchVC = [[SQ_SearchViewController alloc] init];
+    searchVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:searchVC animated:YES];
+    
 }
 
 

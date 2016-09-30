@@ -47,8 +47,33 @@ UITableViewDataSource
     [backButton setImage:[UIImage imageNamed:@"backButton"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
+    UIButton *selectButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:selectButton];
+    [selectButton makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.right.equalTo(self.view.right).offset(-10);
+        make.top.equalTo(self.view.top).offset(40);
+        make.height.equalTo(35);
+        make.width.equalTo(45);
+    }];
+    [selectButton setImage:[UIImage imageNamed:@"backButton"] forState:UIControlStateNormal];
+    [selectButton addTarget:self action:@selector(selectButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
+    
     // Do any additional setup after loading the view.
 }
+
+
+- (void)selectButtonClick:(UIButton *)button {
+    
+    _tableView.allowsMultipleSelectionDuringEditing = YES;
+    _tableView.editing = !_tableView.editing;
+    
+}
+
+
 
 - (void)backButtonClick:(UIButton *)button {
     
@@ -62,9 +87,9 @@ UITableViewDataSource
     [self.view addSubview:_tableView ];
     [_tableView makeConstraints:^(MASConstraintMaker *make) {
        
-        make.top.equalTo(self.view.top).offset(80);
+        make.top.equalTo(self.view.top).offset(120);
         make.width.equalTo(WIDTH);
-        make.height.equalTo(HEIGHT - 60);
+        make.height.equalTo(HEIGHT - 100);
         make.left.equalTo(self.view.left);
         
     }];

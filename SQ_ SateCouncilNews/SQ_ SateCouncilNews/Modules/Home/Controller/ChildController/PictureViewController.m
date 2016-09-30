@@ -91,7 +91,7 @@ typedef void (^JsonSuccess)(id json);
     
     
     
-    [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/columns/column_480_%ld.json",_dataNumber] json:^(id json) {
+    [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/columns/column_480_%zd.json",_dataNumber] json:^(id json) {
         
         if (json != NULL) {
             
@@ -138,7 +138,7 @@ typedef void (^JsonSuccess)(id json);
 
 - (void)reloadData {
     self.dataNumber = 0;
-    [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/columns/column_480_%ld.json",_dataNumber] json:^(id json) {
+    [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/columns/column_480_%zd.json",_dataNumber] json:^(id json) {
         
         if (json != NULL) {
             
@@ -208,6 +208,7 @@ typedef void (^JsonSuccess)(id json);
             cell = [[SQ_PictureNewsCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier] ;
         }
         cell.article = _articleArray[indexPath.row];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     
 }

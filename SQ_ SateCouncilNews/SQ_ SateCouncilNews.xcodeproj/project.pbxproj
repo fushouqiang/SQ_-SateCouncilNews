@@ -57,6 +57,7 @@
 		798E74B91D9A44F90050F9B3 /* SQ_StructureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E74B81D9A44F90050F9B3 /* SQ_StructureCell.m */; };
 		798E74FD1D9AA1D20050F9B3 /* SQ_Detail.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E74FC1D9AA1D20050F9B3 /* SQ_Detail.m */; };
 		799EA8901D9DED77003BAFF2 /* SQ_SdetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 799EA88F1D9DED77003BAFF2 /* SQ_SdetailViewController.m */; };
+		799EA8941D9E4ACF003BAFF2 /* SQ_SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 799EA8931D9E4ACF003BAFF2 /* SQ_SearchViewController.m */; };
 		79A360B81D98D2310090F80F /* SQ_SignNormalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A360B71D98D2310090F80F /* SQ_SignNormalCell.m */; };
 		79A360BC1D98D4E90090F80F /* SQ_EasyNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A360BB1D98D4E90090F80F /* SQ_EasyNewsCell.m */; };
 		79A83EB31D94BDDB00D226B7 /* SQ_Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A83EB21D94BDDB00D226B7 /* SQ_Article.m */; };
@@ -220,6 +221,8 @@
 		798E74FC1D9AA1D20050F9B3 /* SQ_Detail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_Detail.m; sourceTree = "<group>"; };
 		799EA88E1D9DED77003BAFF2 /* SQ_SdetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_SdetailViewController.h; sourceTree = "<group>"; };
 		799EA88F1D9DED77003BAFF2 /* SQ_SdetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_SdetailViewController.m; sourceTree = "<group>"; };
+		799EA8921D9E4ACF003BAFF2 /* SQ_SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_SearchViewController.h; sourceTree = "<group>"; };
+		799EA8931D9E4ACF003BAFF2 /* SQ_SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_SearchViewController.m; sourceTree = "<group>"; };
 		79A360B61D98D2310090F80F /* SQ_SignNormalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_SignNormalCell.h; sourceTree = "<group>"; };
 		79A360B71D98D2310090F80F /* SQ_SignNormalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_SignNormalCell.m; sourceTree = "<group>"; };
 		79A360BA1D98D4E90090F80F /* SQ_EasyNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_EasyNewsCell.h; sourceTree = "<group>"; };
@@ -578,6 +581,7 @@
 				79BFE00C1D9279D7009F84D0 /* ChildController */,
 				798142061D9155F3005BEA08 /* Model */,
 				79AF83B11D9B50BF0073C17A /* 图片新闻详情页面 */,
+				799EA8911D9E4AAB003BAFF2 /* 搜索界面 */,
 				79AF83AB1D9B4B980073C17A /* 新闻详情页面 */,
 				79BFE0241D927A93009F84D0 /* SQ_HomeViewController.h */,
 				79BFE0221D927A8D009F84D0 /* SQ_HomeViewController.m */,
@@ -749,6 +753,15 @@
 				7986FF6C1D9C00D4007361C6 /* SQ_VideoCell.m */,
 			);
 			path = "视频新闻cell";
+			sourceTree = "<group>";
+		};
+		799EA8911D9E4AAB003BAFF2 /* 搜索界面 */ = {
+			isa = PBXGroup;
+			children = (
+				799EA8921D9E4ACF003BAFF2 /* SQ_SearchViewController.h */,
+				799EA8931D9E4ACF003BAFF2 /* SQ_SearchViewController.m */,
+			);
+			path = "搜索界面";
 			sourceTree = "<group>";
 		};
 		79A360B91D98D2350090F80F /* 带标志普通新闻cell */ = {
@@ -1134,6 +1147,7 @@
 				TargetAttributes = {
 					798141831D915011005BEA08 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = HJ7CM87URA;
 					};
 					7981419C1D915012005BEA08 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -1379,6 +1393,7 @@
 				79BFE0201D927A0B009F84D0 /* ServiceViewController.m in Sources */,
 				798141891D915011005BEA08 /* main.m in Sources */,
 				79C538811D979D8300A10164 /* SQ_headNewsView.m in Sources */,
+				799EA8941D9E4ACF003BAFF2 /* SQ_SearchViewController.m in Sources */,
 				7923F7B41D995F82008F45B9 /* SQ_MemberCell.m in Sources */,
 				79A83EB61D94BDFB00D226B7 /* SQ_News.m in Sources */,
 				79C538C01D97D6AE00A10164 /* SQ_Special.m in Sources */,
@@ -1548,10 +1563,13 @@
 			baseConfigurationReference = BC58D5C11354DFC7D97743A1 /* Pods-SQ_ SateCouncilNews.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "SQ_ SateCouncilNews/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Fu.SQ--SateCouncilNews";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1560,10 +1578,13 @@
 			baseConfigurationReference = F542ACF1DBC62AD6AF8724FF /* Pods-SQ_ SateCouncilNews.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "SQ_ SateCouncilNews/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Fu.SQ--SateCouncilNews";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

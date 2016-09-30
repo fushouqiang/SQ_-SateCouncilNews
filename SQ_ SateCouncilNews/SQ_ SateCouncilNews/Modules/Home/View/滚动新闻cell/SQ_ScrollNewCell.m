@@ -118,7 +118,7 @@
     NSInteger index = (scrollView.contentOffset.x / (WIDTH /10 * 9 - 5));
     
     NSLog(@"%f",scrollView.contentOffset.x);
-    NSLog(@"%ld",index);
+    NSLog(@"%zd",index);
     
     [self.delegate  scrollNewsTouchData:_articleArray[index]];
     
@@ -141,7 +141,7 @@
         self.articleArray = [NSMutableArray array];
         
         self.keyArray = [dataDic allKeys];
-        NSLog(@"%ld",_keyArray.count);
+        NSLog(@"%zd",_keyArray.count);
         [self createUI];
         NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(timerChanged:) userInfo:nil repeats:YES];
         

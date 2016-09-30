@@ -160,7 +160,7 @@ UIScrollViewDelegate
             
             
 
-            NSString *urlString = [NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/%@",[[article.thumbnails valueForKey:@"2"] valueForKey:@"file"]];
+            NSString *urlString = [NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/%@",[[article.thumbnails valueForKey:@"1"] valueForKey:@"file"]];
        //伪跳转imageView last
             if (i == 0) {
               lastImageView.frame = CGRectMake(WIDTH * 6, 0, WIDTH, _scrollView.frame.size.height);

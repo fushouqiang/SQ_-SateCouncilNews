@@ -243,6 +243,7 @@ typedef void (^JsonSuccess)(id json);
         cell = [[SQ_VideoCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier] ;
     }
     cell.article = _articleArray[indexPath.row];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     
 }

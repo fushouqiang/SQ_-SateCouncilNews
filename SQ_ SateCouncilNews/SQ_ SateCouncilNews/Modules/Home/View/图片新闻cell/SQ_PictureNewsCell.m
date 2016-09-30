@@ -106,7 +106,7 @@
         [_newsImageView sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@""]];
         _contentLabel.text = article.title;
         NSArray *array = [article.pictures allKeys];
-        [_button setTitle:[NSString stringWithFormat:@"%ld",array.count] forState:UIControlStateNormal];
+        [_button setTitle:[NSString stringWithFormat:@"%ld",(unsigned long)array.count] forState:UIControlStateNormal];
         
         
     

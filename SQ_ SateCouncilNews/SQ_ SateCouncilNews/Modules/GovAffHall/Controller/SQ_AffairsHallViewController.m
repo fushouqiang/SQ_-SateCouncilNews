@@ -13,6 +13,8 @@
 #define WIDTH ([UIScreen mainScreen].bounds.size.width )
 #define HEIGHT [UIScreen mainScreen].bounds.size.height - 30
 #import "Masonry.h"
+#import "UIViewController+MMDrawerController.h"
+#import "SQ_SearchViewController.h"
 
 @interface SQ_AffairsHallViewController ()
 @property (nonatomic, strong) UILabel *backLabel;
@@ -26,7 +28,16 @@
     self.view.backgroundColor = [UIColor colorWithWhite:0.926 alpha:1.000];
     
     
-   
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"navigationSettingButton"] style:UIBarButtonItemStylePlain target:self action:@selector(settingAction)];
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor colorWithWhite:0.534 alpha:1.000];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 25)];
+    imageView.image = [UIImage imageNamed:@"navigationLogo"];
+    self.navigationItem.titleView = imageView;
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationSearchButton"] style:UIBarButtonItemStylePlain target:self action:@selector(searchAction)];
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithWhite:0.534 alpha:1.000];
+
     
     CGFloat width =  (WIDTH - 30) / 3;
     CGFloat width2 =  (WIDTH - 30) / 2;
@@ -40,16 +51,16 @@
         
     }];
     label1.backgroundColor = [UIColor colorWithRed:0.261 green:0.465 blue:0.754 alpha:1.000];
-    UIImageView *imageView = [[UIImageView alloc] init];
-    [label1 addSubview:imageView];
-    [imageView makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.top.equalTo(label1.top).offset(width * 2 / 3);
-        make.height.equalTo(width / 3);
-        make.centerX.equalTo(label1.centerX);
-        make.width.equalTo(width / 3);
-    }];
-    imageView.image = [UIImage imageNamed:@"hallMinistryIconLoading"];
+//    UIImageView *imageView = [[UIImageView alloc] init];
+//    [label1 addSubview:imageView];
+//    [imageView makeConstraints:^(MASConstraintMaker *make) {
+//        
+//        make.top.equalTo(label1.top).offset(width * 2 / 3);
+//        make.height.equalTo(width / 3);
+//        make.centerX.equalTo(label1.centerX);
+//        make.width.equalTo(width / 3);
+//    }];
+//    imageView.image = [UIImage imageNamed:@"hallMinistryIconLoading"];
     
     
     
@@ -112,6 +123,20 @@
     
     
     // Do any additional setup after loading the view.
+}
+
+-(void)settingAction {
+    //这里的话是通过遍历循环拿到之前在AppDelegate中声明的那个MMDrawerController属性，然后判断是否为打开状态，如果是就关闭，否就是打开(初略解释，里面还有一些条件)
+    [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+}
+
+
+- (void)searchAction {
+    
+    SQ_SearchViewController *searchVC = [[SQ_SearchViewController alloc] init];
+    searchVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:searchVC animated:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning {

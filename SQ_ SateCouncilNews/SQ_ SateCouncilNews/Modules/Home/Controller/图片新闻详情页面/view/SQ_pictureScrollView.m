@@ -7,12 +7,8 @@
 //
 
 
-#define MAS_SHORTHAND_GLOBALS
-#define MAS_SHORTHAND
-#define WIDTH [UIScreen mainScreen].bounds.size.width
-#define HEIGHT [UIScreen mainScreen].bounds.size.height
+
 #import "SQ_pictureScrollView.h"
-#import "Masonry.h"
 #import "UIImageView+WebCache.h"
 
 @interface SQ_pictureScrollView ()

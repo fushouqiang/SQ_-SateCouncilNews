@@ -7,13 +7,6 @@
 //
 
 #import "SQ_SdetailViewController.h"
-
-
-#define MAS_SHORTHAND_GLOBALS
-#define MAS_SHORTHAND
-#define WIDTH [UIScreen mainScreen].bounds.size.width
-#define HEIGHT [UIScreen mainScreen].bounds.size.height
-#import "Masonry.h"
 #import "HttpClient.h"
 #import "SQ_Article.h"
 #import "NSObject+YYModel.h"

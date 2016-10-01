@@ -126,35 +126,30 @@ UIScrollViewDelegate
     
     NewsViewController *newsVC = [[NewsViewController alloc] init];
     newsVC.title = @"要闻";
-    newsVC.view.backgroundColor = [UIColor redColor];
+   
     [self addChildViewController:newsVC];
     PremierViewController *premierVC = [[PremierViewController alloc] init];
     premierVC.title = @"总理";
-//    vc2.view.backgroundColor = [UIColor blueColor];
+
     [self addChildViewController:premierVC];
     PolicyViewController *policyVC = [[PolicyViewController alloc] init];
     policyVC.title = @"政策";
-    policyVC.view.backgroundColor = [UIColor yellowColor];
+   
     [self addChildViewController:policyVC];
     DepartmentViewController *departmentVC = [[DepartmentViewController alloc] init];
     departmentVC.title = @"部门";
-    departmentVC.view.backgroundColor = [UIColor blackColor];
     [self addChildViewController:departmentVC];
     LocalityViewController *localityVC = [[LocalityViewController alloc] init];
     localityVC.title = @"地方";
-    localityVC.view.backgroundColor = [UIColor orangeColor];
     [self addChildViewController:localityVC];
     ServiceViewController *serviceVC = [[ServiceViewController alloc] init];
     serviceVC.title = @"服务";
-    serviceVC.view.backgroundColor = [UIColor colorWithRed:0.367 green:0.935 blue:1.000 alpha:1.000];
     [self addChildViewController:serviceVC];
     DataViewController *dataVC = [[DataViewController alloc] init];
     dataVC.title = @"数据";
-    dataVC.view.backgroundColor = [UIColor colorWithRed:1.000 green:0.232 blue:0.649 alpha:1.000];
     [self addChildViewController:dataVC];
     
     PictureViewController *picVC = [[PictureViewController alloc] init];
-    picVC.view.backgroundColor = [UIColor whiteColor];
     picVC.title = @"图片";
     [self addChildViewController:picVC];
     
@@ -162,7 +157,7 @@ UIScrollViewDelegate
     videoVC.view.backgroundColor = [UIColor whiteColor];
     videoVC.title = @"视频";
     [self addChildViewController:videoVC];
-    
+ 
     
     
     

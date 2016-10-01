@@ -9,13 +9,6 @@
 #import "SQ_headNewsView.h"
 #import "NSObject+YYModel.h"
 #import "UIImageView+WebCache.h"
-#define MAS_SHORTHAND_GLOBALS
-#define MAS_SHORTHAND
-
-#define WIDTH [UIScreen mainScreen].bounds.size.width
-#define HEIGHT [UIScreen mainScreen].bounds.size.height
-
-#import "Masonry.h"
 
 @interface SQ_headNewsView ()
 @property (nonatomic, strong) UIImageView *newsImageView;

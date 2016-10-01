@@ -8,13 +8,7 @@
 
 #import "SQ_HalfNewsView.h"
 
-#define MAS_SHORTHAND_GLOBALS
-#define MAS_SHORTHAND
 
-#define WIDTH [UIScreen mainScreen].bounds.size.width
-#define HEIGHT [UIScreen mainScreen].bounds.size.height
-
-#import "Masonry.h"
 #import "SQ_News.h"
 #import "NSObject+YYModel.h"
 #import "UIImageView+WebCache.h"
@@ -34,7 +28,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
         self.newsImageView = [[UIImageView alloc] init];
         [self addSubview:_newsImageView];
         [_newsImageView makeConstraints:^(MASConstraintMaker *make) {

@@ -66,6 +66,7 @@ typedef void (^JsonSuccess)(id json);
         _dataNumber++;
         [self handleData];
         
+        
     }];
     
     _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{

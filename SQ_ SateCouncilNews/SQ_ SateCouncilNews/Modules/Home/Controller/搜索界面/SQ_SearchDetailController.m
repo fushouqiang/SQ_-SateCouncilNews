@@ -13,9 +13,6 @@
 #import "NSObject+YYModel.h"
 #import "MJRefresh.h"
 #import "SQ_DetailViewController.h"
-#define WIDTH [UIScreen mainScreen].bounds.size.width
-#define HEIGHT [UIScreen mainScreen].bounds.size.height
-
 static NSString *const cellIdentifier = @"cell";
 
 

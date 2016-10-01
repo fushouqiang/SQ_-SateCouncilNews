@@ -10,8 +10,7 @@
 #define MAS_SHORTHAND_GLOBALS
 #define MAS_SHORTHAND
 
-#define WIDTH ([UIScreen mainScreen].bounds.size.width )
-#define HEIGHT [UIScreen mainScreen].bounds.size.height - 30
+
 #import "Masonry.h"
 #import "UIViewController+MMDrawerController.h"
 #import "SQ_SearchViewController.h"

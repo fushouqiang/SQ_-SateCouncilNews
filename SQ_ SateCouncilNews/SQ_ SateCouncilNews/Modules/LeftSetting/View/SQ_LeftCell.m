@@ -8,12 +8,6 @@
 
 #import "SQ_LeftCell.h"
 
-#define MAS_SHORTHAND_GLOBALS
-#define MAS_SHORTHAND
-#define WIDTH [UIScreen mainScreen].bounds.size.width
-#define HEIGHT [UIScreen mainScreen].bounds.size.height
-#import "Masonry.h"
-
 @interface SQ_LeftCell ()
 
 @property (nonatomic, strong) UIImageView *settingImageView;

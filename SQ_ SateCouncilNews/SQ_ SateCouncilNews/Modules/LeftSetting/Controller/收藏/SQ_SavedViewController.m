@@ -5,13 +5,6 @@
 //  Created by FuShouqiang on 16/9/29.
 //  Copyright © 2016年 fu. All rights reserved.
 //
-#define MAS_SHORTHAND_GLOBALS
-#define MAS_SHORTHAND
-
-#define WIDTH [UIScreen mainScreen].bounds.size.width
-#define HEIGHT [UIScreen mainScreen].bounds.size.height
-
-#import "Masonry.h"
 #import "SQ_SavedViewController.h"
 #import "SQ_normalCell.h"
 #import "SQ_EasyNewsCell.h"

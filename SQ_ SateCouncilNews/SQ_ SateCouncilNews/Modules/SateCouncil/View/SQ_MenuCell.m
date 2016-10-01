@@ -9,8 +9,7 @@
 #import "SQ_MenuCell.h"
 #import "UIButton+Block.h"
 #import "SQ_MenuButtonView.h"
-#define WIDTH [UIScreen mainScreen].bounds.size.width
-#define HEIGHT [UIScreen mainScreen].bounds.size.height
+
 
 static NSString *const cellIdentifier = @"cell";
 @interface SQ_MenuCell ()

@@ -7,10 +7,6 @@
 //
 
 #import "SQ_MemberCell.h"
-
-#define WIDTH [UIScreen mainScreen].bounds.size.width
-#define HEIGHT [UIScreen mainScreen].bounds.size.height
-
 @interface SQ_MemberCell ()
 
 @property (nonatomic, strong) UILabel *leaderLabel;

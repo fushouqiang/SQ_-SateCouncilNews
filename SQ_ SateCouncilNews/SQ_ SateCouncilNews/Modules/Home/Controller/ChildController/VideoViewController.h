@@ -9,5 +9,4 @@
 #import "SQ_BaseViewController.h"
 
 @interface VideoViewController : SQ_BaseViewController
-
 @end

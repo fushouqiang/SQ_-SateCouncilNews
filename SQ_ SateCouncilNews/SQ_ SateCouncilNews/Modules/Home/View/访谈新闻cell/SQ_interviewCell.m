@@ -7,15 +7,8 @@
 //
 
 #import "SQ_interviewCell.h"
-
 #import "SQ_News.h"
 #import "NSObject+YYModel.h"
-#define MAS_SHORTHAND_GLOBALS
-#define MAS_SHORTHAND
-
-#define WIDTH [UIScreen mainScreen].bounds.size.width
-#define HEIGHT [UIScreen mainScreen].bounds.size.height
-#import "Masonry.h"
 #import "SQ_EasyNewsView.h"
 #import "SQ_NormalNewsView.h"
 @interface SQ_interviewCell ()

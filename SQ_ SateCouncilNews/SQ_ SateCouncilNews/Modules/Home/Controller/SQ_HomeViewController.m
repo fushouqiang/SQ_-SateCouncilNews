@@ -86,9 +86,7 @@ UIScrollViewDelegate
     SQ_SearchViewController *searchVC = [[SQ_SearchViewController alloc] init];
     searchVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:searchVC animated:YES];
-    
-//    [self presentViewController:searchVC animated:YES completion:nil];
-    
+   
 }
 
 //创建title的scrollView
@@ -184,7 +182,6 @@ UIScrollViewDelegate
     
     self.headScrollView.contentSize = CGSizeMake(count * 80, 0);
     self.headScrollView.backgroundColor = [UIColor colorWithRed:0.034 green:0.495 blue:0.703 alpha:1.000];
-//    _headScrollView.backgroundColor = [UIColor colorWithWhite:0.952 alpha:1.000];
     self.contentScrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width * count, 0);
    
 }
@@ -232,7 +229,6 @@ UIScrollViewDelegate
     NSInteger i = scrollView.contentOffset.x / [UIScreen mainScreen].bounds.size.width;
     // 获取标题按钮
     UIButton *titleButton = self.titleButtons[i];
-    
     // 1.选中标题
     [self selectedButton:titleButton];
     

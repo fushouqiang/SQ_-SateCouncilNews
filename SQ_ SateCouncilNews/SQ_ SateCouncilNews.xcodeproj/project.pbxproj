@@ -56,6 +56,14 @@
 		798E74B61D9A23A70050F9B3 /* SQ_Member.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E74B51D9A23A70050F9B3 /* SQ_Member.m */; };
 		798E74B91D9A44F90050F9B3 /* SQ_StructureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E74B81D9A44F90050F9B3 /* SQ_StructureCell.m */; };
 		798E74FD1D9AA1D20050F9B3 /* SQ_Detail.m in Sources */ = {isa = PBXBuildFile; fileRef = 798E74FC1D9AA1D20050F9B3 /* SQ_Detail.m */; };
+		799962471D9F785D00CCEF44 /* SQ_DepHallController.m in Sources */ = {isa = PBXBuildFile; fileRef = 799962461D9F785D00CCEF44 /* SQ_DepHallController.m */; };
+		7999624B1D9F798400CCEF44 /* SQ_EnterDepController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7999624A1D9F798400CCEF44 /* SQ_EnterDepController.m */; };
+		7999624F1D9F79D600CCEF44 /* SQ_AffairsShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7999624E1D9F79D600CCEF44 /* SQ_AffairsShowController.m */; };
+		799962561D9F904A00CCEF44 /* SQ_CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 799962541D9F904A00CCEF44 /* SQ_CollectionViewCell.m */; };
+		799962571D9F904A00CCEF44 /* SQ_CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 799962551D9F904A00CCEF44 /* SQ_CollectionViewCell.xib */; };
+		7999625A1D9F997000CCEF44 /* SQ_icon.m in Sources */ = {isa = PBXBuildFile; fileRef = 799962591D9F997000CCEF44 /* SQ_icon.m */; };
+		7999625D1D9FA50B00CCEF44 /* SQ_departNewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7999625C1D9FA50B00CCEF44 /* SQ_departNewsController.m */; };
+		799962601D9FABC000CCEF44 /* SQ_depaChildController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7999625F1D9FABC000CCEF44 /* SQ_depaChildController.m */; };
 		799EA8901D9DED77003BAFF2 /* SQ_SdetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 799EA88F1D9DED77003BAFF2 /* SQ_SdetailViewController.m */; };
 		799EA8941D9E4ACF003BAFF2 /* SQ_SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 799EA8931D9E4ACF003BAFF2 /* SQ_SearchViewController.m */; };
 		799EA8971D9E5C63003BAFF2 /* SQ_SearchDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 799EA8961D9E5C63003BAFF2 /* SQ_SearchDetailController.m */; };
@@ -221,6 +229,21 @@
 		798E74FB1D9AA1D20050F9B3 /* SQ_Detail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_Detail.h; sourceTree = "<group>"; };
 		798E74FC1D9AA1D20050F9B3 /* SQ_Detail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_Detail.m; sourceTree = "<group>"; };
 		799962431D9F567900CCEF44 /* SQ_ SateCouncilNews.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SQ_ SateCouncilNews.pch"; sourceTree = "<group>"; };
+		799962451D9F785D00CCEF44 /* SQ_DepHallController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_DepHallController.h; sourceTree = "<group>"; };
+		799962461D9F785D00CCEF44 /* SQ_DepHallController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_DepHallController.m; sourceTree = "<group>"; };
+		799962491D9F798400CCEF44 /* SQ_EnterDepController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_EnterDepController.h; sourceTree = "<group>"; };
+		7999624A1D9F798400CCEF44 /* SQ_EnterDepController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_EnterDepController.m; sourceTree = "<group>"; };
+		7999624D1D9F79D600CCEF44 /* SQ_AffairsShowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_AffairsShowController.h; sourceTree = "<group>"; };
+		7999624E1D9F79D600CCEF44 /* SQ_AffairsShowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_AffairsShowController.m; sourceTree = "<group>"; };
+		799962531D9F904A00CCEF44 /* SQ_CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_CollectionViewCell.h; sourceTree = "<group>"; };
+		799962541D9F904A00CCEF44 /* SQ_CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_CollectionViewCell.m; sourceTree = "<group>"; };
+		799962551D9F904A00CCEF44 /* SQ_CollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SQ_CollectionViewCell.xib; sourceTree = "<group>"; };
+		799962581D9F997000CCEF44 /* SQ_icon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_icon.h; sourceTree = "<group>"; };
+		799962591D9F997000CCEF44 /* SQ_icon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_icon.m; sourceTree = "<group>"; };
+		7999625B1D9FA50B00CCEF44 /* SQ_departNewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_departNewsController.h; sourceTree = "<group>"; };
+		7999625C1D9FA50B00CCEF44 /* SQ_departNewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_departNewsController.m; sourceTree = "<group>"; };
+		7999625E1D9FABC000CCEF44 /* SQ_depaChildController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_depaChildController.h; sourceTree = "<group>"; };
+		7999625F1D9FABC000CCEF44 /* SQ_depaChildController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_depaChildController.m; sourceTree = "<group>"; };
 		799EA88E1D9DED77003BAFF2 /* SQ_SdetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_SdetailViewController.h; sourceTree = "<group>"; };
 		799EA88F1D9DED77003BAFF2 /* SQ_SdetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_SdetailViewController.m; sourceTree = "<group>"; };
 		799EA8921D9E4ACF003BAFF2 /* SQ_SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_SearchViewController.h; sourceTree = "<group>"; };
@@ -709,6 +732,7 @@
 		7981420E1D915783005BEA08 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				799962441D9F781100CCEF44 /* 部门大厅 */,
 				79BFE02B1D927B93009F84D0 /* SQ_AffairsHallViewController.h */,
 				79BFE02C1D927B93009F84D0 /* SQ_AffairsHallViewController.m */,
 			);
@@ -758,6 +782,68 @@
 				7986FF6C1D9C00D4007361C6 /* SQ_VideoCell.m */,
 			);
 			path = "视频新闻cell";
+			sourceTree = "<group>";
+		};
+		799962441D9F781100CCEF44 /* 部门大厅 */ = {
+			isa = PBXGroup;
+			children = (
+				7999624C1D9F798C00CCEF44 /* 政务联播 */,
+				799962481D9F786E00CCEF44 /* 入驻部门 */,
+				799962451D9F785D00CCEF44 /* SQ_DepHallController.h */,
+				799962461D9F785D00CCEF44 /* SQ_DepHallController.m */,
+			);
+			name = "部门大厅";
+			sourceTree = "<group>";
+		};
+		799962481D9F786E00CCEF44 /* 入驻部门 */ = {
+			isa = PBXGroup;
+			children = (
+				799962521D9F8FE700CCEF44 /* Model */,
+				799962511D9F8FDE00CCEF44 /* Controller */,
+				799962501D9F8FD200CCEF44 /* View */,
+			);
+			name = "入驻部门";
+			sourceTree = "<group>";
+		};
+		7999624C1D9F798C00CCEF44 /* 政务联播 */ = {
+			isa = PBXGroup;
+			children = (
+				7999624D1D9F79D600CCEF44 /* SQ_AffairsShowController.h */,
+				7999624E1D9F79D600CCEF44 /* SQ_AffairsShowController.m */,
+			);
+			name = "政务联播";
+			sourceTree = "<group>";
+		};
+		799962501D9F8FD200CCEF44 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				799962531D9F904A00CCEF44 /* SQ_CollectionViewCell.h */,
+				799962541D9F904A00CCEF44 /* SQ_CollectionViewCell.m */,
+				799962551D9F904A00CCEF44 /* SQ_CollectionViewCell.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		799962511D9F8FDE00CCEF44 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				799962491D9F798400CCEF44 /* SQ_EnterDepController.h */,
+				7999624A1D9F798400CCEF44 /* SQ_EnterDepController.m */,
+				7999625B1D9FA50B00CCEF44 /* SQ_departNewsController.h */,
+				7999625C1D9FA50B00CCEF44 /* SQ_departNewsController.m */,
+				7999625E1D9FABC000CCEF44 /* SQ_depaChildController.h */,
+				7999625F1D9FABC000CCEF44 /* SQ_depaChildController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		799962521D9F8FE700CCEF44 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				799962581D9F997000CCEF44 /* SQ_icon.h */,
+				799962591D9F997000CCEF44 /* SQ_icon.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		799EA8911D9E4AAB003BAFF2 /* 搜索界面 */ = {
@@ -1194,6 +1280,7 @@
 				798141971D915012005BEA08 /* LaunchScreen.storyboard in Resources */,
 				798141941D915012005BEA08 /* Assets.xcassets in Resources */,
 				79A83EBE1D94DB3900D226B7 /* SQ_DetailViewController.xib in Resources */,
+				799962571D9F904A00CCEF44 /* SQ_CollectionViewCell.xib in Resources */,
 				798141921D915012005BEA08 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1344,6 +1431,7 @@
 			files = (
 				79A83EB91D94C4E800D226B7 /* SQ_headCell.m in Sources */,
 				7974055B1D93FAF500B8B376 /* SQ_normalCell.m in Sources */,
+				7999624F1D9F79D600CCEF44 /* SQ_AffairsShowController.m in Sources */,
 				79AF83B41D9B51E10073C17A /* SQ_PictureDetailController.m in Sources */,
 				79790DB11D9AA40C005F0128 /* SQ_Picture.m in Sources */,
 				79C538A91D97C22800A10164 /* SQ_LocalityCell.m in Sources */,
@@ -1354,6 +1442,7 @@
 				798141F71D9154A4005BEA08 /* NSDate+EasyExtend.m in Sources */,
 				799EA8971D9E5C63003BAFF2 /* SQ_SearchDetailController.m in Sources */,
 				79AF83BC1D9B52520073C17A /* SQ_pictureScrollView.m in Sources */,
+				7999624B1D9F798400CCEF44 /* SQ_EnterDepController.m in Sources */,
 				798E74B91D9A44F90050F9B3 /* SQ_StructureCell.m in Sources */,
 				798141F51D9154A4005BEA08 /* NSArray+Categories.m in Sources */,
 				7974055E1D9424B700B8B376 /* SQ_TopView.m in Sources */,
@@ -1384,6 +1473,8 @@
 				79A360B81D98D2310090F80F /* SQ_SignNormalCell.m in Sources */,
 				79C538B51D97CE9A00A10164 /* SQ_DataCell.m in Sources */,
 				79AF83AA1D9B4B840073C17A /* PictureViewController.m in Sources */,
+				7999625D1D9FA50B00CCEF44 /* SQ_departNewsController.m in Sources */,
+				799962561D9F904A00CCEF44 /* SQ_CollectionViewCell.m in Sources */,
 				798141C31D91520B005BEA08 /* SQ_BaseView.m in Sources */,
 				798142251D915990005BEA08 /* SQ_GovAffHallModel.m in Sources */,
 				79C5387E1D978C8800A10164 /* SQ_AvdioCell.m in Sources */,
@@ -1405,7 +1496,9 @@
 				7923F7B41D995F82008F45B9 /* SQ_MemberCell.m in Sources */,
 				79A83EB61D94BDFB00D226B7 /* SQ_News.m in Sources */,
 				79C538C01D97D6AE00A10164 /* SQ_Special.m in Sources */,
+				799962601D9FABC000CCEF44 /* SQ_depaChildController.m in Sources */,
 				79C538A51D97B91F00A10164 /* SQ_PolicyCell.m in Sources */,
+				7999625A1D9F997000CCEF44 /* SQ_icon.m in Sources */,
 				798141F81D9154A4005BEA08 /* NSDictionary+Categories.m in Sources */,
 				796462DF1D9615420045B35F /* SQ_LeftCell.m in Sources */,
 				79C538911D97A46E00A10164 /* SQ_AudioView.m in Sources */,
@@ -1423,6 +1516,7 @@
 				798141FF1D9154A4005BEA08 /* UIImage+Categories.m in Sources */,
 				798141C61D915230005BEA08 /* SQ_BaseViewController.m in Sources */,
 				7969DB881D9D536D00F2A477 /* SQ_SavedViewController.m in Sources */,
+				799962471D9F785D00CCEF44 /* SQ_DepHallController.m in Sources */,
 				798141FE1D9154A4005BEA08 /* UIColor+Categories.m in Sources */,
 				79C538B01D97CBAB00A10164 /* SQ_ServiceCell.m in Sources */,
 				7986FF6D1D9C00D4007361C6 /* SQ_VideoCell.m in Sources */,

@@ -133,10 +133,7 @@ typedef void (^JsonSuccess)(id json);
 
             
         }
-        else {
-          
-            
-        }
+ 
         
     }];
     

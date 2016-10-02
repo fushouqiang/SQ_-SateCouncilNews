@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SQ_Column.h"
 
 @interface PremierViewController : UIViewController
+
+@property (nonatomic, strong) SQ_Column *column;
 
 @end

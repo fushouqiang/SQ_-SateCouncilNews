@@ -15,7 +15,7 @@
 @implementation HttpClient
 
 
-+(void)getWithUrlString:(NSString *)urlString success:(HttpSuccess)success failure:(HttpFailure)failure{
++(void)getWithUrlString:(NSString *)urlString  success:(HttpSuccess)success failure:(HttpFailure)failure{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];

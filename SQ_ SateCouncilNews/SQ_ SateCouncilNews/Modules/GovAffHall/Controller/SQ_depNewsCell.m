@@ -63,13 +63,19 @@
         _article = article;
         self.contentLabel.text = article.title;
         
+        
+        //时间的字符串的相关操作
+        
         //找出字符串中时间标志的range
         NSRange range = [article.path rangeOfString:@"201"];
-        
+        //截取
         NSString *str = [article.path substringWithRange:NSMakeRange(range.location, 9)];
+        //插入
+        NSMutableString *str2 = [[NSMutableString alloc] initWithString:str];
+        [str2 insertString:@"/" atIndex:4];
 
 //        NSString *str = [article.path substringToIndex:9];
-        self.timeLabel.text = str;
+        self.timeLabel.text = str2;
     }
     
 }

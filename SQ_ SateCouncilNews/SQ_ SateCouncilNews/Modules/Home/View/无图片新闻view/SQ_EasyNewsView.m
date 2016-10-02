@@ -80,7 +80,9 @@
         _article = article;
         self.contentLabel.text = article.title;
         NSString *str = [article.path substringToIndex:9];
-        self.timeLabel.text = str;
+        NSMutableString *trueTime = [[NSMutableString alloc] initWithString:str];
+        [trueTime insertString:@"/" atIndex:4];
+        self.timeLabel.text = trueTime;
         self.signLabel.text = article.feature;
     }
     

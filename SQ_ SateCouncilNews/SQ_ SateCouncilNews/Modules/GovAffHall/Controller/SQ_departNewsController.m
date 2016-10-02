@@ -14,11 +14,17 @@
 <
 UIScrollViewDelegate
 >
+//标题ScrollView
 @property (nonatomic, retain)UIScrollView *headScrollView;
+//内容ScrollView
 @property (nonatomic, retain)UIScrollView *contentScrollView;
+//标记上一个选中的button
 @property (nonatomic, retain)UIButton *lastSelectButton;
 @property (nonatomic, strong) NSMutableArray *columsArray;
+//headScrollView的button数组
 @property (nonatomic, strong) NSMutableArray *titleButtons;
+//因为每个titlebutton的frame是根据字符长度计算的,所以定义数组存放每个titleButton的位置
+@property (nonatomic, strong) NSMutableArray *lengthArray;
 @end
 
 @implementation SQ_departNewsController
@@ -81,7 +87,8 @@ UIScrollViewDelegate
 - (void)setupHeadScrollViewTitle {
     
     NSInteger count = self.columsArray.count;
-    
+    self.lengthArray = [NSMutableArray array];
+//   [_lengthArray add]
     CGFloat  allLength = 0;
     for (int i = 0; i < count; i++) {
         UIButton *titleButton = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -96,12 +103,15 @@ UIScrollViewDelegate
         CGFloat length = [vc.title boundingRectWithSize:CGSizeMake(320, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size.width;
                 NSLog(@"%f",allLength);
          titleButton.frame = CGRectMake(allLength + 10, 0, length + 15, 40);
+        [_lengthArray addObject:[NSValue valueWithCGPoint:titleButton.frame.origin]];
         allLength = titleButton.frame.size.width + titleButton.frame.origin.x;
-
+        
         [titleButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.headScrollView addSubview:titleButton];
         [self.titleButtons addObject:titleButton];
     }
+    
+    
     self.headScrollView.backgroundColor = [UIColor colorWithRed:0.034 green:0.495 blue:0.703 alpha:1.000];
     self.headScrollView.contentSize = CGSizeMake(allLength, 0);
     
@@ -131,6 +141,7 @@ UIScrollViewDelegate
     CGFloat y = CGRectGetMaxY(self.headScrollView.frame);
     NSLog(@"%f",y);
     UIScrollView *contentScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, y, self.view.frame.size.width, self.view.bounds.size.height - y)];
+    
     [self.view addSubview:contentScrollView];
     self.contentScrollView = contentScrollView;
     _contentScrollView.pagingEnabled = YES;
@@ -184,9 +195,10 @@ UIScrollViewDelegate
     
     // 2.把对应子控制器的view添加上去
     [self setupOneViewController:i];
-//    long index = titleButton.tag - 1000;
-
-//    [self.headScrollView setContentOffset:CGPointMake(80 * index, 0) animated:YES];
+    long index = titleButton.tag - 1000;
+    
+    NSValue *value = [_lengthArray objectAtIndex:index];
+    [self.headScrollView setContentOffset:[value CGPointValue] animated:YES];
 
     
     

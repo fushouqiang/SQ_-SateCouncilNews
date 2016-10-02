@@ -11,17 +11,8 @@
 #import "SQ_LeftViewController.h"
 #import "MMDrawerController.h"
 
-#define MAS_SHORTHAND_GLOBALS
-#define MAS_SHORTHAND
-
-
-
-#import "Masonry.h"
-#import "DataBaseManager.h"
-
 @interface AppDelegate ()
 @property (nonatomic, retain)MMDrawerController *drawerController;
-@property (nonatomic, strong)DataBaseManager *manager;
 
 @end
 
@@ -29,7 +20,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     SQ_MainTabBarController *mainTabBarController = [[SQ_MainTabBarController alloc] init];
-    mainTabBarController.tabBar.translucent = NO;
+    
     
     SQ_LeftViewController *leftViewController = [[SQ_LeftViewController alloc] init];
     UINavigationController *leftNavigationController = [[UINavigationController alloc] initWithRootViewController:leftViewController];
@@ -39,15 +30,12 @@
     self.drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeAll;
     self.drawerController.closeDrawerGestureModeMask =MMCloseDrawerGestureModeAll;
     //5、设置左右两边抽屉显示的多少
-    self.drawerController.maximumLeftDrawerWidth = WIDTH * 0.6;
+    self.drawerController.maximumLeftDrawerWidth = 300.0;
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [_window makeKeyAndVisible];
     self.window.rootViewController = self.drawerController;
-    self.manager = [DataBaseManager shareManager];
-    [_manager openSQLite];
-    [_manager createSQLite];
-    [_manager closeSQLite];
+    
     
     
     // Override point for customization after application launch.

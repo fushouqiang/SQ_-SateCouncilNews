@@ -14,7 +14,6 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - JT3DScrollView (1.0.4)
   - Masonry (1.0.2)
   - MJRefresh (3.1.12)
   - MMDrawerController (0.6.0):
@@ -36,7 +35,6 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
-  - JT3DScrollView (~> 1.0.4)
   - Masonry (~> 1.0.2)
   - MJRefresh (~> 3.1.12)
   - MMDrawerController (~> 0.6.0)
@@ -45,13 +43,12 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  JT3DScrollView: 04ef1441d79451596af27d07cdbc2e706029cabd
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   MMDrawerController: e3a54a5570388463ad3b36975251575b50c4e1a0
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: aefaf6c91f0469020eb46cd494c8e73b8d0a0f21
+PODFILE CHECKSUM: daabf7308a0c209ce15f2dd9e13fcb2e43ce07a7
 
 COCOAPODS: 1.0.1

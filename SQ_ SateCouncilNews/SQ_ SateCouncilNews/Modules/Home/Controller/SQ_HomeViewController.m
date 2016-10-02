@@ -17,8 +17,9 @@
 #import "MMDrawerBarButtonItem.h"
 #import "UIViewController+MMDrawerController.h"
 #import "PictureViewController.h"
+#import "AudioViewController.h"
 #import "VideoViewController.h"
-#import "SQ_SearchViewController.h"
+#import "SpecialViewController.h"
 
 
 @interface SQ_HomeViewController ()
@@ -29,7 +30,6 @@ UIScrollViewDelegate
 @property (nonatomic, retain)UIScrollView *headScrollView;
 @property (nonatomic, retain)UIScrollView *contentScrollView;
 @property (nonatomic, retain)UIButton *lastSelectButton;
-@property (nonatomic, strong) NSMutableArray *titleButtons;
 
 
 
@@ -40,33 +40,18 @@ UIScrollViewDelegate
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     //设置打开抽屉模式
- 
-        [self.mm_drawerController closeDrawerAnimated:YES completion:^(BOOL finished) {
-            [self.mm_drawerController setRightDrawerViewController:nil];
-        }];
-        self.mm_drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeAll;
-        self.mm_drawerController.closeDrawerGestureModeMask = MMCloseDrawerGestureModeAll;
-        
-    
+    [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.lastSelectButton = [[UIButton alloc] init];
-    self.titleButtons = [NSMutableArray array];
+    self.navigationItem.title = @"国务院";
     [self setupHeadScrollView];
     [self setupContentScrollView];
     [self setupAllChildViewController];
     [self setupHeadScrollViewTitle];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"navigationSettingButton"] style:UIBarButtonItemStylePlain target:self action:@selector(settingAction)];
-    self.navigationItem.leftBarButtonItem.tintColor = [UIColor colorWithWhite:0.534 alpha:1.000];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"menu"] style:UIBarButtonItemStylePlain target:self action:@selector(leftBtn)];
     
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 25)];
-    imageView.image = [UIImage imageNamed:@"navigationLogo"];
-    self.navigationItem.titleView = imageView;
-  
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationSearchButton"] style:UIBarButtonItemStylePlain target:self action:@selector(searchAction)];
-    self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithWhite:0.534 alpha:1.000];
     self.view.backgroundColor = [UIColor whiteColor];
     //默认点击的title
     UIButton *button = [self.view viewWithTag:1000];
@@ -75,25 +60,16 @@ UIScrollViewDelegate
     // Do any additional setup after loading the view from its nib.
 }
 
--(void)settingAction {
+-(void)leftBtn{
     //这里的话是通过遍历循环拿到之前在AppDelegate中声明的那个MMDrawerController属性，然后判断是否为打开状态，如果是就关闭，否就是打开(初略解释，里面还有一些条件)
     [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
-}
-
-
-- (void)searchAction {
-    
-    SQ_SearchViewController *searchVC = [[SQ_SearchViewController alloc] init];
-    searchVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:searchVC animated:YES];
-   
 }
 
 //创建title的scrollView
 - (void)setupHeadScrollView {
     
     CGFloat y = self.navigationController ? 64 : 0;
-    CGRect rect = CGRectMake(0, y, [UIScreen mainScreen].bounds.size.width, 40);
+    CGRect rect = CGRectMake(0, y, [UIScreen mainScreen].bounds.size.width, 60);
     
     UIScrollView *titleScrollView = [[UIScrollView alloc] initWithFrame:rect];
     titleScrollView.backgroundColor = [UIColor whiteColor];
@@ -109,6 +85,7 @@ UIScrollViewDelegate
     
     CGFloat y = CGRectGetMaxY(self.headScrollView.frame);
     UIScrollView *contentScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, y, self.view.bounds.size.width, self.view.bounds.size.height - y)];
+//    contentScrollView.backgroundColor = [UIColor colorWithRed:0.702 green:1.000 blue:0.545 alpha:1.000];
     [self.view addSubview:contentScrollView];
     self.contentScrollView = contentScrollView;
     self.contentScrollView.pagingEnabled = YES;
@@ -124,15 +101,14 @@ UIScrollViewDelegate
     
     NewsViewController *newsVC = [[NewsViewController alloc] init];
     newsVC.title = @"要闻";
-   
+    newsVC.view.backgroundColor = [UIColor redColor];
     [self addChildViewController:newsVC];
     PremierViewController *premierVC = [[PremierViewController alloc] init];
     premierVC.title = @"总理";
-
+    premierVC.view.backgroundColor = [UIColor blueColor];
     [self addChildViewController:premierVC];
     PolicyViewController *policyVC = [[PolicyViewController alloc] init];
     policyVC.title = @"政策";
-   
     [self addChildViewController:policyVC];
     DepartmentViewController *departmentVC = [[DepartmentViewController alloc] init];
     departmentVC.title = @"部门";
@@ -146,16 +122,19 @@ UIScrollViewDelegate
     DataViewController *dataVC = [[DataViewController alloc] init];
     dataVC.title = @"数据";
     [self addChildViewController:dataVC];
-    
-    PictureViewController *picVC = [[PictureViewController alloc] init];
-    picVC.title = @"图片";
-    [self addChildViewController:picVC];
-    
+    SpecialViewController *specialVC = [[SpecialViewController alloc] init];
+    specialVC.title = @"专题";
+    [self addChildViewController:specialVC];
+    PictureViewController *pictureVC = [[PictureViewController alloc] init];
+    pictureVC.title = @"图片";
+    [self addChildViewController:pictureVC];
+    AudioViewController *audioVC = [[AudioViewController alloc] init];
+    audioVC.title = @"音频";
+    [self addChildViewController:audioVC];
     VideoViewController *videoVC = [[VideoViewController alloc] init];
-    videoVC.view.backgroundColor = [UIColor whiteColor];
     videoVC.title = @"视频";
     [self addChildViewController:videoVC];
- 
+    
     
     
     
@@ -165,25 +144,23 @@ UIScrollViewDelegate
 //给 标题视图添加按钮
 - (void)setupHeadScrollViewTitle {
     
-    NSInteger count = self.childViewControllers.count;
+    NSInteger count = 11;
     
     for (int i = 0; i < count; i++) {
         UIButton *titleButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        titleButton.frame = CGRectMake(i * 80, 0, 80, 40);
+        titleButton.frame = CGRectMake(i * 80, 0, 80, 60);
         titleButton.tag = 1000 + i;
-        [titleButton setTitleColor:[UIColor colorWithWhite:0.705 alpha:1.000] forState:UIControlStateNormal];
+        [titleButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         UIViewController *vc = self.childViewControllers[i];
         [titleButton setTitle:vc.title forState:UIControlStateNormal];
-        titleButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
         [titleButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.headScrollView addSubview:titleButton];
-        [self.titleButtons addObject:titleButton];
+        
     }
     
     self.headScrollView.contentSize = CGSizeMake(count * 80, 0);
-    self.headScrollView.backgroundColor = [UIColor colorWithRed:0.034 green:0.495 blue:0.703 alpha:1.000];
     self.contentScrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width * count, 0);
-   
+    
 }
 
 //标题按钮的点击事件
@@ -193,19 +170,17 @@ UIScrollViewDelegate
     [self selectedButton:button];
     [self setupOneViewController:i];
     CGFloat x = i * [UIScreen mainScreen].bounds.size.width;
+//    self.contentScrollView.contentOffset = CGPointMake(x, 0);
     [self.contentScrollView setContentOffset:CGPointMake(x, 0) animated:YES];
     
 }
 
-
 - (void)selectedButton:(UIButton *)button {
     
-    [self.lastSelectButton setTitleColor:[UIColor colorWithWhite:0.705 alpha:1.000] forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.lastSelectButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    
     self.lastSelectButton = button;
-    
-    
-    
 }
 
 
@@ -216,6 +191,7 @@ UIScrollViewDelegate
     if (VC.view.superview) {
         return;
     }
+    
     CGFloat x = [UIScreen mainScreen].bounds.size.width * i;
     VC.view.frame = CGRectMake(x, 0, [UIScreen mainScreen].bounds.size.width, self.contentScrollView.superview.frame.size.height);
     [self.contentScrollView addSubview:VC.view];
@@ -223,25 +199,18 @@ UIScrollViewDelegate
 }
 
 
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
-    NSInteger i = scrollView.contentOffset.x / [UIScreen mainScreen].bounds.size.width;
-    // 获取标题按钮
-    UIButton *titleButton = self.titleButtons[i];
-    // 1.选中标题
-    [self selectedButton:titleButton];
-    
-    // 2.把对应子控制器的view添加上去
-    [self setupOneViewController:i];
-    long index = titleButton.tag - 1000;
-    
-    [self.headScrollView setContentOffset:CGPointMake(80 * index, 0) animated:YES];
-
-    
-
-    
-    
+    if ([scrollView isEqual:self.contentScrollView]) {
+   
+//        NSLog(@"%f",scrollView.contentOffset.x);
+        
+//        if (scrollView.contentOffset.x < 0) {
+//             [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+//        }
+        
+        
+    }
     
 }
 

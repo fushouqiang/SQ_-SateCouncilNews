@@ -84,18 +84,7 @@ typedef void (^JsonSuccess)(id json);
     
 }
 
-//- (void)loadData {
-//    if (_dataNumber == 3) {
-//        [self footEndRefresh];
-//        return;
-//    }
-//    _dataNumber ++;
-//    [self handleData];
-//    [self.tableView.mj_footer endRefreshing];
-//    
-//    
-//    
-//}
+
 
 
 

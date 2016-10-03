@@ -22,12 +22,17 @@
 #import "AppDelegate.h"
 #import "MMDrawerController.h"
 #import "UIViewController+MMDrawerController.h"
-
-
+#import "UIImageView+WebCache.h"
+#import "SQ_DetailArticle.h"
+#import "SQ_normalCell.h"
+static NSString *const cellIdentifier = @"cell";
 
 @interface SQ_DetailViewController ()
 <
-UIWebViewDelegate
+UIWebViewDelegate,
+UIGestureRecognizerDelegate,
+UITableViewDelegate,
+UITableViewDataSource
 >
 typedef void (^JsonSuccess)(id json);
 @property (nonatomic, retain) UIWebView *webView;
@@ -36,7 +41,9 @@ typedef void (^JsonSuccess)(id json);
 @property (nonatomic, strong) DataBaseManager *manager;
 @property (nonatomic, assign) BOOL isSaved;
 @property (nonatomic, strong) id result;
-
+@property (nonatomic, strong) NSMutableArray *articleArray;
+@property (nonatomic, strong) UITableView *footerView;
+@property (nonatomic, strong) UIView *headerView;
 
 @end
 
@@ -52,7 +59,7 @@ typedef void (^JsonSuccess)(id json);
     //禁止侧滑
     self.mm_drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeNone;
     self.mm_drawerController.closeDrawerGestureModeMask = MMCloseDrawerGestureModeNone;
-
+    [_manager openSQLite];
 
     
 }
@@ -77,13 +84,48 @@ typedef void (^JsonSuccess)(id json);
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
-
-    
     self.webView.delegate = self;
     _webView.scrollView.bounces = NO;
-   
+    
+    //防止因为设置webView尾视图后每次跳转都会出现的黑条
+    _webView.backgroundColor = [UIColor clearColor];
+    _webView.opaque = NO;
+    self.webView.scrollView.contentInset = UIEdgeInsetsMake(0,0.0,240,0.0);
+    self.footerView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 240) style:UITableViewStylePlain];
+    [_footerView registerClass:[SQ_normalCell class] forCellReuseIdentifier:cellIdentifier];
+    _footerView.delegate = self;
+    _footerView.dataSource = self;
+    _footerView.rowHeight = 100;
     
 }
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 2;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    SQ_normalCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if (_articleArray.count > 0) {
+        cell.article = _articleArray[indexPath.row];
+    }
+    return cell;
+    
+    
+    
+}
+
+
+
+
+
+
+
+
+
 
 - (void)backButtonClick:(UIButton *)button {
     
@@ -190,6 +232,16 @@ typedef void (^JsonSuccess)(id json);
     
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    SQ_DetailViewController *detailVC = [[SQ_DetailViewController alloc] init];
+    detailVC.article = _articleArray[indexPath.row];
+    detailVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:detailVC animated:YES];
+
+    
+    
+}
+
 - (void)handleData {
     
     
@@ -198,13 +250,26 @@ typedef void (^JsonSuccess)(id json);
        
         if(json) {
         self.result = json;
-            NSString *stri = [json valueForKey:@"content"];
-            NSLog(@"%@",stri);
-            NSString *str = [stri stringByReplacingOccurrencesOfString:@"'\'" withString:@""];
-
+           
+            SQ_DetailArticle *detailArticle = [SQ_DetailArticle yy_modelWithJSON:json];
+           NSString *str = [detailArticle.content stringByReplacingOccurrencesOfString:@"'\'" withString:@""];
+            NSString *str1 = [NSString stringWithFormat: @"<head><style>img{width:%fpx !important;height:%fpx !important;}</style></head>",WIDTH - 40,HEIGHT - 80];
+            NSString *htmlString = [str1 stringByAppendingString:str];
+            //加载剪辑后的html字符串
+            [self.webView loadHTMLString:htmlString baseURL:nil];
             
-       [self.webView loadHTMLString:str baseURL:nil];
-        
+            self.articleArray = [NSMutableArray array];
+            NSArray *keyArray = [detailArticle.relatedArticles allKeys];
+            for (int i = 0; i < keyArray.count; i++) {
+                
+                NSDictionary *articleDic = [detailArticle.relatedArticles valueForKey:keyArray[i]];
+                SQ_Article *article = [SQ_Article yy_modelWithDictionary:articleDic];
+                [self.articleArray addObject:article];
+                
+            }
+            
+            
+            
         }
     }];
     
@@ -233,23 +298,32 @@ typedef void (^JsonSuccess)(id json);
 //屏蔽JS广告
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByClassName('bottomicon')[0].style.display = 'NONE'"];
-    [webView stringByEvaluatingJavaScriptFromString:
-     @"var script = document.createElement('script');"
-     "script.type = 'text/javascript';"
-     "script.text = \"function ResizeImages() { "
-     "var myimg,oldwidth,oldheight;"
-     "var maxwidth=320;"// 图片宽度
-     "for(i=0;i  maxwidth){"
-     "myimg.width = maxwidth;"
-     "}"
-     "}"
-     "}\";"
-     "document.getElementsByTagName('head')[0].appendChild(script);"];
-    [webView stringByEvaluatingJavaScriptFromString:@"ResizeImages();"];
-   
+
+    //设置尾视图的relateNews的相关曹操作
+    
+    NSString *result = [webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight;"];
+    
+    NSInteger height = [result integerValue] ;
+    
+    UILabel *lineLabel = [[UILabel alloc] initWithFrame:CGRectMake(3, height + 20, WIDTH - 6, 2)];
+    lineLabel.backgroundColor = [UIColor colorWithRed:0.034 green:0.495 blue:0.703 alpha:1.000];
+    
+    UILabel *relatedLabel = [[UILabel alloc] initWithFrame:CGRectMake(3, height + 20 + 15, 100, 13)];
+    relatedLabel.text = @"相关新闻";
+    relatedLabel.textColor = [UIColor colorWithRed:0.034 green:0.495 blue:0.703 alpha:1.000];
 
     
+    self.footerView.frame = CGRectMake(0, height + 20 + 40, WIDTH, 200);
+    
+    [webView.scrollView addSubview:lineLabel];
+    [webView.scrollView addSubview:relatedLabel];
+    [webView.scrollView addSubview:self.footerView];
+    
+    
+
 }
+
+
 
 
 

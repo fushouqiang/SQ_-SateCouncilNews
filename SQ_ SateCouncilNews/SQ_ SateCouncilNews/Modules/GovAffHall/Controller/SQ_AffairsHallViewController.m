@@ -11,6 +11,7 @@
 #import "UIViewController+MMDrawerController.h"
 #import "SQ_SearchViewController.h"
 #import "SQ_DepHallController.h"
+#import "SQ_ServiceHallViewController.h"
 
 @interface SQ_AffairsHallViewController ()
 
@@ -312,7 +313,9 @@
             break;
         case 2:
         {
-            
+            SQ_ServiceHallViewController *dhVC = [[SQ_ServiceHallViewController alloc] init];
+            dhVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:dhVC animated:YES];
         }
             break;
         case 3:

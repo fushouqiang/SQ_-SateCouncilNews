@@ -90,7 +90,10 @@ typedef void (^JsonSuccess)(id json);
     //防止因为设置webView尾视图后每次跳转都会出现的黑条
     _webView.backgroundColor = [UIColor clearColor];
     _webView.opaque = NO;
-    self.webView.scrollView.contentInset = UIEdgeInsetsMake(0,0.0,240,0.0);
+    
+    
+    
+//    self.webView.scrollView.contentInset = UIEdgeInsetsMake(0,0.0,240,0.0);
     self.footerView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 240) style:UITableViewStylePlain];
     [_footerView registerClass:[SQ_normalCell class] forCellReuseIdentifier:cellIdentifier];
     _footerView.delegate = self;
@@ -260,13 +263,18 @@ typedef void (^JsonSuccess)(id json);
             
             self.articleArray = [NSMutableArray array];
             NSArray *keyArray = [detailArticle.relatedArticles allKeys];
-            for (int i = 0; i < keyArray.count; i++) {
-                
-                NSDictionary *articleDic = [detailArticle.relatedArticles valueForKey:keyArray[i]];
-                SQ_Article *article = [SQ_Article yy_modelWithDictionary:articleDic];
-                [self.articleArray addObject:article];
-                
+            if (keyArray > 0) {
+                for (int i = 0; i < keyArray.count; i++) {
+                    
+                    NSDictionary *articleDic = [detailArticle.relatedArticles valueForKey:keyArray[i]];
+                    SQ_Article *article = [SQ_Article yy_modelWithDictionary:articleDic];
+                    [self.articleArray addObject:article];
+                    self.webView.scrollView.contentInset = UIEdgeInsetsMake(0,0.0,240,0.0);
+                    
+                }
+
             }
+            
             
             
             
@@ -301,23 +309,28 @@ typedef void (^JsonSuccess)(id json);
 
     //设置尾视图的relateNews的相关曹操作
     
-    NSString *result = [webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight;"];
     
-    NSInteger height = [result integerValue] ;
-    
-    UILabel *lineLabel = [[UILabel alloc] initWithFrame:CGRectMake(3, height + 20, WIDTH - 6, 2)];
-    lineLabel.backgroundColor = [UIColor colorWithRed:0.034 green:0.495 blue:0.703 alpha:1.000];
-    
-    UILabel *relatedLabel = [[UILabel alloc] initWithFrame:CGRectMake(3, height + 20 + 15, 100, 13)];
-    relatedLabel.text = @"相关新闻";
-    relatedLabel.textColor = [UIColor colorWithRed:0.034 green:0.495 blue:0.703 alpha:1.000];
+    if (_articleArray.count > 0) {
+        NSString *result = [webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight;"];
+        
+        NSInteger height = [result integerValue] ;
+        
+        UILabel *lineLabel = [[UILabel alloc] initWithFrame:CGRectMake(3, height + 20, WIDTH - 6, 2)];
+        lineLabel.backgroundColor = [UIColor colorWithRed:0.034 green:0.495 blue:0.703 alpha:1.000];
+        
+        UILabel *relatedLabel = [[UILabel alloc] initWithFrame:CGRectMake(3, height + 20 + 15, 100, 13)];
+        relatedLabel.text = @"相关新闻";
+        relatedLabel.textColor = [UIColor colorWithRed:0.034 green:0.495 blue:0.703 alpha:1.000];
+        
+        
+        self.footerView.frame = CGRectMake(0, height + 20 + 40, WIDTH, 200);
+        
+        [webView.scrollView addSubview:lineLabel];
+        [webView.scrollView addSubview:relatedLabel];
+        [webView.scrollView addSubview:self.footerView];
 
+    }
     
-    self.footerView.frame = CGRectMake(0, height + 20 + 40, WIDTH, 200);
-    
-    [webView.scrollView addSubview:lineLabel];
-    [webView.scrollView addSubview:relatedLabel];
-    [webView.scrollView addSubview:self.footerView];
     
     
 

@@ -68,6 +68,14 @@
 		799EA8941D9E4ACF003BAFF2 /* SQ_SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 799EA8931D9E4ACF003BAFF2 /* SQ_SearchViewController.m */; };
 		799EA8971D9E5C63003BAFF2 /* SQ_SearchDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 799EA8961D9E5C63003BAFF2 /* SQ_SearchDetailController.m */; };
 		799EE65F1DA21B7D00063852 /* SQ_DetailArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 799EE65E1DA21B7D00063852 /* SQ_DetailArticle.m */; };
+		799EE6661DA2359300063852 /* SQ_ServiceHallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 799EE6651DA2359300063852 /* SQ_ServiceHallViewController.m */; };
+		799EE67D1DA251DB00063852 /* SQ_CollectionServiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 799EE67B1DA251DB00063852 /* SQ_CollectionServiceCell.m */; };
+		799EE67E1DA251DB00063852 /* SQ_CollectionServiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 799EE67C1DA251DB00063852 /* SQ_CollectionServiceCell.xib */; };
+		799EE68F1DA2580100063852 /* SQ_ServiceChildController.m in Sources */ = {isa = PBXBuildFile; fileRef = 799EE68E1DA2580100063852 /* SQ_ServiceChildController.m */; };
+		799EE6931DA25A1D00063852 /* SQ_Classify.m in Sources */ = {isa = PBXBuildFile; fileRef = 799EE6921DA25A1D00063852 /* SQ_Classify.m */; };
+		799EE69D1DA25F2500063852 /* SQ_categoriesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 799EE69B1DA25F2500063852 /* SQ_categoriesCell.m */; };
+		799EE69E1DA25F2500063852 /* SQ_categoriesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 799EE69C1DA25F2500063852 /* SQ_categoriesCell.xib */; };
+		799EE6A11DA2619800063852 /* SQ_ChildClassify.m in Sources */ = {isa = PBXBuildFile; fileRef = 799EE6A01DA2619800063852 /* SQ_ChildClassify.m */; };
 		79A360B81D98D2310090F80F /* SQ_SignNormalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A360B71D98D2310090F80F /* SQ_SignNormalCell.m */; };
 		79A360BC1D98D4E90090F80F /* SQ_EasyNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A360BB1D98D4E90090F80F /* SQ_EasyNewsCell.m */; };
 		79A83EB31D94BDDB00D226B7 /* SQ_Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A83EB21D94BDDB00D226B7 /* SQ_Article.m */; };
@@ -250,6 +258,20 @@
 		799EA8961D9E5C63003BAFF2 /* SQ_SearchDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_SearchDetailController.m; sourceTree = "<group>"; };
 		799EE65D1DA21B7D00063852 /* SQ_DetailArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_DetailArticle.h; sourceTree = "<group>"; };
 		799EE65E1DA21B7D00063852 /* SQ_DetailArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_DetailArticle.m; sourceTree = "<group>"; };
+		799EE6641DA2359300063852 /* SQ_ServiceHallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_ServiceHallViewController.h; sourceTree = "<group>"; };
+		799EE6651DA2359300063852 /* SQ_ServiceHallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_ServiceHallViewController.m; sourceTree = "<group>"; };
+		799EE67A1DA251DB00063852 /* SQ_CollectionServiceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_CollectionServiceCell.h; sourceTree = "<group>"; };
+		799EE67B1DA251DB00063852 /* SQ_CollectionServiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_CollectionServiceCell.m; sourceTree = "<group>"; };
+		799EE67C1DA251DB00063852 /* SQ_CollectionServiceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SQ_CollectionServiceCell.xib; sourceTree = "<group>"; };
+		799EE68D1DA2580100063852 /* SQ_ServiceChildController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_ServiceChildController.h; sourceTree = "<group>"; };
+		799EE68E1DA2580100063852 /* SQ_ServiceChildController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_ServiceChildController.m; sourceTree = "<group>"; };
+		799EE6911DA25A1D00063852 /* SQ_Classify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_Classify.h; sourceTree = "<group>"; };
+		799EE6921DA25A1D00063852 /* SQ_Classify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_Classify.m; sourceTree = "<group>"; };
+		799EE69A1DA25F2500063852 /* SQ_categoriesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_categoriesCell.h; sourceTree = "<group>"; };
+		799EE69B1DA25F2500063852 /* SQ_categoriesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_categoriesCell.m; sourceTree = "<group>"; };
+		799EE69C1DA25F2500063852 /* SQ_categoriesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SQ_categoriesCell.xib; sourceTree = "<group>"; };
+		799EE69F1DA2619800063852 /* SQ_ChildClassify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_ChildClassify.h; sourceTree = "<group>"; };
+		799EE6A01DA2619800063852 /* SQ_ChildClassify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_ChildClassify.m; sourceTree = "<group>"; };
 		79A360B61D98D2310090F80F /* SQ_SignNormalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_SignNormalCell.h; sourceTree = "<group>"; };
 		79A360B71D98D2310090F80F /* SQ_SignNormalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_SignNormalCell.m; sourceTree = "<group>"; };
 		79A360BA1D98D4E90090F80F /* SQ_EasyNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_EasyNewsCell.h; sourceTree = "<group>"; };
@@ -645,18 +667,18 @@
 			children = (
 				79A83EB11D94BDDB00D226B7 /* SQ_Article.h */,
 				79A83EB21D94BDDB00D226B7 /* SQ_Article.m */,
-				799EE65D1DA21B7D00063852 /* SQ_DetailArticle.h */,
-				799EE65E1DA21B7D00063852 /* SQ_DetailArticle.m */,
+				79D5F6851DA0FA56008CB342 /* SQ_Column.h */,
+				79D5F6861DA0FA56008CB342 /* SQ_Column.m */,
 				798E74FB1D9AA1D20050F9B3 /* SQ_Detail.h */,
 				798E74FC1D9AA1D20050F9B3 /* SQ_Detail.m */,
+				799EE65D1DA21B7D00063852 /* SQ_DetailArticle.h */,
+				799EE65E1DA21B7D00063852 /* SQ_DetailArticle.m */,
 				79A83EB41D94BDFB00D226B7 /* SQ_News.h */,
 				79A83EB51D94BDFB00D226B7 /* SQ_News.m */,
 				79790DAF1D9AA40C005F0128 /* SQ_Picture.h */,
 				79790DB01D9AA40C005F0128 /* SQ_Picture.m */,
 				79C538BE1D97D6AE00A10164 /* SQ_Special.h */,
 				79C538BF1D97D6AE00A10164 /* SQ_Special.m */,
-				79D5F6851DA0FA56008CB342 /* SQ_Column.h */,
-				79D5F6861DA0FA56008CB342 /* SQ_Column.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -730,6 +752,7 @@
 		7981420E1D915783005BEA08 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				799EE6601DA2354D00063852 /* 服务大厅 */,
 				799962441D9F781100CCEF44 /* 部门大厅 */,
 				79BFE02B1D927B93009F84D0 /* SQ_AffairsHallViewController.h */,
 				79BFE02C1D927B93009F84D0 /* SQ_AffairsHallViewController.m */,
@@ -766,9 +789,9 @@
 		7981422F1D915ABD005BEA08 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				799962431D9F567900CCEF44 /* SQ_ SateCouncilNews.pch */,
 				7986FF641D9BAD9E007361C6 /* UILabel+SizeToFit_W_H.h */,
 				7986FF651D9BAD9E007361C6 /* UILabel+SizeToFit_W_H.m */,
-				799962431D9F567900CCEF44 /* SQ_ SateCouncilNews.pch */,
 			);
 			path = Vendors;
 			sourceTree = "<group>";
@@ -785,22 +808,22 @@
 		799962441D9F781100CCEF44 /* 部门大厅 */ = {
 			isa = PBXGroup;
 			children = (
-				7999624C1D9F798C00CCEF44 /* 政务联播 */,
 				799962481D9F786E00CCEF44 /* 入驻部门 */,
+				7999624C1D9F798C00CCEF44 /* 政务联播 */,
 				799962451D9F785D00CCEF44 /* SQ_DepHallController.h */,
 				799962461D9F785D00CCEF44 /* SQ_DepHallController.m */,
 			);
-			name = "部门大厅";
+			path = "部门大厅";
 			sourceTree = "<group>";
 		};
 		799962481D9F786E00CCEF44 /* 入驻部门 */ = {
 			isa = PBXGroup;
 			children = (
-				799962521D9F8FE700CCEF44 /* Model */,
 				799962511D9F8FDE00CCEF44 /* Controller */,
+				799962521D9F8FE700CCEF44 /* Model */,
 				799962501D9F8FD200CCEF44 /* View */,
 			);
-			name = "入驻部门";
+			path = "入驻部门";
 			sourceTree = "<group>";
 		};
 		7999624C1D9F798C00CCEF44 /* 政务联播 */ = {
@@ -809,7 +832,7 @@
 				7999624D1D9F79D600CCEF44 /* SQ_AffairsShowController.h */,
 				7999624E1D9F79D600CCEF44 /* SQ_AffairsShowController.m */,
 			);
-			name = "政务联播";
+			path = "政务联播";
 			sourceTree = "<group>";
 		};
 		799962501D9F8FD200CCEF44 /* View */ = {
@@ -817,11 +840,11 @@
 			children = (
 				799962531D9F904A00CCEF44 /* SQ_CollectionViewCell.h */,
 				799962541D9F904A00CCEF44 /* SQ_CollectionViewCell.m */,
+				799962551D9F904A00CCEF44 /* SQ_CollectionViewCell.xib */,
 				79D5F67F1DA0C5DC008CB342 /* SQ_depNewsCell.h */,
 				79D5F6801DA0C5DC008CB342 /* SQ_depNewsCell.m */,
-				799962551D9F904A00CCEF44 /* SQ_CollectionViewCell.xib */,
 			);
-			name = View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		799962511D9F8FDE00CCEF44 /* Controller */ = {
@@ -829,12 +852,12 @@
 			children = (
 				799962491D9F798400CCEF44 /* SQ_EnterDepController.h */,
 				7999624A1D9F798400CCEF44 /* SQ_EnterDepController.m */,
-				7999625B1D9FA50B00CCEF44 /* SQ_departNewsController.h */,
-				7999625C1D9FA50B00CCEF44 /* SQ_departNewsController.m */,
 				7999625E1D9FABC000CCEF44 /* SQ_depaChildController.h */,
 				7999625F1D9FABC000CCEF44 /* SQ_depaChildController.m */,
+				7999625B1D9FA50B00CCEF44 /* SQ_departNewsController.h */,
+				7999625C1D9FA50B00CCEF44 /* SQ_departNewsController.m */,
 			);
-			name = Controller;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		799962521D9F8FE700CCEF44 /* Model */ = {
@@ -843,18 +866,63 @@
 				799962581D9F997000CCEF44 /* SQ_icon.h */,
 				799962591D9F997000CCEF44 /* SQ_icon.m */,
 			);
-			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		799EA8911D9E4AAB003BAFF2 /* 搜索界面 */ = {
 			isa = PBXGroup;
 			children = (
-				799EA8921D9E4ACF003BAFF2 /* SQ_SearchViewController.h */,
-				799EA8931D9E4ACF003BAFF2 /* SQ_SearchViewController.m */,
 				799EA8951D9E5C63003BAFF2 /* SQ_SearchDetailController.h */,
 				799EA8961D9E5C63003BAFF2 /* SQ_SearchDetailController.m */,
+				799EA8921D9E4ACF003BAFF2 /* SQ_SearchViewController.h */,
+				799EA8931D9E4ACF003BAFF2 /* SQ_SearchViewController.m */,
 			);
 			path = "搜索界面";
+			sourceTree = "<group>";
+		};
+		799EE6601DA2354D00063852 /* 服务大厅 */ = {
+			isa = PBXGroup;
+			children = (
+				799EE67F1DA2570400063852 /* childViewController */,
+				799EE6901DA259ED00063852 /* model */,
+				799EE67A1DA251DB00063852 /* SQ_CollectionServiceCell.h */,
+				799EE67B1DA251DB00063852 /* SQ_CollectionServiceCell.m */,
+				799EE67C1DA251DB00063852 /* SQ_CollectionServiceCell.xib */,
+				799EE6641DA2359300063852 /* SQ_ServiceHallViewController.h */,
+				799EE6651DA2359300063852 /* SQ_ServiceHallViewController.m */,
+			);
+			path = "服务大厅";
+			sourceTree = "<group>";
+		};
+		799EE67F1DA2570400063852 /* childViewController */ = {
+			isa = PBXGroup;
+			children = (
+				799EE6941DA25E8300063852 /* view */,
+				799EE68D1DA2580100063852 /* SQ_ServiceChildController.h */,
+				799EE68E1DA2580100063852 /* SQ_ServiceChildController.m */,
+			);
+			path = childViewController;
+			sourceTree = "<group>";
+		};
+		799EE6901DA259ED00063852 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				799EE69F1DA2619800063852 /* SQ_ChildClassify.h */,
+				799EE6A01DA2619800063852 /* SQ_ChildClassify.m */,
+				799EE6911DA25A1D00063852 /* SQ_Classify.h */,
+				799EE6921DA25A1D00063852 /* SQ_Classify.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		799EE6941DA25E8300063852 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				799EE69A1DA25F2500063852 /* SQ_categoriesCell.h */,
+				799EE69B1DA25F2500063852 /* SQ_categoriesCell.m */,
+				799EE69C1DA25F2500063852 /* SQ_categoriesCell.xib */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		79A360B91D98D2350090F80F /* 带标志普通新闻cell */ = {
@@ -1270,8 +1338,10 @@
 				798141971D915012005BEA08 /* LaunchScreen.storyboard in Resources */,
 				798141941D915012005BEA08 /* Assets.xcassets in Resources */,
 				79A83EBE1D94DB3900D226B7 /* SQ_DetailViewController.xib in Resources */,
+				799EE69E1DA25F2500063852 /* SQ_categoriesCell.xib in Resources */,
 				799962571D9F904A00CCEF44 /* SQ_CollectionViewCell.xib in Resources */,
 				798141921D915012005BEA08 /* Main.storyboard in Resources */,
+				799EE67E1DA251DB00063852 /* SQ_CollectionServiceCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1438,11 +1508,13 @@
 				7974055E1D9424B700B8B376 /* SQ_TopView.m in Sources */,
 				79A360BC1D98D4E90090F80F /* SQ_EasyNewsCell.m in Sources */,
 				798E74FD1D9AA1D20050F9B3 /* SQ_Detail.m in Sources */,
+				799EE69D1DA25F2500063852 /* SQ_categoriesCell.m in Sources */,
 				7981421C1D9158F3005BEA08 /* SQ_SateCouncilModel.m in Sources */,
 				7923F7B11D994095008F45B9 /* SQ_MenuButtonView.m in Sources */,
 				79A83F121D9525C300D226B7 /* SQ_CarouselView.m in Sources */,
 				798141FC1D9154A4005BEA08 /* NSUserDefaults+Categories.m in Sources */,
 				798141C01D915180005BEA08 /* SQ_BaseModel.m in Sources */,
+				799EE6A11DA2619800063852 /* SQ_ChildClassify.m in Sources */,
 				798141D41D915460005BEA08 /* FileManagerUtils.m in Sources */,
 				79BFE0231D927A8D009F84D0 /* SQ_HomeViewController.m in Sources */,
 				798141D91D915472005BEA08 /* HttpClient.m in Sources */,
@@ -1470,9 +1542,11 @@
 				79C538781D97782C00A10164 /* SQ_HalfNewsView.m in Sources */,
 				79BFE02D1D927B93009F84D0 /* SQ_AffairsHallViewController.m in Sources */,
 				7923F7AE1D993572008F45B9 /* SQ_MenuCell.m in Sources */,
+				799EE6661DA2359300063852 /* SQ_ServiceHallViewController.m in Sources */,
 				79A83EBD1D94DB3900D226B7 /* SQ_DetailViewController.m in Sources */,
 				79A83EB31D94BDDB00D226B7 /* SQ_Article.m in Sources */,
 				7981421F1D91590F005BEA08 /* SQ_SateCouncilView.m in Sources */,
+				799EE67D1DA251DB00063852 /* SQ_CollectionServiceCell.m in Sources */,
 				79BFE02A1D927B7B009F84D0 /* SQ_SCViewController.m in Sources */,
 				79BFE03E1D927D4C009F84D0 /* SQ_MainTabBarController.m in Sources */,
 				79C5389F1D97AE4500A10164 /* SQ_HalfVideoNewsView.m in Sources */,
@@ -1482,6 +1556,7 @@
 				799EA8941D9E4ACF003BAFF2 /* SQ_SearchViewController.m in Sources */,
 				79D5F6811DA0C5DC008CB342 /* SQ_depNewsCell.m in Sources */,
 				7923F7B41D995F82008F45B9 /* SQ_MemberCell.m in Sources */,
+				799EE6931DA25A1D00063852 /* SQ_Classify.m in Sources */,
 				79A83EB61D94BDFB00D226B7 /* SQ_News.m in Sources */,
 				79C538C01D97D6AE00A10164 /* SQ_Special.m in Sources */,
 				799962601D9FABC000CCEF44 /* SQ_depaChildController.m in Sources */,
@@ -1507,6 +1582,7 @@
 				799962471D9F785D00CCEF44 /* SQ_DepHallController.m in Sources */,
 				798141FE1D9154A4005BEA08 /* UIColor+Categories.m in Sources */,
 				79C538B01D97CBAB00A10164 /* SQ_ServiceCell.m in Sources */,
+				799EE68F1DA2580100063852 /* SQ_ServiceChildController.m in Sources */,
 				7986FF6D1D9C00D4007361C6 /* SQ_VideoCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,6 +10,7 @@
 #import "NSObject+YYModel.h"
 #import "SQ_ChildClassify.h"
 #import "SQ_categoriesCell.h"
+#import "SQ_ServiceDetailViewController.h"
 
 
 static NSString *const cellIdentifier = @"cell";
@@ -52,7 +53,7 @@ UICollectionViewDataSource
     _collectionView.dataSource = self;
     [_collectionView registerNib:[UINib nibWithNibName:@"SQ_categoriesCell" bundle:nil] forCellWithReuseIdentifier:cellIdentifier];
     [self.view addSubview:_collectionView];
-    _collectionView.backgroundColor = [UIColor colorWithWhite:0.707 alpha:1.000];
+    _collectionView.backgroundColor = [UIColor colorWithWhite:0.897 alpha:1.000];
 }
 
 
@@ -70,6 +71,17 @@ UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
     return _dataArray.count;
+    
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    SQ_ServiceDetailViewController *SdVC = [[SQ_ServiceDetailViewController alloc] init];
+    SdVC.childClassify = _dataArray[indexPath.row];
+    SdVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:SdVC animated:YES];
+    
     
 }
 
@@ -102,6 +114,8 @@ UICollectionViewDataSource
     }
     
     [self  createCollectionView];
+    
+
     
     
 }

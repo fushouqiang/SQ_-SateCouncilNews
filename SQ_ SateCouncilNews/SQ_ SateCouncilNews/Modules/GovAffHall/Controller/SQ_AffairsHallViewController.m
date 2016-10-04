@@ -12,6 +12,7 @@
 #import "SQ_SearchViewController.h"
 #import "SQ_DepHallController.h"
 #import "SQ_ServiceHallViewController.h"
+#import "SQ_infoPublicViewController.h"
 
 @interface SQ_AffairsHallViewController ()
 
@@ -330,7 +331,10 @@
             break;
         case 5:
         {
-            
+         
+            SQ_infoPublicViewController *infoPubVC = [[SQ_infoPublicViewController alloc] init];
+           infoPubVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:infoPubVC animated:YES];
         }
             break;
     }

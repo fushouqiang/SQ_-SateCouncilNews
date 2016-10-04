@@ -40,6 +40,8 @@ typedef void (^JsonSuccess)(id json);
 @property (nonatomic, strong) UIView *containView;
 @property (nonatomic, strong) NSArray *childTitleArray;
 @property (nonatomic, strong) NSMutableArray *categoriesArray;
+@property (nonatomic, assign) NSIndexPath *flagIndex;
+
 
 
 @end
@@ -48,6 +50,7 @@ typedef void (^JsonSuccess)(id json);
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = @"服务大厅";
     NSArray *array = @[@"公民",@"企业",@"外国人",@"社会组织"];
     self.childTitleArray = array;
     self.articleArray = [NSMutableArray array];
@@ -57,7 +60,8 @@ typedef void (^JsonSuccess)(id json);
     self.view.backgroundColor = [UIColor whiteColor];
     [self setUpChildViewController];
     
-    // Do any additional setup after loading the view.
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -65,6 +69,7 @@ typedef void (^JsonSuccess)(id json);
     
 }
 
+//创建TableView和footer
 - (void)createTableView {
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, self.view.bounds.size.height) style:UITableViewStylePlain];
@@ -74,8 +79,8 @@ typedef void (^JsonSuccess)(id json);
     _tableView.backgroundColor = [UIColor whiteColor];
     
     
-    self.footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, HEIGHT)];
-    _footerView.backgroundColor = [UIColor grayColor];
+    self.footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, WIDTH * 1.15)];
+    _footerView.backgroundColor = [UIColor whiteColor];
     _tableView.tableFooterView = _footerView;
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -95,9 +100,12 @@ typedef void (^JsonSuccess)(id json);
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:1 inSection:0];
     [_collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
     
+    self.flagIndex = [NSIndexPath indexPathForItem:1 inSection:0];
+
 }
 
 
+//添加子控制器
 - (void)setUpChildViewController {
     
     for (int i = 0; i < 4; i++) {
@@ -116,13 +124,27 @@ typedef void (^JsonSuccess)(id json);
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
+    SQ_CollectionServiceCell *flagCell  = (SQ_CollectionServiceCell *)[collectionView cellForItemAtIndexPath:_flagIndex];
+    
+  
+    
+    
+    flagCell.backgroundColor = [UIColor colorWithWhite:0.746 alpha:1.000];
+
+    SQ_CollectionServiceCell *cell  = (SQ_CollectionServiceCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    self.flagIndex = indexPath;
+    cell.backgroundColor = [UIColor whiteColor];
+    
+    
+    
     //把之前的view移除
     [self.containView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-  
     // 把对应子控制器的view添加上去
     SQ_ServiceChildController *vc = self.childViewControllers[indexPath.row];
     vc.classify = _categoriesArray[indexPath.row];
     vc.view.frame = self.containView.bounds;
+    
+    
     [self.containView addSubview:vc.view];
 
     
@@ -141,8 +163,12 @@ typedef void (^JsonSuccess)(id json);
     SQ_CollectionServiceCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.imageName = [NSString stringWithFormat:@"hallServiceCategoryIcon%ld",(indexPath.row + 1)];
     cell.labelText = _childTitleArray[indexPath.row];
-    cell.backgroundColor = [UIColor whiteColor];
     
+    if (indexPath.row == 0) {
+        cell.backgroundColor = [UIColor whiteColor];
+    }
+    else {
+        cell.backgroundColor = [UIColor colorWithWhite:0.746 alpha:1.000];}
     return cell;
     
 }
@@ -214,6 +240,14 @@ typedef void (^JsonSuccess)(id json);
             [_tableView reloadData];
           
         }
+        
+        //把下部新闻先添加上去
+        
+        SQ_ServiceChildController *vc = self.childViewControllers[0];
+        vc.classify = _categoriesArray[0];
+        vc.view.frame = self.containView.bounds;
+        [self.containView addSubview:vc.view];
+
      
     }];
     

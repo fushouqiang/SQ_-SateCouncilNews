@@ -90,7 +90,8 @@ typedef void (^JsonSuccess)(id json);
     //防止因为设置webView尾视图后每次跳转都会出现的黑条
     _webView.backgroundColor = [UIColor clearColor];
     _webView.opaque = NO;
-    
+    self.webView.scrollView.contentInset = UIEdgeInsetsMake(0,0.0,240,0.0);
+
     
     
 //    self.webView.scrollView.contentInset = UIEdgeInsetsMake(0,0.0,240,0.0);
@@ -204,6 +205,7 @@ typedef void (^JsonSuccess)(id json);
     _isSaved =  [_manager selectArticle:article];
  
     [self createUI];
+//    self.navigationItem.title = _article.title;
     [self handleData];
     
     
@@ -235,6 +237,7 @@ typedef void (^JsonSuccess)(id json);
     
 }
 
+//跳转页面
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     SQ_DetailViewController *detailVC = [[SQ_DetailViewController alloc] init];
     detailVC.article = _articleArray[indexPath.row];
@@ -245,6 +248,8 @@ typedef void (^JsonSuccess)(id json);
     
 }
 
+
+//获取数据
 - (void)handleData {
     
     
@@ -269,7 +274,7 @@ typedef void (^JsonSuccess)(id json);
                     NSDictionary *articleDic = [detailArticle.relatedArticles valueForKey:keyArray[i]];
                     SQ_Article *article = [SQ_Article yy_modelWithDictionary:articleDic];
                     [self.articleArray addObject:article];
-                    self.webView.scrollView.contentInset = UIEdgeInsetsMake(0,0.0,240,0.0);
+//                    self.webView.scrollView.contentInset = UIEdgeInsetsMake(0,0.0,240,0.0);
                     
                 }
 

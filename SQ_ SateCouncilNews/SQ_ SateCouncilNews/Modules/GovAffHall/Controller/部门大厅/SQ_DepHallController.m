@@ -30,7 +30,7 @@ UIScrollViewDelegate
     [self setUpHead];
     [self setupContentScrollView];
     [self setChildViewController];
-    
+    self.navigationItem.title = @"部门大厅";
      
      
      

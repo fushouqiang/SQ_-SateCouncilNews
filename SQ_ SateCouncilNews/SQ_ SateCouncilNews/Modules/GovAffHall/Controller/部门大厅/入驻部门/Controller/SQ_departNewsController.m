@@ -234,6 +234,8 @@ UIScrollViewDelegate
         }
     }
     
+    self.navigationItem.title = icon.name;
+    
     
 }
 

@@ -48,8 +48,8 @@ UITextFieldDelegate
     
     [self.navigationController.navigationBar addSubview:_searchTextField];
     _searchTextField.placeholder = @"搜索";
-    _searchTextField.layer.borderColor = [UIColor colorWithRed:0.301 green:0.772 blue:0.845 alpha:1.000].CGColor;
-    _searchTextField.layer.borderWidth = 2;
+    _searchTextField.layer.borderColor = [UIColor colorWithRed:0.835 green:0.840 blue:0.845 alpha:1.000].CGColor;
+    _searchTextField.layer.borderWidth = 1;
     _searchTextField.layer.cornerRadius = 5.0f;
     _searchTextField.returnKeyType = UIReturnKeySearch;
     [_searchTextField clipsToBounds];
@@ -60,6 +60,7 @@ UITextFieldDelegate
     _cancelButton.frame = CGRectMake(WIDTH - 40, 13, 40, 20);
     [_cancelButton setTitle:@"取消" forState:UIControlStateNormal];
     [_cancelButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [_cancelButton addTarget:self action:@selector(cancelButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
     
     UILabel *lineLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 64, WIDTH, 2)];
@@ -76,7 +77,26 @@ UITextFieldDelegate
     introduceLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:introduceLabel];
     introduceLabel.font = [UIFont systemFontOfSize:14];
+    
+    
 
+}
+
+
+
+
+- (void)cancelButtonAction:(UIButton *)cancelButton {
+    
+    _searchTextField.text = @"";
+    [_searchTextField resignFirstResponder];
+}
+
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [_searchTextField resignFirstResponder];
+
+    
+    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -95,7 +115,7 @@ UITextFieldDelegate
 
 - (void)viewWillDisappear:(BOOL)animated {
     
-    
+    [_searchTextField resignFirstResponder];
     _searchTextField.hidden = YES;
     _cancelButton.hidden = YES;
 }

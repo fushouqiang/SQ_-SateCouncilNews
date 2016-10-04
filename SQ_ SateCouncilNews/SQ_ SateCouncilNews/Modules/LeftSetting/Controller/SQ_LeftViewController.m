@@ -64,8 +64,7 @@ UITableViewDataSource
         make.height.equalTo(30);
     }];
     imageView.image = [UIImage imageNamed:@"sideMenuLeftLogo"];
-    self.view.backgroundColor = [UIColor colorWithRed:0.056 green:0.708 blue:1.000 alpha:1.000];
-    
+    self.view.backgroundColor = [UIColor colorWithRed:0.034 green:0.495 blue:0.703 alpha:1.000];
 }
 
 
@@ -79,8 +78,7 @@ UITableViewDataSource
         make.width.equalTo(self.view.width);
         make.height.equalTo(40);
     }];
-//    bottonLabel.backgroundColor = [UIColor colorWithRed:0.005 green:0.019 blue:0.022 alpha:1.000];
-//    
+
  
     UIButton *cnButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [bottonLabel addSubview:cnButton];
@@ -115,7 +113,7 @@ UITableViewDataSource
         _tableView = [[UITableView alloc] init];
         _tableView.delegate = self;
         _tableView.scrollEnabled = NO;
-        _tableView.backgroundColor = [UIColor colorWithRed:0.056 green:0.708 blue:1.000 alpha:1.000];
+        _tableView.backgroundColor = [UIColor colorWithRed:0.034 green:0.495 blue:0.703 alpha:1.000];
         _tableView.dataSource  = self;
         [self.view addSubview:_tableView];
         [_tableView makeConstraints:^(MASConstraintMaker *make) {
@@ -147,7 +145,7 @@ UITableViewDataSource
     
     
     SQ_LeftCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    cell.backgroundColor = [UIColor colorWithRed:0.056 green:0.708 blue:1.000 alpha:1.000];
+    cell.backgroundColor = [UIColor colorWithRed:0.034 green:0.495 blue:0.703 alpha:1.000];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.imageName = _imageNameArray[indexPath.row];
     cell.labelText = _textArray[indexPath.row];

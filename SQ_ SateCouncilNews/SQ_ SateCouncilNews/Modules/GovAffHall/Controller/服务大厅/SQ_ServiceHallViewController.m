@@ -161,7 +161,7 @@ typedef void (^JsonSuccess)(id json);
     
     
     SQ_CollectionServiceCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
-    cell.imageName = [NSString stringWithFormat:@"hallServiceCategoryIcon%ld",(indexPath.row + 1)];
+    cell.imageName = [NSString stringWithFormat:@"hallServiceCategoryIcon%zd",(indexPath.row + 1)];
     cell.labelText = _childTitleArray[indexPath.row];
     
     if (indexPath.row == 0) {

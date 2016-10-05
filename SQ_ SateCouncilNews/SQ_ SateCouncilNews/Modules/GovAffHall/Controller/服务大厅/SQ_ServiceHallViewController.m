@@ -40,7 +40,7 @@ typedef void (^JsonSuccess)(id json);
 @property (nonatomic, strong) UIView *containView;
 @property (nonatomic, strong) NSArray *childTitleArray;
 @property (nonatomic, strong) NSMutableArray *categoriesArray;
-@property (nonatomic, assign) NSIndexPath *flagIndex;
+@property (nonatomic, strong) NSIndexPath *flagIndex;
 
 
 
@@ -89,7 +89,7 @@ typedef void (^JsonSuccess)(id json);
     flowLayout.itemSize = CGSizeMake(itemW, itemH);
     flowLayout.minimumLineSpacing = 0;
     flowLayout.minimumInteritemSpacing = 0;
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, itemH) collectionViewLayout:flowLayout];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 10, WIDTH, itemH) collectionViewLayout:flowLayout];
     [_collectionView registerNib:[UINib nibWithNibName:@"SQ_CollectionServiceCell" bundle:nil] forCellWithReuseIdentifier:cellIdentifier];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
@@ -97,10 +97,10 @@ typedef void (^JsonSuccess)(id json);
     self.containView = [[UIView alloc] initWithFrame:CGRectMake(0, itemH, WIDTH, _footerView.bounds.size.height - itemH)];
     [_footerView addSubview:_containView];
     
-    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:1 inSection:0];
-    [_collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+
+    //定义一个flag indexPath
+    self.flagIndex = [NSIndexPath indexPathForItem:0 inSection:0];
     
-    self.flagIndex = [NSIndexPath indexPathForItem:1 inSection:0];
 
 }
 
@@ -124,17 +124,17 @@ typedef void (^JsonSuccess)(id json);
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    SQ_CollectionServiceCell *flagCell  = (SQ_CollectionServiceCell *)[collectionView cellForItemAtIndexPath:_flagIndex];
-    
   
-    
-    
-    flagCell.backgroundColor = [UIColor colorWithWhite:0.746 alpha:1.000];
+    if (_flagIndex != nil) {
+        SQ_CollectionServiceCell *cell1  = (SQ_CollectionServiceCell *)[collectionView cellForItemAtIndexPath:_flagIndex];
+        cell1.backgroundColor = [UIColor colorWithWhite:0.746 alpha:1.000];
+        
+    }
 
     SQ_CollectionServiceCell *cell  = (SQ_CollectionServiceCell *)[collectionView cellForItemAtIndexPath:indexPath];
     self.flagIndex = indexPath;
     cell.backgroundColor = [UIColor whiteColor];
-    
+
     
     
     //把之前的view移除
@@ -159,17 +159,21 @@ typedef void (^JsonSuccess)(id json);
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     
+   
+    
     
     SQ_CollectionServiceCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.imageName = [NSString stringWithFormat:@"hallServiceCategoryIcon%zd",(indexPath.row + 1)];
     cell.labelText = _childTitleArray[indexPath.row];
-    
+
     if (indexPath.row == 0) {
         cell.backgroundColor = [UIColor whiteColor];
     }
-    else {
-        cell.backgroundColor = [UIColor colorWithWhite:0.746 alpha:1.000];}
-    return cell;
+    else
+    {
+    cell.backgroundColor = [UIColor colorWithWhite:0.746 alpha:1.000];
+    }
+        return cell;
     
 }
 

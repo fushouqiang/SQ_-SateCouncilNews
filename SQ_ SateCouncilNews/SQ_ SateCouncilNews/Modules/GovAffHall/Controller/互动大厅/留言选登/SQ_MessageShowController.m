@@ -1,68 +1,55 @@
 //
-//  PremierViewController.m
-//  SQ_SCNews
+//  SQ_MessageShowController.m
+//  SQ_ SateCouncilNews
 //
-//  Created by FuShouqiang on 16/9/20.
+//  Created by FuShouqiang on 16/10/5.
 //  Copyright © 2016年 fu. All rights reserved.
 //
 
-#import "PremierViewController.h"
-#import "HttpClient.h"
-#import "SQ_normalCell.h"
-#import "SQ_headCell.h"
-#import "MJRefresh.h"
-#import "SQ_DetailViewController.h"
-#import "SQ_Article.h"
-#import "NSObject+YYModel.h"
+#import "SQ_MessageShowController.h"
 
-@interface PremierViewController ()
+#import "SQ_Article.h"
+#import "HttpClient.h"
+#import "NSObject+YYModel.h"
+#import "MJRefresh.h"
+#import "SQ_intHallCell.h"
+#import "SQ_DetailViewController.h"
+#import "SQ_MessageShowCell.h"
+#import "UILabel+SizeToFit_W_H.h"
+static NSString *const cellIdentifier = @"cell";
+
+@interface SQ_MessageShowController ()
 <
 UITableViewDelegate,
 UITableViewDataSource
 >
 typedef void (^JsonSuccess)(id json);
-
-@property (nonatomic, retain) UITableView *tableView;
+@property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, retain) NSMutableArray *articleArray;
 @property (nonatomic, strong) id result;
 @property (nonatomic, assign) NSInteger dataNumber;
-@property (nonatomic, assign) unsigned long flagNumber;
 
 @end
 
-@implementation PremierViewController
+@implementation SQ_MessageShowController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    [self createTableView];
     self.articleArray = [NSMutableArray array];
+    [self createTableView];
+    self.navigationItem.title = _titleName;
     
     self.dataNumber = 0;
-    
-    
-    
-    // Do any additional setup after loading the view.
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    //    self.articleArray = [NSMutableArray array];
-    //    [self handleData];
-    //    self.dataNumber = 0;
     
 }
 
 - (void)createTableView {
-    
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 150) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    [self.view addSubview:_tableView ];
+    [self.view addSubview:_tableView];
     _tableView.backgroundColor = [UIColor whiteColor];
-    _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{   
-        
-        _flagNumber = _articleArray.count;
+    _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         _dataNumber++;
         [self handleData];
         
@@ -74,23 +61,50 @@ typedef void (^JsonSuccess)(id json);
     }];
     [_tableView.mj_header beginRefreshing];
     
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    SQ_Article *article = _articleArray[indexPath.row];
+    CGFloat height = [UILabel getHeightByWidth:WIDTH - 40 title:article.des Font:[UIFont systemFontOfSize:16]];
+    
+    return height + 50;
     
 }
 
-- (void)refreshData {
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    [self reloadData];
-    
+    return _articleArray.count;
 }
 
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    SQ_MessageShowCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        
+        cell = [[SQ_MessageShowCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        
+    }
+    
+    if (_articleArray.count > 0) {
+        cell.article = _articleArray[indexPath.row];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    
+    return cell;
+    
+    
+}
 
 
 - (void)handleData {
     
-    
-    
-    [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/columns/column_%@_%zd.json",_column.columnId,_dataNumber] json:^(id json) {
+    [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn//govdata/gov/columns/columnCategory_%@_%zd.json",_categoryId,_dataNumber] json:^(id json) {
         
         if (json != NULL) {
             
@@ -109,7 +123,8 @@ typedef void (^JsonSuccess)(id json);
                 }
                 
             }
-      
+            
+            
         }
         else {
             
@@ -121,7 +136,7 @@ typedef void (^JsonSuccess)(id json);
 }
 
 - (void)reloadData {
-    [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/columns/column_%@_%zd.json",_column.columnId,_dataNumber] json:^(id json) {
+    [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn//govdata/gov/columns/columnCategory_%@_%zd.json",_categoryId,_dataNumber] json:^(id json) {
         
         if (json != NULL) {
             
@@ -146,57 +161,6 @@ typedef void (^JsonSuccess)(id json);
     
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        return 250;
-    }
-    else
-    {
-        return 100;
-    }
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    SQ_DetailViewController *detailVC = [[SQ_DetailViewController alloc] init];
-    detailVC.article = _articleArray[indexPath.row];
-    detailVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:detailVC animated:YES];
-    
-}
-
-
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _articleArray.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (indexPath.row == 0) {
-        static NSString *cellIdentifier1 = @"Cell1";
-        SQ_headCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        if (nil == cell) {
-            cell = [[SQ_headCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier1] ;
-        }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.article = _articleArray[indexPath.row];
-        return cell;
-    }
-    
-    else {
-        static NSString *cellIdentifier = @"Cell";
-        SQ_normalCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (nil == cell) {
-            cell = [[SQ_normalCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier] ;
-        }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.article = _articleArray[indexPath.row];
-        return cell;}
-    
-}
-
-//获取json
 - (void)getJsonWithUrlString:(NSString *)urlString json:(JsonSuccess)json{
     
     
@@ -213,6 +177,7 @@ typedef void (^JsonSuccess)(id json);
     
     
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

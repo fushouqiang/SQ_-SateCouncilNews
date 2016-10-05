@@ -268,7 +268,6 @@ typedef void (^JsonSuccess)(id json);
         //button根据文字宽度设置宽度和位置
         NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:16]};
         CGFloat length = [vc.title boundingRectWithSize:CGSizeMake(320, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size.width;
-        NSLog(@"%f",allLength);
         titleButton.frame = CGRectMake(allLength + 10, 0, length + 15, 40);
         [_lengthArray addObject:[NSValue valueWithCGPoint:titleButton.frame.origin]];
         allLength = titleButton.frame.size.width + titleButton.frame.origin.x;

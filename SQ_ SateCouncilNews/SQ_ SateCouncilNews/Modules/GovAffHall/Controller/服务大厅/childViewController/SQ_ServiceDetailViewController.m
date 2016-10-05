@@ -86,7 +86,7 @@ typedef void (^JsonSuccess)(id json);
         
         if (json != NULL) {
             
-            NSLog(@"%@",json);
+   
             NSArray *array = [[json valueForKey:@"articles"] allKeys];
             
             for (int i = 0; i < array.count; i++) {
@@ -95,7 +95,6 @@ typedef void (^JsonSuccess)(id json);
                 [self.articleArray addObject:article];
                 
             }
-            NSLog(@"%@",_articleArray);
             [_tableView reloadData];
             
             

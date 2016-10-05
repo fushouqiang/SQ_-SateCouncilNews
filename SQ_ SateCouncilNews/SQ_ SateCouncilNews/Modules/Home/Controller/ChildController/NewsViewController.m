@@ -97,35 +97,37 @@ interviewNewsDelegate
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-    self.dataSourceArray = [NSMutableArray array];
-
-        //请求数据
-        [self getJsonWithUrlString:@"http://app.www.gov.cn/govdata/gov/home_1.json" json:^(id json) {
-            
-            if (json != NULL) {
-                
-                self.result = json;
-                [self initDicWithResult:_result];
-                self.car = [[SQ_CarouselView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 200)];
-                _car.delegate = self;
-                self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 104) style:UITableViewStylePlain];
-                _tableView.delegate = self;
-                _tableView.dataSource = self;
-                [self.view addSubview:_tableView ];
-                _tableView.backgroundColor = [UIColor whiteColor];
-                _tableView.tableHeaderView = _car;
-                _car.dataDic = _carouseDic;
-                [_tableView reloadData];
-                
-            }
-            
-        }];
-   
+    [self handleData];
  
 }
 
 
 - (void)handleData {
+    
+    self.dataSourceArray = [NSMutableArray array];
+    
+    //请求数据
+    [self getJsonWithUrlString:@"http://app.www.gov.cn/govdata/gov/home_1.json" json:^(id json) {
+        
+        if (json != NULL) {
+            
+            self.result = json;
+            [self initDicWithResult:_result];
+            self.car = [[SQ_CarouselView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 200)];
+            _car.delegate = self;
+            self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 104) style:UITableViewStylePlain];
+            _tableView.delegate = self;
+            _tableView.dataSource = self;
+            [self.view addSubview:_tableView ];
+            _tableView.backgroundColor = [UIColor whiteColor];
+            _tableView.tableHeaderView = _car;
+            _car.dataDic = _carouseDic;
+            [_tableView reloadData];
+            
+        }
+        
+    }];
+
     
 }
 

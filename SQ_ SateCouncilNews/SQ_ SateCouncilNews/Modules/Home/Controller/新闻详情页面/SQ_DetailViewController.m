@@ -274,10 +274,12 @@ typedef void (^JsonSuccess)(id json);
                     NSDictionary *articleDic = [detailArticle.relatedArticles valueForKey:keyArray[i]];
                     SQ_Article *article = [SQ_Article yy_modelWithDictionary:articleDic];
                     [self.articleArray addObject:article];
-//                    self.webView.scrollView.contentInset = UIEdgeInsetsMake(0,0.0,240,0.0);
+
                     
                 }
 
+            } else {
+                                    self.webView.scrollView.contentInset = UIEdgeInsetsMake(0,0.0,0,0.0);
             }
             
             
@@ -307,12 +309,31 @@ typedef void (^JsonSuccess)(id json);
 
 
 
+//禁止点击链接
+- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
+    
+    if(navigationType==UIWebViewNavigationTypeLinkClicked)//判断是否是点击链接
+        {
+        
+        return NO;
+        }
+    
+    else {
+        return YES;
+    }
+    
+}
+
 
 //屏蔽JS广告
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByClassName('bottomicon')[0].style.display = 'NONE'"];
 
     //设置尾视图的relateNews的相关曹操作
+    
+    
+    NSString *currentURL = [webView stringByEvaluatingJavaScriptFromString:@"document.location.href"];
+    NSLog(@"%@",currentURL);
     
     
     if (_articleArray.count > 0) {

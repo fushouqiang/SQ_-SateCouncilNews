@@ -13,6 +13,7 @@
 #import "SQ_DepHallController.h"
 #import "SQ_ServiceHallViewController.h"
 #import "SQ_infoPublicViewController.h"
+#import "SQ_interactionHallViewController.h"
 
 @interface SQ_AffairsHallViewController ()
 
@@ -321,6 +322,9 @@
             break;
         case 3:
         {
+            SQ_interactionHallViewController *ihVC = [[SQ_interactionHallViewController   alloc] init];
+            ihVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:ihVC animated:YES];
             
         }
             break;

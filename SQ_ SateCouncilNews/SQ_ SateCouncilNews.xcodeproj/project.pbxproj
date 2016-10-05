@@ -91,6 +91,16 @@
 		79AF83B01D9B4DA50073C17A /* SQ_PictureNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AF83AF1D9B4DA50073C17A /* SQ_PictureNewsCell.m */; };
 		79AF83B41D9B51E10073C17A /* SQ_PictureDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AF83B31D9B51E10073C17A /* SQ_PictureDetailController.m */; };
 		79AF83BC1D9B52520073C17A /* SQ_pictureScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AF83BB1D9B52520073C17A /* SQ_pictureScrollView.m */; };
+		79B3C3441DA4AD87009AD46B /* SQ_interactionHallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B3C3431DA4AD87009AD46B /* SQ_interactionHallViewController.m */; };
+		79B3C3471DA4B3E3009AD46B /* SQ_SectionHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B3C3461DA4B3E3009AD46B /* SQ_SectionHeadView.m */; };
+		79B3C3501DA4C19E009AD46B /* intHallTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B3C34F1DA4C19E009AD46B /* intHallTopCell.m */; };
+		79B3C3531DA4DBD0009AD46B /* SQ_intHallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B3C3521DA4DBD0009AD46B /* SQ_intHallCell.m */; };
+		79B3C3561DA4DC7B009AD46B /* SQ_intHallMoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B3C3551DA4DC7B009AD46B /* SQ_intHallMoreCell.m */; };
+		79B3C3591DA4E0F2009AD46B /* SQ_intHallDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B3C3581DA4E0F2009AD46B /* SQ_intHallDetailViewController.m */; };
+		79B3C35C1DA4E8FE009AD46B /* SQ_WirteMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B3C35B1DA4E8FE009AD46B /* SQ_WirteMessageController.m */; };
+		79B3C35F1DA4ED8C009AD46B /* SQ_MessageShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B3C35E1DA4ED8C009AD46B /* SQ_MessageShowController.m */; };
+		79B3C3621DA4EEA4009AD46B /* SQ_MessageShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B3C3611DA4EEA4009AD46B /* SQ_MessageShowCell.m */; };
+		79B3C3651DA4FCAD009AD46B /* SQ_intHallDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B3C3641DA4FCAD009AD46B /* SQ_intHallDetailCell.m */; };
 		79BFE01B1D927A0B009F84D0 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BFE00E1D927A0B009F84D0 /* NewsViewController.m */; };
 		79BFE01C1D927A0B009F84D0 /* PremierViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BFE0101D927A0B009F84D0 /* PremierViewController.m */; };
 		79BFE0231D927A8D009F84D0 /* SQ_HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BFE0221D927A8D009F84D0 /* SQ_HomeViewController.m */; };
@@ -304,6 +314,26 @@
 		79AF83B31D9B51E10073C17A /* SQ_PictureDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_PictureDetailController.m; sourceTree = "<group>"; };
 		79AF83BA1D9B52520073C17A /* SQ_pictureScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_pictureScrollView.h; sourceTree = "<group>"; };
 		79AF83BB1D9B52520073C17A /* SQ_pictureScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_pictureScrollView.m; sourceTree = "<group>"; };
+		79B3C3421DA4AD87009AD46B /* SQ_interactionHallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_interactionHallViewController.h; sourceTree = "<group>"; };
+		79B3C3431DA4AD87009AD46B /* SQ_interactionHallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_interactionHallViewController.m; sourceTree = "<group>"; };
+		79B3C3451DA4B3E3009AD46B /* SQ_SectionHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_SectionHeadView.h; sourceTree = "<group>"; };
+		79B3C3461DA4B3E3009AD46B /* SQ_SectionHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_SectionHeadView.m; sourceTree = "<group>"; };
+		79B3C34E1DA4C19E009AD46B /* intHallTopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = intHallTopCell.h; sourceTree = "<group>"; };
+		79B3C34F1DA4C19E009AD46B /* intHallTopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = intHallTopCell.m; sourceTree = "<group>"; };
+		79B3C3511DA4DBD0009AD46B /* SQ_intHallCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_intHallCell.h; sourceTree = "<group>"; };
+		79B3C3521DA4DBD0009AD46B /* SQ_intHallCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_intHallCell.m; sourceTree = "<group>"; };
+		79B3C3541DA4DC7B009AD46B /* SQ_intHallMoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_intHallMoreCell.h; sourceTree = "<group>"; };
+		79B3C3551DA4DC7B009AD46B /* SQ_intHallMoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_intHallMoreCell.m; sourceTree = "<group>"; };
+		79B3C3571DA4E0F2009AD46B /* SQ_intHallDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_intHallDetailViewController.h; sourceTree = "<group>"; };
+		79B3C3581DA4E0F2009AD46B /* SQ_intHallDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_intHallDetailViewController.m; sourceTree = "<group>"; };
+		79B3C35A1DA4E8FE009AD46B /* SQ_WirteMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_WirteMessageController.h; sourceTree = "<group>"; };
+		79B3C35B1DA4E8FE009AD46B /* SQ_WirteMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_WirteMessageController.m; sourceTree = "<group>"; };
+		79B3C35D1DA4ED8C009AD46B /* SQ_MessageShowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_MessageShowController.h; sourceTree = "<group>"; };
+		79B3C35E1DA4ED8C009AD46B /* SQ_MessageShowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_MessageShowController.m; sourceTree = "<group>"; };
+		79B3C3601DA4EEA4009AD46B /* SQ_MessageShowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_MessageShowCell.h; sourceTree = "<group>"; };
+		79B3C3611DA4EEA4009AD46B /* SQ_MessageShowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_MessageShowCell.m; sourceTree = "<group>"; };
+		79B3C3631DA4FCAD009AD46B /* SQ_intHallDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_intHallDetailCell.h; sourceTree = "<group>"; };
+		79B3C3641DA4FCAD009AD46B /* SQ_intHallDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_intHallDetailCell.m; sourceTree = "<group>"; };
 		79BFE00D1D927A0B009F84D0 /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
 		79BFE00E1D927A0B009F84D0 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
 		79BFE00F1D927A0B009F84D0 /* PremierViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PremierViewController.h; sourceTree = "<group>"; };
@@ -631,7 +661,6 @@
 			isa = PBXGroup;
 			children = (
 				79BFE00C1D9279D7009F84D0 /* ChildController */,
-				798142061D9155F3005BEA08 /* Model */,
 				79AF83B11D9B50BF0073C17A /* 图片新闻详情页面 */,
 				799EA8911D9E4AAB003BAFF2 /* 搜索界面 */,
 				79AF83AB1D9B4B980073C17A /* 新闻详情页面 */,
@@ -696,6 +725,7 @@
 			isa = PBXGroup;
 			children = (
 				798142041D9155D9005BEA08 /* Controller */,
+				798142061D9155F3005BEA08 /* Model */,
 				798142051D9155EA005BEA08 /* View */,
 			);
 			path = Home;
@@ -777,6 +807,8 @@
 			children = (
 				798142261D9159A8005BEA08 /* SQ_GovAffHallView.h */,
 				798142271D9159A8005BEA08 /* SQ_GovAffHallView.m */,
+				79B3C3451DA4B3E3009AD46B /* SQ_SectionHeadView.h */,
+				79B3C3461DA4B3E3009AD46B /* SQ_SectionHeadView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -829,6 +861,10 @@
 		798EBCAF1DA37E970018325E /* 互动大厅 */ = {
 			isa = PBXGroup;
 			children = (
+				79B3C3481DA4BEC8009AD46B /* view */,
+				79B3C3661DA50467009AD46B /* 我要留言 */,
+				79B3C3681DA504B8009AD46B /* 留言回复 */,
+				79B3C3671DA5047E009AD46B /* 留言选登 */,
 			);
 			path = "互动大厅";
 			sourceTree = "<group>";
@@ -920,9 +956,7 @@
 			children = (
 				799EE67F1DA2570400063852 /* childViewController */,
 				799EE6901DA259ED00063852 /* model */,
-				799EE67A1DA251DB00063852 /* SQ_CollectionServiceCell.h */,
-				799EE67B1DA251DB00063852 /* SQ_CollectionServiceCell.m */,
-				799EE67C1DA251DB00063852 /* SQ_CollectionServiceCell.xib */,
+				79B3C36E1DA505D4009AD46B /* view */,
 				799EE6641DA2359300063852 /* SQ_ServiceHallViewController.h */,
 				799EE6651DA2359300063852 /* SQ_ServiceHallViewController.m */,
 			);
@@ -1037,6 +1071,102 @@
 				79AF83B31D9B51E10073C17A /* SQ_PictureDetailController.m */,
 			);
 			path = controller;
+			sourceTree = "<group>";
+		};
+		79B3C3481DA4BEC8009AD46B /* view */ = {
+			isa = PBXGroup;
+			children = (
+				79B3C36A1DA50505009AD46B /* 普通cell */,
+				79B3C36B1DA5052F009AD46B /* 点击更多cell */,
+				79B3C36D1DA50568009AD46B /* 留言回复cell */,
+				79B3C36C1DA5054C009AD46B /* 留言选登cell */,
+				79B3C3691DA504D5009AD46B /* 顶部cell */,
+				79B3C3421DA4AD87009AD46B /* SQ_interactionHallViewController.h */,
+				79B3C3431DA4AD87009AD46B /* SQ_interactionHallViewController.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		79B3C3661DA50467009AD46B /* 我要留言 */ = {
+			isa = PBXGroup;
+			children = (
+				79B3C35A1DA4E8FE009AD46B /* SQ_WirteMessageController.h */,
+				79B3C35B1DA4E8FE009AD46B /* SQ_WirteMessageController.m */,
+			);
+			path = "我要留言";
+			sourceTree = "<group>";
+		};
+		79B3C3671DA5047E009AD46B /* 留言选登 */ = {
+			isa = PBXGroup;
+			children = (
+				79B3C35D1DA4ED8C009AD46B /* SQ_MessageShowController.h */,
+				79B3C35E1DA4ED8C009AD46B /* SQ_MessageShowController.m */,
+			);
+			path = "留言选登";
+			sourceTree = "<group>";
+		};
+		79B3C3681DA504B8009AD46B /* 留言回复 */ = {
+			isa = PBXGroup;
+			children = (
+				79B3C3571DA4E0F2009AD46B /* SQ_intHallDetailViewController.h */,
+				79B3C3581DA4E0F2009AD46B /* SQ_intHallDetailViewController.m */,
+			);
+			path = "留言回复";
+			sourceTree = "<group>";
+		};
+		79B3C3691DA504D5009AD46B /* 顶部cell */ = {
+			isa = PBXGroup;
+			children = (
+				79B3C34E1DA4C19E009AD46B /* intHallTopCell.h */,
+				79B3C34F1DA4C19E009AD46B /* intHallTopCell.m */,
+			);
+			path = "顶部cell";
+			sourceTree = "<group>";
+		};
+		79B3C36A1DA50505009AD46B /* 普通cell */ = {
+			isa = PBXGroup;
+			children = (
+				79B3C3511DA4DBD0009AD46B /* SQ_intHallCell.h */,
+				79B3C3521DA4DBD0009AD46B /* SQ_intHallCell.m */,
+			);
+			path = "普通cell";
+			sourceTree = "<group>";
+		};
+		79B3C36B1DA5052F009AD46B /* 点击更多cell */ = {
+			isa = PBXGroup;
+			children = (
+				79B3C3541DA4DC7B009AD46B /* SQ_intHallMoreCell.h */,
+				79B3C3551DA4DC7B009AD46B /* SQ_intHallMoreCell.m */,
+			);
+			path = "点击更多cell";
+			sourceTree = "<group>";
+		};
+		79B3C36C1DA5054C009AD46B /* 留言选登cell */ = {
+			isa = PBXGroup;
+			children = (
+				79B3C3601DA4EEA4009AD46B /* SQ_MessageShowCell.h */,
+				79B3C3611DA4EEA4009AD46B /* SQ_MessageShowCell.m */,
+			);
+			path = "留言选登cell";
+			sourceTree = "<group>";
+		};
+		79B3C36D1DA50568009AD46B /* 留言回复cell */ = {
+			isa = PBXGroup;
+			children = (
+				79B3C3631DA4FCAD009AD46B /* SQ_intHallDetailCell.h */,
+				79B3C3641DA4FCAD009AD46B /* SQ_intHallDetailCell.m */,
+			);
+			path = "留言回复cell";
+			sourceTree = "<group>";
+		};
+		79B3C36E1DA505D4009AD46B /* view */ = {
+			isa = PBXGroup;
+			children = (
+				799EE67A1DA251DB00063852 /* SQ_CollectionServiceCell.h */,
+				799EE67B1DA251DB00063852 /* SQ_CollectionServiceCell.m */,
+				799EE67C1DA251DB00063852 /* SQ_CollectionServiceCell.xib */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		79BFE00C1D9279D7009F84D0 /* ChildController */ = {
@@ -1535,7 +1665,9 @@
 				7999624F1D9F79D600CCEF44 /* SQ_AffairsShowController.m in Sources */,
 				79AF83B41D9B51E10073C17A /* SQ_PictureDetailController.m in Sources */,
 				79790DB11D9AA40C005F0128 /* SQ_Picture.m in Sources */,
+				79B3C3651DA4FCAD009AD46B /* SQ_intHallDetailCell.m in Sources */,
 				79C538A91D97C22800A10164 /* SQ_LocalityCell.m in Sources */,
+				79B3C3591DA4E0F2009AD46B /* SQ_intHallDetailViewController.m in Sources */,
 				79BFE0341D927C1F009F84D0 /* SQ_LeftViewController.m in Sources */,
 				798141FA1D9154A4005BEA08 /* NSString+Categories.m in Sources */,
 				798E74B61D9A23A70050F9B3 /* SQ_Member.m in Sources */,
@@ -1544,21 +1676,26 @@
 				799EA8971D9E5C63003BAFF2 /* SQ_SearchDetailController.m in Sources */,
 				79AF83BC1D9B52520073C17A /* SQ_pictureScrollView.m in Sources */,
 				7999624B1D9F798400CCEF44 /* SQ_EnterDepController.m in Sources */,
+				79B3C3471DA4B3E3009AD46B /* SQ_SectionHeadView.m in Sources */,
 				798E74B91D9A44F90050F9B3 /* SQ_StructureCell.m in Sources */,
 				798141F51D9154A4005BEA08 /* NSArray+Categories.m in Sources */,
 				7974055E1D9424B700B8B376 /* SQ_TopView.m in Sources */,
 				79A360BC1D98D4E90090F80F /* SQ_EasyNewsCell.m in Sources */,
 				798E74FD1D9AA1D20050F9B3 /* SQ_Detail.m in Sources */,
+				79B3C3561DA4DC7B009AD46B /* SQ_intHallMoreCell.m in Sources */,
 				799EE69D1DA25F2500063852 /* SQ_categoriesCell.m in Sources */,
 				7981421C1D9158F3005BEA08 /* SQ_SateCouncilModel.m in Sources */,
 				7923F7B11D994095008F45B9 /* SQ_MenuButtonView.m in Sources */,
 				79A83F121D9525C300D226B7 /* SQ_CarouselView.m in Sources */,
+				79B3C35F1DA4ED8C009AD46B /* SQ_MessageShowController.m in Sources */,
+				79B3C3441DA4AD87009AD46B /* SQ_interactionHallViewController.m in Sources */,
 				798141FC1D9154A4005BEA08 /* NSUserDefaults+Categories.m in Sources */,
 				798141C01D915180005BEA08 /* SQ_BaseModel.m in Sources */,
 				799EE6A11DA2619800063852 /* SQ_ChildClassify.m in Sources */,
 				798141D41D915460005BEA08 /* FileManagerUtils.m in Sources */,
 				79BFE0231D927A8D009F84D0 /* SQ_HomeViewController.m in Sources */,
 				798141D91D915472005BEA08 /* HttpClient.m in Sources */,
+				79B3C35C1DA4E8FE009AD46B /* SQ_WirteMessageController.m in Sources */,
 				79C5386F1D976DA000A10164 /* SQ_TopNewsCell.m in Sources */,
 				7981418F1D915012005BEA08 /* ViewController.m in Sources */,
 				7981422E1D915A45005BEA08 /* AboutMe.text in Sources */,
@@ -1568,6 +1705,7 @@
 				7969DAFC1D9CC73700F2A477 /* SQ_BottonManger.m in Sources */,
 				798142281D9159A8005BEA08 /* SQ_GovAffHallView.m in Sources */,
 				798141FD1D9154A4005BEA08 /* UIButton+Block.m in Sources */,
+				79B3C3531DA4DBD0009AD46B /* SQ_intHallCell.m in Sources */,
 				798141DC1D915480005BEA08 /* DataBaseManager.m in Sources */,
 				798141F91D9154A4005BEA08 /* NSNumber+Extend.m in Sources */,
 				796462E51D969CD40045B35F /* SQ_ScrollNewCell.m in Sources */,
@@ -1591,9 +1729,11 @@
 				79BFE02A1D927B7B009F84D0 /* SQ_SCViewController.m in Sources */,
 				79BFE03E1D927D4C009F84D0 /* SQ_MainTabBarController.m in Sources */,
 				79C5389F1D97AE4500A10164 /* SQ_HalfVideoNewsView.m in Sources */,
+				79B3C3621DA4EEA4009AD46B /* SQ_MessageShowCell.m in Sources */,
 				79C5389B1D97A8D000A10164 /* SQ_NormalNewsView.m in Sources */,
 				798141891D915011005BEA08 /* main.m in Sources */,
 				79C538811D979D8300A10164 /* SQ_headNewsView.m in Sources */,
+				79B3C3501DA4C19E009AD46B /* intHallTopCell.m in Sources */,
 				799EA8941D9E4ACF003BAFF2 /* SQ_SearchViewController.m in Sources */,
 				798EBCAE1DA379650018325E /* SQ_infoPublicViewController.m in Sources */,
 				79D5F6811DA0C5DC008CB342 /* SQ_depNewsCell.m in Sources */,

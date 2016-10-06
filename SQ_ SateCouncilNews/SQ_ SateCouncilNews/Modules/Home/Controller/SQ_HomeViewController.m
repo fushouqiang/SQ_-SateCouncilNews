@@ -17,6 +17,7 @@
 #import "HttpClient.h"
 #import "SQ_Column.h"
 #import "NSObject+YYModel.h"
+#import "AudioViewController.h"
 
 
 
@@ -222,6 +223,13 @@ typedef void (^JsonSuccess)(id json);
             videoVC.title = [_columsArray[i] valueForKey:@"title"];
             [self addChildViewController:videoVC];
             
+        }else if(10 == i){
+            
+            
+            AudioViewController *audioVC = [[AudioViewController alloc] init];
+            audioVC.title = [_columsArray[i] valueForKey:@"title"];
+            [self addChildViewController:audioVC];
+        
         } else {
         
        
@@ -234,15 +242,7 @@ typedef void (^JsonSuccess)(id json);
         }
         
     }
-    
-//    PictureViewController *picVC = [[PictureViewController alloc] init];
-//    picVC.title = @"图片";
-//    [self addChildViewController:picVC];
-//    
-//    VideoViewController *videoVC = [[VideoViewController alloc] init];
-//    videoVC.view.backgroundColor = [UIColor whiteColor];
-//    videoVC.title = @"视频";
-//    [self addChildViewController:videoVC];
+
  
     
     

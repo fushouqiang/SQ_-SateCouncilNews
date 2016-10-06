@@ -114,6 +114,8 @@
 		79C2CC431DA5F46400A1CB7B /* SQ_DataChinaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C2CC421DA5F46400A1CB7B /* SQ_DataChinaCell.m */; };
 		79C2CC471DA5F51200A1CB7B /* SQ_DataChinaMoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C2CC461DA5F51200A1CB7B /* SQ_DataChinaMoreCell.m */; };
 		79C2CC4B1DA5F64700A1CB7B /* SQ_DataChinaDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C2CC4A1DA5F64700A1CB7B /* SQ_DataChinaDetailController.m */; };
+		79C2CC941DA5FE9600A1CB7B /* AudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C2CC931DA5FE9600A1CB7B /* AudioViewController.m */; };
+		79C2CC981DA600C800A1CB7B /* SQ_AudioCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C2CC971DA600C800A1CB7B /* SQ_AudioCell.m */; };
 		79C5386F1D976DA000A10164 /* SQ_TopNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C5386E1D976DA000A10164 /* SQ_TopNewsCell.m */; };
 		79C538781D97782C00A10164 /* SQ_HalfNewsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C538771D97782C00A10164 /* SQ_HalfNewsView.m */; };
 		79C5387B1D977D9000A10164 /* SQ_EasyNewsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C5387A1D977D9000A10164 /* SQ_EasyNewsView.m */; };
@@ -340,10 +342,10 @@
 		79B3C3611DA4EEA4009AD46B /* SQ_MessageShowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_MessageShowCell.m; sourceTree = "<group>"; };
 		79B3C3631DA4FCAD009AD46B /* SQ_intHallDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_intHallDetailCell.h; sourceTree = "<group>"; };
 		79B3C3641DA4FCAD009AD46B /* SQ_intHallDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_intHallDetailCell.m; sourceTree = "<group>"; };
-		79B3C36F1DA509AC009AD46B /* SQ_DataChinaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_DataChinaViewController.h; sourceTree = SOURCE_ROOT; };
-		79B3C3701DA509AC009AD46B /* SQ_DataChinaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_DataChinaViewController.m; sourceTree = SOURCE_ROOT; };
-		79B3C3731DA50C53009AD46B /* SQ_datacTopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_datacTopCell.h; sourceTree = SOURCE_ROOT; };
-		79B3C3741DA50C53009AD46B /* SQ_datacTopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_datacTopCell.m; sourceTree = SOURCE_ROOT; };
+		79B3C36F1DA509AC009AD46B /* SQ_DataChinaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_DataChinaViewController.h; sourceTree = "<group>"; };
+		79B3C3701DA509AC009AD46B /* SQ_DataChinaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_DataChinaViewController.m; sourceTree = "<group>"; };
+		79B3C3731DA50C53009AD46B /* SQ_datacTopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_datacTopCell.h; sourceTree = "<group>"; };
+		79B3C3741DA50C53009AD46B /* SQ_datacTopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_datacTopCell.m; sourceTree = "<group>"; };
 		79BFE00D1D927A0B009F84D0 /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
 		79BFE00E1D927A0B009F84D0 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
 		79BFE00F1D927A0B009F84D0 /* PremierViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PremierViewController.h; sourceTree = "<group>"; };
@@ -358,14 +360,18 @@
 		79BFE0331D927C1F009F84D0 /* SQ_LeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_LeftViewController.m; sourceTree = "<group>"; };
 		79BFE03C1D927D4C009F84D0 /* SQ_MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_MainTabBarController.h; sourceTree = "<group>"; };
 		79BFE03D1D927D4C009F84D0 /* SQ_MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_MainTabBarController.m; sourceTree = "<group>"; };
-		79C2CC3D1DA5F14C00A1CB7B /* SQ_GDPPIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_GDPPIViewController.h; sourceTree = SOURCE_ROOT; };
-		79C2CC3E1DA5F14C00A1CB7B /* SQ_GDPPIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_GDPPIViewController.m; sourceTree = SOURCE_ROOT; };
-		79C2CC411DA5F46400A1CB7B /* SQ_DataChinaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_DataChinaCell.h; sourceTree = SOURCE_ROOT; };
-		79C2CC421DA5F46400A1CB7B /* SQ_DataChinaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_DataChinaCell.m; sourceTree = SOURCE_ROOT; };
-		79C2CC451DA5F51200A1CB7B /* SQ_DataChinaMoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_DataChinaMoreCell.h; sourceTree = SOURCE_ROOT; };
-		79C2CC461DA5F51200A1CB7B /* SQ_DataChinaMoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_DataChinaMoreCell.m; sourceTree = SOURCE_ROOT; };
-		79C2CC491DA5F64700A1CB7B /* SQ_DataChinaDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_DataChinaDetailController.h; sourceTree = SOURCE_ROOT; };
-		79C2CC4A1DA5F64700A1CB7B /* SQ_DataChinaDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_DataChinaDetailController.m; sourceTree = SOURCE_ROOT; };
+		79C2CC3D1DA5F14C00A1CB7B /* SQ_GDPPIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_GDPPIViewController.h; sourceTree = "<group>"; };
+		79C2CC3E1DA5F14C00A1CB7B /* SQ_GDPPIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_GDPPIViewController.m; sourceTree = "<group>"; };
+		79C2CC411DA5F46400A1CB7B /* SQ_DataChinaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_DataChinaCell.h; sourceTree = "<group>"; };
+		79C2CC421DA5F46400A1CB7B /* SQ_DataChinaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_DataChinaCell.m; sourceTree = "<group>"; };
+		79C2CC451DA5F51200A1CB7B /* SQ_DataChinaMoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_DataChinaMoreCell.h; sourceTree = "<group>"; };
+		79C2CC461DA5F51200A1CB7B /* SQ_DataChinaMoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_DataChinaMoreCell.m; sourceTree = "<group>"; };
+		79C2CC491DA5F64700A1CB7B /* SQ_DataChinaDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_DataChinaDetailController.h; sourceTree = "<group>"; };
+		79C2CC4A1DA5F64700A1CB7B /* SQ_DataChinaDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_DataChinaDetailController.m; sourceTree = "<group>"; };
+		79C2CC921DA5FE9600A1CB7B /* AudioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioViewController.h; sourceTree = "<group>"; };
+		79C2CC931DA5FE9600A1CB7B /* AudioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioViewController.m; sourceTree = "<group>"; };
+		79C2CC961DA600C800A1CB7B /* SQ_AudioCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_AudioCell.h; sourceTree = "<group>"; };
+		79C2CC971DA600C800A1CB7B /* SQ_AudioCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_AudioCell.m; sourceTree = "<group>"; };
 		79C5386D1D976DA000A10164 /* SQ_TopNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_TopNewsCell.h; sourceTree = "<group>"; };
 		79C5386E1D976DA000A10164 /* SQ_TopNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_TopNewsCell.m; sourceTree = "<group>"; };
 		79C538761D97782C00A10164 /* SQ_HalfNewsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_HalfNewsView.h; sourceTree = "<group>"; };
@@ -713,6 +719,7 @@
 				79C538AA1D97C72A00A10164 /* 部门新闻cell */,
 				79C538A11D97B4A900A10164 /* 非要闻头新闻cell */,
 				79C538821D97A31A00A10164 /* 非要闻头视图View */,
+				79C2CC951DA6009400A1CB7B /* 音频新闻cell */,
 				79C5388B1D97A44500A10164 /* 音频新闻view */,
 			);
 			path = View;
@@ -890,10 +897,10 @@
 		798EBCB01DA37E9E0018325E /* 数据中国 */ = {
 			isa = PBXGroup;
 			children = (
+				79C2CC3C1DA5F11400A1CB7B /* GDPPI */,
+				79C2CC401DA5F44700A1CB7B /* 普通cell */,
 				79C2CC481DA5F61700A1CB7B /* 更多 */,
 				79C2CC441DA5F4F100A1CB7B /* 点击跟多cell */,
-				79C2CC401DA5F44700A1CB7B /* 普通cell */,
-				79C2CC3C1DA5F11400A1CB7B /* GDPPI */,
 				79B3C3721DA50C2B009AD46B /* 顶部cell */,
 				79B3C36F1DA509AC009AD46B /* SQ_DataChinaViewController.h */,
 				79B3C3701DA509AC009AD46B /* SQ_DataChinaViewController.m */,
@@ -1200,12 +1207,14 @@
 				79B3C3731DA50C53009AD46B /* SQ_datacTopCell.h */,
 				79B3C3741DA50C53009AD46B /* SQ_datacTopCell.m */,
 			);
-			name = "顶部cell";
+			path = "顶部cell";
 			sourceTree = "<group>";
 		};
 		79BFE00C1D9279D7009F84D0 /* ChildController */ = {
 			isa = PBXGroup;
 			children = (
+				79C2CC921DA5FE9600A1CB7B /* AudioViewController.h */,
+				79C2CC931DA5FE9600A1CB7B /* AudioViewController.m */,
 				79BFE00D1D927A0B009F84D0 /* NewsViewController.h */,
 				79BFE00E1D927A0B009F84D0 /* NewsViewController.m */,
 				79AF83A81D9B4B840073C17A /* PictureViewController.h */,
@@ -1260,7 +1269,7 @@
 				79C2CC3D1DA5F14C00A1CB7B /* SQ_GDPPIViewController.h */,
 				79C2CC3E1DA5F14C00A1CB7B /* SQ_GDPPIViewController.m */,
 			);
-			name = GDPPI;
+			path = GDPPI;
 			sourceTree = "<group>";
 		};
 		79C2CC401DA5F44700A1CB7B /* 普通cell */ = {
@@ -1269,7 +1278,7 @@
 				79C2CC411DA5F46400A1CB7B /* SQ_DataChinaCell.h */,
 				79C2CC421DA5F46400A1CB7B /* SQ_DataChinaCell.m */,
 			);
-			name = "普通cell";
+			path = "普通cell";
 			sourceTree = "<group>";
 		};
 		79C2CC441DA5F4F100A1CB7B /* 点击跟多cell */ = {
@@ -1278,7 +1287,7 @@
 				79C2CC451DA5F51200A1CB7B /* SQ_DataChinaMoreCell.h */,
 				79C2CC461DA5F51200A1CB7B /* SQ_DataChinaMoreCell.m */,
 			);
-			name = "点击跟多cell";
+			path = "点击跟多cell";
 			sourceTree = "<group>";
 		};
 		79C2CC481DA5F61700A1CB7B /* 更多 */ = {
@@ -1287,7 +1296,16 @@
 				79C2CC491DA5F64700A1CB7B /* SQ_DataChinaDetailController.h */,
 				79C2CC4A1DA5F64700A1CB7B /* SQ_DataChinaDetailController.m */,
 			);
-			name = "更多";
+			path = "更多";
+			sourceTree = "<group>";
+		};
+		79C2CC951DA6009400A1CB7B /* 音频新闻cell */ = {
+			isa = PBXGroup;
+			children = (
+				79C2CC961DA600C800A1CB7B /* SQ_AudioCell.h */,
+				79C2CC971DA600C800A1CB7B /* SQ_AudioCell.m */,
+			);
+			path = "音频新闻cell";
 			sourceTree = "<group>";
 		};
 		79C538821D97A31A00A10164 /* 非要闻头视图View */ = {
@@ -1738,6 +1756,7 @@
 				79B3C3651DA4FCAD009AD46B /* SQ_intHallDetailCell.m in Sources */,
 				79C2CC3F1DA5F14C00A1CB7B /* SQ_GDPPIViewController.m in Sources */,
 				79C538A91D97C22800A10164 /* SQ_LocalityCell.m in Sources */,
+				79C2CC941DA5FE9600A1CB7B /* AudioViewController.m in Sources */,
 				79B3C3591DA4E0F2009AD46B /* SQ_intHallDetailViewController.m in Sources */,
 				79BFE0341D927C1F009F84D0 /* SQ_LeftViewController.m in Sources */,
 				79B3C3711DA509AC009AD46B /* SQ_DataChinaViewController.m in Sources */,
@@ -1753,6 +1772,7 @@
 				798141F51D9154A4005BEA08 /* NSArray+Categories.m in Sources */,
 				7974055E1D9424B700B8B376 /* SQ_TopView.m in Sources */,
 				79A360BC1D98D4E90090F80F /* SQ_EasyNewsCell.m in Sources */,
+				79C2CC981DA600C800A1CB7B /* SQ_AudioCell.m in Sources */,
 				798E74FD1D9AA1D20050F9B3 /* SQ_Detail.m in Sources */,
 				79B3C3561DA4DC7B009AD46B /* SQ_intHallMoreCell.m in Sources */,
 				799EE69D1DA25F2500063852 /* SQ_categoriesCell.m in Sources */,

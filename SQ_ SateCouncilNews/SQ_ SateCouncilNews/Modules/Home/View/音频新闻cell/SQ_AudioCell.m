@@ -18,7 +18,7 @@
 @property (nonatomic, strong) UIImageView *newsImageView;
 @property (nonatomic, strong) UILabel *contentLabel;
 @property (nonatomic, retain) UILabel *timeLabel;
-@property (nonatomic, strong) UILabel *signLabel;
+
 @property (nonatomic, strong) UIButton *audioButton;
 
 @property (nonatomic, strong) __block AVPlayerItem *item;
@@ -79,25 +79,30 @@
             make.width.equalTo(40);
             make.height.equalTo(40);
         }];
-        [_audioButton setImage:[UIImage imageNamed:@"audioButton"] forState:UIControlStateNormal];
+        [_audioButton setImage:[UIImage imageNamed:@"audioPlayButton"] forState:UIControlStateNormal];
         [_audioButton addTarget:self action:@selector(playButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+//        if (_isUsed == YES) {
+//            
+//                [_audioButton setImage:[UIImage imageNamed:@"audioButton"] forState:UIControlStateNormal];
+//        }
         
         
 //        
-//        self.signLabel = [[UILabel alloc] init];
-//        [self.contentView addSubview:_signLabel];
-//        [_signLabel makeConstraints:^(MASConstraintMaker *make) {
-//            
-//            make.top.equalTo(_contentLabel.bottom).offset(5);
-//            make.left.equalTo(_timeLabel.right).offset(20);
-//            make.width.equalTo(WIDTH / 12);
-//            make.height.equalTo(14);
-//            
-//            
-//        }];
-//        _signLabel.textColor = [UIColor colorWithRed:0.316 green:0.524 blue:0.968 alpha:1.000];
-//        _signLabel.font = [UIFont systemFontOfSize:10];
-//        _signLabel.textAlignment = NSTextAlignmentCenter;
+        self.signLabel = [[UILabel alloc] init];
+        [self.contentView addSubview:_signLabel];
+        [_signLabel makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.top.equalTo(_audioButton).offset(5);
+            make.right.equalTo(self.contentView.right).offset(-10);
+            make.width.equalTo(WIDTH / 4);
+            make.height.equalTo(14);
+            
+            
+        }];
+        _signLabel.textColor = [UIColor colorWithRed:0.316 green:0.524 blue:0.968 alpha:1.000];
+        _signLabel.font = [UIFont systemFontOfSize:10];
+        _signLabel.textAlignment = NSTextAlignmentCenter;
         
         
     }

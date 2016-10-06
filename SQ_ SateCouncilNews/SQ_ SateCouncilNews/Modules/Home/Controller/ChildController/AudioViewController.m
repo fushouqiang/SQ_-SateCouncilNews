@@ -46,7 +46,6 @@ typedef void (^JsonSuccess)(id json);
     self.dataNumber = 0;
     self.player = [[AVPlayer alloc]init];
     
-    
     // Do any additional setup after loading the view.
 }
 
@@ -55,7 +54,13 @@ typedef void (^JsonSuccess)(id json);
     //    [self handleData];
     //    self.dataNumber = 0;
     
+    
 }
+
+- (void)timer
+{
+  }
+
 
 - (void)createTableView {
     
@@ -197,13 +202,19 @@ typedef void (^JsonSuccess)(id json);
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.article = _articleArray[indexPath.row];
         __block SQ_AudioCell *  blockcell = cell;
-//       __block SQ_AudioCell *lastCell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_dataNumber inSection:0]];
+        
+        
+        if (_cellNumber != 0) {
+            SQ_AudioCell *lastCell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_cellNumber inSection:0]];
+            lastCell.isPlay = NO;
+
+            
+        }
+       
         
         cell.block = ^(AVPlayerItem *item) {
-            
-//            lastCell.isPlay = NO;
-           
-            
+
+//            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:_cellNumber inSection:0],nil] withRowAnimation:UITableViewRowAnimationNone];
             
             
             if (_playerItem == nil || (self.cellNumber != indexPath.row)) {
@@ -223,7 +234,12 @@ typedef void (^JsonSuccess)(id json);
             {
                 [_player pause];
             }
-             self.cellNumber = indexPath.row;
+            
+            if (_cellNumber != indexPath.row) {
+                self.cellNumber = indexPath.row;
+            }
+            
+            
             
             
         };

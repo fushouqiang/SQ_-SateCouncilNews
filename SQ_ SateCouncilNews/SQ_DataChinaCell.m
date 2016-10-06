@@ -1,22 +1,22 @@
 //
-//  SQ_intHallCell.m
+//  SQ_DataChinaCell.m
 //  SQ_ SateCouncilNews
 //
-//  Created by FuShouqiang on 16/10/5.
+//  Created by FuShouqiang on 16/10/6.
 //  Copyright © 2016年 fu. All rights reserved.
 //
 
-#import "SQ_intHallCell.h"
+#import "SQ_DataChinaCell.h"
 #import "SQ_Article.h"
 #import "NSObject+YYModel.h"
 #import "UIImageView+WebCache.h"
-@interface SQ_intHallCell ()
+@interface SQ_DataChinaCell ()
 
 @property (nonatomic, strong) UILabel *contentLabel;
 @property (nonatomic, retain) UILabel *timeLabel;
 @property (nonatomic, strong) UILabel *signLabel;
 @end
-@implementation SQ_intHallCell
+@implementation SQ_DataChinaCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];

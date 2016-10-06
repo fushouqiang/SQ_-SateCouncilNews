@@ -14,6 +14,7 @@
 #import "SQ_ServiceHallViewController.h"
 #import "SQ_infoPublicViewController.h"
 #import "SQ_interactionHallViewController.h"
+#import "SQ_DataChinaViewController.h"
 
 @interface SQ_AffairsHallViewController ()
 
@@ -330,7 +331,9 @@
             break;
         case 4:
         {
-            
+            SQ_DataChinaViewController *DcVC = [[SQ_DataChinaViewController alloc] init];
+            DcVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:DcVC animated:YES];
         }
             break;
         case 5:

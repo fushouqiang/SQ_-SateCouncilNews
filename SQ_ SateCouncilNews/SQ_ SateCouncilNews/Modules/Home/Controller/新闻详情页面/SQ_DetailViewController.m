@@ -75,10 +75,10 @@ typedef void (^JsonSuccess)(id json);
     [self.view addSubview:_webView];
     self.view.backgroundColor = [UIColor whiteColor];
     [_webView makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view.top);
+        make.top.equalTo(self.view.top).offset(64);
         make.left.equalTo(self.view);
         make.width.equalTo(WIDTH);
-        make.height.equalTo(HEIGHT - 60);
+        make.height.equalTo(HEIGHT - 128);
     }];
     NSString *urlString = self.article.shareUrl;
     NSURL *url = [NSURL URLWithString:urlString];

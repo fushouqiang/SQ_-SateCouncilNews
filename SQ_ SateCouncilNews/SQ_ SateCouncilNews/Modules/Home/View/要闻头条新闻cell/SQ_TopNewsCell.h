@@ -11,8 +11,8 @@
 
 @protocol topNewsDelegate <NSObject>
 
+- (void)H5ServiceTouch:(SQ_Article *)article;
 
-- (void)topNewsTouchData:(SQ_Article *)article;
 
 @end
 
@@ -22,6 +22,7 @@
 
 @property (nonatomic, strong)NSDictionary *dataDic;
 
+@property (nonatomic, strong) void(^block)(SQ_Article* article);
 @property (nonatomic, weak)id<topNewsDelegate>delegate;
 
 @end

@@ -75,11 +75,11 @@ UIScrollViewDelegate
     
     NSInteger i = scrollView.contentOffset.x / WIDTH;
     //代理传值
-    if (self.delegate && [self.delegate respondsToSelector:@selector(touchIndexWithdata:)]) {
+
         SQ_News *news = _dataSourceArray[i - 1];
         SQ_Article *article = news.article;
-        [self.delegate touchIndexWithdata:article];
-    }
+        self.block(article);
+    
 
     
 }

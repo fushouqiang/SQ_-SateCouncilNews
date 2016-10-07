@@ -9,15 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "SQ_Article.h"
 
-@protocol audioNewsDelegate <NSObject>
-
-- (void)audioNewsWithData:(SQ_Article *)article;
-
-@end
 
 @interface SQ_AvdioCell : UITableViewCell
 
 @property (nonatomic, strong)NSDictionary *dataDic;
-@property (nonatomic, weak)id<audioNewsDelegate>delegate;
+@property (nonatomic, strong) void(^block)(SQ_Article* article);
 
 @end

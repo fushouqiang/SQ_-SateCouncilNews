@@ -51,16 +51,16 @@
     
     if (tap.view == _newsView1) {
         
-        [self.delegate audioNewsWithData:_newsView1.article];
+        self.block(_newsView1.article);
     }
     else if (tap.view == _newsView2) {
-        [self.delegate audioNewsWithData:_newsView2.article];
+        self.block(_newsView2.article);
     }
     else if (tap.view == _newsView3) {
-        [self.delegate audioNewsWithData:_newsView3.article];
+        self.block(_newsView3.article);
     }
     else if (tap.view == _newsView4) {
-        [self.delegate audioNewsWithData:_newsView4.article];
+        self.block(_newsView4.article);
     }
 
 }

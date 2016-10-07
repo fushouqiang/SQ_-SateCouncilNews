@@ -83,6 +83,9 @@ typedef void (^JsonSuccess)(id json);
     NSString *urlString = self.article.shareUrl;
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSLog(@"%@",urlString);
+    
+    
     [self.webView loadRequest:request];
     self.webView.delegate = self;
     _webView.scrollView.bounces = NO;
@@ -105,7 +108,7 @@ typedef void (^JsonSuccess)(id json);
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return _articleArray.count;
 }
 
 

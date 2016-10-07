@@ -9,14 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "SQ_Article.h"
 
-@protocol localityNewsDelegate <NSObject>
-
-- (void)localityNewsWithData:(SQ_Article *)article;
-
-@end
 
 @interface SQ_LocalityCell : UITableViewCell
 
 @property (nonatomic, strong) NSDictionary *dataDic;
-@property (nonatomic, weak) id<localityNewsDelegate>delegate;
+@property (nonatomic, strong) void(^block)(SQ_Article* article);
 @end

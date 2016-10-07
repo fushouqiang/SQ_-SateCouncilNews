@@ -54,22 +54,22 @@
     
     if (tap.view == _newsView1) {
         
-        [self.delegate topNewsTouchData:_newsView1.article];
+        self.block(_newsView1.article);
     }
     else if (tap.view == _newsView2) {
-        [self.delegate topNewsTouchData:_newsView2.article];
+         self.block(_newsView2.article);
     }
     else if (tap.view == _newsView3) {
-        [self.delegate topNewsTouchData:_newsView3.article];
+         self.block(_newsView3.article);
     }
     else if (tap.view == _newsView4) {
-        [self.delegate topNewsTouchData:_newsView4.article];
+         self.block(_newsView4.article);
     }
     else if (tap.view == _newsView5) {
-        [self.delegate topNewsTouchData:_newsView5.article];
+         self.block(_newsView5.article);
     }
     else if (tap.view == _newsView6) {
-        [self.delegate topNewsTouchData:_newsView6.article];
+        [self.delegate H5ServiceTouch:_newsView6.article];
     }
     
 }

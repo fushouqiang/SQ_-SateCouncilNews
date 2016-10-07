@@ -36,10 +36,10 @@
 - (void)tapAction:(UITapGestureRecognizer *)tap {
     if (tap.view == _newsView1) {
         
-        [self.delegate interviewNewsWithData:_newsView1.article];
+        self.block(_newsView1.article);
     }
     else if (tap.view == _newsView2) {
-        [self.delegate interviewNewsWithData:_newsView2.article];
+        self.block(_newsView2.article);
         
     }
     

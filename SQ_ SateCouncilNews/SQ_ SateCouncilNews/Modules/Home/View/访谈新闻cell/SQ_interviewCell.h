@@ -8,13 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "SQ_Article.h"
-@protocol interviewNewsDelegate <NSObject>
 
-- (void)interviewNewsWithData:(SQ_Article *)article;
-
-@end
 @interface SQ_interviewCell : UITableViewCell
 
 @property (nonatomic, strong) NSDictionary *dataDic;
-@property (nonatomic, weak) id<interviewNewsDelegate>delegate;
+@property (nonatomic, strong) void(^block)(SQ_Article* article);
 @end

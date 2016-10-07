@@ -14,6 +14,7 @@
 #import "SQ_DetailViewController.h"
 #import "SQ_Article.h"
 #import "NSObject+YYModel.h"
+#import "SQ_H5ServiceDetailController.h"
 
 @interface PremierViewController ()
 <
@@ -120,6 +121,8 @@ typedef void (^JsonSuccess)(id json);
     
 }
 
+
+
 - (void)reloadData {
     [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/columns/column_%@_%zd.json",_column.columnId,_dataNumber] json:^(id json) {
         
@@ -158,11 +161,21 @@ typedef void (^JsonSuccess)(id json);
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    if ([_column.columnId intValue]== 476 && indexPath.row == 0) {
+        
+        SQ_H5ServiceDetailController *h5VC = [[SQ_H5ServiceDetailController alloc] init];
+        h5VC.article = _articleArray[indexPath.row];
+        h5VC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:h5VC animated:YES];
+        
+    }
+    else {
+
     SQ_DetailViewController *detailVC = [[SQ_DetailViewController alloc] init];
     detailVC.article = _articleArray[indexPath.row];
     detailVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detailVC animated:YES];
-    
+    }
 }
 
 

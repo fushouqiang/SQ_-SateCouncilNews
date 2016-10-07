@@ -8,12 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "SQ_Article.h"
-@protocol departmentNewsDelegate <NSObject>
 
-- (void)departmentNewsWithData:(SQ_Article *)article;
 
-@end
 @interface SQ_departmentCell : UITableViewCell
 @property (nonatomic, strong) NSDictionary *dataDic;
-@property (nonatomic, weak) id<departmentNewsDelegate>delegate;
+@property (nonatomic, strong) void(^block)(SQ_Article* article);
 @end

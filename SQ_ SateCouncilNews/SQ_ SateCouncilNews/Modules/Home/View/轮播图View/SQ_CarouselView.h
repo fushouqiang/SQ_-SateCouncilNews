@@ -9,17 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "SQ_Article.h"
 
-@protocol touchIndexDelegate <NSObject>
-
-- (void)touchIndexWithdata:(SQ_Article *)data;
-
-
-@end
 
 @interface SQ_CarouselView : UIView
 
 @property (nonatomic, strong) NSDictionary *dataDic;
 
-@property (nonatomic, weak) id<touchIndexDelegate>delegate;
+@property (nonatomic, strong) void(^block)(SQ_Article* article);
 
 @end

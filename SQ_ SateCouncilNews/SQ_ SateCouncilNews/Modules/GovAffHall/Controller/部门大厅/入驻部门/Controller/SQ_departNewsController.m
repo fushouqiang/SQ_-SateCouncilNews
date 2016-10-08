@@ -141,7 +141,6 @@ UIScrollViewDelegate
 - (void)setupContentScrollView {
     
     CGFloat y = CGRectGetMaxY(self.headScrollView.frame);
-    NSLog(@"%f",y);
     UIScrollView *contentScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, y, self.view.frame.size.width, self.view.bounds.size.height - y)];
     
     [self.view addSubview:contentScrollView];
@@ -182,9 +181,7 @@ UIScrollViewDelegate
 
 
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
-    
-    
-    NSLog(@"%f",scrollView.contentOffset.y);
+
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {

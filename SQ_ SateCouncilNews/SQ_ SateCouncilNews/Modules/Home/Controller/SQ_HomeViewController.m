@@ -8,7 +8,6 @@
 
 #import "SQ_HomeViewController.h"
 #import "NewsViewController.h"
-#import "PremierViewController.h"
 #import "MMDrawerBarButtonItem.h"
 #import "UIViewController+MMDrawerController.h"
 #import "PictureViewController.h"
@@ -18,7 +17,8 @@
 #import "SQ_Column.h"
 #import "NSObject+YYModel.h"
 #import "AudioViewController.h"
-
+#import <DKNightVersion/DKNightVersion.h>
+#import "SQ_GeneralViewController.h"
 
 
 @interface SQ_HomeViewController ()
@@ -234,7 +234,7 @@ typedef void (^JsonSuccess)(id json);
         
        
         
-        PremierViewController *VC = [[PremierViewController alloc] init];
+        SQ_GeneralViewController *VC = [[SQ_GeneralViewController alloc] init];
         VC.title = [_columsArray[i] valueForKey:@"title"];
         
         [self addChildViewController:VC];
@@ -278,8 +278,9 @@ typedef void (^JsonSuccess)(id json);
     }
     
     self.headScrollView.contentSize =CGSizeMake(allLength, 0);;
-    self.headScrollView.backgroundColor = [UIColor colorWithRed:0.034 green:0.495 blue:0.703 alpha:1.000];
+    self.headScrollView.dk_backgroundColorPicker = DKColorPickerWithRGB(0x347EB3, 0x343434, 0xfafafa);
     self.contentScrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width * count, 0);
+    
    
 }
 
@@ -338,7 +339,7 @@ typedef void (^JsonSuccess)(id json);
     } else {
     
     
-    PremierViewController *VC = self.childViewControllers[i];
+    SQ_GeneralViewController *VC = self.childViewControllers[i];
     
     //如果已经加载了就不设置frame
     if (VC.view.superview) {

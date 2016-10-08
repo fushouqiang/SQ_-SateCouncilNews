@@ -11,7 +11,8 @@
 #import "SQ_DetailViewController.h"
 #import "SQ_SdetailViewController.h"
 #import "DataBaseManager.h"
-
+#import "SQ_SavedCell.h"
+#import <DKNightVersion/DKNightVersion.h>
 @interface SQ_SavedViewController ()
 <
 UITableViewDelegate,
@@ -42,17 +43,35 @@ UITableViewDataSource
     [backButton setImage:[UIImage imageNamed:@"backButton"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *selectButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.view addSubview:selectButton];
-    [selectButton makeConstraints:^(MASConstraintMaker *make) {
+    UILabel *titleLabel = [[UILabel alloc] init];
+    [self.view addSubview:titleLabel];
+    [titleLabel makeConstraints:^(MASConstraintMaker *make) {
         
-        make.right.equalTo(self.view.right).offset(-10);
+        make.centerX.equalTo(self.view.centerX);
         make.top.equalTo(self.view.top).offset(40);
         make.height.equalTo(35);
-        make.width.equalTo(45);
+        make.width.equalTo(150);
+
+        
     }];
-    [selectButton setImage:[UIImage imageNamed:@"backButton"] forState:UIControlStateNormal];
-    [selectButton addTarget:self action:@selector(selectButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    titleLabel.dk_backgroundColorPicker = DKColorPickerWithRGB(0x347EB3, 0x343434, 0xfafafa);
+    titleLabel.text = @"您的收藏如下";
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.textColor = [UIColor whiteColor];
+    
+    
+    
+//    UIButton *selectButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [self.view addSubview:selectButton];
+//    [selectButton makeConstraints:^(MASConstraintMaker *make) {
+//        
+//        make.right.equalTo(self.view.right).offset(-10);
+//        make.top.equalTo(self.view.top).offset(40);
+//        make.height.equalTo(35);
+//        make.width.equalTo(45);
+//    }];
+//    [selectButton setImage:[UIImage imageNamed:@"backButton"] forState:UIControlStateNormal];
+//    [selectButton addTarget:self action:@selector(selectButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
     //操作数据库赋值
     self.manager = [DataBaseManager shareManager];
@@ -112,13 +131,12 @@ UITableViewDataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *cellIdentifier = @"Cell";
-    SQ_normalCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    SQ_SavedCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (nil == cell) {
-        cell = [[SQ_normalCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier] ;
+        cell = [[SQ_SavedCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier] ;
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.article = _articleAarray[indexPath.row];
-//    cell.backgroundView = [UIColor grayColor];
     return cell;
 
 

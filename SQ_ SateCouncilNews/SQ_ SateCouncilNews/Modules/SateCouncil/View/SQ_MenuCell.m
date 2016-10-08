@@ -18,6 +18,7 @@ static NSString *const cellIdentifier = @"cell";
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) NSMutableArray *imageArray;
 @property (nonatomic, strong) NSArray *titleArray;
+@property (nonatomic, strong) NSArray *categoryArray;
 
 @end
 
@@ -75,7 +76,10 @@ static NSString *const cellIdentifier = @"cell";
 - (void)tapAction:(UITapGestureRecognizer *)tap {
     
     SQ_MenuButtonView *view = (SQ_MenuButtonView *)tap.view;
-    NSLog(@"%zd",view.tag);
+//    NSLog(@"%zd",view.tag);
+//    NSLog(@"%@",_categoryArray[view.tag - 1000]);
+    NSString *category = _categoryArray[view.tag - 1000];
+    self.block(category);
 }
 
 
@@ -91,6 +95,7 @@ static NSString *const cellIdentifier = @"cell";
     }
     
     self.titleArray = @[@"会议",@"活动",@"出访",@"讲话",@"批示",@"致电",@"通话",@"回信",@"文章",@"参加",@"图片",@"视频"];
+    self.categoryArray = @[@"10054",@"10055",@"10056",@"10058",@"10178",@"10179",@"10180",@"10181",@"10059",@"10057",@"10060",@"10061"];
     
  
 

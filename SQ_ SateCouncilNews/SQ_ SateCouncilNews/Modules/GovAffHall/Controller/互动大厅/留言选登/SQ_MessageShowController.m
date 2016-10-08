@@ -37,7 +37,7 @@ typedef void (^JsonSuccess)(id json);
     [super viewDidLoad];
     self.articleArray = [NSMutableArray array];
     [self createTableView];
-    self.navigationItem.title = _titleName;
+    self.navigationItem.title = @"留言选登";
     
     self.dataNumber = 0;
     
@@ -68,7 +68,7 @@ typedef void (^JsonSuccess)(id json);
     SQ_Article *article = _articleArray[indexPath.row];
     CGFloat height = [UILabel getHeightByWidth:WIDTH - 40 title:article.des Font:[UIFont systemFontOfSize:16]];
     
-    return height + 50;
+    return height + 70;
     
 }
 

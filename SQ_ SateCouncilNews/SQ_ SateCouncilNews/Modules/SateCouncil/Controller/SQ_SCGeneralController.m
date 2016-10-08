@@ -1,12 +1,12 @@
 //
-//  PremierViewController.m
-//  SQ_SCNews
+//  SQ_SCGeneralController.m
+//  SQ_ SateCouncilNews
 //
-//  Created by FuShouqiang on 16/9/20.
+//  Created by FuShouqiang on 16/10/8.
 //  Copyright © 2016年 fu. All rights reserved.
 //
 
-#import "PremierViewController.h"
+#import "SQ_SCGeneralController.h"
 #import "HttpClient.h"
 #import "SQ_normalCell.h"
 #import "SQ_headCell.h"
@@ -16,7 +16,7 @@
 #import "NSObject+YYModel.h"
 #import "SQ_H5ServiceDetailController.h"
 
-@interface PremierViewController ()
+@interface SQ_SCGeneralController ()
 <
 UITableViewDelegate,
 UITableViewDataSource
@@ -31,7 +31,7 @@ typedef void (^JsonSuccess)(id json);
 
 @end
 
-@implementation PremierViewController
+@implementation SQ_SCGeneralController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,7 +39,7 @@ typedef void (^JsonSuccess)(id json);
     
     [self createTableView];
     self.articleArray = [NSMutableArray array];
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     self.dataNumber = 0;
     
     
@@ -56,12 +56,12 @@ typedef void (^JsonSuccess)(id json);
 
 - (void)createTableView {
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 150) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [self.view addSubview:_tableView ];
     _tableView.backgroundColor = [UIColor whiteColor];
-    _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{   
+    _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         
         _flagNumber = _articleArray.count;
         _dataNumber++;
@@ -91,7 +91,7 @@ typedef void (^JsonSuccess)(id json);
     
     
     
-    [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/columns/column_%@_%zd.json",_column.columnId,_dataNumber] json:^(id json) {
+    [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/columns/columnCategory_%@_%zd.json",_category,_dataNumber]  json:^(id json) {
         
         if (json != NULL) {
             
@@ -110,7 +110,7 @@ typedef void (^JsonSuccess)(id json);
                 }
                 
             }
-      
+            
         }
         else {
             
@@ -124,7 +124,8 @@ typedef void (^JsonSuccess)(id json);
 
 
 - (void)reloadData {
-    [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/columns/column_%@_%zd.json",_column.columnId,_dataNumber] json:^(id json) {
+//    http://app.www.gov.cn/govdata/gov/columns/columnCategory_10178_0.json
+    [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/columns/columnCategory_%@_%zd.json",_category,_dataNumber] json:^(id json) {
         
         if (json != NULL) {
             
@@ -161,21 +162,12 @@ typedef void (^JsonSuccess)(id json);
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if ([_column.columnId intValue]== 476 && indexPath.row == 0) {
-        
-        SQ_H5ServiceDetailController *h5VC = [[SQ_H5ServiceDetailController alloc] init];
-        h5VC.article = _articleArray[indexPath.row];
-        h5VC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:h5VC animated:YES];
-        
-    }
-    else {
-
-    SQ_DetailViewController *detailVC = [[SQ_DetailViewController alloc] init];
-    detailVC.article = _articleArray[indexPath.row];
-    detailVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:detailVC animated:YES];
-    }
+    
+        SQ_DetailViewController *detailVC = [[SQ_DetailViewController alloc] init];
+        detailVC.article = _articleArray[indexPath.row];
+        detailVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:detailVC animated:YES];
+    
 }
 
 

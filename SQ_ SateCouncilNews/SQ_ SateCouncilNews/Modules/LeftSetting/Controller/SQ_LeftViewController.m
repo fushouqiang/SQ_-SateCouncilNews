@@ -5,11 +5,15 @@
 //  Created by FuShouqiang on 16/9/21.
 //  Copyright © 2016年 fu. All rights reserved.
 //
-
 #import "SQ_LeftViewController.h"
 #import "SQ_LeftCell.h"
 #import "DataBaseManager.h"
 #import "SQ_SavedViewController.h"
+#import <DKNightVersion/DKNightVersion.h>
+#import "UIImageView+WebCache.h"
+
+#define CACHEPATH [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject]
+
 
 static NSString *const cellIdentifier = @"cell";
 
@@ -23,6 +27,7 @@ UITableViewDataSource
 @property (nonatomic, strong) NSArray *imageNameArray;
 @property (nonatomic, strong) NSArray *textArray;
 @property (nonatomic, strong) DataBaseManager *manager;
+@property (nonatomic, assign) BOOL isNight;
 
 @end
 
@@ -64,9 +69,9 @@ UITableViewDataSource
         make.height.equalTo(30);
     }];
     imageView.image = [UIImage imageNamed:@"sideMenuLeftLogo"];
-    self.view.backgroundColor = [UIColor colorWithRed:0.034 green:0.495 blue:0.703 alpha:1.000];
+//    self.view.backgroundColor = [UIColor colorWithRed:0.034 green:0.495 blue:0.703 alpha:1.000];
+    self.view.dk_backgroundColorPicker = DKColorPickerWithRGB(0x347EB3, 0x343434, 0xfafafa);
 }
-
 
 - (void)createBottonUi {
  
@@ -113,7 +118,10 @@ UITableViewDataSource
         _tableView = [[UITableView alloc] init];
         _tableView.delegate = self;
         _tableView.scrollEnabled = NO;
-        _tableView.backgroundColor = [UIColor colorWithRed:0.034 green:0.495 blue:0.703 alpha:1.000];
+//        _tableView.backgroundColor = [UIColor colorWithRed:0.034 green:0.495 blue:0.703 alpha:1.000];
+        self.tableView.dk_backgroundColorPicker = DKColorPickerWithRGB(0x347EB3, 0x343434, 0xfafafa);
+        self.tableView.dk_separatorColorPicker = DKColorPickerWithKey(SEP);
+
         _tableView.dataSource  = self;
         [self.view addSubview:_tableView];
         [_tableView makeConstraints:^(MASConstraintMaker *make) {
@@ -134,7 +142,7 @@ UITableViewDataSource
 - (void)createData {
     
     self.imageNameArray = @[@"sideMenuLeftSaved",@"sideMenuLeftShare",@"sideMenuLeftCache",@"sideMenuLeftSetting",@"sideMenuLeftAboutus"];
-    self.textArray = @[@"我的收藏",@"推荐给朋友",@"离线阅读",@"设置",@"关于我们"];
+    self.textArray = @[@"主题切换",@"我的收藏",@"清除缓存",@"保留",@"关于我们"];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -145,7 +153,8 @@ UITableViewDataSource
     
     
     SQ_LeftCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    cell.backgroundColor = [UIColor colorWithRed:0.034 green:0.495 blue:0.703 alpha:1.000];
+//    cell.backgroundColor = [UIColor colorWithRed:0.034 green:0.495 blue:0.703 alpha:1.000];
+    cell.dk_backgroundColorPicker = DKColorPickerWithRGB(0x347EB3, 0x343434, 0xfafafa);
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.imageName = _imageNameArray[indexPath.row];
     cell.labelText = _textArray[indexPath.row];
@@ -157,6 +166,23 @@ UITableViewDataSource
     
     if (indexPath.row == 0) {
         
+        _isNight = !_isNight;
+        
+        
+        
+        if (_isNight) {
+            
+            self.dk_manager.themeVersion = DKThemeVersionNight;
+        } else {
+            self.dk_manager.themeVersion = DKThemeVersionNormal;
+        }
+        
+        
+        
+        
+        //收藏夹
+    } else if (indexPath.row == 1) {
+        
        
         
         SQ_SavedViewController *saveVC = [[SQ_SavedViewController alloc] init];
@@ -164,10 +190,151 @@ UITableViewDataSource
      
         [self presentViewController:saveVC animated:YES completion:nil];
 //        [self.navigationController pushViewController:saveVC animated:YES];
+        //清除缓存
+    } else if (indexPath.row == 2) {
+        
+        
+     
+        [self Clear];
+        //关于我们
+    } else if (indexPath.row == 4) {
+        
+        
+        
+        [self aboutUS];
         
     }
     
 }
+
+
+
+//关于我们
+
+
+- (void)aboutUS {
+    
+    UIAlertController *aboutUSAlertController = [UIAlertController alertControllerWithTitle:@"fsq制作于2016-09" message:@"仅供学习交流,请于下载后24小时之内自觉删除,作者本人不负任何法律责任" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [aboutUSAlertController addAction:action];
+    
+    
+    [self presentViewController:aboutUSAlertController animated:YES completion:nil];
+
+    
+    
+}
+
+
+
+//计算目录大小
+- (CGFloat)floatWithPath:(NSString *)path{
+    NSFileManager *fileManager=[NSFileManager defaultManager];
+    float folderSize;
+    if ([fileManager fileExistsAtPath:path]) {
+        NSArray *childerFiles = [fileManager subpathsAtPath:path];
+        for (NSString *fileName in childerFiles) {
+            NSString *fullPath = [path stringByAppendingPathComponent:fileName];
+            folderSize += [self fileSizeAtPath:fullPath];
+            //把SDwebImage缓存也加上
+            folderSize+=[[SDImageCache sharedImageCache] getSize]/1024.0/1024.0;
+        }
+    }
+    return folderSize;
+}
+
+
+//计算单个文件大小
+-(float)fileSizeAtPath:(NSString *)path{
+    
+    NSFileManager *fileManager=[NSFileManager defaultManager];
+    if([fileManager fileExistsAtPath:path]){
+        long long size=[fileManager attributesOfItemAtPath:path error:nil].fileSize;
+        return size/1024.0/1024.0;
+    }
+    return 0;
+}
+
+- (void)clearPath {
+    
+    NSString *path = CACHEPATH;
+    NSFileManager *fileManager=[NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:path]) {
+        NSArray *childerFiles=[fileManager subpathsAtPath:path];
+        for (NSString *fileName in childerFiles) {
+            NSString *absolutePath=[path stringByAppendingPathComponent:fileName];
+            [fileManager removeItemAtPath:absolutePath error:nil];
+        }
+    }
+    [[SDImageCache sharedImageCache] clearDisk];
+
+}
+
+
+- (NSString *)checkCache {
+    
+    NSString *path = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+    float folderSize = [self floatWithPath:path];
+    NSString *cache = [NSString stringWithFormat:@"%.2fM",folderSize];
+    return cache;
+}
+
+
+
+//清除缓存
+- (void)Clear {
+    
+    
+    
+   
+    
+    UIAlertController *clearCacheAlertController = [UIAlertController alertControllerWithTitle:@"当前缓存大小为,确认清除?" message:[self checkCache] preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *verifyAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [self clearPath];
+        
+        
+        [self clearDone];
+        
+        
+    }];
+    
+    
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"取消 " style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+   
+    [clearCacheAlertController addAction:action];
+    [clearCacheAlertController addAction:verifyAction];
+    
+    [self presentViewController:clearCacheAlertController animated:YES completion:nil];
+    
+
+    
+    
+}
+
+
+- (void)clearDone {
+    
+    UIAlertController *clearDoneAlertController = [UIAlertController alertControllerWithTitle:@"清除完成" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [clearDoneAlertController addAction:action];
+    
+    
+    [self presentViewController:clearDoneAlertController animated:YES completion:nil];
+    
+}
+
+
+
 
 
 

@@ -7,7 +7,7 @@
 //
 
 #import "SQ_LeftCell.h"
-
+#import <DKNightVersion/DKNightVersion.h>
 @interface SQ_LeftCell ()
 
 @property (nonatomic, strong) UIImageView *settingImageView;
@@ -39,6 +39,8 @@
         self.settingTextLabel = [[UILabel alloc] init];
         [self.contentView addSubview:_settingTextLabel];
         _settingTextLabel.textColor = [UIColor whiteColor];
+
+
         [_settingTextLabel makeConstraints:^(MASConstraintMaker *make) {
             
             make.left.equalTo(_settingImageView.right);

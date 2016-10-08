@@ -102,7 +102,15 @@
         self.contentLabel.text = article.title;
         NSString *str = [article.path substringToIndex:9];
         self.timeLabel.text = str;
+        
+        
+        
         self.signLabel.text = article.feature;
+        
+        if (article.feature == nil) {
+            
+            [_signLabel removeFromSuperview];
+        }
     }
     
 }

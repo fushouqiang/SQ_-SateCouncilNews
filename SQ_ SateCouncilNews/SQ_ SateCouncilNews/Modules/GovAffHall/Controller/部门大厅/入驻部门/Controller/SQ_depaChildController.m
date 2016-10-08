@@ -13,6 +13,7 @@
 #import "SQ_depNewsCell.h"
 #import "SQ_DetailViewController.h"
 #import "MJRefresh.h"
+#import "SQ_depaDetailViewController.h"
 static NSString *const cellIdentifier = @"cell";
 @interface SQ_depaChildController ()
 <
@@ -68,7 +69,7 @@ typedef void (^JsonSuccess)(id json);
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    SQ_DetailViewController *dtVC = [[SQ_DetailViewController alloc] init];
+    SQ_depaDetailViewController *dtVC = [[SQ_depaDetailViewController alloc] init];
     dtVC.article = _articleArray[indexPath.row];
     [self.navigationController pushViewController:dtVC animated:YES];
     

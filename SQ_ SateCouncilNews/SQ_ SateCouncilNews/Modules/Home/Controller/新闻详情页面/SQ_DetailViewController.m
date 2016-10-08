@@ -7,13 +7,6 @@
 //
 
 #import "SQ_DetailViewController.h"
-
-
-#define MAS_SHORTHAND_GLOBALS
-#define MAS_SHORTHAND
-#define WIDTH [UIScreen mainScreen].bounds.size.width
-#define HEIGHT [UIScreen mainScreen].bounds.size.height
-#import "Masonry.h"
 #import "HttpClient.h"
 #import "SQ_Article.h"
 #import "NSObject+YYModel.h"
@@ -43,7 +36,7 @@ typedef void (^JsonSuccess)(id json);
 @property (nonatomic, strong) id result;
 @property (nonatomic, strong) NSMutableArray *articleArray;
 @property (nonatomic, strong) UITableView *footerView;
-@property (nonatomic, strong) UIView *headerView;
+@property (nonatomic, strong) UILabel *headerView;
 
 @end
 
@@ -71,19 +64,26 @@ typedef void (^JsonSuccess)(id json);
     [super viewDidLoad];
    
     
-    self.webView = [[UIWebView alloc] init];
+    self.headerView = [[UILabel alloc] init];
+    _headerView.font = [UIFont systemFontOfSize:23];
+    _headerView.numberOfLines = 0;
+    _headerView.text = _article.title;
+    
+    
+    
+    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT - 64)];
+//    self.webView = [[UIWebView alloc] init];
     [self.view addSubview:_webView];
     self.view.backgroundColor = [UIColor whiteColor];
-    [_webView makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view.top).offset(64);
-        make.left.equalTo(self.view);
-        make.width.equalTo(WIDTH);
-        make.height.equalTo(HEIGHT - 128);
-    }];
+//    [_webView makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.view.top).offset(64);
+//        make.left.equalTo(self.view);
+//        make.width.equalTo(WIDTH);
+//        make.height.equalTo(HEIGHT - 128);
+//    }];
     NSString *urlString = self.article.shareUrl;
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    NSLog(@"%@",urlString);
     
     
     [self.webView loadRequest:request];
@@ -93,9 +93,8 @@ typedef void (^JsonSuccess)(id json);
     //防止因为设置webView尾视图后每次跳转都会出现的黑条
     _webView.backgroundColor = [UIColor clearColor];
     _webView.opaque = NO;
-    self.webView.scrollView.contentInset = UIEdgeInsetsMake(0,0.0,240,0.0);
+    self.webView.scrollView.contentInset = UIEdgeInsetsMake(100,0.0,240,0.0);
 
-    
     
 //    self.webView.scrollView.contentInset = UIEdgeInsetsMake(0,0.0,240,0.0);
     self.footerView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 240) style:UITableViewStylePlain];
@@ -208,7 +207,8 @@ typedef void (^JsonSuccess)(id json);
     _isSaved =  [_manager selectArticle:article];
  
     [self createUI];
-//    self.navigationItem.title = _article.title;
+    
+    
     [self handleData];
     
     
@@ -252,7 +252,7 @@ typedef void (^JsonSuccess)(id json);
 }
 
 
-//获取数据
+//获取底部相关新闻的数据
 - (void)handleData {
     
     
@@ -277,12 +277,16 @@ typedef void (^JsonSuccess)(id json);
                     NSDictionary *articleDic = [detailArticle.relatedArticles valueForKey:keyArray[i]];
                     SQ_Article *article = [SQ_Article yy_modelWithDictionary:articleDic];
                     [self.articleArray addObject:article];
-
-                    
+              
                 }
+                
+//                if (keyArray.count == 1) {
+//                    self.webView.scrollView.contentInset = UIEdgeInsetsMake(100,0.0,140,0.0);
+//                }
 
-            } else {
-                                    self.webView.scrollView.contentInset = UIEdgeInsetsMake(0,0.0,0,0.0);
+         }  else {
+             self.webView.scrollView.contentInset = UIEdgeInsetsMake(100,0.0,0,0.0);
+                
             }
             
             
@@ -334,11 +338,7 @@ typedef void (^JsonSuccess)(id json);
 
     //设置尾视图的relateNews的相关曹操作
     
-    
-    NSString *currentURL = [webView stringByEvaluatingJavaScriptFromString:@"document.location.href"];
-    NSLog(@"%@",currentURL);
-    
-    
+ 
     if (_articleArray.count > 0) {
         NSString *result = [webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight;"];
         
@@ -351,13 +351,19 @@ typedef void (^JsonSuccess)(id json);
         relatedLabel.text = @"相关新闻";
         relatedLabel.textColor = [UIColor colorWithRed:0.034 green:0.495 blue:0.703 alpha:1.000];
         
+        if (_articleArray.count == 1) {
+            self.footerView.frame = CGRectMake(0, height + 20 + 40, WIDTH, 100);
+        }
+        
+        else if (_articleArray.count == 2) {
         
         self.footerView.frame = CGRectMake(0, height + 20 + 40, WIDTH, 200);
-        
+        }
+        self.headerView.frame = CGRectMake(0, -100, WIDTH, 100);
         [webView.scrollView addSubview:lineLabel];
         [webView.scrollView addSubview:relatedLabel];
         [webView.scrollView addSubview:self.footerView];
-
+        [webView.scrollView addSubview:_headerView];
     }
     
     

@@ -146,7 +146,8 @@ typedef void (^JsonSuccess)(id json);
         
         [_articleArray removeAllObjects];
     }
-    NSString  *urlString = [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    NSString  *urlString = [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString  *urlString = [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
     [self getJsonWithUrlString:urlString json:^(id json) {
         
@@ -182,7 +183,7 @@ typedef void (^JsonSuccess)(id json);
 - (void)addMoreData {
     
     NSString *string = [NSString stringWithFormat:@"http://appdyn.www.gov.cn/gov//search.shtml?page=%zd&keyword=%@",_dataNumber,_serachKey];
-    NSString  *urlString = [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString  *urlString = [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
     [self getJsonWithUrlString:urlString json:^(id json) {
         

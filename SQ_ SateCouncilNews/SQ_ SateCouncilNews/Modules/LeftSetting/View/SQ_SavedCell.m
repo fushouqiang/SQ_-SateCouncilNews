@@ -1,18 +1,19 @@
 //
-//  SQ_normalCell.m
+//  SQ_SavedCell.m
 //  SQ_ SateCouncilNews
 //
-//  Created by FuShouqiang on 16/9/22.
+//  Created by FuShouqiang on 16/10/8.
 //  Copyright © 2016年 fu. All rights reserved.
 //
 
-#import "SQ_normalCell.h"
+#import "SQ_SavedCell.h"
+
 #import "UIImageView+WebCache.h"
 #import "SQ_TopView.h"
 #import "SQ_Article.h"
 #import "NSObject+YYModel.h"
 
-@interface SQ_normalCell ()
+@interface SQ_SavedCell ()
 
 
 @property (nonatomic, strong) UIImageView *newsImageView;
@@ -22,7 +23,7 @@
 
 @end
 
-@implementation SQ_normalCell
+@implementation SQ_SavedCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -41,7 +42,7 @@
             make.top.equalTo(self.contentView.top).offset(10);
             make.bottom.equalTo(self.contentView.bottom);
         }];
-    
+        
         
         
         self.contentLabel = [[UILabel alloc] init];
@@ -68,7 +69,7 @@
         _timeLabel.font = [UIFont fontWithName:@"Helvetica" size:14];
         _timeLabel.textColor = [UIColor grayColor];
         
-     
+        
         
         self.signLabel = [[UILabel alloc] init];
         [self.contentView addSubview:_signLabel];
@@ -98,7 +99,7 @@
     if (_article != article) {
         _article = article;
         
-       
+        
         NSString *urlSource = [[article.thumbnails valueForKey:@"1"] valueForKey:@"file"];
         NSString *urlString = [NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/%@",urlSource];
         NSURL *imageUrl = [NSURL URLWithString:urlString];
@@ -108,17 +109,15 @@
         NSMutableString *str2 = [[NSMutableString alloc] initWithString:str];
         [str2 insertString:@"/" atIndex:4];
         self.timeLabel.text = str2;
-        
         if (article.feature != nil) {
             _signLabel.layer.borderColor = [UIColor colorWithRed:0.329 green:0.544 blue:1.000 alpha:1.000].CGColor;
             _signLabel.layer.borderWidth = 1;
             self.signLabel.text = article.feature;
         }
-        if (article.feature == nil) {
+        if ([article.feature isEqual: @"(null)"]) {
             
             [_signLabel removeFromSuperview];
         }
-
         
         
         if (urlSource == NULL) {
@@ -129,9 +128,9 @@
                 make.left.equalTo(self.contentView.left).offset(10);
                 make.right.equalTo(self.contentView.right).offset(-10);
                 make.top.equalTo(self.contentView.top).offset(20);
-//                make.bottom.equalTo(self.contentView.bottom).offset(-50);
+                //                make.bottom.equalTo(self.contentView.bottom).offset(-50);
             }];
-
+            
             [_timeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
                 
                 make.left.equalTo(self.contentView.left).offset(10);
@@ -139,11 +138,11 @@
                 
                 make.width.equalTo(WIDTH / 4);
                 make.bottom.equalTo(self.contentView.bottom).offset(-3);
-               
+                
             }];
             
         }
-
+        
         
     }
     
@@ -152,7 +151,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 

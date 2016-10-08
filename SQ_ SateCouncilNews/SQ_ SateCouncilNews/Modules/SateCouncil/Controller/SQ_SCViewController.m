@@ -22,6 +22,9 @@
 #import "SQ_Member.h"
 #import "SQ_StructureCell.h"
 #import "SQ_SearchViewController.h"
+#import "SQ_SCGeneralController.h"
+#import "SQ_DetailViewController.h"
+#import "SQ_SCorgViewController.h"
 typedef void (^JsonSuccess)(id json);
 
 @interface SQ_SCViewController ()
@@ -78,7 +81,7 @@ UITableViewDataSource
             _tableView.delegate = self;
             _tableView.dataSource = self;
             [self.view addSubview:_tableView];
-            [_tableView reloadData];
+//            [_tableView reloadData];
             
         }
         
@@ -135,8 +138,8 @@ UITableViewDataSource
     for (int i = 0; i < newsArray.count; i++) {
         for (SQ_News *news in newsArray) {
             if ([news.position intValue] == i) {
-                
-                [array addObject:news];
+                SQ_Article *article = news.article;
+                [array addObject:article];
             }
             
         }
@@ -203,8 +206,7 @@ UITableViewDataSource
             
             cell = [[SQ_headCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID1];
             
-            SQ_News *news = _premierArray[0];
-            cell.article = news.article;
+            cell.article = _premierArray[0];
             
             
         }
@@ -217,8 +219,7 @@ UITableViewDataSource
         if (nil == cell) {
             
             cell = [[SQ_normalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID2];
-            SQ_News *news = _premierArray[1];
-            cell.article = news.article;
+            cell.article = _premierArray[1];
             
             
         }
@@ -231,8 +232,8 @@ UITableViewDataSource
         if (nil == cell) {
             
             cell = [[SQ_normalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID3];
-            SQ_News *news = _premierArray[2];
-            cell.article = news.article;
+            cell.article = _premierArray[2];
+            
             
             
         }
@@ -245,6 +246,15 @@ UITableViewDataSource
        if (nil == cell) {
            
            cell = [[SQ_MenuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID4];
+           cell.block = ^(NSString *category){
+               
+               SQ_SCGeneralController *scGVC = [[SQ_SCGeneralController alloc] init];
+               scGVC.category = category;
+               scGVC.hidesBottomBarWhenPushed = YES;
+               [self.navigationController pushViewController:scGVC animated:YES];
+               
+               
+           };
            
        }
        cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -256,8 +266,8 @@ UITableViewDataSource
         if (nil == cell) {
             
             cell = [[SQ_SignNormalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID5];
-            SQ_News *news = _vicePremierArray[0];
-            cell.article = news.article;
+            cell.article = _vicePremierArray[0];
+            
             cell.signName = @"副总理";
             
             
@@ -271,8 +281,7 @@ UITableViewDataSource
         if (nil == cell) {
             
             cell = [[SQ_normalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID6];
-            SQ_News *news = _vicePremierArray[1];
-            cell.article = news.article;
+            cell.article = _vicePremierArray[1];
             
             
         }
@@ -285,8 +294,7 @@ UITableViewDataSource
         if (nil == cell) {
             
             cell = [[SQ_normalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID7];
-            SQ_News *news = _vicePremierArray[2];
-            cell.article = news.article;
+            cell.article = _vicePremierArray[2];
             
             
         }
@@ -300,8 +308,7 @@ UITableViewDataSource
         if (nil == cell) {
             
             cell = [[SQ_EasyNewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID8];
-            SQ_News *news = _vicePremierArray[3];
-            cell.article = news.article;
+            cell.article = _vicePremierArray[3];
             
             
         }
@@ -315,8 +322,7 @@ UITableViewDataSource
        if (nil == cell) {
            
            cell = [[SQ_SignNormalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID9];
-           SQ_News *news = _councillorArray[0];
-           cell.article = news.article;
+           cell.article = _councillorArray[0];
            cell.signName = @"国务委员";
            
            
@@ -330,8 +336,7 @@ UITableViewDataSource
        if (nil == cell) {
            
            cell = [[SQ_normalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID10];
-           SQ_News *news = _councillorArray[1];
-           cell.article = news.article;
+           cell.article = _councillorArray[1];
            
            
        }
@@ -344,8 +349,7 @@ UITableViewDataSource
        if (nil == cell) {
            
            cell = [[SQ_normalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID11];
-           SQ_News *news = _councillorArray[2];
-           cell.article = news.article;
+           cell.article = _councillorArray[2];
            
            
        }
@@ -358,8 +362,7 @@ UITableViewDataSource
        if (nil == cell) {
            
            cell = [[SQ_normalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID12];
-           SQ_News *news = _councillorArray[3];
-           cell.article = news.article;
+           cell.article = _councillorArray[3];
            
            
        }
@@ -372,8 +375,7 @@ UITableViewDataSource
        if (nil == cell) {
            
            cell = [[SQ_EasyNewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID13];
-           SQ_News *news = _councillorArray[4];
-           cell.article = news.article;
+           cell.article = _councillorArray[4];
            
            
        }
@@ -432,6 +434,38 @@ UITableViewDataSource
     
 }
 
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    SQ_DetailViewController *sdVC = [[SQ_DetailViewController alloc] init];
+
+    if (indexPath.row != 14) {
+        
+        if (indexPath.row < 3) {
+            sdVC.article = _premierArray[indexPath.row];
+        } else if (indexPath.row <8) {
+            sdVC.article = _vicePremierArray[indexPath.row - 4];
+        } else if (indexPath.row < 13) {
+            sdVC.article = _councillorArray[indexPath.row - 8];
+        }
+        
+        
+        sdVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:sdVC animated:YES];
+        
+    } else {
+        SQ_SCorgViewController *scorgVC = [[SQ_SCorgViewController alloc] init];
+        scorgVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:scorgVC animated:YES];
+    }
+  
+    
+   
+    
+    
+}
+
+
 -(void)leftBtn{
     //这里的话是通过遍历循环拿到之前在AppDelegate中声明的那个MMDrawerController属性，然后判断是否为打开状态，如果是就关闭，否就是打开(初略解释，里面还有一些条件)
     [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
@@ -445,7 +479,6 @@ UITableViewDataSource
     
     
     [HttpClient getWithUrlString:urlString success:^(id data) {
-        NSLog(@"%@",[NSThread currentThread]);
         NSString *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         json(dic);
     } failure:^(NSError *error) {

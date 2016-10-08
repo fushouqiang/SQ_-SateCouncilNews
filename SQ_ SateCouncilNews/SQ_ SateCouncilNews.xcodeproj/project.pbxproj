@@ -79,6 +79,13 @@
 		799EE69D1DA25F2500063852 /* SQ_categoriesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 799EE69B1DA25F2500063852 /* SQ_categoriesCell.m */; };
 		799EE69E1DA25F2500063852 /* SQ_categoriesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 799EE69C1DA25F2500063852 /* SQ_categoriesCell.xib */; };
 		799EE6A11DA2619800063852 /* SQ_ChildClassify.m in Sources */ = {isa = PBXBuildFile; fileRef = 799EE6A01DA2619800063852 /* SQ_ChildClassify.m */; };
+		79A1B0D41DA879FD00AF083D /* SQ_LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A1B0D21DA879FD00AF083D /* SQ_LoginViewController.m */; };
+		79A1B0D51DA879FD00AF083D /* SQ_LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79A1B0D31DA879FD00AF083D /* SQ_LoginViewController.xib */; };
+		79A1B0DD1DA88AE400AF083D /* SQ_SavedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A1B0DC1DA88AE400AF083D /* SQ_SavedCell.m */; };
+		79A1B0E01DA897E500AF083D /* SQ_GeneralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A1B0DF1DA897E500AF083D /* SQ_GeneralViewController.m */; };
+		79A1B0E31DA8997F00AF083D /* SQ_SCGeneralController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A1B0E21DA8997F00AF083D /* SQ_SCGeneralController.m */; };
+		79A1B15D1DA8CE2900AF083D /* SQ_SCorgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A1B15C1DA8CE2900AF083D /* SQ_SCorgViewController.m */; };
+		79A1B1631DA8EE1700AF083D /* SQ_depaDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A1B1621DA8EE1700AF083D /* SQ_depaDetailViewController.m */; };
 		79A360B81D98D2310090F80F /* SQ_SignNormalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A360B71D98D2310090F80F /* SQ_SignNormalCell.m */; };
 		79A360BC1D98D4E90090F80F /* SQ_EasyNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A360BB1D98D4E90090F80F /* SQ_EasyNewsCell.m */; };
 		79A83EB31D94BDDB00D226B7 /* SQ_Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A83EB21D94BDDB00D226B7 /* SQ_Article.m */; };
@@ -103,7 +110,6 @@
 		79B3C3711DA509AC009AD46B /* SQ_DataChinaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B3C3701DA509AC009AD46B /* SQ_DataChinaViewController.m */; };
 		79B3C3751DA50C53009AD46B /* SQ_datacTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B3C3741DA50C53009AD46B /* SQ_datacTopCell.m */; };
 		79BFE01B1D927A0B009F84D0 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BFE00E1D927A0B009F84D0 /* NewsViewController.m */; };
-		79BFE01C1D927A0B009F84D0 /* PremierViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BFE0101D927A0B009F84D0 /* PremierViewController.m */; };
 		79BFE0231D927A8D009F84D0 /* SQ_HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BFE0221D927A8D009F84D0 /* SQ_HomeViewController.m */; };
 		79BFE02A1D927B7B009F84D0 /* SQ_SCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BFE0291D927B7B009F84D0 /* SQ_SCViewController.m */; };
 		79BFE02D1D927B93009F84D0 /* SQ_AffairsHallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79BFE02C1D927B93009F84D0 /* SQ_AffairsHallViewController.m */; };
@@ -299,6 +305,19 @@
 		799EE69C1DA25F2500063852 /* SQ_categoriesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SQ_categoriesCell.xib; sourceTree = "<group>"; };
 		799EE69F1DA2619800063852 /* SQ_ChildClassify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_ChildClassify.h; sourceTree = "<group>"; };
 		799EE6A01DA2619800063852 /* SQ_ChildClassify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_ChildClassify.m; sourceTree = "<group>"; };
+		79A1B0D11DA879FD00AF083D /* SQ_LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_LoginViewController.h; sourceTree = "<group>"; };
+		79A1B0D21DA879FD00AF083D /* SQ_LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_LoginViewController.m; sourceTree = "<group>"; };
+		79A1B0D31DA879FD00AF083D /* SQ_LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SQ_LoginViewController.xib; sourceTree = "<group>"; };
+		79A1B0DB1DA88AE400AF083D /* SQ_SavedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_SavedCell.h; sourceTree = "<group>"; };
+		79A1B0DC1DA88AE400AF083D /* SQ_SavedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_SavedCell.m; sourceTree = "<group>"; };
+		79A1B0DE1DA897E500AF083D /* SQ_GeneralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_GeneralViewController.h; sourceTree = "<group>"; };
+		79A1B0DF1DA897E500AF083D /* SQ_GeneralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_GeneralViewController.m; sourceTree = "<group>"; };
+		79A1B0E11DA8997F00AF083D /* SQ_SCGeneralController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_SCGeneralController.h; sourceTree = "<group>"; };
+		79A1B0E21DA8997F00AF083D /* SQ_SCGeneralController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_SCGeneralController.m; sourceTree = "<group>"; };
+		79A1B15B1DA8CE2900AF083D /* SQ_SCorgViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_SCorgViewController.h; sourceTree = "<group>"; };
+		79A1B15C1DA8CE2900AF083D /* SQ_SCorgViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_SCorgViewController.m; sourceTree = "<group>"; };
+		79A1B1611DA8EE1700AF083D /* SQ_depaDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_depaDetailViewController.h; sourceTree = "<group>"; };
+		79A1B1621DA8EE1700AF083D /* SQ_depaDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_depaDetailViewController.m; sourceTree = "<group>"; };
 		79A360B61D98D2310090F80F /* SQ_SignNormalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_SignNormalCell.h; sourceTree = "<group>"; };
 		79A360B71D98D2310090F80F /* SQ_SignNormalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_SignNormalCell.m; sourceTree = "<group>"; };
 		79A360BA1D98D4E90090F80F /* SQ_EasyNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_EasyNewsCell.h; sourceTree = "<group>"; };
@@ -347,8 +366,6 @@
 		79B3C3741DA50C53009AD46B /* SQ_datacTopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_datacTopCell.m; sourceTree = "<group>"; };
 		79BFE00D1D927A0B009F84D0 /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
 		79BFE00E1D927A0B009F84D0 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
-		79BFE00F1D927A0B009F84D0 /* PremierViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PremierViewController.h; sourceTree = "<group>"; };
-		79BFE0101D927A0B009F84D0 /* PremierViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PremierViewController.m; sourceTree = "<group>"; };
 		79BFE0221D927A8D009F84D0 /* SQ_HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_HomeViewController.m; sourceTree = "<group>"; };
 		79BFE0241D927A93009F84D0 /* SQ_HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQ_HomeViewController.h; sourceTree = "<group>"; };
 		79BFE0281D927B7B009F84D0 /* SQ_SCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_SCViewController.h; sourceTree = "<group>"; };
@@ -772,6 +789,10 @@
 			children = (
 				79BFE0281D927B7B009F84D0 /* SQ_SCViewController.h */,
 				79BFE0291D927B7B009F84D0 /* SQ_SCViewController.m */,
+				79A1B0E11DA8997F00AF083D /* SQ_SCGeneralController.h */,
+				79A1B0E21DA8997F00AF083D /* SQ_SCGeneralController.m */,
+				79A1B15B1DA8CE2900AF083D /* SQ_SCorgViewController.h */,
+				79A1B15C1DA8CE2900AF083D /* SQ_SCorgViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -960,6 +981,8 @@
 				7999625F1D9FABC000CCEF44 /* SQ_depaChildController.m */,
 				7999625B1D9FA50B00CCEF44 /* SQ_departNewsController.h */,
 				7999625C1D9FA50B00CCEF44 /* SQ_departNewsController.m */,
+				79A1B1611DA8EE1700AF083D /* SQ_depaDetailViewController.h */,
+				79A1B1621DA8EE1700AF083D /* SQ_depaDetailViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1029,6 +1052,16 @@
 				799EE69C1DA25F2500063852 /* SQ_categoriesCell.xib */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		79A1B0D01DA8798E00AF083D /* 登录注册 */ = {
+			isa = PBXGroup;
+			children = (
+				79A1B0D11DA879FD00AF083D /* SQ_LoginViewController.h */,
+				79A1B0D21DA879FD00AF083D /* SQ_LoginViewController.m */,
+				79A1B0D31DA879FD00AF083D /* SQ_LoginViewController.xib */,
+			);
+			name = "登录注册";
 			sourceTree = "<group>";
 		};
 		79A360B91D98D2350090F80F /* 带标志普通新闻cell */ = {
@@ -1221,8 +1254,8 @@
 				79BFE00E1D927A0B009F84D0 /* NewsViewController.m */,
 				79AF83A81D9B4B840073C17A /* PictureViewController.h */,
 				79AF83A91D9B4B840073C17A /* PictureViewController.m */,
-				79BFE00F1D927A0B009F84D0 /* PremierViewController.h */,
-				79BFE0101D927A0B009F84D0 /* PremierViewController.m */,
+				79A1B0DE1DA897E500AF083D /* SQ_GeneralViewController.h */,
+				79A1B0DF1DA897E500AF083D /* SQ_GeneralViewController.m */,
 				7986FF6E1D9C02DD007361C6 /* VideoViewController.h */,
 				7986FF6F1D9C02DD007361C6 /* VideoViewController.m */,
 			);
@@ -1242,6 +1275,7 @@
 		79BFE02F1D927BF8009F84D0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				79A1B0D01DA8798E00AF083D /* 登录注册 */,
 				7969DB851D9D535300F2A477 /* 收藏 */,
 				79BFE0321D927C1F009F84D0 /* SQ_LeftViewController.h */,
 				79BFE0331D927C1F009F84D0 /* SQ_LeftViewController.m */,
@@ -1252,6 +1286,8 @@
 		79BFE0301D927C04009F84D0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				79A1B0DB1DA88AE400AF083D /* SQ_SavedCell.h */,
+				79A1B0DC1DA88AE400AF083D /* SQ_SavedCell.m */,
 				796462DD1D9615420045B35F /* SQ_LeftCell.h */,
 				796462DE1D9615420045B35F /* SQ_LeftCell.m */,
 			);
@@ -1600,6 +1636,7 @@
 				799962571D9F904A00CCEF44 /* SQ_CollectionViewCell.xib in Resources */,
 				798141921D915012005BEA08 /* Main.storyboard in Resources */,
 				799EE67E1DA251DB00063852 /* SQ_CollectionServiceCell.xib in Resources */,
+				79A1B0D51DA879FD00AF083D /* SQ_LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1754,12 +1791,14 @@
 				7999624F1D9F79D600CCEF44 /* SQ_AffairsShowController.m in Sources */,
 				79AF83B41D9B51E10073C17A /* SQ_PictureDetailController.m in Sources */,
 				79790DB11D9AA40C005F0128 /* SQ_Picture.m in Sources */,
+				79A1B15D1DA8CE2900AF083D /* SQ_SCorgViewController.m in Sources */,
 				79B3C3651DA4FCAD009AD46B /* SQ_intHallDetailCell.m in Sources */,
 				79C2CC3F1DA5F14C00A1CB7B /* SQ_GDPPIViewController.m in Sources */,
 				79C538A91D97C22800A10164 /* SQ_LocalityCell.m in Sources */,
 				79C2CC941DA5FE9600A1CB7B /* AudioViewController.m in Sources */,
 				79B3C3591DA4E0F2009AD46B /* SQ_intHallDetailViewController.m in Sources */,
 				79BFE0341D927C1F009F84D0 /* SQ_LeftViewController.m in Sources */,
+				79A1B0E31DA8997F00AF083D /* SQ_SCGeneralController.m in Sources */,
 				79B3C3711DA509AC009AD46B /* SQ_DataChinaViewController.m in Sources */,
 				798141FA1D9154A4005BEA08 /* NSString+Categories.m in Sources */,
 				798E74B61D9A23A70050F9B3 /* SQ_Member.m in Sources */,
@@ -1769,12 +1808,14 @@
 				79AF83BC1D9B52520073C17A /* SQ_pictureScrollView.m in Sources */,
 				7999624B1D9F798400CCEF44 /* SQ_EnterDepController.m in Sources */,
 				79B3C3471DA4B3E3009AD46B /* SQ_SectionHeadView.m in Sources */,
+				79A1B0DD1DA88AE400AF083D /* SQ_SavedCell.m in Sources */,
 				798E74B91D9A44F90050F9B3 /* SQ_StructureCell.m in Sources */,
 				798141F51D9154A4005BEA08 /* NSArray+Categories.m in Sources */,
 				7974055E1D9424B700B8B376 /* SQ_TopView.m in Sources */,
 				79A360BC1D98D4E90090F80F /* SQ_EasyNewsCell.m in Sources */,
 				79C2CC981DA600C800A1CB7B /* SQ_AudioCell.m in Sources */,
 				798E74FD1D9AA1D20050F9B3 /* SQ_Detail.m in Sources */,
+				79A1B0E01DA897E500AF083D /* SQ_GeneralViewController.m in Sources */,
 				79B3C3561DA4DC7B009AD46B /* SQ_intHallMoreCell.m in Sources */,
 				799EE69D1DA25F2500063852 /* SQ_categoriesCell.m in Sources */,
 				7981421C1D9158F3005BEA08 /* SQ_SateCouncilModel.m in Sources */,
@@ -1847,14 +1888,15 @@
 				79C538911D97A46E00A10164 /* SQ_AudioView.m in Sources */,
 				79C538AD1D97C74300A10164 /* SQ_departmentCell.m in Sources */,
 				799EE65F1DA21B7D00063852 /* SQ_DetailArticle.m in Sources */,
+				79A1B0D41DA879FD00AF083D /* SQ_LoginViewController.m in Sources */,
 				79AF83B01D9B4DA50073C17A /* SQ_PictureNewsCell.m in Sources */,
 				79C538C41D97D8B900A10164 /* SQ_interviewCell.m in Sources */,
 				798141D51D915460005BEA08 /* NSUserDefaultsUtils.m in Sources */,
 				799EA8901D9DED77003BAFF2 /* SQ_SdetailViewController.m in Sources */,
 				7986FF661D9BAD9E007361C6 /* UILabel+SizeToFit_W_H.m in Sources */,
 				7986FF701D9C02DD007361C6 /* VideoViewController.m in Sources */,
+				79A1B1631DA8EE1700AF083D /* SQ_depaDetailViewController.m in Sources */,
 				79C5387B1D977D9000A10164 /* SQ_EasyNewsView.m in Sources */,
-				79BFE01C1D927A0B009F84D0 /* PremierViewController.m in Sources */,
 				798141F61D9154A4005BEA08 /* NSDate+Categories.m in Sources */,
 				798141FF1D9154A4005BEA08 /* UIImage+Categories.m in Sources */,
 				798141C61D915230005BEA08 /* SQ_BaseViewController.m in Sources */,

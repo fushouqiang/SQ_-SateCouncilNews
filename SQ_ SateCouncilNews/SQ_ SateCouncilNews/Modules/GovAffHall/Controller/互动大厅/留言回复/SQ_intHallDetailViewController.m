@@ -35,7 +35,7 @@ typedef void (^JsonSuccess)(id json);
     [super viewDidLoad];
      self.articleArray = [NSMutableArray array];
     [self createTableView];
-    self.navigationItem.title = _titleName;
+    self.navigationItem.title = @"留言回复";
    
      self.dataNumber = 0;
     

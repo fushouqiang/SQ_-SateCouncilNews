@@ -258,6 +258,7 @@ UITableViewDataSource
     return 0;
 }
 
+//清除缓存实现
 - (void)clearPath {
     
     NSString *path = CACHEPATH;
@@ -274,6 +275,7 @@ UITableViewDataSource
 }
 
 
+//缓存总大小
 - (NSString *)checkCache {
     
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];

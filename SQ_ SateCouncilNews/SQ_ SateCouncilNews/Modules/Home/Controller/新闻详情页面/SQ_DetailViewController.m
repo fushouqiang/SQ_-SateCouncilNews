@@ -183,6 +183,7 @@ typedef void (^JsonSuccess)(id json);
         make.height.equalTo(50);
         make.width.equalTo(50);
     }];
+    [_shareButton addTarget:self action:@selector(shareButtonAction) forControlEvents:UIControlEventTouchUpInside];
     [_shareButton setImage:[UIImage imageNamed:@"newsShareButton"] forState:UIControlStateNormal];
     [_shareButton setImage:[UIImage imageNamed:@"newsShareSelectedButton"] forState:UIControlStateSelected];
 
@@ -220,24 +221,44 @@ typedef void (^JsonSuccess)(id json);
     
     
     if (_isSaved == true) {
-        
-        
-         [_manager deleteWithArticle:_article];
+        [_manager deleteWithArticle:_article];
         [button setImage:[UIImage imageNamed:@"newsSaveButton"] forState:UIControlStateNormal];
+        [self alertWithTitle:@"取消收藏!" andMessage:nil];
     }
     
-    else  {
-        
-        
-            [_manager insertIntoWithArticle:_article];
-        
+    else {
+        [_manager insertIntoWithArticle:_article];
         [button setImage:[UIImage imageNamed:@"newsSavedButton"] forState:UIControlStateNormal];
-        
+        [self alertWithTitle:@"收藏成功!" andMessage:nil];
     
     }
     _isSaved = !_isSaved;
     
     
+}
+
+- (void)alertWithTitle:(NSString *)title andMessage:(NSString *)message {
+    
+    
+    UIAlertController *aboutUSAlertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [aboutUSAlertController addAction:action];
+    
+    
+    [self presentViewController:aboutUSAlertController animated:YES completion:nil];
+
+    
+}
+
+
+- (void)shareButtonAction {
+    
+    
+    [self alertWithTitle:@"分享失败,原因如下" andMessage:@"本应用不打算上架"];
+
 }
 
 //跳转页面

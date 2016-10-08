@@ -20,6 +20,7 @@
 #import "SQ_CollectionServiceCell.h"
 #import "SQ_ServiceChildController.h"
 #import "SQ_Classify.h"
+#import "SQ_H5ServiceDetailController.h"
 
 static NSString *const cellIdentifier = @"cell";
 
@@ -271,11 +272,21 @@ typedef void (^JsonSuccess)(id json);
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    if (indexPath.row == 2) {
+        SQ_H5ServiceDetailController *h5VC = [[SQ_H5ServiceDetailController alloc] init];
+        h5VC.article = _articleArray[indexPath.row];
+        h5VC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:h5VC animated:YES];
+    }
+    
+    else {
+    
     SQ_DetailViewController *detailVC = [[SQ_DetailViewController alloc] init];
     detailVC.article = _articleArray[indexPath.row];
     detailVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detailVC animated:YES];
     
+    }
 }
 
 

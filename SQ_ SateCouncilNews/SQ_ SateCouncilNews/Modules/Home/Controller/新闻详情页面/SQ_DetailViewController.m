@@ -13,11 +13,13 @@
 #import "SQ_Detail.h"
 #import "DataBaseManager.h"
 #import "AppDelegate.h"
-#import "MMDrawerController.h"
-#import "UIViewController+MMDrawerController.h"
 #import "UIImageView+WebCache.h"
 #import "SQ_DetailArticle.h"
 #import "SQ_normalCell.h"
+#import "MBProgressHUD.h"
+
+
+
 static NSString *const cellIdentifier = @"cell";
 
 @interface SQ_DetailViewController ()
@@ -25,9 +27,11 @@ static NSString *const cellIdentifier = @"cell";
 UIWebViewDelegate,
 UIGestureRecognizerDelegate,
 UITableViewDelegate,
-UITableViewDataSource
+UITableViewDataSource,
+MBProgressHUDDelegate
 >
 typedef void (^JsonSuccess)(id json);
+
 @property (nonatomic, retain) UIWebView *webView;
 @property (nonatomic, strong) UIButton *saveButton;
 @property (nonatomic, strong) UIButton *shareButton;
@@ -37,6 +41,10 @@ typedef void (^JsonSuccess)(id json);
 @property (nonatomic, strong) NSMutableArray *articleArray;
 @property (nonatomic, strong) UITableView *footerView;
 @property (nonatomic, strong) UILabel *headerView;
+@property (nonatomic, strong) MBProgressHUD *hud;
+
+
+
 
 @end
 
@@ -46,14 +54,16 @@ typedef void (^JsonSuccess)(id json);
 
 - (void)viewWillAppear:(BOOL)animated {
     
-    
-    [super viewWillAppear:animated];
-    
-    //禁止侧滑
-    self.mm_drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeNone;
-    self.mm_drawerController.closeDrawerGestureModeMask = MMCloseDrawerGestureModeNone;
-    [_manager openSQLite];
 
+    [super viewWillAppear:animated];
+    [_manager openSQLite];
+    
+    self.hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    _hud.delegate = self;
+//    _hud.mode = MBProgressHUDModeDeterminateHorizontalBar;
+    _hud.label.text = NSLocalizedString(@"Loading...", @"HUD loading title");
+   
+  
     
 }
 
@@ -69,6 +79,7 @@ typedef void (^JsonSuccess)(id json);
 - (void)viewDidLoad {
     [super viewDidLoad];
    
+
     
     self.headerView = [[UILabel alloc] init];
     _headerView.font = [UIFont systemFontOfSize:23];
@@ -86,9 +97,6 @@ typedef void (^JsonSuccess)(id json);
     _webView.backgroundColor = [UIColor clearColor];
     _webView.opaque = NO;
     self.webView.scrollView.contentInset = UIEdgeInsetsMake(100,0.0,240,0.0);
-
-    
-//    self.webView.scrollView.contentInset = UIEdgeInsetsMake(0,0.0,240,0.0);
     self.footerView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 240) style:UITableViewStylePlain];
     [_footerView registerClass:[SQ_normalCell class] forCellReuseIdentifier:cellIdentifier];
     _footerView.delegate = self;
@@ -125,10 +133,7 @@ typedef void (^JsonSuccess)(id json);
 
 
 
-- (void)backButtonClick:(UIButton *)button {
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
+
 
 
 - (void)createUI {
@@ -296,9 +301,6 @@ typedef void (^JsonSuccess)(id json);
               
                 }
                 
-//                if (keyArray.count == 1) {
-//                    self.webView.scrollView.contentInset = UIEdgeInsetsMake(100,0.0,140,0.0);
-//                }
 
          }  else {
              self.webView.scrollView.contentInset = UIEdgeInsetsMake(100,0.0,0,0.0);
@@ -345,6 +347,10 @@ typedef void (^JsonSuccess)(id json);
         return YES;
     }
     
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    [_hud hideAnimated:YES];
 }
 
 

@@ -12,4 +12,5 @@
 @interface SQ_DetailViewController : SQ_BaseViewController
 
 @property (nonatomic, strong)SQ_Article *article;
+
 @end

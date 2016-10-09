@@ -7,22 +7,35 @@
 //
 
 #import "SQ_infoPublicViewController.h"
-
+#import "MBProgressHUD.h"
 @interface SQ_infoPublicViewController ()
 <
-UIWebViewDelegate
+UIWebViewDelegate,
+MBProgressHUDDelegate
 >
 
 @property (nonatomic, strong) UIWebView *webView;
-
+@property (nonatomic, strong) MBProgressHUD *hud;
 @end
 
 @implementation SQ_infoPublicViewController
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    self.hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    _hud.delegate = self;
+    _hud.label.text = NSLocalizedString(@"Loading...", @"HUD loading title");
+    
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"信息公开";
     self.webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+    self.webView.delegate = self;
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://new.sousuo.gov.cn/s.htm?t=file"]]];
     [self.view addSubview:_webView];
     
@@ -31,8 +44,9 @@ UIWebViewDelegate
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByClassName('bottomicon')[0].style.display = 'NONE'"];
-
+    [_hud hideAnimated:YES];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -7,9 +7,15 @@
 //
 
 #import "SQ_H5ServiceDetailController.h"
+#import "MBProgressHUD.h"
 
 @interface SQ_H5ServiceDetailController ()
+<
+MBProgressHUDDelegate,
+UIWebViewDelegate
+>
 
+@property (nonatomic, strong) MBProgressHUD *hud;
 @end
 
 @implementation SQ_H5ServiceDetailController
@@ -22,9 +28,24 @@
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [webView loadRequest:request];
+    webView.delegate = self;
     [self.view addSubview:webView];
     
     
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    
+    [_hud hideAnimated:YES];
+}
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    _hud.delegate = self;
+    _hud.label.text = NSLocalizedString(@"Loading...", @"HUD loading title");
+
 }
 
 - (void)didReceiveMemoryWarning {

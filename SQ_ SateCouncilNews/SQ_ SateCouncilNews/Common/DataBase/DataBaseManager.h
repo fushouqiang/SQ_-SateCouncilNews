@@ -27,4 +27,6 @@
 - (BOOL)deleteWithArticle:(SQ_Article *)article;
 
 - (BOOL)selectArticle:(SQ_Article *)article;
+
+- (BOOL)dropTable;
 @end

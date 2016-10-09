@@ -142,12 +142,12 @@ UITableViewDataSource
 
 - (void)createData {
     
-    self.imageNameArray = @[@"sideMenuLeftSaved",@"sideMenuLeftShare",@"sideMenuLeftCache",@"sideMenuLeftSetting",@"sideMenuLeftAboutus"];
-    self.textArray = @[@"主题切换",@"我的收藏",@"清除缓存",@"保留",@"关于我们"];
+    self.imageNameArray = @[@"sideMenuLeftSaved",@"sideMenuLeftShare",@"sideMenuLeftCache",@"sideMenuLeftSetting",@"sideMenuLeftAboutus",@"sideMenuLeftExit"];
+    self.textArray = @[@"主题切换",@"我的收藏",@"清除缓存",@"保留",@"关于我们",@"退出"];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -20,7 +20,7 @@ UITableViewDataSource
 >
 
 @property (nonatomic, strong)UITableView *tableView;
-@property (nonatomic, strong) NSArray *articleAarray;
+@property (nonatomic, strong) __block NSArray *articleArray;
 @property (nonatomic, strong) DataBaseManager *manager;
 
 @end
@@ -41,6 +41,7 @@ UITableViewDataSource
         make.width.equalTo(45);
     }];
     [backButton setImage:[UIImage imageNamed:@"backButton"] forState:UIControlStateNormal];
+    [backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
     UILabel *titleLabel = [[UILabel alloc] init];
@@ -61,23 +62,23 @@ UITableViewDataSource
     
     
     
-//    UIButton *selectButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [self.view addSubview:selectButton];
-//    [selectButton makeConstraints:^(MASConstraintMaker *make) {
-//        
-//        make.right.equalTo(self.view.right).offset(-10);
-//        make.top.equalTo(self.view.top).offset(40);
-//        make.height.equalTo(35);
-//        make.width.equalTo(45);
-//    }];
-//    [selectButton setImage:[UIImage imageNamed:@"backButton"] forState:UIControlStateNormal];
-//    [selectButton addTarget:self action:@selector(selectButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:deleteButton];
+    [deleteButton makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.right.equalTo(self.view.right).offset(-10);
+        make.top.equalTo(self.view.top).offset(40);
+        make.height.equalTo(35);
+        make.width.equalTo(45);
+    }];
+    [deleteButton setImage:[UIImage imageNamed:@"deleteButton"] forState:UIControlStateNormal];
+    [deleteButton addTarget:self action:@selector(deleteButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
     //操作数据库赋值
     self.manager = [DataBaseManager shareManager];
     [_manager openSQLite];
-    self.articleAarray =[NSArray arrayWithArray:[_manager selectAllArticle] ];
-    [_manager closeSQLite];
+    self.articleArray =[NSArray arrayWithArray:[_manager selectAllArticle] ];
+    
     [self createTableView];
     
     
@@ -85,10 +86,38 @@ UITableViewDataSource
 }
 
 
-- (void)selectButtonClick:(UIButton *)button {
+- (void)viewWillDisappear:(BOOL)animated {
     
-    _tableView.allowsMultipleSelectionDuringEditing = YES;
-    _tableView.editing = !_tableView.editing;
+    [super viewWillDisappear:animated];
+    [_manager closeSQLite];
+    
+}
+
+
+//清空
+- (void)deleteButtonClick:(UIButton *)button {
+    
+    UIAlertController *clearSavedAlertController = [UIAlertController alertControllerWithTitle:@"确认要清空收藏夹吗?" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *verifyAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [_manager dropTable];
+        [_manager createSQLite];
+        _articleArray = nil;
+        [_tableView reloadData];
+    }];
+    
+    
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"取消 " style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    [clearSavedAlertController addAction:action];
+    [clearSavedAlertController addAction:verifyAction];
+    
+    [self presentViewController:clearSavedAlertController animated:YES completion:nil];
+    
+    
     
 }
 
@@ -124,7 +153,7 @@ UITableViewDataSource
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _articleAarray.count;
+    return _articleArray.count;
 }
 
 
@@ -136,7 +165,12 @@ UITableViewDataSource
         cell = [[SQ_SavedCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier] ;
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.article = _articleAarray[indexPath.row];
+    
+    if (_articleArray.count > 0) {
+        cell.article = _articleArray[indexPath.row];
+    }
+    
+    
     return cell;
 
 
@@ -145,10 +179,14 @@ UITableViewDataSource
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    SQ_SdetailViewController *detailVC = [[SQ_SdetailViewController alloc] init];
-    detailVC.article = _articleAarray[indexPath.row];
-    detailVC.hidesBottomBarWhenPushed = YES;
-    [self presentViewController:detailVC animated:YES completion:nil];
+    if (_articleArray.count > 0) {
+        SQ_SdetailViewController *detailVC = [[SQ_SdetailViewController alloc] init];
+        detailVC.article = _articleArray[indexPath.row];
+        detailVC.hidesBottomBarWhenPushed = YES;
+        [self presentViewController:detailVC animated:YES completion:nil];
+    }
+    
+    
     
 }
 //

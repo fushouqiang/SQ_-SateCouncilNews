@@ -107,6 +107,24 @@
 }
 
 
+- (BOOL)dropTable {
+    
+    
+    char *error = NULL;
+    
+    
+    NSString *dropSQL = [NSString stringWithFormat:@"drop table Article"];
+    
+    int result = sqlite3_exec(dbPoint, [dropSQL UTF8String], NULL, NULL, &error);
+    
+    [self logErrorMessage:error];
+    
+    return [self isSuccessWithResult:result alert:@"drop"];
+    
+    
+}
+
+
 - (NSArray *)selectAllArticle {
     
     NSString *selectSQL = @"select * from Article";

@@ -57,6 +57,12 @@ typedef void (^JsonSuccess)(id json);
     
 }
 
+- (void)dealloc {
+    
+    [self.webView stopLoading];
+    self.webView.delegate = nil;
+}
+
 
 
 
@@ -70,23 +76,9 @@ typedef void (^JsonSuccess)(id json);
     _headerView.text = _article.title;
     
     
-    
     self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT - 64)];
-//    self.webView = [[UIWebView alloc] init];
     [self.view addSubview:_webView];
     self.view.backgroundColor = [UIColor whiteColor];
-//    [_webView makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.view.top).offset(64);
-//        make.left.equalTo(self.view);
-//        make.width.equalTo(WIDTH);
-//        make.height.equalTo(HEIGHT - 128);
-//    }];
-    NSString *urlString = self.article.shareUrl;
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    
-    [self.webView loadRequest:request];
     self.webView.delegate = self;
     _webView.scrollView.bounces = NO;
     
@@ -285,8 +277,11 @@ typedef void (^JsonSuccess)(id json);
            
             SQ_DetailArticle *detailArticle = [SQ_DetailArticle yy_modelWithJSON:json];
            NSString *str = [detailArticle.content stringByReplacingOccurrencesOfString:@"'\'" withString:@""];
-            NSString *str1 = [NSString stringWithFormat: @"<head><style>img{width:%fpx !important;height:%fpx !important;}</style></head>",WIDTH - 40,HEIGHT - 80];
-            NSString *htmlString = [str1 stringByAppendingString:str];
+            //图片高度自适应
+             NSString *imageControl = [NSString stringWithFormat: @"<head><style>img{max-width:%f;height:auto !important;width:auto !important;.img {width:%f;}}</style></head>",WIDTH - 40,WIDTH - 40];
+            
+            
+            NSString *htmlString = [imageControl stringByAppendingString:str];
             //加载剪辑后的html字符串
             [self.webView loadHTMLString:htmlString baseURL:nil];
             

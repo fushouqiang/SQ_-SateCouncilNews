@@ -52,6 +52,7 @@ UITableViewDataSource
     [self createLogo];
     [self createBottonUi];
     [self createTableView];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     // Do any additional setup after loading the view.
 }
 
@@ -195,13 +196,9 @@ UITableViewDataSource
         
         
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+      [self Clear];
             
-            
-            [self Clear];
-            
-            
-        });
+        
         
        
         //关于我们
@@ -286,15 +283,16 @@ UITableViewDataSource
 //缓存总大小
 - (NSString *)checkCache {
     
-    
-    
-    
-    
-    
+//    dispatch_queue_t sqQueue2 = dispatch_queue_create("SQQUEUE", DISPATCH_QUEUE_CONCURRENT);
+//    
+//    dispatch_async(sqQueue2, ^{
+//        
+//        
+//        
+//    });
     
 
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
-
     float folderSize = [self floatWithPath:path];
     NSString *cache = [NSString stringWithFormat:@"%.2fM",folderSize];
     return cache;
@@ -304,34 +302,25 @@ UITableViewDataSource
 
 //清除缓存
 - (void)Clear {
-    
-    
-    
-   
-    
+
     UIAlertController *clearCacheAlertController = [UIAlertController alertControllerWithTitle:@"当前缓存大小为,确认清除?" message:[self checkCache] preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *verifyAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+
+        dispatch_queue_t sqQueue = dispatch_queue_create("SQQUEUE", DISPATCH_QUEUE_CONCURRENT);
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            
-            
+        
+        dispatch_async(sqQueue, ^{
               [self clearPath];
             
-            
         });
-        
-      
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            
             [self clearDone];
+            
         });
         
-        
-        
-        
-        
+ 
     }];
     
     

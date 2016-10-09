@@ -217,8 +217,7 @@ typedef void (^JsonSuccess)(id json);
             [self addChildViewController:picVC];
             
         }else if(9 == i){
-            
-            
+
             VideoViewController *videoVC = [[VideoViewController alloc] init];
             videoVC.title = [_columsArray[i] valueForKey:@"title"];
             [self addChildViewController:videoVC];

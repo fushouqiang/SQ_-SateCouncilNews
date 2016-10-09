@@ -72,6 +72,7 @@ topNewsDelegate
 //创建tableView
 - (void)createTableView {
     self.car = [[SQ_CarouselView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 200)];
+    //避免block循环引用
     __weak typeof(self)weakSelf = self;
     _car.block = ^(SQ_Article *article) {
         [weakSelf pushWithData:article];
@@ -346,12 +347,8 @@ topNewsDelegate
 
 //获取json
 - (void)getJsonWithUrlString:(NSString *)urlString json:(JsonSuccess)json{
-    
-    
-    
-    
+
     [HttpClient getWithUrlString:urlString success:^(id data) {
-        NSLog(@"%@",[NSThread currentThread]);
         NSString *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         json(dic);
     } failure:^(NSError *error) {

@@ -204,18 +204,28 @@ typedef void (^JsonSuccess)(id json);
                 
                 }
            
-            for (int i = 0; i < keyArray.count; i++) {
-                
+            
                 
                 for (SQ_Article *article in array) {
                     
-                    if (i == [article.position intValue]) {
+                    if (4 == [article.contentMode intValue]) {
                         [_articleArray addObject:article];
+                       
                     }
-                    
+                }
+            
+            for (SQ_Article *article in array) {
+                
+                if (4 != [article.contentMode intValue]) {
+                    [_articleArray addObject:article];
                     
                 }
             }
+            
+            
+            
+
+            
             
             //解析下部分类
             
@@ -241,7 +251,6 @@ typedef void (^JsonSuccess)(id json);
                 }
             }
             
-            NSLog(@"%@",_categoriesArray);
             [_tableView reloadData];
           
         }
@@ -272,7 +281,7 @@ typedef void (^JsonSuccess)(id json);
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.row == 2) {
+    if (indexPath.row == 0) {
         SQ_H5ServiceDetailController *h5VC = [[SQ_H5ServiceDetailController alloc] init];
         h5VC.article = _articleArray[indexPath.row];
         h5VC.hidesBottomBarWhenPushed = YES;

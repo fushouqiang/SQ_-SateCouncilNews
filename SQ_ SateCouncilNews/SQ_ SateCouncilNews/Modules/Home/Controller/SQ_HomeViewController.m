@@ -202,7 +202,7 @@ typedef void (^JsonSuccess)(id json);
     newsVC.title = @"要闻";
    
    
-    for (int i = 0; i < _columsArray.count; i++) {
+    for (int i = 0; i < _columsArray.count - 3; i++) {
         
         if (0 == i) {
             

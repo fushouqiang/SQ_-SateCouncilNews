@@ -95,11 +95,15 @@
 
 - (void)timerChanged:(NSTimer *)timer {
 
-    [_newsScrollView setContentOffset:CGPointMake(5 + _newsScrollView.contentOffset.x, 0) animated:YES];
-    if (_newsScrollView.contentOffset.x > (WIDTH/10 * 9 - 5) *(_keyArray.count)) {
-        
-        [_newsScrollView setContentOffset:CGPointMake(0, 0) animated:NO];
-    }
+ 
+        [_newsScrollView setContentOffset:CGPointMake(5 + _newsScrollView.contentOffset.x, 0) animated:YES];
+        if (_newsScrollView.contentOffset.x > (WIDTH/10 * 9 - 5) *(_keyArray.count)) {
+            
+            [_newsScrollView setContentOffset:CGPointMake(0, 0) animated:NO];
+        }
+
+
+    
     
     
 }
@@ -121,6 +125,20 @@
     
 }
 
+- (void)timer{
+    
+    @autoreleasepool {
+        
+     [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(timerChanged:) userInfo:nil repeats:YES];
+        //启动子线程的runloop
+     [[NSRunLoop currentRunLoop] run];
+        
+    }
+    
+   
+}
+
+
 - (void)setDataDic:(NSDictionary *)dataDic {
     if (_dataDic != dataDic) {
         
@@ -130,9 +148,16 @@
         
         self.keyArray = [dataDic allKeys];
         [self createUI];
-        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(timerChanged:) userInfo:nil repeats:YES];
         
-        [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+        //在子线程启动定时器 防止拖拽主视图时 滚动条不滚动
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            
+            [self timer];
+            
+            
+        });
+
         
          UILabel * lastLabel = [[UILabel alloc] init];
         for (int i = 0; i < _keyArray.count; i++) {

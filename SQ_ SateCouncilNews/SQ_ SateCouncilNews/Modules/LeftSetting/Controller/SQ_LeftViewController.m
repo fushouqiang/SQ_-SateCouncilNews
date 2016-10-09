@@ -194,8 +194,16 @@ UITableViewDataSource
     } else if (indexPath.row == 2) {
         
         
-     
-        [self Clear];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            
+            [self Clear];
+            
+            
+        });
+        
+       
         //关于我们
     } else if (indexPath.row == 4) {
         
@@ -278,7 +286,15 @@ UITableViewDataSource
 //缓存总大小
 - (NSString *)checkCache {
     
+    
+    
+    
+    
+    
+    
+
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+
     float folderSize = [self floatWithPath:path];
     NSString *cache = [NSString stringWithFormat:@"%.2fM",folderSize];
     return cache;
@@ -297,10 +313,23 @@ UITableViewDataSource
     
     UIAlertAction *verifyAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
-        [self clearPath];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            
+              [self clearPath];
+            
+            
+        });
+        
+      
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            
+            [self clearDone];
+        });
         
         
-        [self clearDone];
+        
         
         
     }];

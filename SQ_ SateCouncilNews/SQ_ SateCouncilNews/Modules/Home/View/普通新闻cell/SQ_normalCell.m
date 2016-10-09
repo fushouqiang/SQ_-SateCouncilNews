@@ -11,6 +11,7 @@
 #import "SQ_TopView.h"
 #import "SQ_Article.h"
 #import "NSObject+YYModel.h"
+#import "UILabel+SizeToFit_W_H.h"
 
 @interface SQ_normalCell ()
 
@@ -113,6 +114,12 @@
             _signLabel.layer.borderColor = [UIColor colorWithRed:0.329 green:0.544 blue:1.000 alpha:1.000].CGColor;
             _signLabel.layer.borderWidth = 1;
             self.signLabel.text = article.feature;
+           CGFloat signWidth = [UILabel getWidthWithTitle:article.feature Font:[UIFont systemFontOfSize:10]];
+            
+            [_signLabel updateConstraints:^(MASConstraintMaker *make) {
+                
+                make.width.equalTo(signWidth + 5);
+            }];
         }
         if (article.feature == nil) {
             

@@ -207,14 +207,13 @@ typedef void (^JsonSuccess)(id json);
         if (_cellNumber != 0) {
             SQ_AudioCell *lastCell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_cellNumber inSection:0]];
             lastCell.isPlay = NO;
-
+            
             
         }
        
         
         cell.block = ^(AVPlayerItem *item) {
 
-//            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:_cellNumber inSection:0],nil] withRowAnimation:UITableViewRowAnimationNone];
             
             
             if (_playerItem == nil || (self.cellNumber != indexPath.row)) {
@@ -223,12 +222,15 @@ typedef void (^JsonSuccess)(id json);
             }
             if (blockcell.isPlay == YES) {
                 
-             
+                
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                
                 [_player play];
                 
-
+            });
+             
                 
-//                [self.player  replaceCurrentItemWithPlayerItem:item];
+
             } else if (blockcell.isPlay == NO)
             
             {
@@ -244,7 +246,8 @@ typedef void (^JsonSuccess)(id json);
             
         };
        
-        return cell;}
+        return cell;
+    }
     
 }
 

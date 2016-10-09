@@ -100,8 +100,8 @@
         _article = article;
         
         
-        NSString *urlSource = [[article.thumbnails valueForKey:@"1"] valueForKey:@"file"];
-        NSString *urlString = [NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/%@",urlSource];
+        
+        NSString *urlString = _article.saveImageUrl;
         NSURL *imageUrl = [NSURL URLWithString:urlString];
         [self.newsImageView sd_setImageWithURL:imageUrl];
         self.contentLabel.text = article.title;
@@ -120,7 +120,7 @@
         }
         
         
-        if (urlSource == NULL) {
+        if (urlString == nil) {
             
             [_newsImageView removeFromSuperview];
             [_contentLabel mas_remakeConstraints:^(MASConstraintMaker *make) {

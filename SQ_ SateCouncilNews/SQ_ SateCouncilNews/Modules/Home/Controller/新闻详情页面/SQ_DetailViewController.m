@@ -54,16 +54,16 @@ typedef void (^JsonSuccess)(id json);
 
 - (void)viewWillAppear:(BOOL)animated {
     
-
+    
     [super viewWillAppear:animated];
     [_manager openSQLite];
     
     self.hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     _hud.delegate = self;
-//    _hud.mode = MBProgressHUDModeDeterminateHorizontalBar;
+    //    _hud.mode = MBProgressHUDModeDeterminateHorizontalBar;
     _hud.label.text = NSLocalizedString(@"Loading...", @"HUD loading title");
-   
-  
+    
+    
     
 }
 
@@ -78,8 +78,8 @@ typedef void (^JsonSuccess)(id json);
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
-
+    
+    
     
     self.headerView = [[UILabel alloc] init];
     _headerView.font = [UIFont systemFontOfSize:23];
@@ -183,7 +183,7 @@ typedef void (^JsonSuccess)(id json);
     [_shareButton addTarget:self action:@selector(shareButtonAction) forControlEvents:UIControlEventTouchUpInside];
     [_shareButton setImage:[UIImage imageNamed:@"newsShareButton"] forState:UIControlStateNormal];
     [_shareButton setImage:[UIImage imageNamed:@"newsShareSelectedButton"] forState:UIControlStateSelected];
-
+    
     
 }
 
@@ -203,7 +203,7 @@ typedef void (^JsonSuccess)(id json);
     self.manager = [DataBaseManager shareManager];
     [_manager openSQLite];
     _isSaved =  [_manager selectArticle:article];
- 
+    
     [self createUI];
     
     
@@ -224,10 +224,17 @@ typedef void (^JsonSuccess)(id json);
     }
     
     else {
+        
+        NSString *urlSource = [[_article.thumbnails valueForKey:@"1"] valueForKey:@"file"];
+        if (urlSource == nil) {
+            urlSource = [[_article.thumbnails valueForKey:@"1"] valueForKey:@"file"];
+        }
+        NSString *urlString = [NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/%@",urlSource];
+        _article.saveImageUrl = urlString;
         [_manager insertIntoWithArticle:_article];
         [button setImage:[UIImage imageNamed:@"newsSavedButton"] forState:UIControlStateNormal];
         [self alertWithTitle:@"收藏成功!" andMessage:nil];
-    
+        
     }
     _isSaved = !_isSaved;
     
@@ -246,7 +253,7 @@ typedef void (^JsonSuccess)(id json);
     
     
     [self presentViewController:aboutUSAlertController animated:YES completion:nil];
-
+    
     
 }
 
@@ -255,7 +262,7 @@ typedef void (^JsonSuccess)(id json);
     
     
     [self alertWithTitle:@"分享失败,原因如下" andMessage:@"本应用不打算上架"];
-
+    
 }
 
 //跳转页面
@@ -264,7 +271,7 @@ typedef void (^JsonSuccess)(id json);
     detailVC.article = _articleArray[indexPath.row];
     detailVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detailVC animated:YES];
-
+    
     
     
 }
@@ -276,14 +283,14 @@ typedef void (^JsonSuccess)(id json);
     
     
     [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/%@",_article.path] json:^(id json) {
-       
+        
         if(json) {
-        self.result = json;
-           
+            self.result = json;
+            
             SQ_DetailArticle *detailArticle = [SQ_DetailArticle yy_modelWithJSON:json];
-           NSString *str = [detailArticle.content stringByReplacingOccurrencesOfString:@"'\'" withString:@""];
+            NSString *str = [detailArticle.content stringByReplacingOccurrencesOfString:@"'\'" withString:@""];
             //图片高度自适应
-             NSString *imageControl = [NSString stringWithFormat: @"<head><style>img{max-width:%f;height:auto !important;width:auto !important;.img {width:%f;}}</style></head>",WIDTH - 40,WIDTH - 40];
+            NSString *imageControl = [NSString stringWithFormat: @"<head><style>img{max-width:%f;height:auto !important;width:auto !important;.img {width:%f;}}</style></head>",WIDTH - 40,WIDTH - 40];
             
             
             NSString *htmlString = [imageControl stringByAppendingString:str];
@@ -298,12 +305,12 @@ typedef void (^JsonSuccess)(id json);
                     NSDictionary *articleDic = [detailArticle.relatedArticles valueForKey:keyArray[i]];
                     SQ_Article *article = [SQ_Article yy_modelWithDictionary:articleDic];
                     [self.articleArray addObject:article];
-              
+                    
                 }
                 
-
-         }  else {
-             self.webView.scrollView.contentInset = UIEdgeInsetsMake(100,0.0,0,0.0);
+                
+            }  else {
+                self.webView.scrollView.contentInset = UIEdgeInsetsMake(100,0.0,0,0.0);
                 
             }
             
@@ -338,10 +345,10 @@ typedef void (^JsonSuccess)(id json);
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
     
     if(navigationType==UIWebViewNavigationTypeLinkClicked)//判断是否是点击链接
-        {
+    {
         
         return NO;
-        }
+    }
     
     else {
         return YES;
@@ -357,10 +364,10 @@ typedef void (^JsonSuccess)(id json);
 //屏蔽JS广告
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByClassName('bottomicon')[0].style.display = 'NONE'"];
-
+    
     //设置尾视图的relateNews的相关曹操作
     
- 
+    
     if (_articleArray.count > 0) {
         NSString *result = [webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight;"];
         
@@ -378,8 +385,8 @@ typedef void (^JsonSuccess)(id json);
         }
         
         else if (_articleArray.count == 2) {
-        
-        self.footerView.frame = CGRectMake(0, height + 20 + 40, WIDTH, 200);
+            
+            self.footerView.frame = CGRectMake(0, height + 20 + 40, WIDTH, 200);
         }
         self.headerView.frame = CGRectMake(0, -100, WIDTH, 100);
         [webView.scrollView addSubview:lineLabel];
@@ -390,7 +397,7 @@ typedef void (^JsonSuccess)(id json);
     
     
     
-
+    
 }
 
 
@@ -405,13 +412,13 @@ typedef void (^JsonSuccess)(id json);
 
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

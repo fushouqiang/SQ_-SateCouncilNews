@@ -718,7 +718,6 @@
 		798142051D9155EA005BEA08 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7988F6241DA9EE1E00EEE210 /* 文件搜索cell */,
 				79C538871D97A3D200A10164 /* 半屏新闻view */,
 				79C5389C1D97AE1000A10164 /* 半屏视频新闻View */,
 				79AF83AD1D9B4D6B0073C17A /* 图片新闻cell */,
@@ -727,6 +726,7 @@
 				79A360B91D98D2350090F80F /* 带标志普通新闻cell */,
 				79C538A21D97B4E200A10164 /* 政策新闻cell */,
 				79C538B21D97CE6700A10164 /* 数据新闻cell */,
+				7988F6241DA9EE1E00EEE210 /* 文件搜索cell */,
 				79A360BD1D98D4EE0090F80F /* 无图片新闻cell */,
 				79C538861D97A3BF00A10164 /* 无图片新闻view */,
 				79C538921D97A80B00A10164 /* 普通新闻View */,
@@ -791,10 +791,10 @@
 		7981420A1D9156DE005BEA08 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				79BFE0281D927B7B009F84D0 /* SQ_SCViewController.h */,
-				79BFE0291D927B7B009F84D0 /* SQ_SCViewController.m */,
 				79A1B0E11DA8997F00AF083D /* SQ_SCGeneralController.h */,
 				79A1B0E21DA8997F00AF083D /* SQ_SCGeneralController.m */,
+				79BFE0281D927B7B009F84D0 /* SQ_SCViewController.h */,
+				79BFE0291D927B7B009F84D0 /* SQ_SCViewController.m */,
 				79A1B15B1DA8CE2900AF083D /* SQ_SCorgViewController.h */,
 				79A1B15C1DA8CE2900AF083D /* SQ_SCorgViewController.m */,
 			);
@@ -906,7 +906,7 @@
 				7988F6251DA9EEA100EEE210 /* SQ_FileSearchCell.h */,
 				7988F6261DA9EEA100EEE210 /* SQ_FileSearchCell.m */,
 			);
-			name = "文件搜索cell";
+			path = "文件搜索cell";
 			sourceTree = "<group>";
 		};
 		798EBCAB1DA3791E0018325E /* 信息公开 */ = {
@@ -992,10 +992,10 @@
 				7999624A1D9F798400CCEF44 /* SQ_EnterDepController.m */,
 				7999625E1D9FABC000CCEF44 /* SQ_depaChildController.h */,
 				7999625F1D9FABC000CCEF44 /* SQ_depaChildController.m */,
-				7999625B1D9FA50B00CCEF44 /* SQ_departNewsController.h */,
-				7999625C1D9FA50B00CCEF44 /* SQ_departNewsController.m */,
 				79A1B1611DA8EE1700AF083D /* SQ_depaDetailViewController.h */,
 				79A1B1621DA8EE1700AF083D /* SQ_depaDetailViewController.m */,
+				7999625B1D9FA50B00CCEF44 /* SQ_departNewsController.h */,
+				7999625C1D9FA50B00CCEF44 /* SQ_departNewsController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1074,7 +1074,7 @@
 				79A1B0D21DA879FD00AF083D /* SQ_LoginViewController.m */,
 				79A1B0D31DA879FD00AF083D /* SQ_LoginViewController.xib */,
 			);
-			name = "登录注册";
+			path = "登录注册";
 			sourceTree = "<group>";
 		};
 		79A360B91D98D2350090F80F /* 带标志普通新闻cell */ = {
@@ -1288,8 +1288,8 @@
 		79BFE02F1D927BF8009F84D0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				79A1B0D01DA8798E00AF083D /* 登录注册 */,
 				7969DB851D9D535300F2A477 /* 收藏 */,
+				79A1B0D01DA8798E00AF083D /* 登录注册 */,
 				79BFE0321D927C1F009F84D0 /* SQ_LeftViewController.h */,
 				79BFE0331D927C1F009F84D0 /* SQ_LeftViewController.m */,
 			);
@@ -1299,10 +1299,10 @@
 		79BFE0301D927C04009F84D0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				79A1B0DB1DA88AE400AF083D /* SQ_SavedCell.h */,
-				79A1B0DC1DA88AE400AF083D /* SQ_SavedCell.m */,
 				796462DD1D9615420045B35F /* SQ_LeftCell.h */,
 				796462DE1D9615420045B35F /* SQ_LeftCell.m */,
+				79A1B0DB1DA88AE400AF083D /* SQ_SavedCell.h */,
+				79A1B0DC1DA88AE400AF083D /* SQ_SavedCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";

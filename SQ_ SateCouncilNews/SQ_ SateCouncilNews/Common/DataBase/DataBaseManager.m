@@ -58,7 +58,7 @@
 
 - (BOOL)createSQLite {
     
-    NSString *createTableSQL = @"create table if not exists Article(article_id integer primary key autoincrement,title text not null,date text not null,feature text not null,shareUrl text not null)";
+    NSString *createTableSQL = @"create table if not exists Article(article_id integer primary key autoincrement,title text not null,date text not null,feature text not null,shareUrl text not null,imageUrl text)";
     
     char *error = NULL;
     
@@ -69,18 +69,18 @@
     }
     
     return [self isSuccessWithResult:result alert:@"创建表"];
-
-   
+    
+    
     return 0;
 }
 
 
 - (BOOL)insertIntoWithArticle:(SQ_Article *)article {
     
-     NSString *dateString = [article.path substringToIndex:9];
+    NSString *dateString = [article.path substringToIndex:9];
     char *error = NULL;
     
-    NSString *insertSQL = [NSString stringWithFormat:@"insert into Article values(null,'%@','%@','%@','%@')",article.title,dateString,article.feature,article.shareUrl];
+    NSString *insertSQL = [NSString stringWithFormat:@"insert into Article values(null,'%@','%@','%@','%@','%@')",article.title,dateString,article.feature,article.shareUrl,article.saveImageUrl];
     
     int result = sqlite3_exec(dbPoint, [insertSQL UTF8String], NULL, NULL, &error);
     [self logErrorMessage:error];
@@ -99,7 +99,7 @@
     NSString *deleteSQL = [NSString stringWithFormat:@"delete from Article where title is '%@'",article.title];
     
     int result = sqlite3_exec(dbPoint, [deleteSQL UTF8String], NULL, NULL, &error);
-
+    
     [self logErrorMessage:error];
     
     return [self isSuccessWithResult:result alert:@"删除"];
@@ -125,19 +125,21 @@
             const unsigned char *date = sqlite3_column_text(stmt, 2);
             const unsigned char *feature = sqlite3_column_text(stmt, 3);
             const unsigned char *shareUrl = sqlite3_column_text(stmt, 4);
+            const unsigned char *imageUrl = sqlite3_column_text(stmt, 5);
             SQ_Article *article = [[SQ_Article alloc] init];
             article.title = [NSString stringWithUTF8String:(const char *)name];
             article.path = [NSString stringWithUTF8String:(const char *)date];
             article.feature = [NSString stringWithUTF8String:(const char *)feature];
             article.shareUrl = [NSString stringWithUTF8String:(const char *)shareUrl];
-
+            article.saveImageUrl = [NSString stringWithUTF8String:(const char *)imageUrl];
+            
             
             [resultArray addObject:article];
         }
     }
     sqlite3_finalize(stmt);
     return  resultArray;
-
+    
     
 }
 
@@ -161,11 +163,13 @@
             const unsigned char *date = sqlite3_column_text(stmt, 2);
             const unsigned char *feature = sqlite3_column_text(stmt, 3);
             const unsigned char *shareUrl = sqlite3_column_text(stmt, 4);
+            const unsigned char *imageUrl = sqlite3_column_text(stmt, 5);
             SQ_Article *article = [[SQ_Article alloc] init];
             article.title = [NSString stringWithUTF8String:(const char *)name];
             article.path = [NSString stringWithUTF8String:(const char *)date];
             article.feature = [NSString stringWithUTF8String:(const char *)feature];
             article.shareUrl = [NSString stringWithUTF8String:(const char *)shareUrl];
+            article.saveImageUrl = [NSString stringWithUTF8String:(const char *)imageUrl];
             
             
             [resultArray addObject:article];
@@ -173,7 +177,7 @@
     }
     sqlite3_finalize(stmt);
     
-
+    
     if (resultArray.count > 0) {
         
         return 1;
@@ -183,7 +187,7 @@
 }
 
 //int Result(void* pContext, int nCol, char** azValue, char** azName) {
-//    
+//
 //}
 
 

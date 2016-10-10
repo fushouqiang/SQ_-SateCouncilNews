@@ -86,6 +86,13 @@ typedef void (^JsonSuccess)(id json);
 }
 
 
+- (void)viewWillDisappear:(BOOL)animated {
+    
+
+    
+}
+
+
 - (void)handleData {
     
     

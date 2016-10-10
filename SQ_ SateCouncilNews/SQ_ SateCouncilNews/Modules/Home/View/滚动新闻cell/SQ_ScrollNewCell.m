@@ -125,15 +125,14 @@
     
 }
 
-- (void)timer{
+- (void)timerMake{
     
-    @autoreleasepool {
-        
-     [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(timerChanged:) userInfo:nil repeats:YES];
-        //启动子线程的runloop
-     [[NSRunLoop currentRunLoop] run];
-        
-    }
+
+    
+     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(timerChanged:) userInfo:nil repeats:YES];
+     [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+     //NSRunLoopCommonModes，这个模式等效于NSDefaultRunLoopMode和NSEventTrackingRunLoopMode的结合。
+
     
    
 }
@@ -149,17 +148,13 @@
         self.keyArray = [dataDic allKeys];
         [self createUI];
         
-        //在子线程启动定时器 防止拖拽主视图时 滚动条不滚动
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+
+        [self timerMake];
             
-            
-            [self timer];
-            
-            
-        });
+        
 
         
-         UILabel * lastLabel = [[UILabel alloc] init];
+        UILabel * lastLabel = [[UILabel alloc] init];
         for (int i = 0; i < _keyArray.count; i++) {
         
             SQ_News *news = [SQ_News yy_modelWithDictionary:[dataDic valueForKey:_keyArray[i]]];

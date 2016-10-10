@@ -101,8 +101,9 @@
         [self.newsImageView sd_setImageWithURL:imageUrl];
         self.contentLabel.text = article.title;
         NSString *str = [article.path substringToIndex:9];
-        self.timeLabel.text = str;
-        
+        NSMutableString *str2 = [[NSMutableString alloc] initWithString:str];
+        [str2 insertString:@"/" atIndex:4];
+        self.timeLabel.text = str2;
         
         
         self.signLabel.text = article.feature;

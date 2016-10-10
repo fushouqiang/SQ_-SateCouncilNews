@@ -31,8 +31,7 @@
     }
     
     NSString *urlString = [NSString stringWithFormat:@"http://app.www.gov.cn/govdata/html/%@",icon.icon];
-    
-    [_imageView sd_setImageWithURL:[NSURL URLWithString:urlString]];
+    [_imageView sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:[UIImage imageNamed:@"hallMinistryIconLoading"] options:SDWebImageRetryFailed];
     _title.text = icon.name;
 }
 

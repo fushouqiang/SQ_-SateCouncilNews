@@ -99,11 +99,12 @@
     if (_article != article) {
         _article = article;
         
-       
+       //获取图片地址
         NSString *urlSource = [[article.thumbnails valueForKey:@"1"] valueForKey:@"file"];
         NSString *urlString = [NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/%@",urlSource];
         NSURL *imageUrl = [NSURL URLWithString:urlString];
-        [self.newsImageView sd_setImageWithURL:imageUrl];
+        [_newsImageView sd_setImageWithURL:imageUrl placeholderImage:nil options:SDWebImageProgressiveDownload];
+        //截取时间
         self.contentLabel.text = article.title;
         NSString *str = [article.path substringToIndex:9];
         NSMutableString *str2 = [[NSMutableString alloc] initWithString:str];

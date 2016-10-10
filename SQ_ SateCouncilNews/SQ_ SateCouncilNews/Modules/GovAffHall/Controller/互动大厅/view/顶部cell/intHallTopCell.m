@@ -27,7 +27,7 @@
     
     if (self) {
         
-        self.myImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 0, self.contentView.bounds.size.width - 10, 180)];
+        self.myImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 0, WIDTH - 10, 180)];
         _myImageView.image = [UIImage imageNamed:@"hallAskBanner"];
         [self.contentView addSubview:_myImageView];
         _myImageView.userInteractionEnabled = YES;

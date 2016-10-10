@@ -18,6 +18,7 @@ UIScrollViewDelegate
 @property (nonatomic, retain)UIScrollView *contentScrollView;
 @property (nonatomic, strong) UILabel *enterLabel;
 @property (nonatomic, strong) UILabel *showLabel;
+@property (nonatomic, strong) UILabel *lastLabel;
 
 
 @end
@@ -61,17 +62,20 @@ UIScrollViewDelegate
     [_enterLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headTapAction:)]];
     _enterLabel.text = @"入驻部门";
     _enterLabel.textAlignment = NSTextAlignmentCenter;
-    _enterLabel.font = [UIFont systemFontOfSize:14];
-    _enterLabel.textColor = [UIColor colorWithWhite:0.555 alpha:1.000];;
+    _enterLabel.userInteractionEnabled = YES;
+    _enterLabel.font = [UIFont systemFontOfSize:18];
+    _enterLabel.textColor =[UIColor colorWithRed:0.034 green:0.495 blue:0.703 alpha:1.000];
     
     //政务联播
     self.showLabel = [[UILabel alloc] initWithFrame:CGRectMake(WIDTH / 2, 0, WIDTH/ 2, 40)];
     [headView addSubview:_showLabel];
     [_showLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headTapAction:)]];
     _showLabel.text = @"政务联播";
+    _showLabel.userInteractionEnabled = YES;
     _showLabel.textAlignment = NSTextAlignmentCenter;
-    _showLabel.font = [UIFont systemFontOfSize:14];
-    _showLabel.textColor = [UIColor colorWithWhite:0.555 alpha:1.000];
+    _showLabel.font = [UIFont systemFontOfSize:18];
+    _showLabel.textColor = [UIColor colorWithWhite:0.421 alpha:1.000];
+
 
 }
 
@@ -89,6 +93,38 @@ UIScrollViewDelegate
 }
 
 - (void)headTapAction:(UITapGestureRecognizer *)tap {
+    
+    if (tap.view == _showLabel) {
+        [_contentScrollView setContentOffset:CGPointMake(WIDTH, -66) animated:YES];
+        _showLabel.textColor = [UIColor colorWithRed:0.034 green:0.495 blue:0.703 alpha:1.000];
+        _enterLabel.textColor =[UIColor colorWithWhite:0.421 alpha:1.000];
+    }
+    
+    if (tap.view == _enterLabel) {
+        _showLabel.textColor = [UIColor colorWithWhite:0.421 alpha:1.000];
+        _enterLabel.textColor =[UIColor colorWithRed:0.034 green:0.495 blue:0.703 alpha:1.000];
+
+        [_contentScrollView setContentOffset:CGPointMake(0, -66) animated:YES];
+    }
+    
+    
+    
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    
+
+    CGFloat x = scrollView.contentOffset.x / WIDTH;
+    
+    if (x == 1) {
+        
+        _showLabel.textColor = [UIColor colorWithRed:0.034 green:0.495 blue:0.703 alpha:1.000];
+        _enterLabel.textColor =[UIColor colorWithWhite:0.421 alpha:1.000];
+    } else {
+        _showLabel.textColor = [UIColor colorWithWhite:0.421 alpha:1.000];
+        _enterLabel.textColor =[UIColor colorWithRed:0.034 green:0.495 blue:0.703 alpha:1.000];
+    }
+    
     
 }
 

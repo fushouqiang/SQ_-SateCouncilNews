@@ -61,6 +61,7 @@ UIScrollViewDelegate
 }
 
 
+//添加子控制器
 - (void)setupAllChildViewController {
     
     
@@ -71,14 +72,7 @@ UIScrollViewDelegate
         newsVC.view.backgroundColor = [UIColor colorWithRed: 0.01* arc4random_uniform(100) green:0.01* arc4random_uniform(100) blue:0.01* arc4random_uniform(100) alpha:1.000];
 
     }
-    
-    
-    
-    
-    
-    
-    
-    
+   
     
 }
 
@@ -103,7 +97,6 @@ UIScrollViewDelegate
         //button根据文字宽度设置宽度和位置
         NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:16]};
         CGFloat length = [vc.title boundingRectWithSize:CGSizeMake(320, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size.width;
-                NSLog(@"%f",allLength);
          titleButton.frame = CGRectMake(allLength + 10, 0, length + 15, 40);
         [_lengthArray addObject:[NSValue valueWithCGPoint:titleButton.frame.origin]];
         allLength = titleButton.frame.size.width + titleButton.frame.origin.x;

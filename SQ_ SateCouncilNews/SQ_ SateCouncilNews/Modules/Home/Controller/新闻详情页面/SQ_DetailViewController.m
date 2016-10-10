@@ -58,7 +58,7 @@ typedef void (^JsonSuccess)(id json);
     [super viewWillAppear:animated];
     [_manager openSQLite];
     
-    self.hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     _hud.delegate = self;
     //    _hud.mode = MBProgressHUDModeDeterminateHorizontalBar;
     _hud.label.text = NSLocalizedString(@"Loading...", @"HUD loading title");
@@ -73,26 +73,20 @@ typedef void (^JsonSuccess)(id json);
     self.webView.delegate = nil;
 }
 
-
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     
-    
+    //设置标题视图
     self.headerView = [[UILabel alloc] init];
     _headerView.font = [UIFont systemFontOfSize:23];
     _headerView.numberOfLines = 0;
     _headerView.text = _article.title;
-    
-    
     self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT - 64)];
     [self.view addSubview:_webView];
     self.view.backgroundColor = [UIColor whiteColor];
     self.webView.delegate = self;
     _webView.scrollView.bounces = NO;
-    
     //防止因为设置webView尾视图后每次跳转都会出现的黑条
     _webView.backgroundColor = [UIColor clearColor];
     _webView.opaque = NO;
@@ -119,20 +113,7 @@ typedef void (^JsonSuccess)(id json);
         cell.article = _articleArray[indexPath.row];
     }
     return cell;
-    
-    
-    
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -310,7 +291,7 @@ typedef void (^JsonSuccess)(id json);
                 
                 
             }  else {
-                self.webView.scrollView.contentInset = UIEdgeInsetsMake(100,0.0,0,0.0);
+                self.webView.scrollView.contentInset = UIEdgeInsetsMake(100,0,0,0);
                 
             }
             
@@ -365,7 +346,7 @@ typedef void (^JsonSuccess)(id json);
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByClassName('bottomicon')[0].style.display = 'NONE'"];
     
-    //设置尾视图的relateNews的相关曹操作
+    //设置尾视图的relateNews的相关操作
     
     
     if (_articleArray.count > 0) {

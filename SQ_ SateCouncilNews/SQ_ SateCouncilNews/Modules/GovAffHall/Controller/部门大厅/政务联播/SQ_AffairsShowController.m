@@ -12,6 +12,7 @@
 #import "SQ_depNewsCell.h"
 #import "NSObject+YYModel.h"
 #import "SQ_DetailViewController.h"
+#import "SQ_depaDetailViewController.h"
 
 static NSString *const cellIdentifier = @"cell";
 
@@ -54,7 +55,7 @@ typedef void (^JsonSuccess)(id json);
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
-    SQ_DetailViewController *detailVC = [[SQ_DetailViewController alloc] init];
+    SQ_depaDetailViewController *detailVC = [[SQ_depaDetailViewController alloc] init];
     detailVC.article = _articleArray[indexPath.row];
     detailVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detailVC animated:YES];

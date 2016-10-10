@@ -80,7 +80,7 @@
             make.height.equalTo(40);
         }];
         [_audioButton setImage:[UIImage imageNamed:@"audioPlayButton"] forState:UIControlStateNormal];
-        [_audioButton addTarget:self action:@selector(playButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_audioButton addTarget:self action:@selector(playButtonAction) forControlEvents:UIControlEventTouchUpInside];
         
 //        if (_isUsed == YES) {
 //            
@@ -111,7 +111,7 @@
 }
 
 
-- (void)playButtonAction:(UIButton *)button {
+- (void)playButtonAction {
     
     _isPlay = !_isPlay;
     
@@ -125,10 +125,7 @@
         
         [_audioButton setImage:[UIImage imageNamed:@"audioPauseButton"] forState:UIControlStateNormal];
        
-        if (_block) {
-            
-//            self.block(_item);
-        }
+      
         
         
     } else if (_isPlay == NO){
@@ -136,7 +133,10 @@
         [_audioButton setImage:[UIImage imageNamed:@"audioPlayButton"] forState:UIControlStateNormal];
     }
     
-     self.block(_item);
+    if (_block) {
+       self.block(_item,self); 
+    }
+    
 }
 
 

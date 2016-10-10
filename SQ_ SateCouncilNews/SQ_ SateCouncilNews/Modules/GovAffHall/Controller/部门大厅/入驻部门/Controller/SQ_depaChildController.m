@@ -85,8 +85,6 @@ typedef void (^JsonSuccess)(id json);
     [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/html/%@/column_%@_0.json",string,str2] json:^(id json) {
         
         if (json != NULL) {
-            
-            NSLog(@"%@",json);
             NSArray *array = [json allKeys];
             
             for (int i = 0; i < array.count; i++) {
@@ -115,7 +113,6 @@ typedef void (^JsonSuccess)(id json);
         
         if (json != NULL) {
             
-            NSLog(@"%@",json);
             NSArray *array = [json allKeys];
             
             for (int i = 0; i < array.count; i++) {

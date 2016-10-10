@@ -60,27 +60,18 @@ typedef void (^JsonSuccess)(id json);
 
     
     self.downloadButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _downloadButton.frame = CGRectMake(WIDTH - 80, 50, 60, 40);
+    _downloadButton.frame = CGRectMake(WIDTH - 80, 20, 60, 40);
     [_downloadButton setImage:[UIImage imageNamed:@"photoDownload"] forState:UIControlStateNormal];
     [_downloadButton addTarget:self action:@selector(downLoadPic:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_downloadButton];
     
     self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _backButton.frame = CGRectMake(20, 50, 60, 40);
+    _backButton.frame = CGRectMake(10, 20, 60, 40);
     [_backButton setImage:[UIImage imageNamed:@"photoBackButton"] forState:UIControlStateNormal];
     [_backButton addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_backButton];
     
-//    self.textLabel = [[UILabel alloc] init];
-//    _textLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
-//    _textLabel.frame = CGRectMake(0, WIDTH - 100, WIDTH, 100);
-//    _textLabel.backgroundColor = [UIColor colorWithWhite:0.463 alpha:0.5];
-//    _textLabel.textColor = [UIColor whiteColor];
-//    [self.view addSubview:_textLabel];
-//    _textLabel.text = @"adfsdfdsfdsfdsfsdfdsfffargggggggggggggggggggggggg";
-//    
-//    
-//    
+  
 }
 
 
@@ -102,10 +93,6 @@ typedef void (^JsonSuccess)(id json);
     
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-//    NSInteger i  = _imageScrollView.contentOffset.x / WIDTH;
-//    SQ_pictureScrollView *picScrollView = _picScrollArray[i];
-}
 
 
 
@@ -137,7 +124,7 @@ typedef void (^JsonSuccess)(id json);
         
         
         
-       __block UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(WIDTH * i + 30, HEIGHT - 200, WIDTH * 0.7, 120)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(WIDTH * i + 30, HEIGHT - 200, WIDTH * 0.7, 120)];
         label.text = pic.des;
         label.font = [UIFont fontWithName:@"Helvetica" size:12];
         label.backgroundColor = [UIColor colorWithWhite:0.463 alpha:1];
@@ -176,9 +163,7 @@ typedef void (^JsonSuccess)(id json);
 
 // 成功保存图片到相册中, 必须调用此方法
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
-    
-    
-    
+
     if (!error) {
         
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"保存成功" preferredStyle:UIAlertControllerStyleAlert];
@@ -220,21 +205,7 @@ typedef void (^JsonSuccess)(id json);
     
 }
 
-- (void)handleData {
-    
-    [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/201609/27/390149/article.json"] json:^(id json) {
-        
-        if (json != NULL) {
-            
-            SQ_Detail *detail = [SQ_Detail yy_modelWithJSON:json];
-            NSLog(@"%@",detail);
-            
-        }
-        
-        
-    }];
-    
-}
+
 
 
 - (void)setArticle:(SQ_Article *)article {
@@ -260,7 +231,6 @@ typedef void (^JsonSuccess)(id json);
             }
         }
         
-        NSLog(@"%@",_pictureArray);
 
         
         

@@ -23,7 +23,7 @@ UIWebViewDelegate
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    self.hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     _hud.delegate = self;
     _hud.label.text = NSLocalizedString(@"Loading...", @"HUD loading title");
 

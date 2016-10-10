@@ -7,20 +7,40 @@
 //
 
 #import "SQ_WirteMessageController.h"
+#import "MBProgressHUD.h"
 
 @interface SQ_WirteMessageController ()
+<
+MBProgressHUDDelegate,
+UIWebViewDelegate
+>
+@property (nonatomic, strong) MBProgressHUD *hud;
 
 @end
 
 @implementation SQ_WirteMessageController
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _hud.delegate = self;
+    _hud.label.text = NSLocalizedString(@"Loading...", @"HUD loading title");
+    
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"我要留言";
     UIWebView *webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:webView];
+    webView.delegate = self;
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://login.forum.gov.cn/html/form/suggest_wxzlsjh.html"]]];
     
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    [_hud hideAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -50,16 +50,8 @@ typedef void (^JsonSuccess)(id json);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    //    self.articleArray = [NSMutableArray array];
-    //    [self handleData];
-    //    self.dataNumber = 0;
-    
-    
 }
 
-- (void)timer
-{
-  }
 
 
 - (void)createTableView {
@@ -204,15 +196,15 @@ typedef void (^JsonSuccess)(id json);
         __block SQ_AudioCell *  blockcell = cell;
         
         
-        if (_cellNumber != 0) {
-            SQ_AudioCell *lastCell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_cellNumber inSection:0]];
-            lastCell.isPlay = NO;
-            
-            
-        }
-       
+//        if (_cellNumber != 0) {
+//          
+//            lastCell.isPlay = NO;
+//            
+//            
+//        }
+//       
         
-        cell.block = ^(AVPlayerItem *item) {
+        cell.block = ^(AVPlayerItem *item ,SQ_AudioCell *currentCell) {
 
             
             
@@ -220,6 +212,20 @@ typedef void (^JsonSuccess)(id json);
                 _playerItem = item;
                 [self.player replaceCurrentItemWithPlayerItem:_playerItem];
             }
+            
+            
+            if (_cellNumber != indexPath.row && _cellNumber != 0) {
+                
+                
+                SQ_AudioCell *lastCell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_cellNumber inSection:0]];
+                lastCell.isPlay = NO;
+                [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:_cellNumber inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+                
+                
+            }
+            
+            
+            
             if (blockcell.isPlay == YES) {
                 
                 
@@ -237,15 +243,14 @@ typedef void (^JsonSuccess)(id json);
                 [_player pause];
             }
             
-            if (_cellNumber != indexPath.row) {
-                self.cellNumber = indexPath.row;
-            }
+
+          
             
-            
-            
+            self.cellNumber = indexPath.row;
+
             
         };
-       
+        
         return cell;
     }
     

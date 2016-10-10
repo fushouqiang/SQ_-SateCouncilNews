@@ -390,7 +390,6 @@ UITableViewDataSource
            
            cell = [[SQ_MemberCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID14];
            cell.member = _member;
-//           NSLog(@"%@",cell.dataDic);
            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
 
        }

@@ -13,8 +13,11 @@
 @interface SQ_AudioCell : UITableViewCell
 
 @property (nonatomic, strong)SQ_Article *article;
-@property (nonatomic, strong) void(^block)(AVPlayerItem *item);
+@property (nonatomic, strong) void(^block)(AVPlayerItem *item, SQ_AudioCell *currentCell);
 @property (nonatomic, assign) BOOL isPlay;
 @property (nonatomic, assign) BOOL isUsed;
 @property (nonatomic, strong) UILabel *signLabel;
+
+- (void)playButtonAction;
+
 @end

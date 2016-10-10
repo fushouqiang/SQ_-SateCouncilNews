@@ -60,7 +60,7 @@ typedef void (^JsonSuccess)(id json);
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
     
-    return 20;
+    return _iconArray.count;
 }
 
 

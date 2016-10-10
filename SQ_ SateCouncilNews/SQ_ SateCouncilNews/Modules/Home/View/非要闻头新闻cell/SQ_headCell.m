@@ -92,7 +92,7 @@
         
         NSString *urlString = [NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/%@",urlSource];
         NSURL *imageUrl = [NSURL URLWithString:urlString];
-        [_newsImageView sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@""]];
+        [_newsImageView sd_setImageWithURL:imageUrl placeholderImage:nil options:SDWebImageProgressiveDownload];
         _contentLabel.text = article.title;
         _timeLabel.text = [article.path substringToIndex:9];
     

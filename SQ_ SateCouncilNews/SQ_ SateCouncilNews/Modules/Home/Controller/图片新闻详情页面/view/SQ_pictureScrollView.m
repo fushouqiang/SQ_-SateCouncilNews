@@ -28,14 +28,6 @@ UIScrollViewDelegate
     if (self) {
     
         self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
-//        [self.imageView makeConstraints:^(MASConstraintMaker *make) {
-//            
-//            make.left.equalTo(self.left);
-//            make.right.equalTo(self.right);
-//            make.top.equalTo(self.top).offset(200);
-//            make.b.equalTo(self.bottom)
-//            
-//        }];
         _imageView.contentMode = UIViewContentModeScaleAspectFit;
         _imageView.userInteractionEnabled = YES;
         [_imageView sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:nil options:SDWebImageProgressiveDownload];

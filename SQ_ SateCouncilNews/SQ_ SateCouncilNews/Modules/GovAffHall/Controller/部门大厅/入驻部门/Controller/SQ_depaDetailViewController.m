@@ -7,22 +7,17 @@
 //
 
 #import "SQ_depaDetailViewController.h"
-#import "HttpClient.h"
-#import "SQ_Article.h"
-#import "NSObject+YYModel.h"
-#import "SQ_Detail.h"
 #import "DataBaseManager.h"
-#import "AppDelegate.h"
 #import "MMDrawerController.h"
 #import "UIViewController+MMDrawerController.h"
-#import "UIImageView+WebCache.h"
-#import "SQ_DetailArticle.h"
-#import "SQ_normalCell.h"
+#import "MBProgressHUD.h"
+
 static NSString *const cellIdentifier = @"cell";
 
 @interface SQ_depaDetailViewController ()
 <
-UIWebViewDelegate
+UIWebViewDelegate,
+MBProgressHUDDelegate
 >
 typedef void (^JsonSuccess)(id json);
 @property (nonatomic, retain) UIWebView *webView;
@@ -30,6 +25,7 @@ typedef void (^JsonSuccess)(id json);
 @property (nonatomic, strong) UIButton *shareButton;
 @property (nonatomic, strong) DataBaseManager *manager;
 @property (nonatomic, assign) BOOL isSaved;
+@property (nonatomic, strong) MBProgressHUD *hud;
 @end
 
 @implementation SQ_depaDetailViewController
@@ -45,6 +41,10 @@ typedef void (^JsonSuccess)(id json);
     self.mm_drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeNone;
     self.mm_drawerController.closeDrawerGestureModeMask = MMCloseDrawerGestureModeNone;
     [_manager openSQLite];
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _hud.delegate = self;
+    _hud.label.text = NSLocalizedString(@"Loading...", @"HUD loading title");
+
     
     
 }
@@ -217,13 +217,16 @@ typedef void (^JsonSuccess)(id json);
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByClassName('bottomicon')[0].style.display = 'NONE'"];
     
-    //设置尾视图的relateNews的相关曹操作
     
   
     
     
     
     
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    [_hud hideAnimated:YES];
 }
 
 

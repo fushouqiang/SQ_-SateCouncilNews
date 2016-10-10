@@ -21,7 +21,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, self.contentView.bounds.size.width - 20, 40)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, WIDTH - 20, 40)];
         label.backgroundColor = [UIColor colorWithWhite:0.852 alpha:1.000];
         label.text = @"更多";
         label.textAlignment = NSTextAlignmentCenter;

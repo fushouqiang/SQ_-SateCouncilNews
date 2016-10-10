@@ -17,6 +17,7 @@
 #import "SQ_DetailArticle.h"
 #import "SQ_normalCell.h"
 #import "MBProgressHUD.h"
+#import "SQ_singlePicController.h"
 
 
 
@@ -30,18 +31,34 @@ UITableViewDelegate,
 UITableViewDataSource,
 MBProgressHUDDelegate
 >
+//定义一个有参数block
 typedef void (^JsonSuccess)(id json);
-
+//webView
 @property (nonatomic, retain) UIWebView *webView;
+//保存按钮
 @property (nonatomic, strong) UIButton *saveButton;
+//分享按钮
 @property (nonatomic, strong) UIButton *shareButton;
+//数据库manager
 @property (nonatomic, strong) DataBaseManager *manager;
+//是否以保存
 @property (nonatomic, assign) BOOL isSaved;
+
 @property (nonatomic, strong) id result;
+//模型数组
 @property (nonatomic, strong) NSMutableArray *articleArray;
+//尾视图
 @property (nonatomic, strong) UITableView *footerView;
+//头视图
 @property (nonatomic, strong) UILabel *headerView;
+
 @property (nonatomic, strong) MBProgressHUD *hud;
+//图片地址数组
+@property (nonatomic, strong) NSMutableArray *mUrlArray;
+//是否第一次进入
+@property (nonatomic, assign) NSInteger visitNumber;
+
+
 
 
 
@@ -56,16 +73,22 @@ typedef void (^JsonSuccess)(id json);
     
     
     [super viewWillAppear:animated];
+    //打开数据里
     [_manager openSQLite];
     
-    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    _hud.delegate = self;
-    //    _hud.mode = MBProgressHUDModeDeterminateHorizontalBar;
-    _hud.label.text = NSLocalizedString(@"Loading...", @"HUD loading title");
     
+    //防止浏览图片后hub一直显示
+   
+    if (_visitNumber == 0) {
+        self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        _hud.delegate = self;
+        _hud.label.text = NSLocalizedString(@"Loading...", @"HUD loading title");
+    }
     
-    
+    _visitNumber += 1;
+   
 }
+
 
 - (void)dealloc {
     
@@ -99,7 +122,7 @@ typedef void (^JsonSuccess)(id json);
     
 }
 
-
+//tableView代理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _articleArray.count;
 }
@@ -116,7 +139,7 @@ typedef void (^JsonSuccess)(id json);
 }
 
 
-
+//创建UI视图
 - (void)createUI {
     UIView *bottomView = [[UIView alloc] init];
     [self.view insertSubview:bottomView aboveSubview:_webView];
@@ -194,7 +217,7 @@ typedef void (^JsonSuccess)(id json);
     
 }
 
-
+//保存按钮响应
 - (void)saveButtonAction:(UIButton *)button {
     
     
@@ -221,7 +244,7 @@ typedef void (^JsonSuccess)(id json);
     
     
 }
-
+//alertController方法
 - (void)alertWithTitle:(NSString *)title andMessage:(NSString *)message {
     
     
@@ -241,8 +264,9 @@ typedef void (^JsonSuccess)(id json);
 
 - (void)shareButtonAction {
     
-    
-    [self alertWithTitle:@"分享失败,原因如下" andMessage:@"本应用不打算上架"];
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string  = _article.shareUrl;
+    [self alertWithTitle:@"本页面分享链接已复制到剪贴板" andMessage:@"请手动粘贴到微信或微博"];
     
 }
 
@@ -325,19 +349,23 @@ typedef void (^JsonSuccess)(id json);
 //禁止点击链接
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
     
-    if(navigationType==UIWebViewNavigationTypeLinkClicked)//判断是否是点击链接
-    {
+    if ([request.URL.scheme isEqualToString:@"image-preview"]) {
+        NSString* path = [request.URL.absoluteString substringFromIndex:[@"image-preview:" length]];
+        path = [path stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        NSLog(@"%@",path);
         
+        SQ_singlePicController *singlePic = [[SQ_singlePicController alloc] init];
+        singlePic.urlString = path;
+        [self.navigationController pushViewController:singlePic animated:YES];
+        //path 就是被点击图片的url
         return NO;
     }
-    
-    else {
-        return YES;
-    }
+    return YES;
     
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
+    
     [_hud hideAnimated:YES];
 }
 
@@ -345,6 +373,40 @@ typedef void (^JsonSuccess)(id json);
 //屏蔽JS广告
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByClassName('bottomicon')[0].style.display = 'NONE'"];
+    
+    
+    //这里是js，主要目的实现对url的获取
+    static  NSString * const jsGetImages =
+    @"function getImages(){\
+    var objs = document.getElementsByTagName(\"img\");\
+    var imgScr = '';\
+    for(var i=0;i<objs.length;i++){\
+    imgScr = imgScr + objs[i].src + '+';\
+    };\
+    return imgScr;\
+    };";
+    
+    [webView stringByEvaluatingJavaScriptFromString:jsGetImages];//注入js方法
+    NSString *urlResurlt = [webView stringByEvaluatingJavaScriptFromString:@"getImages()"];
+    
+    NSLog(@"%@",urlResurlt);
+    
+    _mUrlArray = [NSMutableArray arrayWithArray:[urlResurlt componentsSeparatedByString:@"+"]];
+    
+    [webView stringByEvaluatingJavaScriptFromString:@"function registerImageClickAction(){\
+     var imgs=document.getElementsByTagName('img');\
+     var length=imgs.length;\
+     for(var i=0;i<length;i++){\
+     img=imgs[i];\
+     img.onclick=function(){\
+     window.location.href='image-preview:'+this.src}\
+     }\
+     }"];
+    [webView stringByEvaluatingJavaScriptFromString:@"registerImageClickAction();"];
+    
+    
+    
+    
     
     //设置尾视图的relateNews的相关操作
     

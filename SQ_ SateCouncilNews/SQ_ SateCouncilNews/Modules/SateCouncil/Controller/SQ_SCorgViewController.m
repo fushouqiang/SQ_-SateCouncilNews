@@ -7,7 +7,7 @@
 //
 
 #import "SQ_SCorgViewController.h"
-
+//国务院组织结构Contrller
 @interface SQ_SCorgViewController ()
 
 @end

@@ -22,7 +22,9 @@ UITableViewDataSource,
 UITableViewDelegate
 >
 typedef void (^JsonSuccess)(id json);
+//政务联播TableView
 @property (nonatomic, strong) UITableView *tableView;
+//模型数组
 @property (nonatomic, strong) NSMutableArray *articleArray;
 
 

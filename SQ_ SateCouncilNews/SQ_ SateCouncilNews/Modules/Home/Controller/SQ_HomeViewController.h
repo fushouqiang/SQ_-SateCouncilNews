@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+//主页总控制器
 @interface SQ_HomeViewController : UIViewController
 
 

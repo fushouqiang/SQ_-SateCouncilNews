@@ -11,6 +11,7 @@
 
 @interface SQ_DetailViewController : SQ_BaseViewController
 
+//文章模型
 @property (nonatomic, strong)SQ_Article *article;
 
 @end

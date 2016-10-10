@@ -47,6 +47,7 @@ typedef void (^JsonSuccess)(id json);
     // Do any additional setup after loading the view.
 }
 
+//创建tableView
 - (void)createTableView {
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 10, self.view.frame.size.width, self.view.frame.size.height - 104) style:UITableViewStylePlain];
@@ -63,12 +64,14 @@ typedef void (^JsonSuccess)(id json);
     
 }
 
+//刷新
 - (void)refreshData {
     
     [self reloadData];
     
 }
 
+//加载
 - (void)loadData {
     if (_dataNumber == 3) {
         [self.tableView.mj_footer endRefreshing];
@@ -87,6 +90,7 @@ typedef void (^JsonSuccess)(id json);
     [_tableView.mj_footer endRefreshingWithNoMoreData];
 }
 
+//获取数据
 - (void)handleData {
     
     
@@ -183,7 +187,7 @@ typedef void (^JsonSuccess)(id json);
     
     return 250;
 }
-
+//点击事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
     SQ_PictureDetailController *picDVC = [[SQ_PictureDetailController alloc] init];

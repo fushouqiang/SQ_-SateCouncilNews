@@ -12,7 +12,7 @@
 
 
 @property (nonatomic, copy) void(^singleTapBlock)();
-
+//因为要保存图片,不得不把imageView写在外面
 @property (nonatomic, strong) UIImageView *imageView;
 
 - (instancetype)initWithFrame:(CGRect)frame urlString:(NSString *)urlString;

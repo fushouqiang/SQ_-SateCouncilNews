@@ -20,8 +20,9 @@ UICollectionViewDelegate,
 UICollectionViewDataSource
 >
 typedef void (^JsonSuccess)(id json);
-
+//部门CollectionView
 @property (nonatomic, strong) UICollectionView *collectionView;
+//模型数组
 @property (nonatomic, strong) NSMutableArray *iconArray;
 
 @end
@@ -38,17 +39,24 @@ typedef void (^JsonSuccess)(id json);
     
 }
 
-
+//建立CollectionView
 - (void)setUpCollectionView {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    //三列
     NSInteger cols = 3;
+    //一间距
     CGFloat margin = 1;
+    //item宽
     CGFloat itemW = (WIDTH - (cols - 1) * margin) / 3;
+    //item高
     CGFloat itemH = itemW + 10;
     layout.itemSize = CGSizeMake(itemW, itemH);
+    //间距1
     layout.minimumLineSpacing = margin;
+    //间距1
     layout.minimumInteritemSpacing = margin;
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 105) collectionViewLayout:layout];
+    //注册nib
     [_collectionView registerNib:[UINib nibWithNibName:@"SQ_CollectionViewCell" bundle:nil] forCellWithReuseIdentifier:cellIdentifier];
     [self.view addSubview:_collectionView];
     _collectionView.delegate = self;
@@ -85,6 +93,7 @@ typedef void (^JsonSuccess)(id json);
 }
 
 
+//获取数据
 - (void)handleData {
     
     

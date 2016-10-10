@@ -28,11 +28,17 @@ UIScrollViewDelegate
 >
 
 typedef void (^JsonSuccess)(id json);
+//图片模型数组
 @property (nonatomic, strong) NSMutableArray *pictureArray;
+//图片总scrollView
 @property (nonatomic, strong) JT3DScrollView *imageScrollView;
+//单个图片scrollView数组
 @property (nonatomic, strong) NSMutableArray *picScrollArray;
+//下载按钮
 @property (nonatomic, strong) __block UIButton *downloadButton;
+//返回按钮
 @property (nonatomic, strong) __block UIButton *backButton;
+//图片文字内容
 @property (nonatomic, strong) UILabel *textLabel;
 @end
 
@@ -55,6 +61,7 @@ typedef void (^JsonSuccess)(id json);
 }
 
 
+//创建按钮
 - (void)createBackButton {
     
 
@@ -74,7 +81,7 @@ typedef void (^JsonSuccess)(id json);
   
 }
 
-
+//返回按钮点击事件
 - (void)backButton:(UIButton *)button {
     
     [self dismissViewControllerAnimated:NO completion:nil];
@@ -82,24 +89,13 @@ typedef void (^JsonSuccess)(id json);
 }
 
 
-- (void)createLabel {
-    
-    
-    if (_textLabel == nil) {
-        
-        
-
-    }
-    
-}
 
 
 
 
 
 
-
-
+//创建图片总ScrollView
 - (void)createImageScrollView {
     
     if (_imageScrollView == nil) {
@@ -107,6 +103,7 @@ typedef void (^JsonSuccess)(id json);
         self.imageScrollView = [[JT3DScrollView alloc] initWithFrame:CGRectMake(0, 50, WIDTH, HEIGHT)];
         _imageScrollView.contentSize = CGSizeMake(_pictureArray.count * WIDTH, HEIGHT );
         _imageScrollView.showsHorizontalScrollIndicator = NO;
+        //scrollView翻页样式
         _imageScrollView.effect = 2;
         _imageScrollView.clipsToBounds = YES;
         _imageScrollView.delegate = self;
@@ -136,7 +133,7 @@ typedef void (^JsonSuccess)(id json);
         
         
         
-        
+        //单个图片scrollView点击block回调
         picScrollView.singleTapBlock = ^{
             
             label.hidden = !label.hidden;
@@ -153,6 +150,7 @@ typedef void (^JsonSuccess)(id json);
     [self.view addSubview:_imageScrollView];
 }
 
+//图片保存到相册
 - (void)downLoadPic:(UIButton *)button {
     
     NSInteger i  = _imageScrollView.contentOffset.x / WIDTH;

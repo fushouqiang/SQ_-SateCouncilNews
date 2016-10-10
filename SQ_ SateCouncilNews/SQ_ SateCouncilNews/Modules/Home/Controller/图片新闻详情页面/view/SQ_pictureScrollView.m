@@ -28,6 +28,7 @@ UIScrollViewDelegate
     if (self) {
     
         self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)];
+        //让imageView适应屏幕
         _imageView.contentMode = UIViewContentModeScaleAspectFit;
         _imageView.userInteractionEnabled = YES;
         [_imageView sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:nil options:SDWebImageProgressiveDownload];
@@ -40,10 +41,10 @@ UIScrollViewDelegate
         self.maximumZoomScale = 2.0;
         self.minimumZoomScale = 1.0;
         
-        
+        //单击手势
         UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapOnScrollView)];
         [_imageView addGestureRecognizer:singleTap];
-        
+        //双击手势
         UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapOnSrollView:)];
         [doubleTap setNumberOfTapsRequired:2];
         [_imageView addGestureRecognizer:doubleTap];
@@ -60,23 +61,24 @@ UIScrollViewDelegate
     
 }
 
-
+//单击
 - (void)singleTapOnScrollView
 {
     if (self.singleTapBlock) {
         self.singleTapBlock();
     }
 }
-
+//双击
 - (void)doubleTapOnSrollView:(UITapGestureRecognizer *)doubleTap {
-    
+    //获取点击的点
     CGPoint touchPoint = [doubleTap locationInView:self];
+    //入伙
     if (self.zoomScale <= 1.0) {
         
-        CGFloat scaleX = touchPoint.x + self.contentOffset.x;
-        CGFloat scaleY = touchPoint.y + self.contentOffset.y;
-        [self zoomToRect:CGRectMake(scaleX, scaleY, 0, 0) animated:YES];
+        //围绕触摸的点展开
+        [self zoomToRect:CGRectMake(touchPoint.x, touchPoint.y, 0, 0) animated:YES];
     }
+    //要是scale >1 双击就回到原来的位置
     else {
         [self setZoomScale:1.0 animated:YES];
     }
@@ -84,20 +86,7 @@ UIScrollViewDelegate
     
 }
 
-- (void)scrollViewDidZoom:(UIScrollView *)scrollView {
-    
-    
-    
-    
-    CGFloat offsetX = (scrollView.bounds.size.width > scrollView.contentSize.width)?
-    (scrollView.bounds.size.width - scrollView.contentSize.width) * 0.5 : 0.0;
-    CGFloat offsetY = (scrollView.bounds.size.height > scrollView.contentSize.height)?
-    (scrollView.bounds.size.height - scrollView.contentSize.height) * 0.5 : 0.0;
-    CGPoint actualCenter = CGPointMake(scrollView.contentSize.width * 0.5 + offsetX,scrollView.contentSize.height * 0.5 + offsetY);
-    
-    _imageView.center = actualCenter;
-    
-}
+
 
 // 放大后切换到下一张时,将原来那张变回原来的大小
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {

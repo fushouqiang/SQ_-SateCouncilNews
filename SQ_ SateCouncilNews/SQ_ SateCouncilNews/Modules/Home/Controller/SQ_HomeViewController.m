@@ -26,10 +26,15 @@
 UIScrollViewDelegate
 >
 typedef void (^JsonSuccess)(id json);
+//头scrollView
 @property (nonatomic, retain)UIScrollView *headScrollView;
+//内容scrollView
 @property (nonatomic, retain)UIScrollView *contentScrollView;
+//上一次点击的button
 @property (nonatomic, retain)UIButton *lastSelectButton;
+//导航button数组
 @property (nonatomic, strong) NSMutableArray *titleButtons;
+//cloums模型数组
 @property (nonatomic, strong) NSMutableArray *columsArray;
 @property (nonatomic, assign) NSInteger json;
 //因为每个titlebutton的frame是根据字符长度计算的,所以定义数组存放每个titleButton的位置
@@ -54,7 +59,7 @@ typedef void (^JsonSuccess)(id json);
     
 }
 
-
+//创建UI
 - (void)createUI {
     
     self.lastSelectButton = [[UIButton alloc] init];
@@ -86,13 +91,8 @@ typedef void (^JsonSuccess)(id json);
 }
 
 
-- (void)viewWillDisappear:(BOOL)animated {
-    
 
-    
-}
-
-
+//网络请求数据
 - (void)handleData {
     
     
@@ -164,6 +164,7 @@ typedef void (^JsonSuccess)(id json);
 }
 
 
+//搜索按钮点击事件
 - (void)searchAction {
     
     SQ_SearchViewController *searchVC = [[SQ_SearchViewController alloc] init];
@@ -275,6 +276,7 @@ typedef void (^JsonSuccess)(id json);
         NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:16]};
         CGFloat length = [vc.title boundingRectWithSize:CGSizeMake(320, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size.width;
         titleButton.frame = CGRectMake(allLength + 10, 0, length + 15, 40);
+        //将titleButton的中心点加入到数组中,因为数组只能存对象,所以把CGPoint转化为NSValue类型存入到数组中
         [_lengthArray addObject:[NSValue valueWithCGPoint:titleButton.frame.origin]];
         allLength = titleButton.frame.size.width + titleButton.frame.origin.x;
 
@@ -312,7 +314,7 @@ typedef void (^JsonSuccess)(id json);
     
 }
 
-
+//添加子控制器
 - (void)setupOneViewController:(NSInteger)i {
     
     
@@ -360,6 +362,7 @@ typedef void (^JsonSuccess)(id json);
 
 
 
+//结束拖动
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     
     NSInteger i = scrollView.contentOffset.x / [UIScreen mainScreen].bounds.size.width;
@@ -372,7 +375,9 @@ typedef void (^JsonSuccess)(id json);
     [self setupOneViewController:i];
     long index = titleButton.tag - 1000;
     
+    //从length数组中拿到对应的点
     NSValue *value = [_lengthArray objectAtIndex:index];
+    //将点转化为CGPoint类型以便设置headScrollView的位置
     [self.headScrollView setContentOffset:[value CGPointValue] animated:YES];
 
 

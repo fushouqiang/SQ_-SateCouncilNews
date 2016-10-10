@@ -27,27 +27,23 @@
    
     
 
-    
+    //主页
     SQ_HomeViewController *homeViewController = [[SQ_HomeViewController alloc] init];
-    
- 
     UINavigationController *SQ_homeNavigationController = [[UINavigationController alloc] initWithRootViewController:homeViewController];
     SQ_homeNavigationController.tabBarItem.title = @"首页";
     SQ_homeNavigationController.tabBarItem.image = [UIImage imageNamed:@"tabBarHomeIcon"];
     SQ_homeNavigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"tabBarHomeIconSelected"];
  
     
-    
+    //国务院
     SQ_SCViewController *scViewController = [[SQ_SCViewController alloc] init];
     UINavigationController *SQ_scNavigationController = [[UINavigationController alloc] initWithRootViewController:scViewController];
     SQ_scNavigationController.title = @"国务院";
-   
-
     SQ_scNavigationController.tabBarItem.image = [UIImage imageNamed:@"tabBarStateIcon"];
     SQ_scNavigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"tabBarStateIconSelected"];
     
+    //政务大厅
     SQ_AffairsHallViewController *affairsHallViewController = [[SQ_AffairsHallViewController alloc] init];
-    
     UINavigationController *SQ_affairsNavigationController = [[UINavigationController alloc] initWithRootViewController:affairsHallViewController];
     SQ_affairsNavigationController.tabBarItem.title = @"政务大厅";
     SQ_affairsNavigationController.tabBarItem.image = [UIImage imageNamed:@"tabBarHallIcon"];

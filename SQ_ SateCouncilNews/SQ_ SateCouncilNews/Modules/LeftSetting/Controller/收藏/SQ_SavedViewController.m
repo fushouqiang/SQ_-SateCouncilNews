@@ -18,9 +18,11 @@
 UITableViewDelegate,
 UITableViewDataSource
 >
-
+//收藏的tableView
 @property (nonatomic, strong)UITableView *tableView;
+//模型数组
 @property (nonatomic, strong) __block NSArray *articleArray;
+//数据库 manager
 @property (nonatomic, strong) DataBaseManager *manager;
 
 @end
@@ -30,7 +32,7 @@ UITableViewDataSource
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    //返回按钮
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:backButton];
     [backButton makeConstraints:^(MASConstraintMaker *make) {
@@ -44,6 +46,7 @@ UITableViewDataSource
     [backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
+    //头标题label
     UILabel *titleLabel = [[UILabel alloc] init];
     [self.view addSubview:titleLabel];
     [titleLabel makeConstraints:^(MASConstraintMaker *make) {
@@ -61,7 +64,7 @@ UITableViewDataSource
     titleLabel.textColor = [UIColor whiteColor];
     
     
-    
+    //清空按钮
     UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:deleteButton];
     [deleteButton makeConstraints:^(MASConstraintMaker *make) {
@@ -94,7 +97,7 @@ UITableViewDataSource
 }
 
 
-//清空
+//清空按钮响应事件
 - (void)deleteButtonClick:(UIButton *)button {
     
     UIAlertController *clearSavedAlertController = [UIAlertController alertControllerWithTitle:@"确认要清空收藏夹吗?" message:nil preferredStyle:UIAlertControllerStyleAlert];

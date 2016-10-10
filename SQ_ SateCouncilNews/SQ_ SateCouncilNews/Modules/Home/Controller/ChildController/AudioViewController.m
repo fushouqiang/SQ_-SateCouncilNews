@@ -24,12 +24,19 @@ UITableViewDataSource
 typedef void (^JsonSuccess)(id json);
 
 @property (nonatomic, retain) UITableView *tableView;
+//模型数组
 @property (nonatomic, retain) NSMutableArray *articleArray;
+
 @property (nonatomic, strong) id result;
+//刷新数据number
 @property (nonatomic, assign) NSInteger dataNumber;
+
 @property (nonatomic, assign) unsigned long flagNumber;
+//音频播放器
 @property (nonatomic, strong) __block AVPlayer *player;
+
 @property (nonatomic, strong) __block AVPlayerItem *playerItem;
+
 @property (nonatomic, assign) NSInteger cellNumber;
 
 @end

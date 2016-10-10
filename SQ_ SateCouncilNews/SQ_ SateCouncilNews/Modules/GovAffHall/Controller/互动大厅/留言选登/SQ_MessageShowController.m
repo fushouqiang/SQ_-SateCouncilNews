@@ -66,6 +66,7 @@ typedef void (^JsonSuccess)(id json);
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     SQ_Article *article = _articleArray[indexPath.row];
+    //高度自适应
     CGFloat height = [UILabel getHeightByWidth:WIDTH - 40 title:article.des Font:[UIFont systemFontOfSize:16]];
     
     return height + 70;
@@ -101,7 +102,7 @@ typedef void (^JsonSuccess)(id json);
     
 }
 
-
+//获取数组
 - (void)handleData {
     
     [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn//govdata/gov/columns/columnCategory_%@_%zd.json",_categoryId,_dataNumber] json:^(id json) {
@@ -135,6 +136,7 @@ typedef void (^JsonSuccess)(id json);
     
 }
 
+//刷新数据
 - (void)reloadData {
     [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn//govdata/gov/columns/columnCategory_%@_%zd.json",_categoryId,_dataNumber] json:^(id json) {
         

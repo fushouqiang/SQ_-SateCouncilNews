@@ -10,4 +10,7 @@
 
 @interface SQ_MainTabBarController : UITabBarController
 
+
+//主TabBar控制器
+
 @end

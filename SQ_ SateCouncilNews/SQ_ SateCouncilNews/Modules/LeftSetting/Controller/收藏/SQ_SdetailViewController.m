@@ -20,10 +20,6 @@ UIWebViewDelegate
 >
 typedef void (^JsonSuccess)(id json);
 @property (nonatomic, retain) UIWebView *webView;
-@property (nonatomic, strong) UIButton *saveButton;
-@property (nonatomic, strong) UIButton *shareButton;
-@property (nonatomic, strong) DataBaseManager *manager;
-@property (nonatomic, assign) BOOL isSaved;
 @property (nonatomic, strong) UIButton *backButton;
 
 

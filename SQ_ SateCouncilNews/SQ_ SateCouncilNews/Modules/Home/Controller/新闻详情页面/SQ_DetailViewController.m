@@ -106,9 +106,9 @@ typedef void (^JsonSuccess)(id json);
     _headerView.font = [UIFont systemFontOfSize:23];
     _headerView.numberOfLines = 0;
     _headerView.text = _article.title;
-    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, self.view.frame.size.height - 64)];
     
-    NSLog(@"%f",_webView.frame.size.height);
+    //添加webView
+    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, self.view.frame.size.height - 64)];
     [self.view addSubview:_webView];
     self.view.backgroundColor = [UIColor whiteColor];
     self.webView.delegate = self;
@@ -116,6 +116,7 @@ typedef void (^JsonSuccess)(id json);
     //防止因为设置webView尾视图后每次跳转都会出现的黑条
     _webView.backgroundColor = [UIColor clearColor];
     _webView.opaque = NO;
+    
     self.webView.scrollView.contentInset = UIEdgeInsetsMake(100,0.0,240,0.0);
     self.footerView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 240) style:UITableViewStylePlain];
     [_footerView registerClass:[SQ_normalCell class] forCellReuseIdentifier:cellIdentifier];
@@ -207,13 +208,14 @@ typedef void (^JsonSuccess)(id json);
     if (_article != article) {
         _article = article;
     }
+    //开启数据区
     self.manager = [DataBaseManager shareManager];
     [_manager openSQLite];
     _isSaved =  [_manager selectArticle:article];
     
     [self createUI];
     
-    
+    //获取网络数据
     [self handleData];
     
     

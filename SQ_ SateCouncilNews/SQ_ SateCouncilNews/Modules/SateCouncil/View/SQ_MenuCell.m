@@ -76,8 +76,6 @@ static NSString *const cellIdentifier = @"cell";
 - (void)tapAction:(UITapGestureRecognizer *)tap {
     
     SQ_MenuButtonView *view = (SQ_MenuButtonView *)tap.view;
-//    NSLog(@"%zd",view.tag);
-//    NSLog(@"%@",_categoryArray[view.tag - 1000]);
     NSString *category = _categoryArray[view.tag - 1000];
     self.block(category);
 }

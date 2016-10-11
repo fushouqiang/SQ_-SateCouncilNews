@@ -27,6 +27,7 @@
 @property (nonatomic, strong) id pictures;
 @property (nonatomic, retain) NSString *des;
 @property (nonatomic, strong) NSString *saveImageUrl;
+@property (nonatomic, assign) BOOL isPlay;
 
 
 @end

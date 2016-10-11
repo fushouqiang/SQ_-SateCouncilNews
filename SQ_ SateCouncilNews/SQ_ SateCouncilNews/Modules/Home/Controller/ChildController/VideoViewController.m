@@ -119,8 +119,7 @@ typedef void (^JsonSuccess)(id json);
                     
                     if ([art.position intValue] == i) {
                         [_articleArray addObject:art];
-                        //                        NSLog(@"%@",art.position);
-                    }
+                                           }
                 }
             }
             
@@ -198,7 +197,6 @@ typedef void (^JsonSuccess)(id json);
     NSString *str = [dic valueForKey:@"file"];
     NSString *urlString = [NSString stringWithFormat:@"http://appvideo.www.gov.cn/gov/%@",str];
     
-    NSLog(@"%@",urlString);
     //视频播放的url
     NSURL *videoUrl = [NSURL URLWithString:urlString];
     //初始化playerController

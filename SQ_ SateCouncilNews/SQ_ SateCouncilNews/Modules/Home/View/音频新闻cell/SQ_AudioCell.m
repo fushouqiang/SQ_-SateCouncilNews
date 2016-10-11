@@ -79,7 +79,16 @@
             make.width.equalTo(40);
             make.height.equalTo(40);
         }];
+        
+        if (_article.isPlay == YES) {
+            [_audioButton setImage:[UIImage imageNamed:@"audioPauseButton"] forState:UIControlStateNormal];
+        }
+        
+        else {
+        
         [_audioButton setImage:[UIImage imageNamed:@"audioPlayButton"] forState:UIControlStateNormal];
+            
+        }
         [_audioButton addTarget:self action:@selector(playButtonAction) forControlEvents:UIControlEventTouchUpInside];
         
 //        if (_isUsed == YES) {
@@ -113,7 +122,7 @@
 
 - (void)playButtonAction {
     
-    _isPlay = !_isPlay;
+//    _isPlay = !_isPlay;
     
     
     NSArray *array = [_article.medias allKeys];
@@ -121,16 +130,18 @@
     NSString *audioUrlString = [NSString stringWithFormat:@"http://appvideo.www.gov.cn/gov/%@",[dic valueForKey:@"file"]];
     NSURL * url  = [NSURL URLWithString:audioUrlString];
     self.item = [[AVPlayerItem alloc]initWithURL:url];
-    if (_isPlay == YES) {
+    if (_article.isPlay == YES) {
         
-        [_audioButton setImage:[UIImage imageNamed:@"audioPauseButton"] forState:UIControlStateNormal];
-       
+        
+        _article.isPlay = NO;
+        [_audioButton setImage:[UIImage imageNamed:@"audioPlayButton"] forState:UIControlStateNormal];
       
         
         
-    } else if (_isPlay == NO){
+    } else if (_article.isPlay == NO){
        
-        [_audioButton setImage:[UIImage imageNamed:@"audioPlayButton"] forState:UIControlStateNormal];
+        _article.isPlay = YES;
+         [_audioButton setImage:[UIImage imageNamed:@"audioPauseButton"] forState:UIControlStateNormal];
     }
     
     if (_block) {

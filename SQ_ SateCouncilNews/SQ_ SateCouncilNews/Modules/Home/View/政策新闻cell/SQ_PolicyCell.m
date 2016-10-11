@@ -181,7 +181,7 @@
         }
     }
     [self createUI];
-    NSLog(@"%ld",(unsigned long)_currentNewsArray.count);
+
     
     
     

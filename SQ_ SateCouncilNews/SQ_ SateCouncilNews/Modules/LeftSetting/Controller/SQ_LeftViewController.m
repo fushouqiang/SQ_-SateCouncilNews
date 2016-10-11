@@ -113,6 +113,22 @@ UITableViewDataSource
 }
 
 
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+         self.cache = [self checkCache];
+    });
+    
+
+    
+   
+    
+}
+
 
 - (void)createTableView {
     
@@ -309,7 +325,7 @@ UITableViewDataSource
 
 //清除缓存
 - (void)Clear {
-    self.cache = [self checkCache];
+    
     UIAlertController *clearCacheAlertController = [UIAlertController alertControllerWithTitle:@"当前缓存大小为,确认清除?" message:_cache preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *verifyAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -319,6 +335,7 @@ UITableViewDataSource
         
         dispatch_async(sqQueue, ^{
               [self clearPath];
+            self.cache = [self checkCache];
             
         });
         dispatch_async(dispatch_get_main_queue(), ^{

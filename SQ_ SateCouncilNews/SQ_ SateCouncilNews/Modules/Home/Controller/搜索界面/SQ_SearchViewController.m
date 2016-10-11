@@ -102,7 +102,6 @@ UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
     
-    NSLog(@"%@",_searchTextField.text);
     
     [_searchTextField endEditing:YES];
     SQ_SearchDetailController *sdtVC = [[SQ_SearchDetailController alloc] init];

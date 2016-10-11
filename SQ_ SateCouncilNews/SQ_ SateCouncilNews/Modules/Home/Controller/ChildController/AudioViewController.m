@@ -60,7 +60,7 @@ typedef void (^JsonSuccess)(id json);
 }
 
 
-
+//创建tableView
 - (void)createTableView {
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 150) style:UITableViewStylePlain];
@@ -93,7 +93,7 @@ typedef void (^JsonSuccess)(id json);
 
 
 
-
+//获取数据
 - (void)handleData {
     
     
@@ -127,7 +127,7 @@ typedef void (^JsonSuccess)(id json);
     }];
     
 }
-
+//刷新数据
 - (void)reloadData {
     [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/columns/column_%@_%zd.json",_column.columnId,_dataNumber] json:^(id json) {
         
@@ -154,6 +154,7 @@ typedef void (^JsonSuccess)(id json);
     
 }
 
+//cell高
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         return 250;
@@ -164,6 +165,7 @@ typedef void (^JsonSuccess)(id json);
     }
 }
 
+//点击跳转到相应页面
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     SQ_DetailViewController *detailVC = [[SQ_DetailViewController alloc] init];
@@ -193,28 +195,21 @@ typedef void (^JsonSuccess)(id json);
     }
     
     else {
-        static NSString *cellIdentifier = @"Cell";
+        //给每一个cell设定标识避免重用 真是恶心啊
+         NSString *cellIdentifier = [NSString stringWithFormat:@"cell%zd",indexPath.row];
         SQ_AudioCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (nil == cell) {
             cell = [[SQ_AudioCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier] ;
+            
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.article = _articleArray[indexPath.row];
-        __block SQ_AudioCell *  blockcell = cell;
-        
-        
-//        if (_cellNumber != 0) {
-//          
-//            lastCell.isPlay = NO;
-//            
-//            
-//        }
-//       
-        
+        SQ_Article *cellArticle = _articleArray[indexPath.row];
+        cell.article = cellArticle;
+ 
         cell.block = ^(AVPlayerItem *item ,SQ_AudioCell *currentCell) {
 
             
-            
+            //如果不是
             if (_playerItem == nil || (self.cellNumber != indexPath.row)) {
                 _playerItem = item;
                 [self.player replaceCurrentItemWithPlayerItem:_playerItem];
@@ -223,17 +218,21 @@ typedef void (^JsonSuccess)(id json);
             
             if (_cellNumber != indexPath.row && _cellNumber != 0) {
                 
-                
+                //获取到上一个点击的cell
                 SQ_AudioCell *lastCell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_cellNumber inSection:0]];
-                lastCell.isPlay = NO;
+                //如果上一个还处于播放状态
+                if (lastCell.article.isPlay == YES) {
+                     lastCell.article.isPlay = NO;
+                }
+                
+               
                 [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:_cellNumber inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-                
-                
+
             }
             
             
             
-            if (blockcell.isPlay == YES) {
+            if (cellArticle.isPlay == YES) {
                 
                 
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -241,10 +240,7 @@ typedef void (^JsonSuccess)(id json);
                 [_player play];
                 
             });
-             
-                
-
-            } else if (blockcell.isPlay == NO)
+            } else
             
             {
                 [_player pause];

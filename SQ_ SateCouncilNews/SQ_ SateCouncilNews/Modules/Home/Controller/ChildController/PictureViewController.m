@@ -119,7 +119,6 @@ typedef void (^JsonSuccess)(id json);
                     
                     if ([art.position intValue] == i) {
                         [_articleArray addObject:art];
-//                        NSLog(@"%@",art.position);
                     }
                 }
             }

@@ -14,7 +14,7 @@
 
 @implementation HttpClient
 
-
+//两个block类型以便回调数据和错误
 +(void)getWithUrlString:(NSString *)urlString  success:(HttpSuccess)success failure:(HttpFailure)failure{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     

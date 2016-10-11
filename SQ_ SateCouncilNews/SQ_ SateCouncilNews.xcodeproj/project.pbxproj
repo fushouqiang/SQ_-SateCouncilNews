@@ -1104,7 +1104,7 @@
 				79AABC831DAC9AD40056DFBA /* SQ_ suggestViewController.h */,
 				79AABC841DAC9AD40056DFBA /* SQ_ suggestViewController.m */,
 			);
-			name = "反馈信息";
+			path = "反馈信息";
 			sourceTree = "<group>";
 		};
 		79AF83AB1D9B4B980073C17A /* 新闻详情页面 */ = {

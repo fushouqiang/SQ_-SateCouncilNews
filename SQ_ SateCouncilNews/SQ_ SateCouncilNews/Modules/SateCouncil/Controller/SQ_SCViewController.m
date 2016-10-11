@@ -70,26 +70,33 @@ UITableViewDataSource
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithWhite:0.534 alpha:1.000];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.navigationController.navigationBar.translucent = NO;
+    
+    [self handleData];
+    
+
+    
+    
+    
+    // Do any additional setup after loading the view.
+}
+
+
+- (void)handleData {
     
     [self getJsonWithUrlString:@"http://app.www.gov.cn/govdata/gov/home_2.json" json:^(id json) {
         
-       
+        
         if (json != NULL) {
             [self initData:json];
             self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
             _tableView.delegate = self;
             _tableView.dataSource = self;
             [self.view addSubview:_tableView];
-//            [_tableView reloadData];
             
         }
         
     }];
     
-    
-    
-    // Do any additional setup after loading the view.
 }
 
 - (void)searchAction {

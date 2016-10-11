@@ -57,7 +57,7 @@
             make.top.equalTo(self.contentView.top).offset(40);
             make.bottom.equalTo(self.contentView.bottom);
         }];
-        _newsImageView.backgroundColor = [UIColor redColor];
+        _newsImageView.backgroundColor = [UIColor whiteColor];
         
         self.contentLabel = [[UILabel alloc] init];
         [self.contentView addSubview:_contentLabel];
@@ -108,7 +108,10 @@
         [self.newsImageView sd_setImageWithURL:imageUrl];
         self.contentLabel.text = article.title;
         NSString *str = [article.path substringToIndex:9];
-        self.timeLabel.text = str;
+        NSMutableString *str2 = [[NSMutableString alloc] initWithString:str];
+        [str2 insertString:@"/" atIndex:4];
+        self.timeLabel.text = str2;
+
     }
     
 }

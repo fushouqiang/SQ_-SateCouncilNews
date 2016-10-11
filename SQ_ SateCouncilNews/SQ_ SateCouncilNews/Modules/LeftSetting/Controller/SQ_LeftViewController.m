@@ -11,6 +11,7 @@
 #import "SQ_SavedViewController.h"
 #import <DKNightVersion/DKNightVersion.h>
 #import "UIImageView+WebCache.h"
+#import "SQ_ suggestViewController.h"
 
 #define CACHEPATH [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject]
 
@@ -144,7 +145,7 @@ UITableViewDataSource
 - (void)createData {
     
     self.imageNameArray = @[@"sideMenuLeftChangeColor",@"sideMenuLeftSaved",@"sideMenuLeftClean",@"sideMenuLeftSetting",@"sideMenuLeftAboutus"];
-    self.textArray = @[@"主题切换",@"我的收藏",@"清除缓存",@"保留",@"关于我们"];
+    self.textArray = @[@"主题切换",@"我的收藏",@"清除缓存",@"反馈信息",@"关于我们"];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -155,7 +156,6 @@ UITableViewDataSource
     
     
     SQ_LeftCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-//    cell.backgroundColor = [UIColor colorWithRed:0.034 green:0.495 blue:0.703 alpha:1.000];
     cell.dk_backgroundColorPicker = DKColorPickerWithRGB(0x347EB3, 0x343434, 0xfafafa);
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.imageName = _imageNameArray[indexPath.row];
@@ -203,6 +203,12 @@ UITableViewDataSource
         
        
         //关于我们
+    } else if (indexPath.row == 3) {
+        SQ__suggestViewController *suggestVC = [[SQ__suggestViewController alloc] init];
+        
+        [self presentViewController:suggestVC animated:YES completion:nil];
+        
+        
     } else if (indexPath.row == 4) {
         
         

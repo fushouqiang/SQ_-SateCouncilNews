@@ -12,4 +12,6 @@
 
 
 @property (nonatomic, strong) NSString *urlString;
+
+@property (nonatomic, strong) NSMutableArray *picUrlArray;
 @end

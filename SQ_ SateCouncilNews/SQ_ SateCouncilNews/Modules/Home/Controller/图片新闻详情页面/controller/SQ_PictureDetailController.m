@@ -115,8 +115,6 @@ typedef void (^JsonSuccess)(id json);
         [_imageScrollView addSubview:picScrollView];
         
         
-        //添加文字描述label
-//        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(WIDTH * i + 30, HEIGHT - 200, WIDTH * 0.7, 120)];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(30, HEIGHT - 200, WIDTH * 0.7, 120)];
         label.text = pic.des;
         //如果label文字为空  就隐藏
@@ -129,8 +127,6 @@ typedef void (^JsonSuccess)(id json);
         label.backgroundColor = [UIColor colorWithWhite:0.463 alpha:1];
         label.textColor = [UIColor whiteColor];
         label.numberOfLines = 8;
-        
-//        [_imageScrollView insertSubview:label aboveSubview:picScrollView];
         [picScrollView addSubview:label];
         
         

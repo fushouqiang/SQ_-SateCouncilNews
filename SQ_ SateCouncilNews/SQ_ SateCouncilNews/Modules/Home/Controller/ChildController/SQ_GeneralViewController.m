@@ -22,10 +22,13 @@ UITableViewDelegate,
 UITableViewDataSource
 >
 typedef void (^JsonSuccess)(id json);
-
+// tableView
 @property (nonatomic, retain) UITableView *tableView;
+//模型数组
 @property (nonatomic, retain) NSMutableArray *articleArray;
+//
 @property (nonatomic, strong) id result;
+//加载的页面个数
 @property (nonatomic, assign) NSInteger dataNumber;
 @property (nonatomic, assign) unsigned long flagNumber;
 
@@ -137,7 +140,6 @@ typedef void (^JsonSuccess)(id json);
             for (int i = 0; i < keyArray.count; i++) {
                 SQ_Article *article = [SQ_Article yy_modelWithDictionary:articlesDic[keyArray[i]]];
                 [_articleArray addObject:article];
-                
             }
             
             [_tableView reloadData];
@@ -161,7 +163,9 @@ typedef void (^JsonSuccess)(id json);
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if ([_column.columnId intValue]== 476 && indexPath.row == 0) {
+    SQ_Article *article = _articleArray[indexPath.row];
+
+    if ([_column.columnId intValue]== 476 && [article.contentMode intValue] == 4) {
         
         SQ_H5ServiceDetailController *h5VC = [[SQ_H5ServiceDetailController alloc] init];
         h5VC.article = _articleArray[indexPath.row];

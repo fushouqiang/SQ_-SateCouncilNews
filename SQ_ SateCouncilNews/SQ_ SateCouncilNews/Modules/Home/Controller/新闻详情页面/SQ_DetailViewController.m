@@ -54,9 +54,10 @@ typedef void (^JsonSuccess)(id json);
 
 @property (nonatomic, strong) MBProgressHUD *hud;
 //图片地址数组
-@property (nonatomic, strong) NSMutableArray *mUrlArray;
+@property (nonatomic, strong)  NSMutableArray  *mUrlArray;
 //是否第一次进入
 @property (nonatomic, assign) NSInteger visitNumber;
+
 
 
 
@@ -105,7 +106,9 @@ typedef void (^JsonSuccess)(id json);
     _headerView.font = [UIFont systemFontOfSize:23];
     _headerView.numberOfLines = 0;
     _headerView.text = _article.title;
-    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT - 64)];
+    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, self.view.frame.size.height - 64)];
+    
+    NSLog(@"%f",_webView.frame.size.height);
     [self.view addSubview:_webView];
     self.view.backgroundColor = [UIColor whiteColor];
     self.webView.delegate = self;
@@ -352,12 +355,14 @@ typedef void (^JsonSuccess)(id json);
     if ([request.URL.scheme isEqualToString:@"image-preview"]) {
         NSString* path = [request.URL.absoluteString substringFromIndex:[@"image-preview:" length]];
         path = [path stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-        NSLog(@"%@",path);
         
         SQ_singlePicController *singlePic = [[SQ_singlePicController alloc] init];
         singlePic.urlString = path;
-        [self.navigationController pushViewController:singlePic animated:YES];
-        //path 就是被点击图片的url
+        
+        NSMutableArray *array = [NSMutableArray arrayWithArray:_mUrlArray];
+        singlePic.picUrlArray = array;
+        [self presentViewController:singlePic animated:YES completion:nil];
+        
         return NO;
     }
     return YES;
@@ -389,9 +394,10 @@ typedef void (^JsonSuccess)(id json);
     [webView stringByEvaluatingJavaScriptFromString:jsGetImages];//注入js方法
     NSString *urlResurlt = [webView stringByEvaluatingJavaScriptFromString:@"getImages()"];
     
-    NSLog(@"%@",urlResurlt);
     
-    _mUrlArray = [NSMutableArray arrayWithArray:[urlResurlt componentsSeparatedByString:@"+"]];
+    self.mUrlArray = [NSMutableArray arrayWithArray:[urlResurlt componentsSeparatedByString:@"+"]];
+
+
     
     [webView stringByEvaluatingJavaScriptFromString:@"function registerImageClickAction(){\
      var imgs=document.getElementsByTagName('img');\

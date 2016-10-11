@@ -94,6 +94,7 @@
 		79A83EB91D94C4E800D226B7 /* SQ_headCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A83EB81D94C4E800D226B7 /* SQ_headCell.m */; };
 		79A83EBD1D94DB3900D226B7 /* SQ_DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A83EBB1D94DB3900D226B7 /* SQ_DetailViewController.m */; };
 		79A83F121D9525C300D226B7 /* SQ_CarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A83F111D9525C300D226B7 /* SQ_CarouselView.m */; };
+		79AABC861DAC9AD40056DFBA /* SQ_ suggestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AABC841DAC9AD40056DFBA /* SQ_ suggestViewController.m */; };
 		79AF83AA1D9B4B840073C17A /* PictureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AF83A91D9B4B840073C17A /* PictureViewController.m */; };
 		79AF83B01D9B4DA50073C17A /* SQ_PictureNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AF83AF1D9B4DA50073C17A /* SQ_PictureNewsCell.m */; };
 		79AF83B41D9B51E10073C17A /* SQ_PictureDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AF83B31D9B51E10073C17A /* SQ_PictureDetailController.m */; };
@@ -335,6 +336,8 @@
 		79A83EBB1D94DB3900D226B7 /* SQ_DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_DetailViewController.m; sourceTree = "<group>"; };
 		79A83F101D9525C300D226B7 /* SQ_CarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_CarouselView.h; sourceTree = "<group>"; };
 		79A83F111D9525C300D226B7 /* SQ_CarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_CarouselView.m; sourceTree = "<group>"; };
+		79AABC831DAC9AD40056DFBA /* SQ_ suggestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SQ_ suggestViewController.h"; sourceTree = "<group>"; };
+		79AABC841DAC9AD40056DFBA /* SQ_ suggestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SQ_ suggestViewController.m"; sourceTree = "<group>"; };
 		79AF83A81D9B4B840073C17A /* PictureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureViewController.h; sourceTree = "<group>"; };
 		79AF83A91D9B4B840073C17A /* PictureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureViewController.m; sourceTree = "<group>"; };
 		79AF83AE1D9B4DA50073C17A /* SQ_PictureNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_PictureNewsCell.h; sourceTree = "<group>"; };
@@ -1095,6 +1098,15 @@
 			path = "无图片新闻cell";
 			sourceTree = "<group>";
 		};
+		79AABC821DAC9AA10056DFBA /* 反馈信息 */ = {
+			isa = PBXGroup;
+			children = (
+				79AABC831DAC9AD40056DFBA /* SQ_ suggestViewController.h */,
+				79AABC841DAC9AD40056DFBA /* SQ_ suggestViewController.m */,
+			);
+			name = "反馈信息";
+			sourceTree = "<group>";
+		};
 		79AF83AB1D9B4B980073C17A /* 新闻详情页面 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1288,6 +1300,7 @@
 		79BFE02F1D927BF8009F84D0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				79AABC821DAC9AA10056DFBA /* 反馈信息 */,
 				7969DB851D9D535300F2A477 /* 收藏 */,
 				79A1B0D01DA8798E00AF083D /* 登录注册 */,
 				79BFE0321D927C1F009F84D0 /* SQ_LeftViewController.h */,
@@ -1803,6 +1816,7 @@
 				798EBCA71DA364570018325E /* SQ_ServiceDetailViewController.m in Sources */,
 				7999624F1D9F79D600CCEF44 /* SQ_AffairsShowController.m in Sources */,
 				79AF83B41D9B51E10073C17A /* SQ_PictureDetailController.m in Sources */,
+				79AABC861DAC9AD40056DFBA /* SQ_ suggestViewController.m in Sources */,
 				79790DB11D9AA40C005F0128 /* SQ_Picture.m in Sources */,
 				79A1B15D1DA8CE2900AF083D /* SQ_SCorgViewController.m in Sources */,
 				79B3C3651DA4FCAD009AD46B /* SQ_intHallDetailCell.m in Sources */,

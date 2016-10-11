@@ -30,7 +30,7 @@
         [self.contentView addSubview:_settingImageView];
         [_settingImageView makeConstraints:^(MASConstraintMaker *make) {
             
-            make.left.equalTo(self.contentView.left);
+            make.left.equalTo(self.contentView.left).offset(30);
             make.width.equalTo(20);
             make.height.equalTo(20);
             make.top.equalTo(self.contentView.top).offset(5);

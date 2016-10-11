@@ -66,6 +66,7 @@ topNewsDelegate
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self handleData];
+    self.view.backgroundColor = [UIColor whiteColor];
   
  
 }

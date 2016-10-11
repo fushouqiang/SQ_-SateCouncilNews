@@ -28,7 +28,7 @@ UITableViewDataSource
 @property (nonatomic, strong) NSArray *textArray;
 @property (nonatomic, strong) DataBaseManager *manager;
 @property (nonatomic, assign) BOOL isNight;
-
+@property (nonatomic, strong) NSString *cache;
 @end
 
 @implementation SQ_LeftViewController
@@ -65,7 +65,7 @@ UITableViewDataSource
     [self.view addSubview:imageView];
     [imageView makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view.top).offset(80);
-        make.left.equalTo(self.view.left).offset(30);
+        make.left.equalTo(self.view.left).offset(40);
         make.width.equalTo(60);
         make.height.equalTo(30);
     }];
@@ -86,28 +86,28 @@ UITableViewDataSource
     }];
 
  
-    UIButton *cnButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [bottonLabel addSubview:cnButton];
-    [cnButton makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(bottonLabel.left).offset(10);
-        make.bottom.equalTo(bottonLabel.bottom).offset(-10);
-        make.width.equalTo(60);
-        make.height.equalTo(20);
-    }];
-    [cnButton setImage:[UIImage imageNamed:@"sideMenuLeftIconCn"] forState:UIControlStateNormal];
-    cnButton.backgroundColor = [UIColor colorWithWhite:0.972 alpha:1.000];
-    
-    
-    UIButton *enButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [bottonLabel addSubview:enButton];
-    [enButton makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(bottonLabel.right).offset(-10);
-        make.bottom.equalTo(bottonLabel.bottom).offset(-10);
-        make.width.equalTo(60);
-        make.height.equalTo(20);
-    }];
-    [enButton setImage:[UIImage imageNamed:@"sideMenuLeftIconEn"] forState:UIControlStateNormal];
-    enButton.backgroundColor = [UIColor colorWithWhite:0.972 alpha:1.000];
+//    UIButton *cnButton = [UIButton buttonWithType:UIButtonTypeSystem];
+//    [bottonLabel addSubview:cnButton];
+//    [cnButton makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(bottonLabel.left).offset(10);
+//        make.bottom.equalTo(bottonLabel.bottom).offset(-10);
+//        make.width.equalTo(60);
+//        make.height.equalTo(20);
+//    }];
+//    [cnButton setImage:[UIImage imageNamed:@"sideMenuLeftIconCn"] forState:UIControlStateNormal];
+//    cnButton.backgroundColor = [UIColor colorWithWhite:0.972 alpha:1.000];
+//    
+//    
+//    UIButton *enButton = [UIButton buttonWithType:UIButtonTypeSystem];
+//    [bottonLabel addSubview:enButton];
+//    [enButton makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.equalTo(bottonLabel.right).offset(-10);
+//        make.bottom.equalTo(bottonLabel.bottom).offset(-10);
+//        make.width.equalTo(60);
+//        make.height.equalTo(20);
+//    }];
+//    [enButton setImage:[UIImage imageNamed:@"sideMenuLeftIconEn"] forState:UIControlStateNormal];
+//    enButton.backgroundColor = [UIColor colorWithWhite:0.972 alpha:1.000];
 
 }
 
@@ -127,14 +127,15 @@ UITableViewDataSource
         [self.view addSubview:_tableView];
         [_tableView makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.view).offset(HEIGHT / 3);
-            make.left.equalTo(self.view).offset(20);
-            make.height.equalTo(HEIGHT / 2);
-            make.width.equalTo(WIDTH / 3);
+            make.centerX.equalTo(self.view.centerX);
+            make.height.equalTo(HEIGHT / 2 + 50);
+            make.width.equalTo(WIDTH / 2);
             
             
         }];
         [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         [_tableView registerClass:[SQ_LeftCell class] forCellReuseIdentifier:cellIdentifier];
+        _tableView.rowHeight = 60;
         
     }
     
@@ -142,12 +143,12 @@ UITableViewDataSource
 
 - (void)createData {
     
-    self.imageNameArray = @[@"sideMenuLeftSaved",@"sideMenuLeftShare",@"sideMenuLeftCache",@"sideMenuLeftSetting",@"sideMenuLeftAboutus",@"sideMenuLeftExit"];
-    self.textArray = @[@"主题切换",@"我的收藏",@"清除缓存",@"保留",@"关于我们",@"退出"];
+    self.imageNameArray = @[@"sideMenuLeftChangeColor",@"sideMenuLeftSaved",@"sideMenuLeftClean",@"sideMenuLeftSetting",@"sideMenuLeftAboutus"];
+    self.textArray = @[@"主题切换",@"我的收藏",@"清除缓存",@"保留",@"关于我们"];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 6;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -302,8 +303,8 @@ UITableViewDataSource
 
 //清除缓存
 - (void)Clear {
-
-    UIAlertController *clearCacheAlertController = [UIAlertController alertControllerWithTitle:@"当前缓存大小为,确认清除?" message:[self checkCache] preferredStyle:UIAlertControllerStyleAlert];
+    self.cache = [self checkCache];
+    UIAlertController *clearCacheAlertController = [UIAlertController alertControllerWithTitle:@"当前缓存大小为,确认清除?" message:_cache preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *verifyAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 
@@ -350,6 +351,8 @@ UITableViewDataSource
     
     
     [self presentViewController:clearDoneAlertController animated:YES completion:nil];
+    
+    self.cache = [self cache];
     
 }
 

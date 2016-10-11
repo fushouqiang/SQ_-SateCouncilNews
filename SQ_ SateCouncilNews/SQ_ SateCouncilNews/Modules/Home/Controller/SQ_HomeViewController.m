@@ -378,7 +378,18 @@ typedef void (^JsonSuccess)(id json);
     //从length数组中拿到对应的点
     NSValue *value = [_lengthArray objectAtIndex:index];
     //将点转化为CGPoint类型以便设置headScrollView的位置
-    [self.headScrollView setContentOffset:[value CGPointValue] animated:YES];
+    CGPoint point = [value CGPointValue];
+//    [self.headScrollView setContentOffset:[value CGPointValue] + (WIDTH/2)  animated:YES];
+    //让titleButton位于中间
+    CGPoint truePoint = CGPointMake(point.x - WIDTH /2 + 20, 0);
+    
+    //判断是否超出边界
+    if (point.x > (WIDTH / 2) && point.x < _headScrollView.contentSize.width - WIDTH / 2) {
+        
+        [self.headScrollView setContentOffset:truePoint animated:YES];
+    }
+    
+    
 
 
     

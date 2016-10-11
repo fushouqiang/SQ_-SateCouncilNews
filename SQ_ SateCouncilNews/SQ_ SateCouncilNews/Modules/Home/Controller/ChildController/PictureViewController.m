@@ -39,7 +39,7 @@ typedef void (^JsonSuccess)(id json);
     
     
     self.articleArray = [NSMutableArray array];
-    [self handleData];
+    [self createTableView];
     self.dataNumber = 0;
     
     
@@ -59,6 +59,7 @@ typedef void (^JsonSuccess)(id json);
     _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self refreshData];
     }];
+    [_tableView.mj_header beginRefreshing];
     
     
     

@@ -80,8 +80,6 @@
 		799EE69D1DA25F2500063852 /* SQ_categoriesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 799EE69B1DA25F2500063852 /* SQ_categoriesCell.m */; };
 		799EE69E1DA25F2500063852 /* SQ_categoriesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 799EE69C1DA25F2500063852 /* SQ_categoriesCell.xib */; };
 		799EE6A11DA2619800063852 /* SQ_ChildClassify.m in Sources */ = {isa = PBXBuildFile; fileRef = 799EE6A01DA2619800063852 /* SQ_ChildClassify.m */; };
-		79A1B0D41DA879FD00AF083D /* SQ_LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A1B0D21DA879FD00AF083D /* SQ_LoginViewController.m */; };
-		79A1B0D51DA879FD00AF083D /* SQ_LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79A1B0D31DA879FD00AF083D /* SQ_LoginViewController.xib */; };
 		79A1B0DD1DA88AE400AF083D /* SQ_SavedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A1B0DC1DA88AE400AF083D /* SQ_SavedCell.m */; };
 		79A1B0E01DA897E500AF083D /* SQ_GeneralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A1B0DF1DA897E500AF083D /* SQ_GeneralViewController.m */; };
 		79A1B0E31DA8997F00AF083D /* SQ_SCGeneralController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A1B0E21DA8997F00AF083D /* SQ_SCGeneralController.m */; };
@@ -309,9 +307,6 @@
 		799EE69C1DA25F2500063852 /* SQ_categoriesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SQ_categoriesCell.xib; sourceTree = "<group>"; };
 		799EE69F1DA2619800063852 /* SQ_ChildClassify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_ChildClassify.h; sourceTree = "<group>"; };
 		799EE6A01DA2619800063852 /* SQ_ChildClassify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_ChildClassify.m; sourceTree = "<group>"; };
-		79A1B0D11DA879FD00AF083D /* SQ_LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_LoginViewController.h; sourceTree = "<group>"; };
-		79A1B0D21DA879FD00AF083D /* SQ_LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_LoginViewController.m; sourceTree = "<group>"; };
-		79A1B0D31DA879FD00AF083D /* SQ_LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SQ_LoginViewController.xib; sourceTree = "<group>"; };
 		79A1B0DB1DA88AE400AF083D /* SQ_SavedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_SavedCell.h; sourceTree = "<group>"; };
 		79A1B0DC1DA88AE400AF083D /* SQ_SavedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_SavedCell.m; sourceTree = "<group>"; };
 		79A1B0DE1DA897E500AF083D /* SQ_GeneralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_GeneralViewController.h; sourceTree = "<group>"; };
@@ -1070,16 +1065,6 @@
 			path = view;
 			sourceTree = "<group>";
 		};
-		79A1B0D01DA8798E00AF083D /* 登录注册 */ = {
-			isa = PBXGroup;
-			children = (
-				79A1B0D11DA879FD00AF083D /* SQ_LoginViewController.h */,
-				79A1B0D21DA879FD00AF083D /* SQ_LoginViewController.m */,
-				79A1B0D31DA879FD00AF083D /* SQ_LoginViewController.xib */,
-			);
-			path = "登录注册";
-			sourceTree = "<group>";
-		};
 		79A360B91D98D2350090F80F /* 带标志普通新闻cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1302,7 +1287,6 @@
 			children = (
 				79AABC821DAC9AA10056DFBA /* 反馈信息 */,
 				7969DB851D9D535300F2A477 /* 收藏 */,
-				79A1B0D01DA8798E00AF083D /* 登录注册 */,
 				79BFE0321D927C1F009F84D0 /* SQ_LeftViewController.h */,
 				79BFE0331D927C1F009F84D0 /* SQ_LeftViewController.m */,
 			);
@@ -1662,7 +1646,6 @@
 				799962571D9F904A00CCEF44 /* SQ_CollectionViewCell.xib in Resources */,
 				798141921D915012005BEA08 /* Main.storyboard in Resources */,
 				799EE67E1DA251DB00063852 /* SQ_CollectionServiceCell.xib in Resources */,
-				79A1B0D51DA879FD00AF083D /* SQ_LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1916,7 +1899,6 @@
 				79C538911D97A46E00A10164 /* SQ_AudioView.m in Sources */,
 				79C538AD1D97C74300A10164 /* SQ_departmentCell.m in Sources */,
 				799EE65F1DA21B7D00063852 /* SQ_DetailArticle.m in Sources */,
-				79A1B0D41DA879FD00AF083D /* SQ_LoginViewController.m in Sources */,
 				79AF83B01D9B4DA50073C17A /* SQ_PictureNewsCell.m in Sources */,
 				79C538C41D97D8B900A10164 /* SQ_interviewCell.m in Sources */,
 				798141D51D915460005BEA08 /* NSUserDefaultsUtils.m in Sources */,

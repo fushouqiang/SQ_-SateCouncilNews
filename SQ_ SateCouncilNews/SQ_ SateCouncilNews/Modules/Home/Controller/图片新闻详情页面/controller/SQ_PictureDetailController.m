@@ -140,6 +140,16 @@ typedef void (^JsonSuccess)(id json);
             _downloadButton.hidden = label.hidden;
             
         };
+        
+//        picScrollView.doubleTapBlock = ^{
+//            
+//            if (label.hidden == NO) {
+//                label.hidden = YES;
+//            } else if (label.hidden == YES) {
+//                label.hidden = NO;
+//            }
+//            
+//        };
       
        
     }

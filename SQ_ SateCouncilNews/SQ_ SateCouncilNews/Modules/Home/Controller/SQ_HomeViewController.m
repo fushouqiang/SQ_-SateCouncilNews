@@ -388,6 +388,11 @@ typedef void (^JsonSuccess)(id json);
         
         [self.headScrollView setContentOffset:truePoint animated:YES];
     }
+    //回到初始位置
+    if (point.x < WIDTH /2) {
+        
+        [self.headScrollView setContentOffset:CGPointMake(0, 0)];
+    }
     
     
 

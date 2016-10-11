@@ -83,6 +83,10 @@ UIScrollViewDelegate
         [self setZoomScale:1.0 animated:YES];
     }
     
+    if (self.doubleTapBlock) {
+        self.doubleTapBlock();
+    }
+    
     
 }
 

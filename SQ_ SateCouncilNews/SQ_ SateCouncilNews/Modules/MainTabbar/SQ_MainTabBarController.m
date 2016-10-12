@@ -13,6 +13,7 @@
 #import "MMDrawerController.h"
 #import "SQ_LeftViewController.h"
 #import "SQ_DetailViewController.h"
+#import "HttpClient.h"
 
 @interface SQ_MainTabBarController ()
 
@@ -25,15 +26,35 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
+    self.view.backgroundColor = [UIColor whiteColor];
+
+   
+    [self InternetJudge];
+    [self createUI];
+   
+
     
 
+    
+}
+
+- (NSString *)getCurrentLanguage
+{
+    NSArray *languages = [NSLocale preferredLanguages];
+    NSString *currentLanguage = [languages objectAtIndex:0];
+    return currentLanguage;
+    
+}
+
+
+- (void)createUI {
     //主页
     SQ_HomeViewController *homeViewController = [[SQ_HomeViewController alloc] init];
     UINavigationController *SQ_homeNavigationController = [[UINavigationController alloc] initWithRootViewController:homeViewController];
     SQ_homeNavigationController.tabBarItem.title = @"首页";
     SQ_homeNavigationController.tabBarItem.image = [UIImage imageNamed:@"tabBarHomeIcon"];
     SQ_homeNavigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"tabBarHomeIconSelected"];
- 
+    
     
     //国务院
     SQ_SCViewController *scViewController = [[SQ_SCViewController alloc] init];
@@ -50,10 +71,41 @@
     SQ_affairsNavigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"tabBarHallIconSelected"];
     
     self.viewControllers = @[SQ_homeNavigationController,SQ_scNavigationController,SQ_affairsNavigationController];
-    
-    
+}
 
+
+//网络判断
+- (void)InternetJudge {
     
+    [HttpClient reachbilityStatus:^(AFNetworkReachabilityStatus status) {
+        
+        
+        if (status == AFNetworkReachabilityStatusNotReachable) {
+            
+            NSString *titleAC = @"Network is not connected";
+            NSString *titleAA = @"Done";
+            
+            
+            if ([[self getCurrentLanguage] isEqualToString:@"zh-Hans-US"]) {
+                titleAA = @"确认";
+                titleAC = @"网络未连接";
+            }
+            
+            UIAlertController *clearDoneAlertController = [UIAlertController alertControllerWithTitle:titleAC message:nil preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *action = [UIAlertAction actionWithTitle:titleAA style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                
+            }];
+            [clearDoneAlertController addAction:action];
+            
+            
+            [self presentViewController:clearDoneAlertController animated:YES completion:nil];
+            
+        }
+        
+        
+    }];
+
 }
 
 

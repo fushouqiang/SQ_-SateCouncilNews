@@ -7,7 +7,7 @@
 //
 
 #import "HttpClient.h"
-#import "AFNetworking.h"
+
 
 
 
@@ -29,4 +29,54 @@
     }];
     
 }
+
++ (void)reachbilityStatus:(NetStatusResult)result {
+    
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        
+        
+        result(status);
+    }];
+    [manager startMonitoring];
+
+    
+}
+
+
+- (void)reachbility {
+    //创建网络监听管理者对象
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        
+        switch (status) {
+            case AFNetworkReachabilityStatusUnknown: {
+                NSLog(@"未识别的网络");
+                break;
+            }
+            case AFNetworkReachabilityStatusNotReachable: {
+                NSLog(@"不可达的(未连接的)");
+                break;
+            }
+            case AFNetworkReachabilityStatusReachableViaWWAN: {
+                NSLog(@"2G,3g,4g");
+                break;
+            }
+            case  AFNetworkReachabilityStatusReachableViaWiFi : {
+                NSLog(@"WIFI");
+                break;
+            }
+                
+            default:
+                break;
+        }
+        
+    }];
+    
+    
+    //开始监听
+    [manager startMonitoring];
+}
+
+
 @end

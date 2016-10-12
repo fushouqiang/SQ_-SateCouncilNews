@@ -68,6 +68,7 @@ UIScrollViewDelegate
     for (int i = 0; i < _columsArray.count; i++) {
         SQ_depaChildController *newsVC = [[SQ_depaChildController alloc] init];
         newsVC.title = [_columsArray[i] valueForKey:@"name"];
+        newsVC.view.backgroundColor = [UIColor whiteColor];
         [self addChildViewController:newsVC];
         newsVC.view.backgroundColor = [UIColor colorWithRed: 0.01* arc4random_uniform(100) green:0.01* arc4random_uniform(100) blue:0.01* arc4random_uniform(100) alpha:1.000];
 
@@ -135,9 +136,9 @@ UIScrollViewDelegate
     
     CGFloat y = CGRectGetMaxY(self.headScrollView.frame);
     UIScrollView *contentScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, y, self.view.frame.size.width, self.view.bounds.size.height - y)];
-    
     [self.view addSubview:contentScrollView];
     self.contentScrollView = contentScrollView;
+    _contentScrollView.backgroundColor = [UIColor whiteColor];
     _contentScrollView.pagingEnabled = YES;
     _contentScrollView.delegate = self;
     _contentScrollView.bounces = NO;

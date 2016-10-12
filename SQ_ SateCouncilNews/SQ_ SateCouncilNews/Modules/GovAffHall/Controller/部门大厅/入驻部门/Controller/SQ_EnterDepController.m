@@ -31,7 +31,7 @@ typedef void (^JsonSuccess)(id json);
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor orangeColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     [self setUpCollectionView];
     self.iconArray = [NSMutableArray array];
     [self handleData];

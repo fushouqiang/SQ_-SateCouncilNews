@@ -14,4 +14,7 @@
 //文章模型
 @property (nonatomic, strong)SQ_Article *article;
 
+
+
+
 @end

@@ -25,6 +25,9 @@
 #import "SQ_SCGeneralController.h"
 #import "SQ_DetailViewController.h"
 #import "SQ_SCorgViewController.h"
+#import "MJRefresh.h"
+
+
 typedef void (^JsonSuccess)(id json);
 
 @interface SQ_SCViewController ()
@@ -46,6 +49,7 @@ UITableViewDataSource
 @property (nonatomic, assign) CGFloat rowHeight;
 //flag
 @property (nonatomic, assign) BOOL flag1;
+
 
 @end
 
@@ -101,6 +105,7 @@ UITableViewDataSource
             _tableView.delegate = self;
             _tableView.dataSource = self;
             [self.view addSubview:_tableView];
+           
             
         }
         
@@ -138,6 +143,8 @@ UITableViewDataSource
     _member.memberArray = [[data valueForKey:@"16"] valueForKey:@"2"];
     _member.urlString = [[data valueForKey:@"16"] valueForKey:@"3"];
     _member.isShowText = NO;
+    
+    
     
 
     

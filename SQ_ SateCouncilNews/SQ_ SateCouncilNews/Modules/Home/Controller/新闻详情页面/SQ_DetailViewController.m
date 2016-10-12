@@ -58,6 +58,9 @@ typedef void (^JsonSuccess)(id json);
 //是否第一次进入
 @property (nonatomic, assign) NSInteger visitNumber;
 
+@property (nonatomic, strong) NSString *DataUrl;
+
+
 
 
 
@@ -290,6 +293,8 @@ typedef void (^JsonSuccess)(id json);
 //获取底部相关新闻的数据
 - (void)handleData {
     
+    
+
     
     
     [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/%@",_article.path] json:^(id json) {

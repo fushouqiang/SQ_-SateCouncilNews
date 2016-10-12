@@ -2067,6 +2067,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SQ_ SateCouncilNews/Vendors/SQ_ SateCouncilNews.pch";
 				INFOPLIST_FILE = "SQ_ SateCouncilNews/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Fu.SQ--SateCouncilNews";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2085,6 +2086,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SQ_ SateCouncilNews/Vendors/SQ_ SateCouncilNews.pch";
 				INFOPLIST_FILE = "SQ_ SateCouncilNews/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Fu.SQ--SateCouncilNews";
 				PRODUCT_NAME = "$(TARGET_NAME)";

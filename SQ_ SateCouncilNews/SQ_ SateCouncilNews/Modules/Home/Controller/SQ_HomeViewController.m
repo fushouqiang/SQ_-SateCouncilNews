@@ -68,6 +68,24 @@ typedef void (^JsonSuccess)(id json);
     [self setupContentScrollView];
     [self setupAllChildViewController];
     [self setupHeadScrollViewTitle];
+  
+    //默认点击的title
+    UIButton *button = [self.view viewWithTag:1000];
+    [self buttonClick:button];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    
+    [self setupNavigation];
+    
+    [self handleData];
+       // Do any additional setup after loading the view from its nib.
+}
+
+
+- (void)setupNavigation {
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"navigationSettingButton"] style:UIBarButtonItemStylePlain target:self action:@selector(settingAction)];
     self.navigationItem.leftBarButtonItem.tintColor = [UIColor colorWithWhite:0.534 alpha:1.000];
     
@@ -77,17 +95,7 @@ typedef void (^JsonSuccess)(id json);
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationSearchButton"] style:UIBarButtonItemStylePlain target:self action:@selector(searchAction)];
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithWhite:0.534 alpha:1.000];
-    self.view.backgroundColor = [UIColor whiteColor];
-    //默认点击的title
-    UIButton *button = [self.view viewWithTag:1000];
-    [self buttonClick:button];
-    self.automaticallyAdjustsScrollViewInsets = NO;
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self handleData];
-       // Do any additional setup after loading the view from its nib.
+    
 }
 
 
@@ -129,11 +137,13 @@ typedef void (^JsonSuccess)(id json);
             
             
 
-            [self createUI];
+          
             
             
             
         }
+        
+          [self createUI];
         
       
     }];

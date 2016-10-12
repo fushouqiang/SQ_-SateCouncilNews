@@ -25,7 +25,7 @@
     return manager;
     
 }
-
+//打开数据库
 - (BOOL)openSQLite {
     
     if (dbPoint != nil) {
@@ -43,7 +43,7 @@
     
 }
 
-
+//关闭数据库
 - (BOOL)closeSQLite {
     
     
@@ -55,7 +55,7 @@
     
 }
 
-
+//创建数据库
 - (BOOL)createSQLite {
     
     NSString *createTableSQL = @"create table if not exists Article(article_id integer primary key autoincrement,title text not null,date text not null,feature text not null,shareUrl text not null,imageUrl text)";
@@ -74,7 +74,7 @@
     return 0;
 }
 
-
+//插入数据
 - (BOOL)insertIntoWithArticle:(SQ_Article *)article {
     
     NSString *dateString = [article.path substringToIndex:9];
@@ -90,7 +90,7 @@
     
 }
 
-
+//删除数据
 - (BOOL)deleteWithArticle:(SQ_Article *)article {
     
     char *error = NULL;
@@ -106,7 +106,7 @@
     
 }
 
-
+//删除表
 - (BOOL)dropTable {
     
     
@@ -124,7 +124,7 @@
     
 }
 
-
+//查询
 - (NSArray *)selectAllArticle {
     
     NSString *selectSQL = @"select * from Article";

@@ -35,10 +35,16 @@ typedef void (^JsonSuccess)(id json);
     
 
     
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, self.view.bounds.size.height - 104) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        [self handleData];
+        
+    }];
+    [_tableView.mj_header beginRefreshing];
     [self.view addSubview:_tableView];
     [_tableView registerClass:[SQ_depNewsCell class] forCellReuseIdentifier:cellIdentifier];
     _tableView.rowHeight = 100;
@@ -94,7 +100,7 @@ typedef void (^JsonSuccess)(id json);
                 
             }
             [_tableView reloadData];
-            
+             [_tableView.mj_header endRefreshing];
  
             
         }
@@ -114,6 +120,9 @@ typedef void (^JsonSuccess)(id json);
         if (json != NULL) {
             
             NSArray *array = [json allKeys];
+            
+
+            
             
             for (int i = 0; i < array.count; i++) {
                 NSDictionary *dic = [json valueForKey:array[i]];
@@ -162,7 +171,7 @@ typedef void (^JsonSuccess)(id json);
     
 //    [self handleDataWithString:string str2:str2];
 
-    [self handleData];
+    
 }
 
 

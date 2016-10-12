@@ -43,7 +43,7 @@ UIScrollViewDelegate
     _contentScrollView.pagingEnabled = YES;
     _contentScrollView.delegate = self;
     self.contentScrollView.bounces = NO;
-    _contentScrollView.backgroundColor = [UIColor colorWithRed:0.544 green:0.843 blue:1.000 alpha:1.000];
+    _contentScrollView.backgroundColor = [UIColor whiteColor];
     _contentScrollView.contentSize = CGSizeMake(WIDTH * 2, 0);
     _contentScrollView.showsHorizontalScrollIndicator = NO;
 }

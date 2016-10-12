@@ -119,8 +119,7 @@
             [_signLabel removeFromSuperview];
         }
         
-        
-        if (urlString == nil) {
+        if ([urlString isEqual: @"(null)"]) {
             
             [_newsImageView removeFromSuperview];
             [_contentLabel mas_remakeConstraints:^(MASConstraintMaker *make) {

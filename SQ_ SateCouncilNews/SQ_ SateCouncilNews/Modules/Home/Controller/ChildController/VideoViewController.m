@@ -24,11 +24,17 @@ UITableViewDataSource
 typedef void (^JsonSuccess)(id json);
 
 @property (nonatomic, strong) UITableView *tableView;
+
 @property (nonatomic, strong) NSMutableArray *articleArray;
+
 @property (nonatomic, strong) id result;
+
 @property (nonatomic, assign) NSInteger dataNumber;
+
 @property (nonatomic, strong) UIView *videoView;
+
 @property (nonatomic, strong) AVPlayer *player;
+
 @property (nonatomic, strong) AVPlayerViewController *playerController;
 
 @end

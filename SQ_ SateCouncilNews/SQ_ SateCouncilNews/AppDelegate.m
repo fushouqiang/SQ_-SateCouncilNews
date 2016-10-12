@@ -27,7 +27,24 @@
 
 @implementation AppDelegate
 
+
+
+
+
+
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    
+    
+      
+      
+       
+       
+   
+    
+    
     SQ_MainTabBarController *mainTabBarController = [[SQ_MainTabBarController alloc] init];
     mainTabBarController.tabBar.translucent = NO;
     

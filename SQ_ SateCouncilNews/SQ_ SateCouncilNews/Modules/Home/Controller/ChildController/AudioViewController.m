@@ -226,6 +226,8 @@ typedef void (^JsonSuccess)(id json);
                 }
                 
                
+       
+                
                 [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:_cellNumber inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
 
             }
@@ -258,6 +260,7 @@ typedef void (^JsonSuccess)(id json);
     }
     
 }
+
 
 //获取json
 - (void)getJsonWithUrlString:(NSString *)urlString json:(JsonSuccess)json{

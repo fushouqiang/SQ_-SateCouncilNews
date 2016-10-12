@@ -141,11 +141,12 @@ typedef void (^JsonSuccess)(id json);
                 SQ_Article *article = [SQ_Article yy_modelWithDictionary:articlesDic[keyArray[i]]];
                 [_articleArray addObject:article];
             }
-            
+          
             [_tableView reloadData];
             [_tableView.mj_header endRefreshing];
             
-        }
+        } 
+        
         
     }];
     
@@ -225,6 +226,7 @@ typedef void (^JsonSuccess)(id json);
     } failure:^(NSError *error) {
         [_tableView reloadData];
         [_tableView.mj_footer endRefreshingWithNoMoreData];
+        [_tableView.mj_header endRefreshing];
         NSLog(@"%@",error);
     }];
     

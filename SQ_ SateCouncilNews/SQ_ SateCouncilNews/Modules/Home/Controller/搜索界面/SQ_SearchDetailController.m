@@ -159,7 +159,9 @@ typedef void (^JsonSuccess)(id json);
             
             NSArray *keyArray = [json allKeys];
             
-            if (keyArray != NULL) {
+           
+            
+            if (keyArray.count > 0) {
                 for (int i = 0; i < keyArray.count; i++) {
                     NSDictionary *articleDic = [json valueForKey:keyArray[i]];
                     SQ_Article *article = [SQ_Article yy_modelWithDictionary:articleDic];
@@ -169,8 +171,21 @@ typedef void (^JsonSuccess)(id json);
                 
                 [_tableView reloadData];
                 [_tableView.mj_header endRefreshing];
+                 
+            } else {
+                [_tableView.mj_header endRefreshing];
+                UIAlertController *AlertController = [UIAlertController alertControllerWithTitle:@"没有数据 请返回继续搜索" message:nil preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction *action = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleCancel handler:nil];
+                [AlertController addAction:action];
+                
+                
+                [self presentViewController:AlertController animated:YES completion:nil];
 
             }
+            
+            
+            
             
             
         }

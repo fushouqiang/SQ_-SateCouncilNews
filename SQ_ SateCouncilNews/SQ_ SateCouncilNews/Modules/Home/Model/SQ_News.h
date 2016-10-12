@@ -11,14 +11,14 @@
 
 @interface SQ_News : SQ_BaseModel
 
-@property (nonatomic, retain) NSNumber *recommendId;
-@property (nonatomic, retain) NSNumber *recommendType;
-@property (nonatomic, retain) NSNumber *recommendTemplate;
-@property (nonatomic, retain) NSString *title;
+@property (nonatomic, strong) NSNumber *recommendId;
+@property (nonatomic, strong) NSNumber *recommendType;
+@property (nonatomic, strong) NSNumber *recommendTemplate;
+@property (nonatomic, strong) NSString *title;
 @property (nonatomic, assign) BOOL isAd;
-@property (nonatomic, retain) NSNumber *position;
-@property (nonatomic, retain) NSNumber *createTime;
-@property (nonatomic, retain) NSNumber *plate;
-@property (nonatomic, retain) SQ_Article *article;
+@property (nonatomic, strong) NSNumber *position;
+@property (nonatomic, strong) NSNumber *createTime;
+@property (nonatomic, strong) NSNumber *plate;
+@property (nonatomic, strong) SQ_Article *article;
 
 @end

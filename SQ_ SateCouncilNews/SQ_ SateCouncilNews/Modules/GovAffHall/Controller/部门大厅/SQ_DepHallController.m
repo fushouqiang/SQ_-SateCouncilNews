@@ -15,7 +15,7 @@
 <
 UIScrollViewDelegate
 >
-@property (nonatomic, retain)UIScrollView *contentScrollView;
+@property (nonatomic, strong)UIScrollView *contentScrollView;
 @property (nonatomic, strong) UILabel *enterLabel;
 @property (nonatomic, strong) UILabel *showLabel;
 @property (nonatomic, strong) UILabel *lastLabel;

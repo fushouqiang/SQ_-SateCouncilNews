@@ -13,6 +13,6 @@
 @interface SQ_ScrollNewCell : UITableViewCell
 
 @property (nonatomic, strong)NSDictionary *dataDic;
-@property (nonatomic, strong) void(^block)(SQ_Article* article);
+@property (nonatomic, copy) void(^block)(SQ_Article* article);
 @property (nonatomic, strong) NSTimer *timer;
 @end

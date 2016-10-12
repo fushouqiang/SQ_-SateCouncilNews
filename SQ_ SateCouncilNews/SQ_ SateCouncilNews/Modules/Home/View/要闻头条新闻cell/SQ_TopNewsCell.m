@@ -17,7 +17,7 @@
 
 @interface SQ_TopNewsCell ()
 
-@property (nonatomic, retain)NSMutableArray *currentNewsArray;
+@property (nonatomic, strong)NSMutableArray *currentNewsArray;
 @property (nonatomic, strong)SQ_NormalNewsView *newsView1;
 @property (nonatomic, strong)SQ_NormalNewsView *newsView2;
 @property (nonatomic, strong)SQ_NormalNewsView *newsView3;

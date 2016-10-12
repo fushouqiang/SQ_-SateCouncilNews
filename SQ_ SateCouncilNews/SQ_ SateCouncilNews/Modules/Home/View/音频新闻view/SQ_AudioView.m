@@ -13,7 +13,7 @@
 #import "NSObject+YYModel.h"
 @interface SQ_AudioView ()
 @property (nonatomic, strong) UILabel *contentLabel;
-@property (nonatomic, retain) UILabel *timeLabel;
+@property (nonatomic, strong) UILabel *timeLabel;
 @property (nonatomic, strong) UIButton *audioButton;
 
 @end

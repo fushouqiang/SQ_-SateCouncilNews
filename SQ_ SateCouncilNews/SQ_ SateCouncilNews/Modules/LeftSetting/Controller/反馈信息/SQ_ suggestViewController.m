@@ -9,6 +9,9 @@
 #import "SQ_ suggestViewController.h"
 
 @interface SQ__suggestViewController ()
+<
+UITextViewDelegate
+>
 
 //建议textField
 @property (nonatomic, strong) UITextView *textView;
@@ -50,6 +53,8 @@
     _textView.layer.cornerRadius = 5.0;
     _textView.clipsToBounds = YES;
     _textView.font = [UIFont systemFontOfSize:20];
+    _textView.delegate = self;
+    _textView.returnKeyType = UIReturnKeyDone;
     
     self.submitButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:_submitButton];
@@ -89,9 +94,19 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString*)text
+{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
+
 - (void)submitButtonAction:(UIButton *)button {
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提高成功" message:@"您的每一句建议都是我们前进的动力!" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提交成功!" message:@"您的每一句建议都是我们前进的动力!" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
         _textView.text = @"谢谢您的提交";
@@ -99,7 +114,9 @@
         _textView.font = [UIFont systemFontOfSize:20];
         [_textView setEditable: NO];
         
-        _headLabel.text = @"Thanks a lot";
+        _headLabel.text = @"Thank You!";
+        _headLabel.textColor = [UIColor colorWithWhite:0.257 alpha:1.000];
+        _submitButton.userInteractionEnabled = NO;
     }];
     [alert addAction:action];
     

@@ -96,7 +96,7 @@
         NSString *urlSource = [[article.thumbnails valueForKey:@"2"] valueForKey:@"file"];
         NSString *urlString = [NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/%@",urlSource];
         NSURL *imageUrl = [NSURL URLWithString:urlString];
-        [_newsImageView sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@""]];
+        [_newsImageView sd_setImageWithURL:imageUrl placeholderImage:nil];
         _contentLabel.text = article.title;
         NSArray *array = [article.pictures allKeys];
         [_button setTitle:[NSString stringWithFormat:@"%ld",(unsigned long)array.count] forState:UIControlStateNormal];

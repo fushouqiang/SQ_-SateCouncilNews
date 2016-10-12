@@ -10,6 +10,6 @@
 
 @interface SQ_TopView : UIView
 
-@property (nonatomic, retain) NSDictionary *dataDic;
+@property (nonatomic, strong) NSDictionary *dataDic;
 
 @end

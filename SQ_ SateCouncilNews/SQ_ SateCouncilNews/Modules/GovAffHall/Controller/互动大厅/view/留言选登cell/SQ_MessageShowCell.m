@@ -15,7 +15,7 @@
 @interface SQ_MessageShowCell ()
 
 @property (nonatomic, strong) UILabel *contentLabel;
-@property (nonatomic, retain) UILabel *timeLabel;
+@property (nonatomic, strong) UILabel *timeLabel;
 @property (nonatomic, strong) UILabel *signLabel;
 @end
 @implementation SQ_MessageShowCell

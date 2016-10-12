@@ -197,6 +197,7 @@ typedef void (^JsonSuccess)(id json);
     }
 }
 
+//获取数据
 - (void)getJsonWithUrlString:(NSString *)urlString json:(JsonSuccess)json{
     
     
@@ -214,7 +215,7 @@ typedef void (^JsonSuccess)(id json);
 
 
 
-
+//model set方法
 - (void)setArticle:(SQ_Article *)article {
     
     if (_article != article) {

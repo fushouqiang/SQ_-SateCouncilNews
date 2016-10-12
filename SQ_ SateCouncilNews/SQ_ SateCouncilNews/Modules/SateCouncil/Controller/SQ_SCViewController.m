@@ -34,11 +34,17 @@ UITableViewDataSource
 >
 
 @property (nonatomic, strong) UITableView *tableView;
+//总理数组
 @property (nonatomic, strong) NSMutableArray *premierArray;
+//副总理数组
 @property (nonatomic, strong) NSMutableArray *vicePremierArray;
+//国务委员数组
 @property (nonatomic, strong) NSMutableArray *councillorArray;
+//成员模型
 @property (nonatomic, strong) SQ_Member *member;
+//行高
 @property (nonatomic, assign) CGFloat rowHeight;
+//flag
 @property (nonatomic, assign) BOOL flag1;
 
 @end
@@ -59,6 +65,9 @@ UITableViewDataSource
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //基本操作
+    
     self.view.backgroundColor = [UIColor blueColor];
     _rowHeight = 140;
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 25)];
@@ -80,7 +89,7 @@ UITableViewDataSource
     // Do any additional setup after loading the view.
 }
 
-
+//获取数据
 - (void)handleData {
     
     [self getJsonWithUrlString:@"http://app.www.gov.cn/govdata/gov/home_2.json" json:^(id json) {
@@ -88,7 +97,7 @@ UITableViewDataSource
         
         if (json != NULL) {
             [self initData:json];
-            self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
+            self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64) style:UITableViewStylePlain];
             _tableView.delegate = self;
             _tableView.dataSource = self;
             [self.view addSubview:_tableView];
@@ -99,6 +108,7 @@ UITableViewDataSource
     
 }
 
+//搜索按钮
 - (void)searchAction {
     
     SQ_SearchViewController *searchVC = [[SQ_SearchViewController alloc] init];
@@ -109,7 +119,7 @@ UITableViewDataSource
 
 
 
-
+//数据整理分发
 - (void)initData:(id)data {
     
     
@@ -133,6 +143,7 @@ UITableViewDataSource
     
 }
 
+//数据转模型
 - (void)initArrayWithDic:(NSDictionary *)dic andArray:(NSMutableArray *)array {
     
     NSArray *keyArray = [dic allKeys];
@@ -155,12 +166,13 @@ UITableViewDataSource
     
 }
 
+//tableView 代理方法
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     return  15;
     
 }
-
+//tableView 代理方法
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         
@@ -203,7 +215,7 @@ UITableViewDataSource
     return 100;
 }
 
-
+//tableView 代理方法
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.row == 0) {
@@ -390,6 +402,7 @@ UITableViewDataSource
        cell.selectionStyle = UITableViewCellSelectionStyleNone;
        return cell;
    }
+    //国务院成员cell
    else if (indexPath.row == 13) {
        static NSString *cellID14 = @"cell14";
        SQ_MemberCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID14];
@@ -440,12 +453,15 @@ UITableViewDataSource
     
 }
 
-
+//点击跳转
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     SQ_DetailViewController *sdVC = [[SQ_DetailViewController alloc] init];
 
-    if (indexPath.row != 14) {
+    if (indexPath.row != 14  && indexPath.row != 13) {
+        
+        
+        
         
         if (indexPath.row < 3) {
             sdVC.article = _premierArray[indexPath.row];
@@ -455,11 +471,10 @@ UITableViewDataSource
             sdVC.article = _councillorArray[indexPath.row - 8];
         }
         
-        
         sdVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:sdVC animated:YES];
         
-    } else {
+    } else if (indexPath.row == 14){
         SQ_SCorgViewController *scorgVC = [[SQ_SCorgViewController alloc] init];
         scorgVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:scorgVC animated:YES];
@@ -479,6 +494,7 @@ UITableViewDataSource
 
 
 
+//获取数据
 - (void)getJsonWithUrlString:(NSString *)urlString json:(JsonSuccess)json{
     
     

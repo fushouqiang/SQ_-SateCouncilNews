@@ -8,9 +8,11 @@
 
 #import "SQ_MemberCell.h"
 @interface SQ_MemberCell ()
-
+//国务院秘书长
 @property (nonatomic, strong) UILabel *leaderLabel;
+//国务院成员
 @property (nonatomic, strong) UILabel *memberLabel;
+//点击更多button
 @property (nonatomic, strong) UIButton *button;
 
 @end

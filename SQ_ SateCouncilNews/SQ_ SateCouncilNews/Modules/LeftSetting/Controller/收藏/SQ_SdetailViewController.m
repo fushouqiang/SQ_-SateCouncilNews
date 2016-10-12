@@ -19,7 +19,7 @@
 UIWebViewDelegate
 >
 typedef void (^JsonSuccess)(id json);
-@property (nonatomic, retain) UIWebView *webView;
+@property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) UIButton *backButton;
 
 

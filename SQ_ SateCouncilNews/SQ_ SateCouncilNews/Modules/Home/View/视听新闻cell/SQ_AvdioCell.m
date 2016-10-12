@@ -21,7 +21,7 @@
 
 @interface SQ_AvdioCell ()
 
-@property (nonatomic, retain)NSMutableArray *currentNewsArray;
+@property (nonatomic, strong)NSMutableArray *currentNewsArray;
 @property (nonatomic, strong) SQ_headNewsView *newsView1;
 @property (nonatomic, strong)SQ_AudioView *newsView2;
 @property (nonatomic, strong)SQ_HalfVideoNewsView *newsView3;

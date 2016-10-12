@@ -74,7 +74,7 @@ UIScrollViewDelegate
     UIScrollView *scrollView = (UIScrollView *)tap.view;
     
     NSInteger i = scrollView.contentOffset.x / WIDTH;
-    //代理传值
+    //block
 
         SQ_News *news = _dataSourceArray[i - 1];
         SQ_Article *article = news.article;

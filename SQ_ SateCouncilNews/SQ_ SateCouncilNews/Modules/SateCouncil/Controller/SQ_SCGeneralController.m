@@ -22,11 +22,15 @@ UITableViewDelegate,
 UITableViewDataSource
 >
 typedef void (^JsonSuccess)(id json);
+//tableview
+@property (nonatomic, strong) UITableView *tableView;
+//模型数组
+@property (nonatomic, strong) NSMutableArray *articleArray;
 
-@property (nonatomic, retain) UITableView *tableView;
-@property (nonatomic, retain) NSMutableArray *articleArray;
 @property (nonatomic, strong) id result;
+
 @property (nonatomic, assign) NSInteger dataNumber;
+
 @property (nonatomic, assign) unsigned long flagNumber;
 
 @end
@@ -53,10 +57,10 @@ typedef void (^JsonSuccess)(id json);
     //    self.dataNumber = 0;
     
 }
-
+//创建tableView
 - (void)createTableView {
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [self.view addSubview:_tableView ];
@@ -77,7 +81,7 @@ typedef void (^JsonSuccess)(id json);
     
     
 }
-
+//刷新
 - (void)refreshData {
     
     [self reloadData];
@@ -122,7 +126,7 @@ typedef void (^JsonSuccess)(id json);
 }
 
 
-
+//刷新
 - (void)reloadData {
 //    http://app.www.gov.cn/govdata/gov/columns/columnCategory_10178_0.json
     [self getJsonWithUrlString:[NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/columns/columnCategory_%@_%zd.json",_category,_dataNumber] json:^(id json) {
@@ -159,7 +163,7 @@ typedef void (^JsonSuccess)(id json);
         return 100;
     }
 }
-
+//tableView 协议方法
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
@@ -171,11 +175,12 @@ typedef void (^JsonSuccess)(id json);
 }
 
 
-
+//tableView 协议方法
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _articleArray.count;
 }
 
+//tableView 协议方法
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.row == 0) {

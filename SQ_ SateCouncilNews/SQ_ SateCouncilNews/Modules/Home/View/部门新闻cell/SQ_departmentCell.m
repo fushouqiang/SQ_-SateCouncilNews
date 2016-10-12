@@ -16,7 +16,7 @@
 #import "SQ_HalfNewsView.h"
 @interface SQ_departmentCell ()
 
-@property (nonatomic, retain) NSMutableArray *currentNewsArray;
+@property (nonatomic, strong) NSMutableArray *currentNewsArray;
 @property (nonatomic, strong) SQ_headNewsView *newsView1;
 @property (nonatomic, strong) SQ_EasyNewsView *newsView2;
 @property (nonatomic, strong) SQ_EasyNewsView *newsView3;

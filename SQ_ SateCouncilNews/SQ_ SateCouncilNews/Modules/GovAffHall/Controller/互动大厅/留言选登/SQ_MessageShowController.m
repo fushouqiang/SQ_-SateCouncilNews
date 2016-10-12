@@ -25,7 +25,7 @@ UITableViewDataSource
 >
 typedef void (^JsonSuccess)(id json);
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, retain) NSMutableArray *articleArray;
+@property (nonatomic, strong) NSMutableArray *articleArray;
 @property (nonatomic, strong) id result;
 @property (nonatomic, assign) NSInteger dataNumber;
 

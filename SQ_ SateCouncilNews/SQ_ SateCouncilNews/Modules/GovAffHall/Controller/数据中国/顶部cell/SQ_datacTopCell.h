@@ -10,5 +10,5 @@
 
 @interface SQ_datacTopCell : UITableViewCell
 
-@property (nonatomic, strong) void(^block)(NSInteger value);
+@property (nonatomic, copy) void(^block)(NSInteger value);
 @end

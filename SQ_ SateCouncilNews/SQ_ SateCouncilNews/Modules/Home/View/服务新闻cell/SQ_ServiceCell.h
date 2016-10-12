@@ -14,6 +14,6 @@
 @interface SQ_ServiceCell : UITableViewCell
 
 @property (nonatomic, strong) NSDictionary *dataDic;
-@property (nonatomic, strong) void(^block)(SQ_Article* article);
+@property (nonatomic, copy) void(^block)(SQ_Article* article);
 
 @end

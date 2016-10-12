@@ -11,6 +11,6 @@
 
 @interface SQ_headCell : UITableViewCell
 
-@property (nonatomic, retain) SQ_Article *article;
+@property (nonatomic, strong) SQ_Article *article;
 
 @end

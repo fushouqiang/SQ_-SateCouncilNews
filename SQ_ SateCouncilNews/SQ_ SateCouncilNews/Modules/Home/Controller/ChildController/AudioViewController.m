@@ -23,9 +23,9 @@ UITableViewDataSource
 >
 typedef void (^JsonSuccess)(id json);
 
-@property (nonatomic, retain) UITableView *tableView;
+@property (nonatomic, strong) UITableView *tableView;
 //模型数组
-@property (nonatomic, retain) NSMutableArray *articleArray;
+@property (nonatomic, strong) NSMutableArray *articleArray;
 
 @property (nonatomic, strong) id result;
 //刷新数据number

@@ -20,7 +20,7 @@
 #import "DataBaseManager.h"
 
 @interface AppDelegate ()
-@property (nonatomic, retain)MMDrawerController *drawerController;
+@property (nonatomic, strong)MMDrawerController *drawerController;
 @property (nonatomic, strong)DataBaseManager *manager;
 
 @end

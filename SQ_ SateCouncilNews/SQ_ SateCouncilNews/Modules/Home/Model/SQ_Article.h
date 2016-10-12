@@ -10,22 +10,22 @@
 
 @interface SQ_Article : SQ_BaseModel
 
-@property (nonatomic, retain) NSNumber *articleId;
-@property (nonatomic, retain) NSNumber *contentMode;
-@property (nonatomic, retain) NSString *title;
-@property (nonatomic, retain) NSDictionary *thumbnails;
-@property (nonatomic, retain) NSString *shareUrl;
-@property (nonatomic, retain) NSString *path;
-@property (nonatomic, retain) NSNumber *columnId;
-@property (nonatomic, retain) id position;
-@property (nonatomic, retain) id specialId;
-@property (nonatomic, retain) NSNumber *updateTime;
-@property (nonatomic, retain) NSNumber *publishTime;
-@property (nonatomic, retain) id feature;
-@property (nonatomic, retain) id categoryId;
-@property (nonatomic, retain) id medias;
+@property (nonatomic, strong) NSNumber *articleId;
+@property (nonatomic, strong) NSNumber *contentMode;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSDictionary *thumbnails;
+@property (nonatomic, strong) NSString *shareUrl;
+@property (nonatomic, strong) NSString *path;
+@property (nonatomic, strong) NSNumber *columnId;
+@property (nonatomic, strong) id position;
+@property (nonatomic, strong) id specialId;
+@property (nonatomic, strong) NSNumber *updateTime;
+@property (nonatomic, strong) NSNumber *publishTime;
+@property (nonatomic, strong) id feature;
+@property (nonatomic, strong) id categoryId;
+@property (nonatomic, strong) id medias;
 @property (nonatomic, strong) id pictures;
-@property (nonatomic, retain) NSString *des;
+@property (nonatomic, strong) NSString *des;
 @property (nonatomic, strong) NSString *saveImageUrl;
 @property (nonatomic, assign) BOOL isPlay;
 

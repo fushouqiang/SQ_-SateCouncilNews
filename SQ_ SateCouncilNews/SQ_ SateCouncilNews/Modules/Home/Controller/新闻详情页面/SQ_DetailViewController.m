@@ -34,7 +34,7 @@ MBProgressHUDDelegate
 //定义一个有参数block
 typedef void (^JsonSuccess)(id json);
 //webView
-@property (nonatomic, retain) UIWebView *webView;
+@property (nonatomic, strong) UIWebView *webView;
 //保存按钮
 @property (nonatomic, strong) UIButton *saveButton;
 //分享按钮

@@ -46,9 +46,9 @@ UITableViewDataSource,
 topNewsDelegate
 >
 
-@property (nonatomic, retain)UITableView *tableView;
-@property (nonatomic, retain)id result;
-@property (nonatomic, retain) NSMutableArray *dataSourceArray;
+@property (nonatomic, strong)UITableView *tableView;
+@property (nonatomic, strong)id result;
+@property (nonatomic, strong) NSMutableArray *dataSourceArray;
 //轮播图
 @property (nonatomic, strong) SQ_CarouselView *car;
 @property (nonatomic, strong) NSDictionary *carouseTouchDic;

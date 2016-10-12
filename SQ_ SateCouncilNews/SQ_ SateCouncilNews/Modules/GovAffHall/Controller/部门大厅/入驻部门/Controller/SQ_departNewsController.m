@@ -15,11 +15,11 @@
 UIScrollViewDelegate
 >
 //标题ScrollView
-@property (nonatomic, retain)UIScrollView *headScrollView;
+@property (nonatomic, strong)UIScrollView *headScrollView;
 //内容ScrollView
-@property (nonatomic, retain)UIScrollView *contentScrollView;
+@property (nonatomic, strong)UIScrollView *contentScrollView;
 //标记上一个选中的button
-@property (nonatomic, retain)UIButton *lastSelectButton;
+@property (nonatomic, strong)UIButton *lastSelectButton;
 @property (nonatomic, strong) NSMutableArray *columsArray;
 //headScrollView的button数组
 @property (nonatomic, strong) NSMutableArray *titleButtons;

@@ -11,5 +11,5 @@
 @interface SQ_MenuCell : UITableViewCell
 
 
-@property (nonatomic, strong) void(^block)(NSString *category);
+@property (nonatomic, copy) void(^block)(NSString *category);
 @end

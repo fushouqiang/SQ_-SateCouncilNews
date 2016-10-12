@@ -10,5 +10,5 @@
 #import "SQ_Article.h"
 
 @interface SQ_VideoCell : UITableViewCell
-@property (nonatomic, retain) SQ_Article *article;
+@property (nonatomic, strong) SQ_Article *article;
 @end

@@ -27,11 +27,11 @@ UIScrollViewDelegate
 >
 typedef void (^JsonSuccess)(id json);
 //头scrollView
-@property (nonatomic, retain)UIScrollView *headScrollView;
+@property (nonatomic, strong)UIScrollView *headScrollView;
 //内容scrollView
-@property (nonatomic, retain)UIScrollView *contentScrollView;
+@property (nonatomic, strong)UIScrollView *contentScrollView;
 //上一次点击的button
-@property (nonatomic, retain)UIButton *lastSelectButton;
+@property (nonatomic, strong)UIButton *lastSelectButton;
 //导航button数组
 @property (nonatomic, strong) NSMutableArray *titleButtons;
 //cloums模型数组
@@ -210,6 +210,7 @@ typedef void (^JsonSuccess)(id json);
     newsVC.title = @"要闻";
    
    
+    //因为后三个 是其他页面是现实的
     for (int i = 0; i < _columsArray.count - 3; i++) {
         
         if (0 == i) {
@@ -317,15 +318,15 @@ typedef void (^JsonSuccess)(id json);
 //添加子控制器
 - (void)setupOneViewController:(NSInteger)i {
     
-    
-
+  //判断第几个
+   CGFloat x = [UIScreen mainScreen].bounds.size.width * i;
     
     if (0 == i) {
          NewsViewController *newsVC = self.childViewControllers[i];
         if (newsVC.view.superview) {
             return;
         }
-        CGFloat x = [UIScreen mainScreen].bounds.size.width * i;
+//        CGFloat x = [UIScreen mainScreen].bounds.size.width * i;
         newsVC.view.frame = CGRectMake(x, 0, [UIScreen mainScreen].bounds.size.width, self.contentScrollView.superview.frame.size.height);
         [self.contentScrollView addSubview:newsVC.view];
     } else if(8 == i) {
@@ -333,7 +334,7 @@ typedef void (^JsonSuccess)(id json);
         if (picVC.view.superview) {
             return;
         }
-        CGFloat x = [UIScreen mainScreen].bounds.size.width * i;
+//        CGFloat x = [UIScreen mainScreen].bounds.size.width * i;
         picVC.view.frame = CGRectMake(x, 0, [UIScreen mainScreen].bounds.size.width, self.contentScrollView.superview.frame.size.height);
         [self.contentScrollView addSubview:picVC.view];
     } else if(9 == i) {
@@ -341,7 +342,7 @@ typedef void (^JsonSuccess)(id json);
         if (videoVC.view.superview) {
             return;
         }
-        CGFloat x = [UIScreen mainScreen].bounds.size.width * i;
+//        CGFloat x = [UIScreen mainScreen].bounds.size.width * i;
         videoVC.view.frame = CGRectMake(x, 0, [UIScreen mainScreen].bounds.size.width, self.contentScrollView.superview.frame.size.height);
         [self.contentScrollView addSubview:videoVC.view];
     } else {

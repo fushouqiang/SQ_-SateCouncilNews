@@ -9,8 +9,8 @@
 #import "SQ_TopView.h"
 @interface SQ_TopView ()
 
-@property (nonatomic, retain) UILabel *textLabel;
-@property (nonatomic, retain) UILabel *timeLabel;
+@property (nonatomic, strong) UILabel *textLabel;
+@property (nonatomic, strong) UILabel *timeLabel;
 @property (nonatomic, strong) UIImageView *signImageView;
 
 @end

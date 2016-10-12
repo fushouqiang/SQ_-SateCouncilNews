@@ -11,9 +11,9 @@
 @interface SQ_pictureScrollView : UIScrollView
 
 
-@property (nonatomic, strong) void(^singleTapBlock)();
+@property (nonatomic, copy) void(^singleTapBlock)();
 
-@property (nonatomic, strong) void(^doubleTapBlock)();
+@property (nonatomic, copy) void(^doubleTapBlock)();
 //因为要保存图片,不得不把imageView写在外面
 @property (nonatomic, strong) UIImageView *imageView;
 

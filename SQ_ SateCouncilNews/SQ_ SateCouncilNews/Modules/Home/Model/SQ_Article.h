@@ -28,6 +28,8 @@
 @property (nonatomic, strong) NSString *des;
 @property (nonatomic, strong) NSString *saveImageUrl;
 @property (nonatomic, assign) BOOL isPlay;
+@property (nonatomic, strong) NSString *searchKey;
+
 
 
 @end

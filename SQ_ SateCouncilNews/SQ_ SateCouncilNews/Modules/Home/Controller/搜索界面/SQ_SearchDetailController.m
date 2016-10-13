@@ -13,6 +13,7 @@
 #import "NSObject+YYModel.h"
 #import "MJRefresh.h"
 #import "SQ_DetailViewController.h"
+#import "SQ_SearchCell.h"
 static NSString *const cellIdentifier = @"cell";
 
 
@@ -61,7 +62,7 @@ typedef void (^JsonSuccess)(id json);
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
-    [_tableView registerClass:[SQ_normalCell class] forCellReuseIdentifier:cellIdentifier];
+    [_tableView registerClass:[SQ_SearchCell class] forCellReuseIdentifier:cellIdentifier];
     _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self handleData];
         
@@ -92,9 +93,12 @@ typedef void (^JsonSuccess)(id json);
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
-    SQ_normalCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    SQ_SearchCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (_articleArray.count > 0) {
-        cell.article = _articleArray[indexPath.row];
+        SQ_Article *article = _articleArray[indexPath.row];
+        article.searchKey = _serachKey;
+        cell.article = article;
+      
     }
     
     return cell;

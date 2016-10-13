@@ -85,6 +85,7 @@
 		79A1B0E31DA8997F00AF083D /* SQ_SCGeneralController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A1B0E21DA8997F00AF083D /* SQ_SCGeneralController.m */; };
 		79A1B15D1DA8CE2900AF083D /* SQ_SCorgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A1B15C1DA8CE2900AF083D /* SQ_SCorgViewController.m */; };
 		79A1B1631DA8EE1700AF083D /* SQ_depaDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A1B1621DA8EE1700AF083D /* SQ_depaDetailViewController.m */; };
+		79A1BD2B1DAF1D3B00380788 /* SQ_SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A1BD2A1DAF1D3B00380788 /* SQ_SearchCell.m */; };
 		79A360B81D98D2310090F80F /* SQ_SignNormalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A360B71D98D2310090F80F /* SQ_SignNormalCell.m */; };
 		79A360BC1D98D4E90090F80F /* SQ_EasyNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A360BB1D98D4E90090F80F /* SQ_EasyNewsCell.m */; };
 		79A83EB31D94BDDB00D226B7 /* SQ_Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 79A83EB21D94BDDB00D226B7 /* SQ_Article.m */; };
@@ -317,6 +318,8 @@
 		79A1B15C1DA8CE2900AF083D /* SQ_SCorgViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_SCorgViewController.m; sourceTree = "<group>"; };
 		79A1B1611DA8EE1700AF083D /* SQ_depaDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_depaDetailViewController.h; sourceTree = "<group>"; };
 		79A1B1621DA8EE1700AF083D /* SQ_depaDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_depaDetailViewController.m; sourceTree = "<group>"; };
+		79A1BD291DAF1D3B00380788 /* SQ_SearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_SearchCell.h; sourceTree = "<group>"; };
+		79A1BD2A1DAF1D3B00380788 /* SQ_SearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_SearchCell.m; sourceTree = "<group>"; };
 		79A360B61D98D2310090F80F /* SQ_SignNormalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_SignNormalCell.h; sourceTree = "<group>"; };
 		79A360B71D98D2310090F80F /* SQ_SignNormalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQ_SignNormalCell.m; sourceTree = "<group>"; };
 		79A360BA1D98D4E90090F80F /* SQ_EasyNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQ_EasyNewsCell.h; sourceTree = "<group>"; };
@@ -716,18 +719,14 @@
 		798142051D9155EA005BEA08 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				79C538871D97A3D200A10164 /* 半屏新闻view */,
-				79C5389C1D97AE1000A10164 /* 半屏视频新闻View */,
+				79A1BD271DAF0CEE00380788 /* 要闻自定义View */,
 				79AF83AD1D9B4D6B0073C17A /* 图片新闻cell */,
 				79C538A61D97C1F700A10164 /* 地方新闻cell */,
-				79C538891D97A40300A10164 /* 大图新闻view */,
 				79A360B91D98D2350090F80F /* 带标志普通新闻cell */,
 				79C538A21D97B4E200A10164 /* 政策新闻cell */,
 				79C538B21D97CE6700A10164 /* 数据新闻cell */,
 				7988F6241DA9EE1E00EEE210 /* 文件搜索cell */,
 				79A360BD1D98D4EE0090F80F /* 无图片新闻cell */,
-				79C538861D97A3BF00A10164 /* 无图片新闻view */,
-				79C538921D97A80B00A10164 /* 普通新闻View */,
 				79C538831D97A34B00A10164 /* 普通新闻cell */,
 				79C538B11D97CBB200A10164 /* 服务新闻cell */,
 				79C538851D97A3A500A10164 /* 滚动新闻cell */,
@@ -735,12 +734,10 @@
 				79C538881D97A3ED00A10164 /* 视听新闻cell */,
 				7986FF6A1D9C00B0007361C6 /* 视频新闻cell */,
 				79C538C11D97D89800A10164 /* 访谈新闻cell */,
-				79C538841D97A38900A10164 /* 轮播图View */,
 				79C538AA1D97C72A00A10164 /* 部门新闻cell */,
 				79C538A11D97B4A900A10164 /* 非要闻头新闻cell */,
 				79C538821D97A31A00A10164 /* 非要闻头视图View */,
 				79C2CC951DA6009400A1CB7B /* 音频新闻cell */,
-				79C5388B1D97A44500A10164 /* 音频新闻view */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1010,6 +1007,7 @@
 		799EA8911D9E4AAB003BAFF2 /* 搜索界面 */ = {
 			isa = PBXGroup;
 			children = (
+				79A1BD281DAF1D1000380788 /* searchCell */,
 				799EA8951D9E5C63003BAFF2 /* SQ_SearchDetailController.h */,
 				799EA8961D9E5C63003BAFF2 /* SQ_SearchDetailController.m */,
 				799EA8921D9E4ACF003BAFF2 /* SQ_SearchViewController.h */,
@@ -1063,6 +1061,29 @@
 				799EE69C1DA25F2500063852 /* SQ_categoriesCell.xib */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		79A1BD271DAF0CEE00380788 /* 要闻自定义View */ = {
+			isa = PBXGroup;
+			children = (
+				79C538891D97A40300A10164 /* 大图新闻view */,
+				79C538861D97A3BF00A10164 /* 无图片新闻view */,
+				79C538921D97A80B00A10164 /* 普通新闻View */,
+				79C538841D97A38900A10164 /* 轮播图View */,
+				79C5388B1D97A44500A10164 /* 音频新闻view */,
+				79C538871D97A3D200A10164 /* 半屏新闻view */,
+				79C5389C1D97AE1000A10164 /* 半屏视频新闻View */,
+			);
+			name = "要闻自定义View";
+			sourceTree = "<group>";
+		};
+		79A1BD281DAF1D1000380788 /* searchCell */ = {
+			isa = PBXGroup;
+			children = (
+				79A1BD291DAF1D3B00380788 /* SQ_SearchCell.h */,
+				79A1BD2A1DAF1D3B00380788 /* SQ_SearchCell.m */,
+			);
+			name = searchCell;
 			sourceTree = "<group>";
 		};
 		79A360B91D98D2350090F80F /* 带标志普通新闻cell */ = {
@@ -1804,6 +1825,7 @@
 				79A1B15D1DA8CE2900AF083D /* SQ_SCorgViewController.m in Sources */,
 				79B3C3651DA4FCAD009AD46B /* SQ_intHallDetailCell.m in Sources */,
 				79C2CC3F1DA5F14C00A1CB7B /* SQ_GDPPIViewController.m in Sources */,
+				79A1BD2B1DAF1D3B00380788 /* SQ_SearchCell.m in Sources */,
 				79C538A91D97C22800A10164 /* SQ_LocalityCell.m in Sources */,
 				79C2CC941DA5FE9600A1CB7B /* AudioViewController.m in Sources */,
 				79B3C3591DA4E0F2009AD46B /* SQ_intHallDetailViewController.m in Sources */,
@@ -2010,7 +2032,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -2049,7 +2071,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

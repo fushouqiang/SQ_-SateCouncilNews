@@ -141,6 +141,7 @@ typedef void (^JsonSuccess)(id json);
     
     if (_articleArray.count > 0) {
         cell.article = _articleArray[indexPath.row];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return cell;
 }
@@ -211,6 +212,7 @@ typedef void (^JsonSuccess)(id json);
     if (_article != article) {
         _article = article;
     }
+    
     //开启数据区
     self.manager = [DataBaseManager shareManager];
     [_manager openSQLite];
@@ -274,7 +276,7 @@ typedef void (^JsonSuccess)(id json);
     
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string  = _article.shareUrl;
-    [self alertWithTitle:@"本页面分享链接已复制到剪贴板" andMessage:@"请手动粘贴到微信或微博"];
+    [self alertWithTitle:@"本页面分享链接已复制到剪贴板" andMessage:@"请手动粘贴到微信或微博等"];
     
 }
 
@@ -361,6 +363,7 @@ typedef void (^JsonSuccess)(id json);
     
     if ([request.URL.scheme isEqualToString:@"image-preview"]) {
         NSString* path = [request.URL.absoluteString substringFromIndex:[@"image-preview:" length]];
+        //url转码
         path = [path stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         
         SQ_singlePicController *singlePic = [[SQ_singlePicController alloc] init];
@@ -425,6 +428,7 @@ typedef void (^JsonSuccess)(id json);
     
     
     if (_articleArray.count > 0) {
+        //获取高度
         NSString *result = [webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight;"];
         
         NSInteger height = [result integerValue] ;

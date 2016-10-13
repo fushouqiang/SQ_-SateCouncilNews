@@ -84,10 +84,10 @@
     if (_article != article) {
         _article = article;
 
-        NSString *urlSource = [[article.thumbnails valueForKey:@"2"] valueForKey:@"file"];
+        NSString *urlSource = [[article.thumbnails valueForKey:@"1"] valueForKey:@"file"];
         
         if (urlSource == nil) {
-            urlSource = [[article.thumbnails valueForKey:@"1"] valueForKey:@"file"];
+            urlSource = [[article.thumbnails valueForKey:@"2"] valueForKey:@"file"];
         }
         
         NSString *urlString = [NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/%@",urlSource];

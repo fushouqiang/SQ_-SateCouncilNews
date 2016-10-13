@@ -39,7 +39,7 @@ UITextFieldDelegate
 
 
 - (void)createUI {
-    self.searchTextField = [[UITextField alloc] initWithFrame:CGRectMake(80, 7, 180, 30)];
+    self.searchTextField = [[UITextField alloc] initWithFrame:CGRectMake(80, 7, WIDTH - 150, 30)];
     
     UIImageView *search = [[UIImageView alloc] initWithFrame:CGRectMake(5, 0, 25, 25)];
     [search setImage:[UIImage imageNamed:@"navigationSearchButton"]];

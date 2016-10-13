@@ -12,6 +12,7 @@
 #import "NSObject+YYModel.h"
 #import "SQ_Detail.h"
 #import "DataBaseManager.h"
+#import "SQ_singlePicController.h"
 
 
 @interface SQ_SdetailViewController ()
@@ -21,6 +22,7 @@ UIWebViewDelegate
 typedef void (^JsonSuccess)(id json);
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) UIButton *backButton;
+@property (nonatomic, strong) NSMutableArray *mUrlArray;
 
 
 @end
@@ -79,11 +81,60 @@ typedef void (^JsonSuccess)(id json);
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
+- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
+    
+    if ([request.URL.scheme isEqualToString:@"image-preview"]) {
+        NSString* path = [request.URL.absoluteString substringFromIndex:[@"image-preview:" length]];
+        //url转码
+        path = [path stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        
+        SQ_singlePicController *singlePic = [[SQ_singlePicController alloc] init];
+        singlePic.urlString = path;
+        
+        NSMutableArray *array = [NSMutableArray arrayWithArray:_mUrlArray];
+        singlePic.picUrlArray = array;
+        [self presentViewController:singlePic animated:YES completion:nil];
+        
+        return NO;
+    }
+    return YES;
+    
+}
 
 //屏蔽JS广告
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByClassName('bottomicon')[0].style.display = 'NONE'"];
+    
+    
+    //这里是js，主要目的实现对url的获取
+    static  NSString * const jsGetImages =
+    @"function getImages(){\
+    var objs = document.getElementsByTagName(\"img\");\
+    var imgScr = '';\
+    for(var i=0;i<objs.length;i++){\
+    imgScr = imgScr + objs[i].src + '+';\
+    };\
+    return imgScr;\
+    };";
+    
+    [webView stringByEvaluatingJavaScriptFromString:jsGetImages];//注入js方法
+    NSString *urlResurlt = [webView stringByEvaluatingJavaScriptFromString:@"getImages()"];
+    
+    
+    self.mUrlArray = [NSMutableArray arrayWithArray:[urlResurlt componentsSeparatedByString:@"+"]];
+    
+    
+    
+    [webView stringByEvaluatingJavaScriptFromString:@"function registerImageClickAction(){\
+     var imgs=document.getElementsByTagName('img');\
+     var length=imgs.length;\
+     for(var i=0;i<length;i++){\
+     img=imgs[i];\
+     img.onclick=function(){\
+     window.location.href='image-preview:'+this.src}\
+     }\
+     }"];
+    [webView stringByEvaluatingJavaScriptFromString:@"registerImageClickAction();"];
     
 }
 

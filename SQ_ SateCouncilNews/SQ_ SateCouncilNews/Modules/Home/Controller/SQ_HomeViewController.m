@@ -49,13 +49,13 @@ typedef void (^JsonSuccess)(id json);
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     //设置打开抽屉模式
- 
-        [self.mm_drawerController closeDrawerAnimated:YES completion:^(BOOL finished) {
-            [self.mm_drawerController setRightDrawerViewController:nil];
-        }];
-        self.mm_drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeAll;
-        self.mm_drawerController.closeDrawerGestureModeMask = MMCloseDrawerGestureModeAll;
-        
+    
+    [self.mm_drawerController closeDrawerAnimated:YES completion:^(BOOL finished) {
+        [self.mm_drawerController setRightDrawerViewController:nil];
+    }];
+    self.mm_drawerController.openDrawerGestureModeMask = MMOpenDrawerGestureModeAll;
+    self.mm_drawerController.closeDrawerGestureModeMask = MMCloseDrawerGestureModeAll;
+    
     
 }
 
@@ -68,24 +68,6 @@ typedef void (^JsonSuccess)(id json);
     [self setupContentScrollView];
     [self setupAllChildViewController];
     [self setupHeadScrollViewTitle];
-  
-    //默认点击的title
-    UIButton *button = [self.view viewWithTag:1000];
-    [self buttonClick:button];
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    
-    [self setupNavigation];
-    
-    [self handleData];
-       // Do any additional setup after loading the view from its nib.
-}
-
-
-- (void)setupNavigation {
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"navigationSettingButton"] style:UIBarButtonItemStylePlain target:self action:@selector(settingAction)];
     self.navigationItem.leftBarButtonItem.tintColor = [UIColor colorWithWhite:0.534 alpha:1.000];
     
@@ -95,7 +77,17 @@ typedef void (^JsonSuccess)(id json);
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navigationSearchButton"] style:UIBarButtonItemStylePlain target:self action:@selector(searchAction)];
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithWhite:0.534 alpha:1.000];
-    
+    self.view.backgroundColor = [UIColor whiteColor];
+    //默认点击的title
+    UIButton *button = [self.view viewWithTag:1000];
+    [self buttonClick:button];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self handleData];
+    // Do any additional setup after loading the view from its nib.
 }
 
 
@@ -136,16 +128,14 @@ typedef void (^JsonSuccess)(id json);
             
             
             
-
-          
+            
+            [self createUI];
             
             
             
         }
         
-          [self createUI];
         
-      
     }];
     
 }
@@ -180,7 +170,7 @@ typedef void (^JsonSuccess)(id json);
     SQ_SearchViewController *searchVC = [[SQ_SearchViewController alloc] init];
     searchVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:searchVC animated:YES];
-   
+    
 }
 
 //创建title的scrollView
@@ -218,9 +208,8 @@ typedef void (^JsonSuccess)(id json);
     
     NewsViewController *newsVC = [[NewsViewController alloc] init];
     newsVC.title = @"要闻";
-   
-   
-    //因为后三个 是其他页面是现实的
+    
+    
     for (int i = 0; i < _columsArray.count - 3; i++) {
         
         if (0 == i) {
@@ -236,7 +225,7 @@ typedef void (^JsonSuccess)(id json);
             [self addChildViewController:picVC];
             
         }else if(9 == i){
-
+            
             VideoViewController *videoVC = [[VideoViewController alloc] init];
             videoVC.title = [_columsArray[i] valueForKey:@"title"];
             [self addChildViewController:videoVC];
@@ -247,21 +236,21 @@ typedef void (^JsonSuccess)(id json);
             AudioViewController *audioVC = [[AudioViewController alloc] init];
             audioVC.title = [_columsArray[i] valueForKey:@"title"];
             [self addChildViewController:audioVC];
-        
+            
         } else {
-        
-       
-        
-        SQ_GeneralViewController *VC = [[SQ_GeneralViewController alloc] init];
-        VC.title = [_columsArray[i] valueForKey:@"title"];
-        
-        [self addChildViewController:VC];
+            
+            
+            
+            SQ_GeneralViewController *VC = [[SQ_GeneralViewController alloc] init];
+            VC.title = [_columsArray[i] valueForKey:@"title"];
+            
+            [self addChildViewController:VC];
             
         }
         
     }
-
- 
+    
+    
     
     
     
@@ -290,7 +279,7 @@ typedef void (^JsonSuccess)(id json);
         //将titleButton的中心点加入到数组中,因为数组只能存对象,所以把CGPoint转化为NSValue类型存入到数组中
         [_lengthArray addObject:[NSValue valueWithCGPoint:titleButton.frame.origin]];
         allLength = titleButton.frame.size.width + titleButton.frame.origin.x;
-
+        
         [titleButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.headScrollView addSubview:titleButton];
         [self.titleButtons addObject:titleButton];
@@ -300,7 +289,7 @@ typedef void (^JsonSuccess)(id json);
     self.headScrollView.dk_backgroundColorPicker = DKColorPickerWithRGB(0x347EB3, 0x343434, 0xfafafa);
     self.contentScrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width * count, 0);
     
-   
+    
 }
 
 //标题按钮的点击事件
@@ -328,15 +317,15 @@ typedef void (^JsonSuccess)(id json);
 //添加子控制器
 - (void)setupOneViewController:(NSInteger)i {
     
-  //判断第几个
-   CGFloat x = [UIScreen mainScreen].bounds.size.width * i;
+    
+    
     
     if (0 == i) {
-         NewsViewController *newsVC = self.childViewControllers[i];
+        NewsViewController *newsVC = self.childViewControllers[i];
         if (newsVC.view.superview) {
             return;
         }
-//        CGFloat x = [UIScreen mainScreen].bounds.size.width * i;
+        CGFloat x = [UIScreen mainScreen].bounds.size.width * i;
         newsVC.view.frame = CGRectMake(x, 0, [UIScreen mainScreen].bounds.size.width, self.contentScrollView.superview.frame.size.height);
         [self.contentScrollView addSubview:newsVC.view];
     } else if(8 == i) {
@@ -344,7 +333,7 @@ typedef void (^JsonSuccess)(id json);
         if (picVC.view.superview) {
             return;
         }
-//        CGFloat x = [UIScreen mainScreen].bounds.size.width * i;
+        CGFloat x = [UIScreen mainScreen].bounds.size.width * i;
         picVC.view.frame = CGRectMake(x, 0, [UIScreen mainScreen].bounds.size.width, self.contentScrollView.superview.frame.size.height);
         [self.contentScrollView addSubview:picVC.view];
     } else if(9 == i) {
@@ -352,22 +341,22 @@ typedef void (^JsonSuccess)(id json);
         if (videoVC.view.superview) {
             return;
         }
-//        CGFloat x = [UIScreen mainScreen].bounds.size.width * i;
+        CGFloat x = [UIScreen mainScreen].bounds.size.width * i;
         videoVC.view.frame = CGRectMake(x, 0, [UIScreen mainScreen].bounds.size.width, self.contentScrollView.superview.frame.size.height);
         [self.contentScrollView addSubview:videoVC.view];
     } else {
-    
-    
-    SQ_GeneralViewController *VC = self.childViewControllers[i];
-    
-    //如果已经加载了就不设置frame
-    if (VC.view.superview) {
-        return;
-    }
-    CGFloat x = [UIScreen mainScreen].bounds.size.width * i;
-    VC.view.frame = CGRectMake(x, 0, [UIScreen mainScreen].bounds.size.width, self.contentScrollView.superview.frame.size.height);
-    VC.column = _columsArray[i];
-    [self.contentScrollView addSubview:VC.view];
+        
+        
+        SQ_GeneralViewController *VC = self.childViewControllers[i];
+        
+        //如果已经加载了就不设置frame
+        if (VC.view.superview) {
+            return;
+        }
+        CGFloat x = [UIScreen mainScreen].bounds.size.width * i;
+        VC.view.frame = CGRectMake(x, 0, [UIScreen mainScreen].bounds.size.width, self.contentScrollView.superview.frame.size.height);
+        VC.column = _columsArray[i];
+        [self.contentScrollView addSubview:VC.view];
     }
 }
 
@@ -390,7 +379,7 @@ typedef void (^JsonSuccess)(id json);
     NSValue *value = [_lengthArray objectAtIndex:index];
     //将点转化为CGPoint类型以便设置headScrollView的位置
     CGPoint point = [value CGPointValue];
-//    [self.headScrollView setContentOffset:[value CGPointValue] + (WIDTH/2)  animated:YES];
+    //    [self.headScrollView setContentOffset:[value CGPointValue] + (WIDTH/2)  animated:YES];
     //让titleButton位于中间
     CGPoint truePoint = CGPointMake(point.x - WIDTH /2 + 20, 0);
     
@@ -406,10 +395,10 @@ typedef void (^JsonSuccess)(id json);
     }
     
     
-
-
     
-
+    
+    
+    
     
     
     
@@ -421,13 +410,13 @@ typedef void (^JsonSuccess)(id json);
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

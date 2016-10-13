@@ -1,19 +1,19 @@
 //
-//  SQ_normalCell.m
+//  SQ_SearchCell.m
 //  SQ_ SateCouncilNews
 //
-//  Created by FuShouqiang on 16/9/22.
+//  Created by FuShouqiang on 16/10/13.
 //  Copyright © 2016年 fu. All rights reserved.
 //
 
-#import "SQ_normalCell.h"
+#import "SQ_SearchCell.h"
 #import "UIImageView+WebCache.h"
 #import "SQ_TopView.h"
 #import "SQ_Article.h"
 #import "NSObject+YYModel.h"
 #import "UILabel+SizeToFit_W_H.h"
 
-@interface SQ_normalCell ()
+@interface SQ_SearchCell ()
 
 
 @property (nonatomic, strong) UIImageView *newsImageView;
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation SQ_normalCell
+@implementation SQ_SearchCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -42,7 +42,7 @@
             make.top.equalTo(self.contentView.top).offset(10);
             make.bottom.equalTo(self.contentView.bottom);
         }];
-    
+        
         
         
         self.contentLabel = [[UILabel alloc] init];
@@ -69,7 +69,7 @@
         _timeLabel.font = [UIFont fontWithName:@"Helvetica" size:14];
         _timeLabel.textColor = [UIColor grayColor];
         
-     
+        
         
         self.signLabel = [[UILabel alloc] init];
         [self.contentView addSubview:_signLabel];
@@ -99,19 +99,23 @@
     if (_article != article) {
         _article = article;
         
-       //获取图片地址
+        
+        NSString *str1 = _article.title;
+        
+        NSRange range = [str1 rangeOfString:_article.searchKey];
+        
+        NSMutableAttributedString *contentStr = [[NSMutableAttributedString alloc] initWithString:article.title];
+        
+        [contentStr addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:1.000 green:0.166 blue:0.244 alpha:1.000] range:range];
+        _contentLabel.attributedText = contentStr;
+
+        //获取图片地址
         NSString *urlSource = [[article.thumbnails valueForKey:@"1"] valueForKey:@"file"];
-        
-        if (urlSource == NULL) {
-            
-            urlSource = [[article.thumbnails valueForKey:@"2"] valueForKey:@"file"];
-        }
-        
         NSString *urlString = [NSString stringWithFormat:@"http://app.www.gov.cn/govdata/gov/%@",urlSource];
         NSURL *imageUrl = [NSURL URLWithString:urlString];
         [_newsImageView sd_setImageWithURL:imageUrl placeholderImage:nil options:SDWebImageProgressiveDownload];
         //截取时间
-        self.contentLabel.text = article.title;
+//        self.contentLabel.text = article.title;
         NSString *str = [article.path substringToIndex:9];
         NSMutableString *str2 = [[NSMutableString alloc] initWithString:str];
         [str2 insertString:@"/" atIndex:4];
@@ -121,7 +125,7 @@
             _signLabel.layer.borderColor = [UIColor colorWithRed:0.329 green:0.544 blue:1.000 alpha:1.000].CGColor;
             _signLabel.layer.borderWidth = 1;
             self.signLabel.text = article.feature;
-           CGFloat signWidth = [UILabel getWidthWithTitle:article.feature Font:[UIFont systemFontOfSize:10]];
+            CGFloat signWidth = [UILabel getWidthWithTitle:article.feature Font:[UIFont systemFontOfSize:10]];
             
             [_signLabel updateConstraints:^(MASConstraintMaker *make) {
                 
@@ -132,7 +136,7 @@
             
             [_signLabel removeFromSuperview];
         }
-
+        
         
         
         if (urlSource == NULL) {
@@ -143,9 +147,9 @@
                 make.left.equalTo(self.contentView.left).offset(10);
                 make.right.equalTo(self.contentView.right).offset(-10);
                 make.top.equalTo(self.contentView.top).offset(20);
-//                make.bottom.equalTo(self.contentView.bottom).offset(-50);
+                //                make.bottom.equalTo(self.contentView.bottom).offset(-50);
             }];
-
+            
             [_timeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
                 
                 make.left.equalTo(self.contentView.left).offset(10);
@@ -153,11 +157,11 @@
                 
                 make.width.equalTo(WIDTH / 4);
                 make.bottom.equalTo(self.contentView.bottom).offset(-3);
-               
+                
             }];
             
         }
-
+        
         
     }
     
@@ -166,8 +170,9 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
 @end
+

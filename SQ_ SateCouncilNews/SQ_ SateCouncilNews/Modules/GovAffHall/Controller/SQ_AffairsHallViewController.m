@@ -15,6 +15,7 @@
 #import "SQ_infoPublicViewController.h"
 #import "SQ_interactionHallViewController.h"
 #import "SQ_DataChinaViewController.h"
+#import <DKNightVersion/DKNightVersion.h>
 
 @interface SQ_AffairsHallViewController ()
 
@@ -39,8 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor colorWithWhite:0.926 alpha:1.000];
-    
+    self.view.dk_backgroundColorPicker = DKColorPickerWithRGB(0xe7e7e7, 0x696969, 0xfafafa);
     
    
     [self setupNavigation];
@@ -90,7 +90,7 @@
     [self.view addSubview:departmentHall];
     [departmentHall makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.left).offset(15);
-        make.top.equalTo(self.view.top).offset(150);
+        make.top.equalTo(self.view.top).offset(130);
         make.width.equalTo(width);
         make.height.equalTo(width * 2);
         
@@ -132,7 +132,7 @@
     [self.view addSubview:serviceHall];
     [serviceHall makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(departmentHall.right).offset(4);
-        make.top.equalTo(self.view.top).offset(150);
+        make.top.equalTo(self.view.top).offset(130);
         make.width.equalTo(width * 2 - 4);
         make.height.equalTo(width - 2);
         
